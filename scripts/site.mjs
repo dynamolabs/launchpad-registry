@@ -19,7 +19,7 @@ p{margin:4px 0;color:var(--mut)}a{color:var(--acc);text-decoration:none}a:hover{
 input,select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}input{flex:1;min-width:200px}
 main{max-width:1100px;margin:0 auto;padding:8px 16px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
 .c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
-.t{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.t b{font-size:16px}.chip{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+.t{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.t b{font-size:16px;display:flex;align-items:center;gap:8px}.lg{width:22px;height:22px;border-radius:6px;object-fit:cover}.chip{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
 .s-active{color:var(--ok);border-color:var(--ok)}.s-inactive{color:var(--bad);border-color:var(--bad)}.s-unknown,.s-test{color:var(--warn);border-color:var(--warn)}
 .m{color:var(--mut);font-size:13px}.a{font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;display:flex;gap:6px;align-items:flex-start}
 .a span{color:var(--mut);min-width:90px;font-family:system-ui;font-size:11px;padding-top:2px}.a button{background:none;border:1px solid var(--line);color:var(--mut);border-radius:6px;cursor:pointer;font-size:11px;padding:0 6px}
@@ -32,17 +32,19 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:20px}
 <select id="st"><option value="">any status</option><option>active</option><option>inactive</option><option>test</option><option>unknown</option></select>
 <select id="mo"><option value="">any model</option><option>bonding-curve</option><option>direct-pool</option><option>funding-round</option><option>meta-launchpad</option><option>other</option></select></div>
 <main id="list"></main>
-<footer>Listing ≠ endorsement. Data is community-maintained; verify before you trade.</footer>
+<footer>Data CC0 · code MIT · dataset v${data.version} · Listing ≠ endorsement; verify before you trade. <a href="${repo}/blob/main/llms.txt">llms.txt</a> · <a href="${repo}/tree/main/mcp">MCP</a></footer>
 <script>
 const L=${JSON.stringify(data.launchpads)},C=${JSON.stringify(chains)};
 const dirOf=l=>C.find(c=>c.family===l.chain.family&&String(c.id)===String(l.chain.id))?.dir||'';
 const exp=(l,a)=>{const c=C.find(c=>c.dir===dirOf(l));if(!c?.explorer)return'#';return c.family==='solana'?c.explorer+'/account/'+a:c.explorer+'/address/'+a};
 const esc=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 const q=document.getElementById('q'),ch=document.getElementById('ch'),st=document.getElementById('st'),mo=document.getElementById('mo'),list=document.getElementById('list');
-function card(l){const c=C.find(c=>c.dir===dirOf(l));return '<div class="c"><div class="t"><b>'+esc(l.name)+'</b><span class="chip s-'+l.status+'">'+l.status+'</span></div>'+
+function card(l){const c=C.find(c=>c.dir===dirOf(l));return '<div class="c"><div class="t"><b>'+(l.logo?'<img class="lg" src="../'+l.logo+'" alt="" loading="lazy" onerror="this.remove()">':'')+esc(l.name)+'</b><span class="chip s-'+l.status+'">'+l.status+'</span></div>'+
 '<div class="m">'+esc(c?.name||'')+' · '+l.model+(l.builtOn?' · on <a href="#'+l.builtOn+'">'+l.builtOn+'</a>':'')+(l.firstSeen?' · since '+l.firstSeen:'')+'</div>'+
 l.contracts.map(k=>'<div class="a"><span>'+esc(k.role)+'</span><a href="'+exp(l,k.address)+'" target="_blank" rel="noopener" title="'+esc(k.label||'')+'">'+k.address+'</a><button onclick="navigator.clipboard.writeText(\\''+k.address+'\\')" title="copy">⧉</button></div>').join('')+
 (l.launch?'<div class="n"><b>launch:</b> '+esc(l.launch.kind)+(l.launch.name?' · '+esc(l.launch.name):'')+(l.launch.topic0?' · topic0 <code>'+l.launch.topic0.slice(0,10)+'…</code>':'')+(l.launch.discriminator?' · disc <code>'+l.launch.discriminator+'</code>':'')+(l.launch.notes?'<br>'+esc(l.launch.notes):'')+'</div>':'')+
+(l.fixtures&&l.fixtures.length?'<div class="n"><b>fixture:</b> <a href="'+(c?.family==='solana'?'https://solscan.io/tx/':c?.explorer+'/tx/')+l.fixtures[0].tx+'" target="_blank" rel="noopener">'+l.fixtures[0].tx.slice(0,14)+'…</a> ('+esc(l.fixtures[0].date||'')+')'+(l.lastActivity?' · <b>last activity:</b> '+l.lastActivity:'')+(l.contracts[0].checked?' · <b>checked:</b> '+l.contracts[0].checked:'')+'</div>':'')+
+(l.externalIds?'<div class="n"><b>aka:</b> '+Object.entries(l.externalIds).map(([k,v])=>esc(k)+'='+esc(v)).join(' · ')+'</div>':'')+
 '<div class="l">'+(l.website?'<a href="'+esc(l.website)+'" target="_blank" rel="noopener">website</a>':'')+(l.socials?.x?'<a href="https://x.com/'+esc(l.socials.x)+'" target="_blank" rel="noopener">@'+esc(l.socials.x)+'</a>':'')+(l.graduation?.target?'<span class="m">→ '+esc(l.graduation.target)+'</span>':'')+(l.tags||[]).map(t=>'<span class="chip">'+esc(t)+'</span>').join('')+'</div></div>'}
 function render(){const s=q.value.trim().toLowerCase();const out=L.filter(l=>(!ch.value||dirOf(l)===ch.value)&&(!st.value||l.status===st.value)&&(!mo.value||l.model===mo.value)&&(!s||JSON.stringify([l.id,l.name,l.tags,l.contracts.map(k=>k.address),l.builtOn]).toLowerCase().includes(s)));
 list.innerHTML=out.map(card).join('')||'<p>nothing matches</p>'}

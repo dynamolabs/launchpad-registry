@@ -37,8 +37,10 @@
   "launch": {
     "kind": "instruction",
     "name": "initialize",
-    "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8.",
-    "discriminator": "afaf6d1f0d989bed"
+    "notes": "Accounts: payer, creator, global_config, platform_config, authority, pool_state, base_mint, quote_mint, base_vault, quote_vault, metadata_account, base_token_program… Variants: initialize_v2, initialize_with_token_2022. platform_config (accounts[3]) identifies the frontend; its account data holds name (bytes 0..64) and web (64..320).",
+    "discriminator": "afaf6d1f0d989bed",
+    "tokenField": "accounts[6] (base_mint)",
+    "creatorField": "accounts[1] (creator)"
   },
   "token": {
     "standard": "spl",
@@ -62,5 +64,22 @@
     "https://docs.raydium.io/raydium/pool-creation/launchlab",
     "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/raydium-launchlab.png",
+  "idl": "idl/raydium-launchlab.json",
+  "externalIds": {
+    "codex": "Raydium LaunchLab",
+    "solanatracker": "launchlab",
+    "geckoterminal": "raydium-launchlab"
+  },
+  "fixtures": [
+    {
+      "tx": "3oViU7Wf2V5XQCU6apemLHy3yAipBHsLsYXyMvEvhh2qpfZGV7frGhRfJYxpVU1uoNW9EDrFa9qDKQY7BCCrYzLt",
+      "token": "vPJkvMpNyTqZtbzU97RsjsiZpJNNhaK9D16jUrrNray",
+      "creator": "G1rC77W1Ru2hJDnfzJzeo3uBVMrR2mx18PGVBjYgk4ZU",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via platform-config 4Bu96XjU"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

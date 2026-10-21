@@ -10,7 +10,7 @@ import { keccak_256 } from '@noble/hashes/sha3';
 const root = new URL('..', import.meta.url).pathname, WRITE = process.argv.includes('--write'), today = new Date().toISOString().slice(0, 10);
 const hex = b => Array.from(b, x => x.toString(16).padStart(2, '0')).join('');
 const chains = JSON.parse(readFileSync(join(root, 'registry/chains.json'), 'utf8'));
-const rpc = async (url, method, params) => { const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }) }); const j = await r.json(); if (j.error) throw new Error(`${method}: ${JSON.stringify(j.error)}`); return j.result; };
+const rpc = async (url, method, params, tries = 4) => { const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }) }); const j = await r.json(); if (j.error) { if (tries > 0 && /429|limit/i.test(JSON.stringify(j.error))) { await sleep(2500 * (5 - tries)); return rpc(url, method, params, tries - 1); } throw new Error(`${method}: ${JSON.stringify(j.error)}`); } return j.result; };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let problems = 0, checks = 0; const warn = (f, m) => { problems++; console.log(`  ✖ ${f}: ${m}`); };
 const CONTRACT_ROLES = new Set(['program', 'factory', 'launcher', 'hook', 'curve', 'router', 'registry', 'token', 'other']);

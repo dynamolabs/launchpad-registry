@@ -39,7 +39,9 @@
   "launch": {
     "kind": "instruction",
     "name": "initialize_virtual_pool_with_spl_token | initialize_virtual_pool_with_token2022",
-    "notes": "Multi-tenant: every frontend (partner) creates a Config account (fee claimer, curve, migration target) and optionally a PartnerMetadata account (name, website, logo). Launches reference the config, so the config address identifies the frontend. Configs without PartnerMetadata are common; infer the brand from the token metadata URI host."
+    "notes": "Accounts: config, pool_authority, creator, base_mint, quote_mint, pool, base_vault, quote_vault, mint_metadata, metadata_program, payer, … config (accounts[0]) identifies the partner/frontend. Partners may also publish a PartnerMetadata account (create_partner_metadata) with name/website/logo. Migration is a separate tx (migration_damm_v2 / migrate_meteora_damm).",
+    "tokenField": "accounts[3] (base_mint)",
+    "creatorField": "accounts[2] (creator)"
   },
   "token": {
     "standard": "mixed",
@@ -66,5 +68,20 @@
     "https://github.com/MeteoraAg/dynamic-bonding-curve",
     "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/meteora-dbc.png",
+  "idl": "idl/meteora-dbc.json",
+  "fixtures": [
+    {
+      "tx": "4g1LcYAtUU74HzGn7pNLZd6m11G1Z7QSaN68R8g7xkaFtKzjx4NnYZXuc7znLqDaN6GbyV6Xd2YLecPZQCfWeXdN",
+      "token": "DoocYiBrTGxPvKkv9BuDJnDfA5f4DLa4P7axmVaNpump",
+      "creator": "93LeHPNvjgRASr72GRgHHBtGLY4Nu3UkG1cBGZqZbKad",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via program dbcij3LW"
+    }
+  ],
+  "externalIds": {
+    "geckoterminal": "meteora-dbc"
+  },
+  "lastActivity": "2026-10-21"
 }

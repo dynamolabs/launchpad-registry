@@ -1,0 +1,57 @@
+{
+  "chainId": 4663,
+  "contracts": [
+    "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
+    "0x54198ff2fce9b0df255051d49748fe53a8e428cc"
+  ],
+  "note": "Event fragments only (enough to subscribe and decode launches). topic0 in registry entry is keccak256 of the first signature.",
+  "abi": [
+    {
+      "type": "event",
+      "name": "Initialize",
+      "anonymous": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "id",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "currency0",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "currency1",
+          "indexed": true
+        },
+        {
+          "type": "uint24",
+          "name": "fee",
+          "indexed": false
+        },
+        {
+          "type": "int24",
+          "name": "tickSpacing",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "hooks",
+          "indexed": false
+        },
+        {
+          "type": "uint160",
+          "name": "sqrtPriceX96",
+          "indexed": false
+        },
+        {
+          "type": "int24",
+          "name": "tick",
+          "indexed": false
+        }
+      ]
+    }
+  ]
+}

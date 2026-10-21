@@ -62,5 +62,16 @@
     "https://trysprout.fun",
     "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/sprout.png",
+  "fixtures": [
+    {
+      "tx": "0xa80786d6989ff48db68a0336d7d6535178cd5ef5de70a21a1465c0cddcdddfda",
+      "token": "0x0000000088827d2d103ee2d9a6b781773ae03ffb",
+      "creator": "0x9f01f7fdb9b977bf2669eaa11c872fc4a5ab2f63",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs (mint-from-zero in blocks 188315569-188320568)"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

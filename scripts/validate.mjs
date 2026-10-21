@@ -15,6 +15,8 @@ const errors = [];
 const err = (f, m) => errors.push(`${f}: ${m}`);
 const chains = JSON.parse(readFileSync(join(root, 'registry/chains.json'), 'utf8'));
 if (!Array.isArray(chains)) throw new Error('registry/chains.json must be an array');
+const TAGS = JSON.parse(readFileSync(join(root, 'registry/tags.json'), 'utf8'));
+const { existsSync } = await import('node:fs');
 const chainByDir = new Map();
 for (const c of chains) {
   if (!vChain(c)) err('registry/chains.json', ajv.errorsText(vChain.errors));
@@ -43,6 +45,9 @@ for (const dir of readdirSync(join(root, 'registry'))) {
       if (addrs.has(key) && addrs.get(key) !== e.id && !['token', 'platform-config', 'partner-config', 'router', 'other'].includes(c.role) && !e.builtOn) err(file, `address ${c.address} already claimed by ${addrs.get(key)} (set builtOn if this is a frontend)`);
       addrs.set(key, e.id);
     }
+    for (const t of e.tags || []) if (!TAGS[t]) err(file, `tag "${t}" not in registry/tags.json`);
+    for (const k of ['logo', 'idl', 'abi']) if (e[k] && !existsSync(join(root, e[k]))) err(file, `${k} file ${e[k]} missing`);
+    if (e.logo) { const st = statSync(join(root, e.logo)); if (st.size > 65536) err(file, `logo ${e.logo} is ${st.size} bytes (max 65536)`); }
     if (e.launch?.topic0 && chain.family !== 'evm') err(file, 'topic0 only valid on EVM');
     if (e.launch?.discriminator && chain.family !== 'solana') err(file, 'discriminator only valid on Solana');
     entries.push({ file, e });

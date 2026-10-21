@@ -1,11 +1,25 @@
 {
   "generated": "2026-10-21",
   "addresses": {
+    "solana:GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi": [
+      {
+        "id": "bags",
+        "role": "partner-config",
+        "label": "Meteora DBC Config used by Bags launches (observed 2026-10-21; Bags may rotate configs per fee-share setup)"
+      }
+    ],
     "solana:BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V": [
       {
         "id": "blocks-fund",
         "role": "partner-config",
         "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "solana:boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4": [
+      {
+        "id": "boop",
+        "role": "program",
+        "label": "boop program (IDL v0.3.0)"
       }
     ],
     "solana:8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS": [
@@ -20,6 +34,20 @@
         "id": "farmfun",
         "role": "partner-config",
         "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "solana:HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o": [
+      {
+        "id": "heaven",
+        "role": "program",
+        "label": "Heaven launchpad/DEX program (no published IDL)"
+      }
+    ],
+    "solana:ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet": [
+      {
+        "id": "jupiter-studio",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata (name 'Meow', website jup.ag/studio)"
       }
     ],
     "solana:JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC": [
@@ -80,6 +108,20 @@
         "id": "meteora-dbc",
         "role": "other",
         "label": "DAMM v1 (alternative graduation target)"
+      }
+    ],
+    "solana:MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG": [
+      {
+        "id": "moonshot",
+        "role": "program",
+        "label": "Moonit legacy token_launchpad program (still launching, SOL quote)"
+      }
+    ],
+    "solana:FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM": [
+      {
+        "id": "moonshot",
+        "role": "partner-config",
+        "label": "Meteora DBC Config used by current Moonshot launches (USDC quote, observed 2026-10-21)"
       }
     ],
     "solana:Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej": [
@@ -304,6 +346,13 @@
         "id": "imortal",
         "role": "factory",
         "label": "IMORTAL factory"
+      }
+    ],
+    "evm-1776:0xddfeabf7e3fd692ff9a9091b53bdffde8b6c07f0": [
+      {
+        "id": "runup",
+        "role": "deployer",
+        "label": "address the Injective radar saw as token-minting entrypoint; has no code (EOA)"
       }
     ],
     "evm-1776:0xef1a648373dc19072d692429b704bb63cf597950": [

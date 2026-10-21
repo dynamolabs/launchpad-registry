@@ -3,7 +3,7 @@
 Finds launchpads that are **not in the registry yet**: any program (Solana), tx.to entrypoint or Uniswap V4 hook (EVM) that creates ≥ N tokens inside a rolling window and has no registry entry fires one alert, with a pre-filled "add to registry" issue link.
 
 ```
-node detector/index.mjs --chain evm-4663 --rpc https://rpc.mainnet.chain.robinhood.com --v4 0x8366a39cc670b4001a1121b8f6a443a643e40951 --quotes 0x0bd7d308f8e1639fab988df18a8011f41eacad73
+node detector/index.mjs --chain evm-4663 --v4 0x8366a39cc670b4001a1121b8f6a443a643e40951   # quote tokens come from registry/chains.json
 node detector/index.mjs --chain evm-1776 --rpc https://sentry.evm-rpc.injective.network --min 3
 node detector/index.mjs --chain solana   --rpc https://your-rpc --min 5 --window 60
 ```
@@ -15,7 +15,7 @@ node detector/index.mjs --chain solana   --rpc https://your-rpc --min 5 --window
 | `--min` | 3 (EVM) / 5 (Solana) | tokens per window before an alert |
 | `--window` | 60 | rolling window in minutes |
 | `--v4` | – | Uniswap V4 PoolManager address → key launchpads by **hook** (needed on chains where pads are V4 hooks) |
-| `--quotes` | – | comma-separated quote tokens (WETH…) so the non-quote currency is reported as the token |
+| `--quotes` | chain's `quoteTokens` | extra quote tokens (WETH, USDC…) so the non-quote currency is reported as the token |
 | `--ignore` | – | extra addresses never to alert on (established DEXes, routers) |
 | `--registry` | local `dist/addresses.json` | path or URL; reloaded hourly, so merged PRs silence alerts automatically |
 | `--state` | `./detector-state-<chain>.json` | persisted cursor + seen tokens + counters |

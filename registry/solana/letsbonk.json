@@ -31,7 +31,9 @@
     "kind": "instruction",
     "name": "initialize",
     "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above.",
-    "discriminator": "afaf6d1f0d989bed"
+    "discriminator": "afaf6d1f0d989bed",
+    "tokenField": "accounts[6] (base_mint)",
+    "creatorField": "accounts[1] (creator)"
   },
   "token": {
     "standard": "spl",
@@ -53,5 +55,22 @@
     "https://letsbonk.fun",
     "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/letsbonk.png",
+  "externalIds": {
+    "codex": "LetsBonk",
+    "solanatracker": "bonk",
+    "dexscreener": "letsbonk",
+    "geckoterminal": "letsbonk-fun"
+  },
+  "fixtures": [
+    {
+      "tx": "3TctBJVuuHRbW4trtGdkNP1A1BmdukSdYGPeyvivZpWnNyneYMZCFBuVANC5SWvGGgR4PRAMrNjQVmxFiNKMhYF5",
+      "token": "D5g9Mdvo3MLLVPXrzpFLiT6ULwhjYE6rpt1zWxD4bonk",
+      "creator": "GDhTL821Dg6scrU78tgfPV4e1FQfFnaeb4Z2Z8XgLv7y",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via platform-config FfYek5vE"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

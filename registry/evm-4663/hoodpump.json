@@ -45,5 +45,7 @@
     "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
   ],
   "notes": "",
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/hoodpump.png",
+  "abi": "abi/hoodpump.json"
 }

@@ -30,7 +30,9 @@
   "launch": {
     "kind": "instruction",
     "name": "initialize",
-    "discriminator": "afaf6d1f0d989bed"
+    "discriminator": "afaf6d1f0d989bed",
+    "tokenField": "accounts[6] (base_mint)",
+    "creatorField": "accounts[1] (creator)"
   },
   "token": {
     "standard": "spl",
@@ -51,5 +53,7 @@
     "https://www.stonkfun.xyz",
     "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/stonkfun.png",
+  "lastActivity": "2026-10-21"
 }

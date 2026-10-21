@@ -1,0 +1,51 @@
+{
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "updated": "2026-10-21",
+  "id": "heaven",
+  "name": "Heaven",
+  "website": "https://heaven.xyz",
+  "socials": {
+    "x": "heavendex"
+  },
+  "status": "active",
+  "firstSeen": "2025-08-01",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o",
+      "role": "program",
+      "label": "Heaven launchpad/DEX program (no published IDL)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "notes": "Program publishes no IDL (checked PMP + Anchor). Launch instruction not decoded yet: PRs with a fixture tx welcome."
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "needs-abi"
+  ],
+  "externalIds": {
+    "solanatracker": "heaven",
+    "geckoterminal": "heaven"
+  },
+  "sources": [
+    "https://heaven.xyz",
+    "https://github.com/pinax-network/substreams-svm",
+    "https://solscan.io/account/HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o"
+  ],
+  "logo": "icons/heaven.png",
+  "lastActivity": "2026-10-21"
+}

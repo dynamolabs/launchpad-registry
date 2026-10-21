@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.OWNER/launchpad-registry",
+  "description": "Query the open registry of token launchpads (Solana + EVM): which program/factory/hook is which launchpad, launch events, status.",
+  "repository": {
+    "url": "https://github.com/OWNER/launchpad-registry",
+    "source": "github"
+  },
+  "version_detail": {
+    "version": "0.2.0"
+  },
+  "packages": [
+    {
+      "registry_name": "npm",
+      "name": "launchpad-registry",
+      "version": "0.2.0",
+      "runtime_hint": "npx",
+      "package_arguments": [],
+      "environment_variables": []
+    }
+  ]
+}

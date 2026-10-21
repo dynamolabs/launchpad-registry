@@ -6,7 +6,7 @@
     "family": "evm",
     "id": 4663
   },
-  "status": "unknown",
+  "status": "active",
   "firstSeen": "2026-07-16",
   "model": "direct-pool",
   "contracts": [
@@ -48,5 +48,16 @@
     "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
   ],
   "notes": "",
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/clanker-robinhood.png",
+  "fixtures": [
+    {
+      "tx": "0xf5b9f7897dbf11dc8698451ed3a294a478aac7ab3080f30db69162ee754bd388",
+      "token": "0x397da6f4bd11b29d8e629e62e8b8f1a9a7b79b07",
+      "creator": "0x47450821e8a918f86251b90f0bf2953a8f4db117",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94576436-94581435)"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

@@ -14,12 +14,12 @@ Every sniper, radar, dashboard and wallet tracker reverse-engineers the same add
 
 | chain | dir | launchpads |
 |---|---|---|
-| Solana | `solana` | pump.fun · Raydium LaunchLab (+ letsbonk, StonkFun) · Meteora DBC (+ Blocks, FarmFun, Bots Family) · Pangea · kids.fun |
+| Solana | `solana` | pump.fun · Raydium LaunchLab (+ letsbonk, StonkFun) · Meteora DBC (+ Bags, Moonshot, Jupiter Studio, Blocks, FarmFun, Bots Family) · Moonit (legacy program) · Boop · Heaven · Pangea · kids.fun |
 | Robinhood Chain `4663` | `evm-4663` | Pons · HoodPump · NOXA · RobinFun · Virtuals · pmav · launchproof · LaunchHood · Trencher · HudPad · Clanker · Doppler |
 | Injective EVM `1776` | `evm-1776` | runup.fun · Sprout · IMORTAL |
 | Arc `5042` | `evm-5042` | none yet |
 
-Every address was checked on-chain (`npm run verify`): programs are executable, contracts have code, Anchor discriminators and `topic0` hashes are recomputed in CI.
+Every address was checked on-chain (`npm run verify`): programs are executable, contracts have code, Anchor discriminators and `topic0` hashes are recomputed in CI. Entries carry a real launch tx as a **fixture** (`scripts/fixtures.mjs`), the program's **IDL snapshot** (`idl/`), a **logo** (`icons/`) and an automated weekly **liveness** stamp (`lastActivity`, status flips after 30 quiet days).
 
 ## Use the data
 
@@ -47,7 +47,9 @@ frontendsOf('meteora-dbc');               // pads built on a multi-tenant progra
 active();                                 // status === 'active'
 ```
 
-Files in `dist/`: `launchpads.json` (all), `addresses.json` (reverse index `chain:address → [{id, role}]`), `by-chain/<dir>.json`, `chains.json`. TypeScript types ship in `index.d.ts`.
+Files in `dist/`: `launchpads.json` (all), `launchpads.min.json` (ids + addresses only), `addresses.json` (reverse index `chain:address → [{id, role}]`), `launchpads.csv` (one row per address, for Dune / spreadsheets), `by-chain/<dir>.json`, `chains.json`, `tags.json`. Every file carries `version` (semver of the dataset) and `generated`. CDN: `https://cdn.jsdelivr.net/gh/OWNER/launchpad-registry@main/dist/launchpads.json`. TypeScript types ship in `index.d.ts`.
+
+**AI agents:** `mcp/` is an MCP server (`lookup`, `search`, `get`, `frontends_of`, `list_chains`), see [`mcp/README.md`](mcp/README.md); `llms.txt` summarises the data for LLMs; `skills/add-launchpad` teaches an agent how to contribute an entry.
 
 ## What one entry looks like
 
@@ -73,6 +75,9 @@ Files in `dist/`: `launchpads.json` (all), `addresses.json` (reverse index `chai
 | `token` | `spl` / `token-2022` / `erc20`, where metadata lives, vanity suffix (`pump$`, `4663$`) |
 | `graduation` | where and when a curve migrates |
 | `sources` | the explorer / docs links every claim is backed by |
+| `fixtures` | real launch txs that prove the spec; `idl` / `abi` point to decoder files in-repo |
+| `externalIds` | the same launchpad's name at Codex, Solana Tracker, DexScreener… so datasets join |
+| `checked` / `lastActivity` | last on-chain verification (`npm run verify`) and last observed launch (weekly liveness job) |
 
 Schema: [`schema/launchpad.schema.json`](schema/launchpad.schema.json). Chains: [`registry/chains.json`](registry/chains.json).
 
@@ -84,6 +89,10 @@ node detector/index.mjs --chain solana --rpc https://your-rpc --min 5
 ```
 
 Any program, entrypoint or hook that creates ≥ N fungible tokens in a rolling window **and is not in the registry** triggers one alert (console, Telegram, Discord or webhook) with a pre-filled issue link. Merged PRs silence it automatically because the detector reloads the registry hourly. Details and pm2/Docker recipes in [`detector/README.md`](detector/README.md).
+
+## Used by
+
+- `sol-launchpad-radar` and `inj-launchpad-radar` (Telegram radars for new launchpads on Solana / Injective) load `dist/addresses.json` hourly to tell registered programs from unknown ones. Add yours via PR.
 
 ## Contribute
 
@@ -98,13 +107,18 @@ npm test
 
 Rules in short: one launchpad per file, file name = `id`, every address backed by a `sources` link, `status` honest, no paid listings, no referral links. The long version is [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Versioning
+
+The dataset is semver'd (`version` in every `dist/` file, tags `vX.Y.Z`, [CHANGELOG](CHANGELOG.md)): **major** when an entry or address is removed or changed, **minor** when entries/addresses are added, **patch** for metadata. Pin a tag if you need stability: `cdn.jsdelivr.net/gh/OWNER/launchpad-registry@v0.1.0/dist/launchpads.json`.
+
 ## Roadmap
 
-- [ ] Base, BNB, Ethereum mainnet, Arc entries
-- [ ] Token-2022 metadata-extension mints in the Solana detector
-- [ ] Fixture transactions per launchpad for decoder tests
-- [ ] `verified` badge from published IDLs / verified source
+- [ ] Base, BNB, Ethereum mainnet, Arc entries (Clanker, Zora, Flaunch, four.meme, Virtuals Base…)
+- [ ] Bags, Believe, DAOs.fun config keys on Solana (need fixture txs)
+- [ ] Token-2022 metadata-extension mints and Yellowstone gRPC mode in the detector
+- [ ] Public keyless lookup API
+- [ ] Schema registered at SchemaStore
 
 ## License
 
-MIT, code and data. A listing is a fact about on-chain activity, not an endorsement. Nothing here is financial advice.
+Code is MIT ([LICENSE](LICENSE)); data in `registry/`, `dist/`, `idl/`, `abi/`, `icons/` is CC0 ([LICENSE-DATA](LICENSE-DATA)), so it can be merged into any dataset without attribution. A listing is a fact about on-chain activity, not an endorsement. Nothing here is financial advice.

@@ -1,0 +1,4 @@
+# Maintainers review every change. Chain-specific reviewers can be added per directory.
+*                       @OWNER
+registry/solana/        @OWNER
+registry/evm-4663/      @OWNER

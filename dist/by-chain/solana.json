@@ -1,5 +1,74 @@
 [
   {
+    "id": "bags",
+    "name": "Bags",
+    "website": "https://bags.fm",
+    "socials": {
+      "x": "bagsapp"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2025-06-01",
+    "model": "bonding-curve",
+    "builtOn": "meteora-dbc",
+    "contracts": [
+      {
+        "address": "GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi",
+        "role": "partner-config",
+        "label": "Meteora DBC Config used by Bags launches (observed 2026-10-21; Bags may rotate configs per fee-share setup)",
+        "checked": "2026-10-21"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize_virtual_pool_with_spl_token",
+      "discriminator": "8c55d7b06636684f",
+      "tokenField": "accounts[3] (base_mint)",
+      "creatorField": "accounts[2] (creator)",
+      "notes": "Bags launches on Meteora DBC with creator fee-share set in basis points at launch. Identify by config == accounts[0]. Quote SOL."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "decimals": 6
+    },
+    "graduation": {
+      "target": "meteora-damm-v2"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "memecoin",
+      "bonding-curve",
+      "frontend"
+    ],
+    "externalIds": {
+      "geckoterminal": "bags-fm",
+      "solanatracker": "bags"
+    },
+    "fixtures": [
+      {
+        "tx": "67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
+        "token": "2CzwJe1uPEP22HAmkiwhazN9QZoX4LRQsjf4MHqNcoht",
+        "creator": "J9WXUuZAt2gm6LcmQ6vSdk9nEbnhSiPdCZmsby9SjRLW",
+        "date": "2026-10-21",
+        "note": "found via GeckoTerminal bags-fm pool list → mint history → creation tx"
+      }
+    ],
+    "sources": [
+      "https://bags.fm",
+      "https://docs.bags.fm/how-to-guides/initial-buy-math",
+      "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
+      "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
+    ],
+    "updated": "2026-10-21",
+    "lastActivity": "2026-10-21"
+  },
+  {
     "id": "blocks-fund",
     "name": "Blocks",
     "website": "https://blocks.fund",
@@ -22,7 +91,9 @@
       "kind": "instruction",
       "name": "initialize_virtual_pool_with_spl_token",
       "notes": "Filter DBC launches whose config belongs to this partner.",
-      "discriminator": "8c55d7b06636684f"
+      "discriminator": "8c55d7b06636684f",
+      "tokenField": "accounts[3] (base_mint)",
+      "creatorField": "accounts[2] (creator)"
     },
     "token": {
       "standard": "spl",
@@ -41,7 +112,74 @@
       "https://blocks.fund",
       "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "fixtures": [
+      {
+        "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",
+        "token": "F91MLT3rfNRR2YWhGjZyY9dLsFEDbPDHCVALvpW1ttxC",
+        "creator": "GdYgsvUtitvw3qq5JhxdfChB9neyoWUVAr1hgkzM81Rv",
+        "date": "2026-10-18",
+        "note": "found by scripts/fixtures.mjs via partner-config BnuJLtrZ"
+      }
+    ]
+  },
+  {
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "updated": "2026-10-21",
+    "id": "boop",
+    "name": "Boop.fun",
+    "website": "https://boop.fun",
+    "socials": {
+      "x": "boopdotfun"
+    },
+    "status": "active",
+    "firstSeen": "2025-04-01",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4",
+        "role": "program",
+        "label": "boop program (IDL v0.3.0)",
+        "verified": true,
+        "checked": "2026-10-21"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "create_token",
+      "notes": "See idl/boop.json for exact instruction names; also has a platform config on Raydium LaunchLab (3Srku5GEBe92Ef5SGYwcSiHry59Pc3NBpehXpuThUTof) with no launches observed.",
+      "discriminator": "5434cce4188cea4b"
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "decimals": 9
+    },
+    "graduation": {
+      "target": "raydium-cpmm"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "memecoin",
+      "bonding-curve"
+    ],
+    "externalIds": {
+      "solanatracker": "boop",
+      "geckoterminal": "boop-fun"
+    },
+    "sources": [
+      "https://boop.fun",
+      "https://github.com/pinax-network/substreams-svm",
+      "https://solscan.io/account/boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4"
+    ],
+    "idl": "idl/boop.json",
+    "logo": "icons/boop.png",
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "bots-family",
@@ -66,7 +204,9 @@
       "kind": "instruction",
       "name": "initialize_virtual_pool_with_spl_token",
       "notes": "Filter DBC launches whose config belongs to this partner.",
-      "discriminator": "8c55d7b06636684f"
+      "discriminator": "8c55d7b06636684f",
+      "tokenField": "accounts[3] (base_mint)",
+      "creatorField": "accounts[2] (creator)"
     },
     "token": {
       "standard": "spl",
@@ -85,7 +225,8 @@
       "https://bots.family",
       "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/bots-family.png"
   },
   {
     "id": "farmfun",
@@ -110,7 +251,9 @@
       "kind": "instruction",
       "name": "initialize_virtual_pool_with_spl_token",
       "notes": "Filter DBC launches whose config belongs to this partner.",
-      "discriminator": "8c55d7b06636684f"
+      "discriminator": "8c55d7b06636684f",
+      "tokenField": "accounts[3] (base_mint)",
+      "creatorField": "accounts[2] (creator)"
     },
     "token": {
       "standard": "spl",
@@ -129,7 +272,121 @@
       "https://farmfun.farm",
       "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/farmfun.png",
+    "fixtures": [
+      {
+        "tx": "3UVZJtuhtDspwV7Y1zPmNhDuS4HZ4D9dxodDr6Kc9qYdouB58kt8zRvDtQnUM9pyjezJwG6kiMoG16rgJnhvzZCQ",
+        "token": "97f9DpjkbG25JNa8U41as13rAJrp9sGJ6Vse5q94j6u3",
+        "creator": "2M9Apdvv3aQWFEEf6kx2HaYW5ye7mNtWADEsft5ntigC",
+        "date": "2026-10-19",
+        "note": "found by scripts/fixtures.mjs via partner-config FodsuBzg"
+      }
+    ],
+    "lastActivity": "2026-10-21"
+  },
+  {
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "updated": "2026-10-21",
+    "id": "heaven",
+    "name": "Heaven",
+    "website": "https://heaven.xyz",
+    "socials": {
+      "x": "heavendex"
+    },
+    "status": "active",
+    "firstSeen": "2025-08-01",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o",
+        "role": "program",
+        "label": "Heaven launchpad/DEX program (no published IDL)",
+        "checked": "2026-10-21"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "notes": "Program publishes no IDL (checked PMP + Anchor). Launch instruction not decoded yet: PRs with a fixture tx welcome."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "memecoin",
+      "bonding-curve",
+      "needs-abi"
+    ],
+    "externalIds": {
+      "solanatracker": "heaven",
+      "geckoterminal": "heaven"
+    },
+    "sources": [
+      "https://heaven.xyz",
+      "https://github.com/pinax-network/substreams-svm",
+      "https://solscan.io/account/HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o"
+    ],
+    "logo": "icons/heaven.png",
+    "lastActivity": "2026-10-21"
+  },
+  {
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "updated": "2026-10-21",
+    "id": "jupiter-studio",
+    "name": "Jupiter Studio",
+    "website": "https://jup.ag/studio",
+    "socials": {
+      "x": "JupiterExchange"
+    },
+    "status": "unknown",
+    "firstSeen": "2025-07-01",
+    "model": "bonding-curve",
+    "builtOn": "meteora-dbc",
+    "contracts": [
+      {
+        "address": "ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata (name 'Meow', website jup.ag/studio)",
+        "checked": "2026-10-21"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize_virtual_pool_with_spl_token",
+      "tokenField": "accounts[3] (base_mint)",
+      "creatorField": "accounts[2] (creator)",
+      "notes": "Jupiter's launchpad on Meteora DBC. Only the PartnerMetadata account is registered; per-launch config keys not yet collected (status unknown until a fixture confirms).",
+      "discriminator": "8c55d7b06636684f"
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "frontend",
+      "bonding-curve"
+    ],
+    "sources": [
+      "https://jup.ag/studio",
+      "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"
+    ],
+    "logo": "icons/jupiter-studio.png"
   },
   {
     "id": "kids-fun",
@@ -190,7 +447,9 @@
       "https://kids.fun",
       "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/kids-fun.png",
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "letsbonk",
@@ -225,7 +484,9 @@
       "kind": "instruction",
       "name": "initialize",
       "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above.",
-      "discriminator": "afaf6d1f0d989bed"
+      "discriminator": "afaf6d1f0d989bed",
+      "tokenField": "accounts[6] (base_mint)",
+      "creatorField": "accounts[1] (creator)"
     },
     "token": {
       "standard": "spl",
@@ -247,7 +508,24 @@
       "https://letsbonk.fun",
       "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/letsbonk.png",
+    "externalIds": {
+      "codex": "LetsBonk",
+      "solanatracker": "bonk",
+      "dexscreener": "letsbonk",
+      "geckoterminal": "letsbonk-fun"
+    },
+    "fixtures": [
+      {
+        "tx": "3TctBJVuuHRbW4trtGdkNP1A1BmdukSdYGPeyvivZpWnNyneYMZCFBuVANC5SWvGGgR4PRAMrNjQVmxFiNKMhYF5",
+        "token": "D5g9Mdvo3MLLVPXrzpFLiT6ULwhjYE6rpt1zWxD4bonk",
+        "creator": "GDhTL821Dg6scrU78tgfPV4e1FQfFnaeb4Z2Z8XgLv7y",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via platform-config FfYek5vE"
+      }
+    ],
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "meteora-dbc",
@@ -290,7 +568,9 @@
     "launch": {
       "kind": "instruction",
       "name": "initialize_virtual_pool_with_spl_token | initialize_virtual_pool_with_token2022",
-      "notes": "Multi-tenant: every frontend (partner) creates a Config account (fee claimer, curve, migration target) and optionally a PartnerMetadata account (name, website, logo). Launches reference the config, so the config address identifies the frontend. Configs without PartnerMetadata are common; infer the brand from the token metadata URI host."
+      "notes": "Accounts: config, pool_authority, creator, base_mint, quote_mint, pool, base_vault, quote_vault, mint_metadata, metadata_program, payer, … config (accounts[0]) identifies the partner/frontend. Partners may also publish a PartnerMetadata account (create_partner_metadata) with name/website/logo. Migration is a separate tx (migration_damm_v2 / migrate_meteora_damm).",
+      "tokenField": "accounts[3] (base_mint)",
+      "creatorField": "accounts[2] (creator)"
     },
     "token": {
       "standard": "mixed",
@@ -317,7 +597,109 @@
       "https://github.com/MeteoraAg/dynamic-bonding-curve",
       "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/meteora-dbc.png",
+    "idl": "idl/meteora-dbc.json",
+    "fixtures": [
+      {
+        "tx": "4g1LcYAtUU74HzGn7pNLZd6m11G1Z7QSaN68R8g7xkaFtKzjx4NnYZXuc7znLqDaN6GbyV6Xd2YLecPZQCfWeXdN",
+        "token": "DoocYiBrTGxPvKkv9BuDJnDfA5f4DLa4P7axmVaNpump",
+        "creator": "93LeHPNvjgRASr72GRgHHBtGLY4Nu3UkG1cBGZqZbKad",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via program dbcij3LW"
+      }
+    ],
+    "externalIds": {
+      "geckoterminal": "meteora-dbc"
+    },
+    "lastActivity": "2026-10-21"
+  },
+  {
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "updated": "2026-10-21",
+    "id": "moonshot",
+    "name": "Moonshot / Moonit",
+    "website": "https://moonshot.money",
+    "socials": {
+      "x": "moonit"
+    },
+    "status": "active",
+    "firstSeen": "2024-06-01",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG",
+        "role": "program",
+        "label": "Moonit legacy token_launchpad program (still launching, SOL quote)",
+        "verified": true,
+        "checked": "2026-10-21"
+      },
+      {
+        "address": "FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM",
+        "role": "partner-config",
+        "label": "Meteora DBC Config used by current Moonshot launches (USDC quote, observed 2026-10-21)",
+        "checked": "2026-10-21"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "tokenMint",
+      "notes": "Two generations: (1) legacy Moonit program `tokenMint` (mint = accounts[6], SOL quote); (2) since 2026 new Moonshot launches are Meteora DBC `initialize_virtual_pool_with_spl_token` with config FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM and USDC quote. Token addresses end in 'moon' in both. GeckoTerminal lists them as dexes `moonit` (legacy) and `moonshot` (DBC)."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "addressPattern": "moon$"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2",
+      "notes": "DBC generation migrates to DAMM v2; legacy program migrated to Raydium"
+    },
+    "quotes": [
+      "SOL",
+      "USDC"
+    ],
+    "tags": [
+      "memecoin",
+      "bonding-curve",
+      "vanity-address"
+    ],
+    "externalIds": {
+      "codex": "Moonshot",
+      "solanatracker": "moonshot",
+      "dexscreener": "moonshot",
+      "geckoterminal": "moonshot"
+    },
+    "sources": [
+      "https://docs.bitquery.io/docs/blockchain/Solana/Moonshot-API/",
+      "https://moonit.com",
+      "https://solscan.io/account/FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM",
+      "https://solscan.io/account/MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG",
+      "https://solscan.io/tx/4JyKd4esUgMZZBdPG6ppfNn9tEZp7Lk4in2v1sGXw2V5f8wn8vbZMUNmekjRTYbnkmk7tqTqbD5U16VVKBqPXiCy",
+      "https://solscan.io/tx/4gPNN2Ybo7YKkQqDGgZpxFR5V3u3mG2ENhTzWjEGvwqw3mLQcMUHWEpqmkCTrVAJA4Sp6JBE8Y4zxhufuE6f21vc"
+    ],
+    "idl": "idl/moonshot.json",
+    "logo": "icons/moonshot.png",
+    "fixtures": [
+      {
+        "tx": "4gPNN2Ybo7YKkQqDGgZpxFR5V3u3mG2ENhTzWjEGvwqw3mLQcMUHWEpqmkCTrVAJA4Sp6JBE8Y4zxhufuE6f21vc",
+        "token": "GaRi1QhCad7JYAAJSUFDV1NX6NeFMPqFcPkL2Dowmoon",
+        "creator": "7rtiKSUDLBm59b1SBmD9oajcP8xE64vAGSMbAN5CXy1q",
+        "date": "2026-10-21",
+        "note": "DBC generation (config FbKf76uc…, USDC)"
+      },
+      {
+        "tx": "4JyKd4esUgMZZBdPG6ppfNn9tEZp7Lk4in2v1sGXw2V5f8wn8vbZMUNmekjRTYbnkmk7tqTqbD5U16VVKBqPXiCy",
+        "token": "EXk39vEETNhvRBafkueg5Rnd2Rvs5gwgSBWP5fFHmoon",
+        "creator": "FwYrmxhiDY745KS9gyXRiM8FMzJA2JGc4QFMA7aoMiti",
+        "date": "2026-10-21",
+        "note": "legacy Moonit program tokenMint"
+      }
+    ],
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "pangea",
@@ -384,7 +766,25 @@
       "https://pangea.trade",
       "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/pangea.png",
+    "fixtures": [
+      {
+        "tx": "2Aq2RqXYDDK6mHKfhSaGigy71BtLzWnKfCsuGyHsq7pKU4tWNVsC1HrPmGzDyF6pzPYWG4czowHt8VmLzGxXiWTe",
+        "token": "9yt4FgjmjeiASRB5fTwKnuF6ZFYUzGLs9FYX3NCgg6ea",
+        "creator": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via program Hb5uTppR"
+      },
+      {
+        "tx": "3sTRvLhtgc64PNB6ea9LgedCRomdj3NQisD4uAB2ThfpGP9526z88vjPyLKkaa5yewAvjq2Er9MZ9xtN4L8zEACB",
+        "token": "DSABQrJ5q122rSHS1t266eXLN5hJQf7GXryEQJ9Yt6ea",
+        "creator": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via program Hb5uTppR"
+      }
+    ],
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "pump-fun",
@@ -419,9 +819,9 @@
     "launch": {
       "kind": "instruction",
       "name": "create",
-      "tokenField": "accounts[0] (mint, signer)",
+      "tokenField": "accounts[0] (mint)",
       "creatorField": "accounts[7] (user)",
-      "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx.",
+      "notes": "Accounts: mint, mint_authority, bonding_curve, associated_bonding_curve, global, mpl_token_metadata, metadata, user, system_program, token_program, associated_token_program, rent, event_authority, program. create_v2 variant exists (toggle_create_v2). Dev buy usually follows in the same tx; graduation handled by PumpSwap AMM.",
       "discriminator": "181ec828051c0777"
     },
     "token": {
@@ -447,7 +847,32 @@
       "https://pump.fun",
       "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/pump-fun.png",
+    "idl": "idl/pump-fun.json",
+    "externalIds": {
+      "codex": "Pump.fun",
+      "solanatracker": "pumpfun",
+      "dexscreener": "pump.fun",
+      "geckoterminal": "pump-fun"
+    },
+    "fixtures": [
+      {
+        "tx": "4WwHRyYgKMbNWL8UdUTExZ3xiZTEF7dHZAjMDWzp7wpbNZD7xC1oMw8bAFBJbJbXTHTrcgbFVScfg5sJf4yfYVrB",
+        "token": "CDamKWeSQ5CS8s6tm5aDdw9fC3tpwEHAgNGrCCWppump",
+        "creator": "AqGUrbWP8mutLK4hBUjRhDPT3bMkGsRXTuPwYbVwZyRd",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
+      },
+      {
+        "tx": "2kgowPcrhQRBpG71M5noNhP5cJadbdLhq517TwNu1HAThrEwAwqjfF44AJKrhZHE2qA2b7Ub6JZ2ZQVCVsxyeEES",
+        "token": "ESLbN6AC2aztuQBKfascQnXTpvUMJod6xqs2ciQtTjbf",
+        "creator": "AtFRWLJc4Nd59MCkvMrssRUAn2tXdkCUB1t4gL2Rimno",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
+      }
+    ],
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "raydium-launchlab",
@@ -488,8 +913,10 @@
     "launch": {
       "kind": "instruction",
       "name": "initialize",
-      "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8.",
-      "discriminator": "afaf6d1f0d989bed"
+      "notes": "Accounts: payer, creator, global_config, platform_config, authority, pool_state, base_mint, quote_mint, base_vault, quote_vault, metadata_account, base_token_program… Variants: initialize_v2, initialize_with_token_2022. platform_config (accounts[3]) identifies the frontend; its account data holds name (bytes 0..64) and web (64..320).",
+      "discriminator": "afaf6d1f0d989bed",
+      "tokenField": "accounts[6] (base_mint)",
+      "creatorField": "accounts[1] (creator)"
     },
     "token": {
       "standard": "spl",
@@ -513,7 +940,24 @@
       "https://docs.raydium.io/raydium/pool-creation/launchlab",
       "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/raydium-launchlab.png",
+    "idl": "idl/raydium-launchlab.json",
+    "externalIds": {
+      "codex": "Raydium LaunchLab",
+      "solanatracker": "launchlab",
+      "geckoterminal": "raydium-launchlab"
+    },
+    "fixtures": [
+      {
+        "tx": "3oViU7Wf2V5XQCU6apemLHy3yAipBHsLsYXyMvEvhh2qpfZGV7frGhRfJYxpVU1uoNW9EDrFa9qDKQY7BCCrYzLt",
+        "token": "vPJkvMpNyTqZtbzU97RsjsiZpJNNhaK9D16jUrrNray",
+        "creator": "G1rC77W1Ru2hJDnfzJzeo3uBVMrR2mx18PGVBjYgk4ZU",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs via platform-config 4Bu96XjU"
+      }
+    ],
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "stonkfun",
@@ -547,7 +991,9 @@
     "launch": {
       "kind": "instruction",
       "name": "initialize",
-      "discriminator": "afaf6d1f0d989bed"
+      "discriminator": "afaf6d1f0d989bed",
+      "tokenField": "accounts[6] (base_mint)",
+      "creatorField": "accounts[1] (creator)"
     },
     "token": {
       "standard": "spl",
@@ -568,6 +1014,8 @@
       "https://www.stonkfun.xyz",
       "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/stonkfun.png",
+    "lastActivity": "2026-10-21"
   }
 ]

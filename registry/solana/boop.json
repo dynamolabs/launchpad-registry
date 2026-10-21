@@ -1,0 +1,58 @@
+{
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "updated": "2026-10-21",
+  "id": "boop",
+  "name": "Boop.fun",
+  "website": "https://boop.fun",
+  "socials": {
+    "x": "boopdotfun"
+  },
+  "status": "active",
+  "firstSeen": "2025-04-01",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4",
+      "role": "program",
+      "label": "boop program (IDL v0.3.0)",
+      "verified": true,
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "create_token",
+    "notes": "See idl/boop.json for exact instruction names; also has a platform config on Raydium LaunchLab (3Srku5GEBe92Ef5SGYwcSiHry59Pc3NBpehXpuThUTof) with no launches observed.",
+    "discriminator": "5434cce4188cea4b"
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "decimals": 9
+  },
+  "graduation": {
+    "target": "raydium-cpmm"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve"
+  ],
+  "externalIds": {
+    "solanatracker": "boop",
+    "geckoterminal": "boop-fun"
+  },
+  "sources": [
+    "https://boop.fun",
+    "https://github.com/pinax-network/substreams-svm",
+    "https://solscan.io/account/boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4"
+  ],
+  "idl": "idl/boop.json",
+  "logo": "icons/boop.png",
+  "lastActivity": "2026-10-21"
+}

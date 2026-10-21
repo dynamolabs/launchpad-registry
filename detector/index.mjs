@@ -21,7 +21,7 @@ const notify = makeNotifier({ log });
 const state = openState(args.state || `./detector-state-${chain.dir}.json`);
 const cfg = {
   windowMin: Number(args.window || 60), minTokens: Number(args.min || (chain.family === 'solana' ? 5 : 3)), pollMs: Number(args.poll || (chain.family === 'solana' ? 8000 : 4000)),
-  chunk: Number(args.chunk || 200), batch: Number(args.batch || 100), v4PoolManager: args.v4?.toLowerCase(), quoteTokens: (args.quotes || '').toLowerCase().split(',').filter(Boolean),
+  chunk: Math.min(Number(args.chunk || 200), chain.maxLogRange || 200), batch: Number(args.batch || 100), v4PoolManager: args.v4?.toLowerCase(), quoteTokens: [...(chain.quoteTokens || []), ...(args.quotes || '').split(',')].map(a => a.toLowerCase()).filter(Boolean),
   ignore: [...(chain.ignore || []), ...(args.ignore || '').split(',').filter(Boolean)], repoUrl: process.env.REPO_URL || 'https://github.com/OWNER/launchpad-registry',
 };
 log(`launchpad-registry detector · ${chain.name} · rpc ${rpcUrl.replace(/(api[-_]?key=)[^&]+/i, '$1…')}`);

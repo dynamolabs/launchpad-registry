@@ -31,9 +31,9 @@
   "launch": {
     "kind": "instruction",
     "name": "create",
-    "tokenField": "accounts[0] (mint, signer)",
+    "tokenField": "accounts[0] (mint)",
     "creatorField": "accounts[7] (user)",
-    "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx.",
+    "notes": "Accounts: mint, mint_authority, bonding_curve, associated_bonding_curve, global, mpl_token_metadata, metadata, user, system_program, token_program, associated_token_program, rent, event_authority, program. create_v2 variant exists (toggle_create_v2). Dev buy usually follows in the same tx; graduation handled by PumpSwap AMM.",
     "discriminator": "181ec828051c0777"
   },
   "token": {
@@ -59,5 +59,30 @@
     "https://pump.fun",
     "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/pump-fun.png",
+  "idl": "idl/pump-fun.json",
+  "externalIds": {
+    "codex": "Pump.fun",
+    "solanatracker": "pumpfun",
+    "dexscreener": "pump.fun",
+    "geckoterminal": "pump-fun"
+  },
+  "fixtures": [
+    {
+      "tx": "4WwHRyYgKMbNWL8UdUTExZ3xiZTEF7dHZAjMDWzp7wpbNZD7xC1oMw8bAFBJbJbXTHTrcgbFVScfg5sJf4yfYVrB",
+      "token": "CDamKWeSQ5CS8s6tm5aDdw9fC3tpwEHAgNGrCCWppump",
+      "creator": "AqGUrbWP8mutLK4hBUjRhDPT3bMkGsRXTuPwYbVwZyRd",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
+    },
+    {
+      "tx": "2kgowPcrhQRBpG71M5noNhP5cJadbdLhq517TwNu1HAThrEwAwqjfF44AJKrhZHE2qA2b7Ub6JZ2ZQVCVsxyeEES",
+      "token": "ESLbN6AC2aztuQBKfascQnXTpvUMJod6xqs2ciQtTjbf",
+      "creator": "AtFRWLJc4Nd59MCkvMrssRUAn2tXdkCUB1t4gL2Rimno",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

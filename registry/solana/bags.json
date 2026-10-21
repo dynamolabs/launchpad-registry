@@ -1,0 +1,69 @@
+{
+  "id": "bags",
+  "name": "Bags",
+  "website": "https://bags.fm",
+  "socials": {
+    "x": "bagsapp"
+  },
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2025-06-01",
+  "model": "bonding-curve",
+  "builtOn": "meteora-dbc",
+  "contracts": [
+    {
+      "address": "GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi",
+      "role": "partner-config",
+      "label": "Meteora DBC Config used by Bags launches (observed 2026-10-21; Bags may rotate configs per fee-share setup)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "initialize_virtual_pool_with_spl_token",
+    "discriminator": "8c55d7b06636684f",
+    "tokenField": "accounts[3] (base_mint)",
+    "creatorField": "accounts[2] (creator)",
+    "notes": "Bags launches on Meteora DBC with creator fee-share set in basis points at launch. Identify by config == accounts[0]. Quote SOL."
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "decimals": 6
+  },
+  "graduation": {
+    "target": "meteora-damm-v2"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "frontend"
+  ],
+  "externalIds": {
+    "geckoterminal": "bags-fm",
+    "solanatracker": "bags"
+  },
+  "fixtures": [
+    {
+      "tx": "67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
+      "token": "2CzwJe1uPEP22HAmkiwhazN9QZoX4LRQsjf4MHqNcoht",
+      "creator": "J9WXUuZAt2gm6LcmQ6vSdk9nEbnhSiPdCZmsby9SjRLW",
+      "date": "2026-10-21",
+      "note": "found via GeckoTerminal bags-fm pool list → mint history → creation tx"
+    }
+  ],
+  "sources": [
+    "https://bags.fm",
+    "https://docs.bags.fm/how-to-guides/initial-buy-math",
+    "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
+    "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
+  ],
+  "updated": "2026-10-21",
+  "lastActivity": "2026-10-21"
+}

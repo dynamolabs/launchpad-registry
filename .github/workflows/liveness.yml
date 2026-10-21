@@ -1,0 +1,26 @@
+name: liveness
+on:
+  schedule: [{ cron: '17 6 * * 1' }]   # Mondays 06:17 UTC
+  workflow_dispatch: {}
+permissions: { contents: write, pull-requests: write }
+jobs:
+  liveness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: node scripts/liveness.mjs --write
+        env:
+          SOLANA_RPC: ${{ secrets.SOLANA_RPC }}
+          EVM_RPC_4663: ${{ secrets.EVM_RPC_4663 }}
+          EVM_RPC_1776: ${{ secrets.EVM_RPC_1776 }}
+      - run: npm run validate && npm run build
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: bot/liveness
+          title: 'liveness: weekly lastActivity / status update'
+          commit-message: 'liveness: weekly lastActivity / status update'
+          body: 'Automated by `scripts/liveness.mjs`. Entries quiet for 30+ days are flipped to `inactive`; entries that woke up are flipped back to `active`. Review before merging.'
+          labels: liveness

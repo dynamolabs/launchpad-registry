@@ -63,5 +63,23 @@
     "https://pangea.trade",
     "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/pangea.png",
+  "fixtures": [
+    {
+      "tx": "2Aq2RqXYDDK6mHKfhSaGigy71BtLzWnKfCsuGyHsq7pKU4tWNVsC1HrPmGzDyF6pzPYWG4czowHt8VmLzGxXiWTe",
+      "token": "9yt4FgjmjeiASRB5fTwKnuF6ZFYUzGLs9FYX3NCgg6ea",
+      "creator": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via program Hb5uTppR"
+    },
+    {
+      "tx": "3sTRvLhtgc64PNB6ea9LgedCRomdj3NQisD4uAB2ThfpGP9526z88vjPyLKkaa5yewAvjq2Er9MZ9xtN4L8zEACB",
+      "token": "DSABQrJ5q122rSHS1t266eXLN5hJQf7GXryEQJ9Yt6ea",
+      "creator": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs via program Hb5uTppR"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

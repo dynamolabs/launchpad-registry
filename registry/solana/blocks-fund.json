@@ -21,7 +21,9 @@
     "kind": "instruction",
     "name": "initialize_virtual_pool_with_spl_token",
     "notes": "Filter DBC launches whose config belongs to this partner.",
-    "discriminator": "8c55d7b06636684f"
+    "discriminator": "8c55d7b06636684f",
+    "tokenField": "accounts[3] (base_mint)",
+    "creatorField": "accounts[2] (creator)"
   },
   "token": {
     "standard": "spl",
@@ -40,5 +42,14 @@
     "https://blocks.fund",
     "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "fixtures": [
+    {
+      "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",
+      "token": "F91MLT3rfNRR2YWhGjZyY9dLsFEDbPDHCVALvpW1ttxC",
+      "creator": "GdYgsvUtitvw3qq5JhxdfChB9neyoWUVAr1hgkzM81Rv",
+      "date": "2026-10-18",
+      "note": "found by scripts/fixtures.mjs via partner-config BnuJLtrZ"
+    }
+  ]
 }

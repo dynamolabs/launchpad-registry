@@ -1,0 +1,87 @@
+{
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "updated": "2026-10-21",
+  "id": "moonshot",
+  "name": "Moonshot / Moonit",
+  "website": "https://moonshot.money",
+  "socials": {
+    "x": "moonit"
+  },
+  "status": "active",
+  "firstSeen": "2024-06-01",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG",
+      "role": "program",
+      "label": "Moonit legacy token_launchpad program (still launching, SOL quote)",
+      "verified": true,
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM",
+      "role": "partner-config",
+      "label": "Meteora DBC Config used by current Moonshot launches (USDC quote, observed 2026-10-21)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "tokenMint",
+    "notes": "Two generations: (1) legacy Moonit program `tokenMint` (mint = accounts[6], SOL quote); (2) since 2026 new Moonshot launches are Meteora DBC `initialize_virtual_pool_with_spl_token` with config FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM and USDC quote. Token addresses end in 'moon' in both. GeckoTerminal lists them as dexes `moonit` (legacy) and `moonshot` (DBC)."
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "addressPattern": "moon$"
+  },
+  "graduation": {
+    "target": "meteora-damm-v2",
+    "notes": "DBC generation migrates to DAMM v2; legacy program migrated to Raydium"
+  },
+  "quotes": [
+    "SOL",
+    "USDC"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "vanity-address"
+  ],
+  "externalIds": {
+    "codex": "Moonshot",
+    "solanatracker": "moonshot",
+    "dexscreener": "moonshot",
+    "geckoterminal": "moonshot"
+  },
+  "sources": [
+    "https://docs.bitquery.io/docs/blockchain/Solana/Moonshot-API/",
+    "https://moonit.com",
+    "https://solscan.io/account/FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM",
+    "https://solscan.io/account/MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG",
+    "https://solscan.io/tx/4JyKd4esUgMZZBdPG6ppfNn9tEZp7Lk4in2v1sGXw2V5f8wn8vbZMUNmekjRTYbnkmk7tqTqbD5U16VVKBqPXiCy",
+    "https://solscan.io/tx/4gPNN2Ybo7YKkQqDGgZpxFR5V3u3mG2ENhTzWjEGvwqw3mLQcMUHWEpqmkCTrVAJA4Sp6JBE8Y4zxhufuE6f21vc"
+  ],
+  "idl": "idl/moonshot.json",
+  "logo": "icons/moonshot.png",
+  "fixtures": [
+    {
+      "tx": "4gPNN2Ybo7YKkQqDGgZpxFR5V3u3mG2ENhTzWjEGvwqw3mLQcMUHWEpqmkCTrVAJA4Sp6JBE8Y4zxhufuE6f21vc",
+      "token": "GaRi1QhCad7JYAAJSUFDV1NX6NeFMPqFcPkL2Dowmoon",
+      "creator": "7rtiKSUDLBm59b1SBmD9oajcP8xE64vAGSMbAN5CXy1q",
+      "date": "2026-10-21",
+      "note": "DBC generation (config FbKf76uc…, USDC)"
+    },
+    {
+      "tx": "4JyKd4esUgMZZBdPG6ppfNn9tEZp7Lk4in2v1sGXw2V5f8wn8vbZMUNmekjRTYbnkmk7tqTqbD5U16VVKBqPXiCy",
+      "token": "EXk39vEETNhvRBafkueg5Rnd2Rvs5gwgSBWP5fFHmoon",
+      "creator": "FwYrmxhiDY745KS9gyXRiM8FMzJA2JGc4QFMA7aoMiti",
+      "date": "2026-10-21",
+      "note": "legacy Moonit program tokenMint"
+    }
+  ],
+  "lastActivity": "2026-10-21"
+}

@@ -6,7 +6,7 @@
     "family": "evm",
     "id": 4663
   },
-  "status": "unknown",
+  "status": "active",
   "firstSeen": "2026-07-02",
   "model": "direct-pool",
   "contracts": [
@@ -41,5 +41,7 @@
     "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
   ],
   "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/noxa.png",
+  "lastActivity": "2026-10-21"
 }

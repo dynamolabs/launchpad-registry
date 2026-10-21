@@ -21,7 +21,9 @@
     "kind": "instruction",
     "name": "initialize_virtual_pool_with_spl_token",
     "notes": "Filter DBC launches whose config belongs to this partner.",
-    "discriminator": "8c55d7b06636684f"
+    "discriminator": "8c55d7b06636684f",
+    "tokenField": "accounts[3] (base_mint)",
+    "creatorField": "accounts[2] (creator)"
   },
   "token": {
     "standard": "spl",
@@ -40,5 +42,16 @@
     "https://farmfun.farm",
     "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/farmfun.png",
+  "fixtures": [
+    {
+      "tx": "3UVZJtuhtDspwV7Y1zPmNhDuS4HZ4D9dxodDr6Kc9qYdouB58kt8zRvDtQnUM9pyjezJwG6kiMoG16rgJnhvzZCQ",
+      "token": "97f9DpjkbG25JNa8U41as13rAJrp9sGJ6Vse5q94j6u3",
+      "creator": "2M9Apdvv3aQWFEEf6kx2HaYW5ye7mNtWADEsft5ntigC",
+      "date": "2026-10-19",
+      "note": "found by scripts/fixtures.mjs via partner-config FodsuBzg"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }

@@ -9,7 +9,8 @@
       "https://api.mainnet-beta.solana.com"
     ],
     "explorer": "https://solscan.io",
-    "dexscreenerId": "solana"
+    "dexscreenerId": "solana",
+    "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
   },
   {
     "family": "evm",
@@ -32,7 +33,13 @@
       "0x8366a39cc670b4001a1121b8f6a443a643e40951",
       "0x58daec3116aae6d93017baaea7749052e8a04fa7",
       "0xfc2e4da3edb2e18100473339c763705d263d20a9"
-    ]
+    ],
+    "caip2": "eip155:4663",
+    "quoteTokens": [
+      "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31"
+    ],
+    "maxLogRange": 50000
   },
   {
     "family": "evm",
@@ -44,7 +51,12 @@
       "https://sentry.evm-rpc.injective.network"
     ],
     "explorer": "https://blockscout.injective.network",
-    "dexscreenerId": "injective"
+    "dexscreenerId": "injective",
+    "caip2": "eip155:1776",
+    "quoteTokens": [
+      "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a"
+    ],
+    "maxLogRange": 10000
   },
   {
     "family": "evm",
@@ -57,6 +69,10 @@
     ],
     "explorer": "https://arcexplorer.org",
     "dexscreenerId": "arc",
-    "notes": "Circle Arc L1, mainnet 2026-09-16. USDC is gas and also ERC-20 at 0x3600000000000000000000000000000000000000. Launchpads seen on DexScreener (o1-launchpad, aka.fun) are not registered yet: PRs welcome."
+    "notes": "Circle Arc L1, mainnet 2026-09-16. USDC is gas and also ERC-20 at 0x3600000000000000000000000000000000000000. Launchpads seen on DexScreener (o1-launchpad, aka.fun) are not registered yet: PRs welcome.",
+    "caip2": "eip155:5042",
+    "quoteTokens": [
+      "0x3600000000000000000000000000000000000000"
+    ]
   }
 ]

@@ -1,0 +1,56 @@
+{
+  "chainId": 4663,
+  "contracts": [
+    "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
+  ],
+  "note": "Event fragments only (enough to subscribe and decode launches). topic0 in registry entry is keccak256 of the first signature.",
+  "abi": [
+    {
+      "type": "event",
+      "name": "TokenCreated",
+      "anonymous": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "token",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "creator",
+          "indexed": true
+        },
+        {
+          "type": "string",
+          "name": "name",
+          "indexed": false
+        },
+        {
+          "type": "string",
+          "name": "symbol",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "supply",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "arg5",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "arg6",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "arg7",
+          "indexed": false
+        }
+      ]
+    }
+  ]
+}

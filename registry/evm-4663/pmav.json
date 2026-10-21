@@ -58,5 +58,7 @@
     "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
   ],
   "notes": "",
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/pmav.png",
+  "abi": "abi/pmav.json"
 }

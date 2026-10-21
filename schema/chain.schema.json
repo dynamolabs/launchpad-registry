@@ -60,6 +60,23 @@
         "type": "string"
       },
       "description": "Addresses the detector must never flag as a launchpad: DEX factories, routers, position managers, AA entrypoints."
+    },
+    "caip2": {
+      "type": "string",
+      "pattern": "^[a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$",
+      "description": "CAIP-2 chain id (eip155:4663, solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp)."
+    },
+    "quoteTokens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Wrapped native / stable / platform quote tokens: when a pool pairs X with one of these, X is the launched token."
+    },
+    "maxLogRange": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Largest eth_getLogs block range the public RPC accepts; scripts clamp their chunks to it."
     }
   }
 }

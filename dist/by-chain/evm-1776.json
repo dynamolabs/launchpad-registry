@@ -39,7 +39,8 @@
       "https://imortal.buzz",
       "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/imortal.png"
   },
   {
     "id": "runup",
@@ -56,6 +57,12 @@
     "firstSeen": "2026-10-01",
     "model": "funding-round",
     "contracts": [
+      {
+        "address": "0xddfeabf7e3fd692ff9a9091b53bdffde8b6c07f0",
+        "role": "deployer",
+        "label": "address the Injective radar saw as token-minting entrypoint; has no code (EOA)",
+        "checked": "2026-10-21"
+      },
       {
         "address": "0xef1a648373dc19072d692429b704bb63cf597950",
         "role": "factory",
@@ -107,7 +114,9 @@
       "https://runup.fun",
       "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/runup.png",
+    "lastActivity": "2026-10-21"
   },
   {
     "id": "sprout",
@@ -173,6 +182,17 @@
       "https://trysprout.fun",
       "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
     ],
-    "updated": "2026-10-21"
+    "updated": "2026-10-21",
+    "logo": "icons/sprout.png",
+    "fixtures": [
+      {
+        "tx": "0xa80786d6989ff48db68a0336d7d6535178cd5ef5de70a21a1465c0cddcdddfda",
+        "token": "0x0000000088827d2d103ee2d9a6b781773ae03ffb",
+        "creator": "0x9f01f7fdb9b977bf2669eaa11c872fc4a5ab2f63",
+        "date": "2026-10-21",
+        "note": "found by scripts/fixtures.mjs (mint-from-zero in blocks 188315569-188320568)"
+      }
+    ],
+    "lastActivity": "2026-10-21"
   }
 ]

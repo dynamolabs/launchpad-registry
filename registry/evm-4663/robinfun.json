@@ -55,5 +55,7 @@
     "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
   ],
   "notes": "",
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "abi": "abi/robinfun.json",
+  "lastActivity": "2026-10-21"
 }

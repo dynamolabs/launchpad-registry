@@ -1,0 +1,52 @@
+{
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "updated": "2026-10-21",
+  "id": "jupiter-studio",
+  "name": "Jupiter Studio",
+  "website": "https://jup.ag/studio",
+  "socials": {
+    "x": "JupiterExchange"
+  },
+  "status": "unknown",
+  "firstSeen": "2025-07-01",
+  "model": "bonding-curve",
+  "builtOn": "meteora-dbc",
+  "contracts": [
+    {
+      "address": "ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet",
+      "role": "partner-config",
+      "label": "DBC PartnerMetadata (name 'Meow', website jup.ag/studio)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "initialize_virtual_pool_with_spl_token",
+    "tokenField": "accounts[3] (base_mint)",
+    "creatorField": "accounts[2] (creator)",
+    "notes": "Jupiter's launchpad on Meteora DBC. Only the PartnerMetadata account is registered; per-launch config keys not yet collected (status unknown until a fixture confirms).",
+    "discriminator": "8c55d7b06636684f"
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex"
+  },
+  "graduation": {
+    "target": "meteora-damm-v2"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "frontend",
+    "bonding-curve"
+  ],
+  "sources": [
+    "https://jup.ag/studio",
+    "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"
+  ],
+  "logo": "icons/jupiter-studio.png"
+}

@@ -22,6 +22,20 @@
 - No paid listings, no ranking, no "recommended" flags. A `status: active` entry means "launches tokens", nothing more.
 - Do not add referral links to `website`.
 
+## Versioning (dataset semver)
+
+- **major**: an entry or address removed, or an address/chain changed
+- **minor**: entries or addresses added
+- **patch**: metadata only (names, websites, notes, logos, fixtures, lastActivity)
+
+Maintainers bump `package.json` version, add a CHANGELOG line and push a `vX.Y.Z` tag; the release workflow publishes to npm and attaches `dist/` to the GitHub release.
+
+## Proof, not claims
+
+- `npm run verify -- --write` must pass (every address exists on-chain; Anchor discriminators / topic0 recomputed).
+- `node scripts/fixtures.mjs <id>` should find a real launch tx. If it cannot, say why in the PR; entries without a fixture get `status: unknown`.
+- Multi-tenant programs attract impostor configs (we have seen 30+ `platform-config` accounts named "letsbonk.fun", some pointing at google.com). Only register a config that has produced real launches, and link one in `sources`.
+
 ## Chains
 
 Add the chain to `registry/chains.json` (`dir` must match the directory name) before adding its first launchpad.

@@ -1,0 +1,12 @@
+CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+
+The data files in registry/, dist/, idl/, abi/ and icons/ of this repository
+are dedicated to the public domain under CC0 1.0. To the extent possible under
+law, the contributors have waived all copyright and related or neighboring
+rights to this data. Attribution is appreciated but not required.
+
+Full text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+Program IDLs in idl/ are snapshots of data published on-chain by their
+respective program authors and remain subject to those authors' terms.
+Code in this repository (scripts/, detector/, index.mjs, test/) is MIT, see LICENSE.

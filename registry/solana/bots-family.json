@@ -21,7 +21,9 @@
     "kind": "instruction",
     "name": "initialize_virtual_pool_with_spl_token",
     "notes": "Filter DBC launches whose config belongs to this partner.",
-    "discriminator": "8c55d7b06636684f"
+    "discriminator": "8c55d7b06636684f",
+    "tokenField": "accounts[3] (base_mint)",
+    "creatorField": "accounts[2] (creator)"
   },
   "token": {
     "standard": "spl",
@@ -40,5 +42,6 @@
     "https://bots.family",
     "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
   ],
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/bots-family.png"
 }

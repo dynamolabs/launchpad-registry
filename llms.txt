@@ -1,0 +1,25 @@
+# launchpad-registry
+
+> Open, community-maintained registry of token launchpads (program IDs, factories, Uniswap V4 hooks, multi-tenant configs, launch events) on Solana and EVM chains. Data is CC0, code is MIT.
+
+## Data (JSON, no auth)
+- All launchpads: https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/launchpads.json
+- Slim list (ids + addresses): https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/launchpads.min.json
+- Reverse index chain:address → launchpad: https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/addresses.json
+- CSV: https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/launchpads.csv
+- Schema: https://raw.githubusercontent.com/OWNER/launchpad-registry/main/schema/launchpad.schema.json
+
+## Key concepts
+- `chain.family` is `solana` or `evm`; EVM chains are keyed by chainId, directories are `evm-<chainId>`; `caip2` is provided.
+- `contracts[].role`: program | factory | launcher | hook | curve | platform-config | partner-config | deployer | authority | token | other.
+- `builtOn` links a branded frontend (letsbonk) to its multi-tenant program (raydium-launchlab).
+- `launch` describes how one launch appears on-chain (instruction name + Anchor discriminator, or ABI event + topic0, and which field carries the new token).
+- `status`: active | inactive | test | unknown. `checked` = last on-chain verification date. `lastActivity` = automated liveness.
+
+## Tools
+- npm package `launchpad-registry` exports `lookup(chain, address)`, `isKnown`, `forChain`, `frontendsOf`, `active`.
+- `detector/` finds unregistered launchpads from an RPC and posts alerts.
+- `mcp/` exposes the registry to AI agents over MCP (tools: lookup, search, get, list_chains).
+
+## Contributing
+- https://github.com/OWNER/launchpad-registry/blob/main/CONTRIBUTING.md

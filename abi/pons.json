@@ -1,0 +1,103 @@
+{
+  "chainId": 4663,
+  "contracts": [
+    "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
+  ],
+  "note": "Event fragments only (enough to subscribe and decode launches). topic0 in registry entry is keccak256 of the first signature.",
+  "abi": [
+    {
+      "type": "event",
+      "name": "TokenLaunched",
+      "anonymous": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "token",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "deployer",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "dexFactory",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "pairToken",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "pool",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "dexId",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "launchConfigId",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "positionId",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "restrictionsEndBlock",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "initialBuyAmount",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "TokenDeployed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "token",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "deployer",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "dexFactory",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "pairToken",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "dexId",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "launchConfigId",
+          "indexed": false
+        }
+      ]
+    }
+  ]
+}

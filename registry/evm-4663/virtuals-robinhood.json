@@ -62,5 +62,23 @@
     "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
   ],
   "notes": "",
-  "updated": "2026-10-21"
+  "updated": "2026-10-21",
+  "logo": "icons/virtuals-robinhood.png",
+  "fixtures": [
+    {
+      "tx": "0x3caea31db7628c967ed8fe14888bda81504f27db25bc14b787e74b31c9935eab",
+      "token": "0x5c6950dee60177a0fe95b0d96b7b6ca19c742c72",
+      "creator": "0xe1e3c7c28089d47a736be3cd735185d278c91be4",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94579156-94584155)"
+    },
+    {
+      "tx": "0x13c306e61efb24b54191f58bd7db9d496183364c2e13be64029ad3618bab1780",
+      "token": "0x8be7a4b9239a8634874092264417d95fef5b48f6",
+      "creator": "0x97532e7353f4408b803c06483dbe61fc9044c4e9",
+      "date": "2026-10-21",
+      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94519895-94524894)"
+    }
+  ],
+  "lastActivity": "2026-10-21"
 }
