@@ -10,7 +10,7 @@
    - `deployer` / `authority` for wallets that sign or own every launch
 3. Fill `launch` so someone can subscribe: instruction or event name, `topic0` / `selector` / `discriminator`, and which field carries the new token.
 4. Every claim needs a link in `sources` (explorer page of the contract, official docs, IDL, announcement). No source, no merge.
-5. Run `npm run validate && npm run build`, commit `dist/` too.
+5. Run `npm run validate`, then `npm run verify -- --write` (checks every address on-chain and stamps `checked`; set `SOLANA_RPC` / `EVM_RPC_<chainId>` for private RPCs), then `npm run build` and commit `dist/` and `docs/` too.
 
 ## Update or deprecate
 

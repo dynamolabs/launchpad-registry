@@ -7,10 +7,55 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "build": "node scripts/build.mjs",
-    "check": "npm run validate && npm run build && git diff --exit-code -- dist || (echo 'dist/ is stale: run npm run build and commit' && exit 1)"
+    "check": "npm run validate && npm run build && npm test && git diff --exit-code -- dist docs/index.html || (echo 'dist/docs stale: run npm run build and commit' && exit 1)",
+    "test": "node --test test/",
+    "verify": "node scripts/verify-onchain.mjs",
+    "detect": "node detector/index.mjs"
   },
   "devDependencies": {
+    "@noble/hashes": "^1.7.1",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1"
+  },
+  "main": "./index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs"
+    },
+    "./dist/*": "./dist/*",
+    "./schema/*": "./schema/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "index.d.ts",
+    "dist/",
+    "schema/",
+    "registry/",
+    "detector/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "solana",
+    "evm",
+    "launchpad",
+    "pump.fun",
+    "raydium",
+    "meteora",
+    "registry",
+    "memecoin",
+    "sniper",
+    "radar",
+    "uniswap-v4"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OWNER/launchpad-registry.git"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

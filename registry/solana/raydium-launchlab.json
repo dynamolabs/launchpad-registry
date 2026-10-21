@@ -17,24 +17,28 @@
       "address": "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
       "role": "program",
       "label": "LaunchLab (launchpad program)",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     },
     {
       "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
       "role": "platform-config",
-      "label": "Raydium's own platform config"
+      "label": "Raydium's own platform config",
+      "checked": "2026-10-21"
     },
     {
       "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
       "role": "other",
       "label": "Raydium CPMM (graduation target)",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     }
   ],
   "launch": {
     "kind": "instruction",
     "name": "initialize",
-    "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8."
+    "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8.",
+    "discriminator": "afaf6d1f0d989bed"
   },
   "token": {
     "standard": "spl",

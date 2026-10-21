@@ -47,13 +47,15 @@
         {
           "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
           "role": "partner-config",
-          "label": "DBC PartnerMetadata account"
+          "label": "DBC PartnerMetadata account",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
         "kind": "instruction",
         "name": "initialize_virtual_pool_with_spl_token",
-        "notes": "Filter DBC launches whose config belongs to this partner."
+        "notes": "Filter DBC launches whose config belongs to this partner.",
+        "discriminator": "8c55d7b06636684f"
       },
       "token": {
         "standard": "spl",
@@ -89,13 +91,15 @@
         {
           "address": "8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS",
           "role": "partner-config",
-          "label": "DBC PartnerMetadata account"
+          "label": "DBC PartnerMetadata account",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
         "kind": "instruction",
         "name": "initialize_virtual_pool_with_spl_token",
-        "notes": "Filter DBC launches whose config belongs to this partner."
+        "notes": "Filter DBC launches whose config belongs to this partner.",
+        "discriminator": "8c55d7b06636684f"
       },
       "token": {
         "standard": "spl",
@@ -131,13 +135,15 @@
         {
           "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau",
           "role": "partner-config",
-          "label": "DBC PartnerMetadata account"
+          "label": "DBC PartnerMetadata account",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
         "kind": "instruction",
         "name": "initialize_virtual_pool_with_spl_token",
-        "notes": "Filter DBC launches whose config belongs to this partner."
+        "notes": "Filter DBC launches whose config belongs to this partner.",
+        "discriminator": "8c55d7b06636684f"
       },
       "token": {
         "standard": "spl",
@@ -176,16 +182,19 @@
         {
           "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
           "role": "program",
-          "label": "KIDS launchpad program (deployed 2026-10-19)"
+          "label": "KIDS launchpad program (deployed 2026-10-19)",
+          "checked": "2026-10-21"
         },
         {
           "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
           "role": "authority",
-          "label": "upgrade authority (shared with fee collector)"
+          "label": "upgrade authority (shared with fee collector)",
+          "checked": "2026-10-21"
         },
         {
           "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
-          "role": "fee-collector"
+          "role": "fee-collector",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -235,18 +244,21 @@
         {
           "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1",
           "role": "platform-config",
-          "label": "letsbonk platform config (primary)"
+          "label": "letsbonk platform config (primary)",
+          "checked": "2026-10-21"
         },
         {
           "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4",
           "role": "platform-config",
-          "label": "letsbonk platform config (secondary)"
+          "label": "letsbonk platform config (secondary)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
         "kind": "instruction",
         "name": "initialize",
-        "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above."
+        "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above.",
+        "discriminator": "afaf6d1f0d989bed"
       },
       "token": {
         "standard": "spl",
@@ -290,19 +302,22 @@
           "address": "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
           "role": "program",
           "label": "Dynamic Bonding Curve",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         },
         {
           "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
           "role": "other",
           "label": "DAMM v2 (default graduation target)",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         },
         {
           "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
           "role": "other",
           "label": "DAMM v1 (alternative graduation target)",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -355,22 +370,26 @@
         {
           "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
           "role": "program",
-          "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)"
+          "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)",
+          "checked": "2026-10-21"
         },
         {
           "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
           "role": "program",
-          "label": "LayerZero OFT program (token is omnichain)"
+          "label": "LayerZero OFT program (token is omnichain)",
+          "checked": "2026-10-21"
         },
         {
           "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
           "role": "deployer",
-          "label": "platform relayer/payer that signs every Launch"
+          "label": "platform relayer/payer that signs every Launch",
+          "checked": "2026-10-21"
         },
         {
           "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
           "role": "other",
-          "label": "Meteora DAMM v2 (pool created in the same tx)"
+          "label": "Meteora DAMM v2 (pool created in the same tx)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -419,13 +438,15 @@
           "address": "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
           "role": "program",
           "label": "pump.fun bonding curve",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         },
         {
           "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
           "role": "other",
           "label": "PumpSwap AMM (graduation target)",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -433,7 +454,8 @@
         "name": "create",
         "tokenField": "accounts[0] (mint, signer)",
         "creatorField": "accounts[7] (user)",
-        "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx."
+        "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx.",
+        "discriminator": "181ec828051c0777"
       },
       "token": {
         "standard": "spl",
@@ -479,24 +501,28 @@
           "address": "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
           "role": "program",
           "label": "LaunchLab (launchpad program)",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         },
         {
           "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
           "role": "platform-config",
-          "label": "Raydium's own platform config"
+          "label": "Raydium's own platform config",
+          "checked": "2026-10-21"
         },
         {
           "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
           "role": "other",
           "label": "Raydium CPMM (graduation target)",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
         "kind": "instruction",
         "name": "initialize",
-        "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8."
+        "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8.",
+        "discriminator": "afaf6d1f0d989bed"
       },
       "token": {
         "standard": "spl",
@@ -537,20 +563,24 @@
       "contracts": [
         {
           "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
-          "role": "platform-config"
+          "role": "platform-config",
+          "checked": "2026-10-21"
         },
         {
           "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
-          "role": "platform-config"
+          "role": "platform-config",
+          "checked": "2026-10-21"
         },
         {
           "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
-          "role": "platform-config"
+          "role": "platform-config",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
         "kind": "instruction",
-        "name": "initialize"
+        "name": "initialize",
+        "discriminator": "afaf6d1f0d989bed"
       },
       "token": {
         "standard": "spl",
@@ -588,12 +618,14 @@
         {
           "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
           "role": "hook",
-          "label": "ClankerHookStaticFeeV2"
+          "label": "ClankerHookStaticFeeV2",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
           "role": "other",
-          "label": "Uniswap V4 PoolManager"
+          "label": "Uniswap V4 PoolManager",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -638,12 +670,14 @@
         {
           "address": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
           "role": "hook",
-          "label": "DopplerHookInitializer"
+          "label": "DopplerHookInitializer",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
           "role": "other",
-          "label": "Uniswap V4 PoolManager"
+          "label": "Uniswap V4 PoolManager",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -688,7 +722,8 @@
         {
           "address": "0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b",
           "role": "curve",
-          "label": "HoodPump bonding curve + factory"
+          "label": "HoodPump bonding curve + factory",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -736,7 +771,8 @@
         {
           "address": "0x360bd5ab9a20fb9920be1caec2c8abaf097dc876",
           "role": "launcher",
-          "label": "HudPadLauncher (cluster by tx.to)"
+          "label": "HudPadLauncher (cluster by tx.to)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -781,7 +817,8 @@
         {
           "address": "0x62b33a039d289cbda50ebeb72fe4261449e61bcf",
           "role": "launcher",
-          "label": "LaunchHoodV3Factory (cluster by tx.to)"
+          "label": "LaunchHoodV3Factory (cluster by tx.to)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -826,7 +863,8 @@
         {
           "address": "0x000000e200088d55c39a11f609e5f667729ad49b",
           "role": "launcher",
-          "label": "entrypoint seen 2026-08-04 (rotates)"
+          "label": "entrypoint seen 2026-08-04 (rotates)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -868,7 +906,8 @@
         {
           "address": "0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe",
           "role": "factory",
-          "label": "LaunchFactory"
+          "label": "LaunchFactory",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -912,17 +951,20 @@
         {
           "address": "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
           "role": "hook",
-          "label": "PmavHook"
+          "label": "PmavHook",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x54198ff2fce9b0df255051d49748fe53a8e428cc",
           "role": "hook",
-          "label": "PmavHook (rotated)"
+          "label": "PmavHook (rotated)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
           "role": "other",
-          "label": "Uniswap V4 PoolManager (singleton)"
+          "label": "Uniswap V4 PoolManager (singleton)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -972,12 +1014,14 @@
           "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
           "role": "factory",
           "label": "PonsLaunchFactory",
-          "verified": true
+          "verified": true,
+          "checked": "2026-10-21"
         },
         {
           "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
           "role": "other",
-          "label": "UniswapV3Factory (pool created at launch)"
+          "label": "UniswapV3Factory (pool created at launch)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -1028,12 +1072,14 @@
         {
           "address": "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d",
           "role": "factory",
-          "label": "Factory V5 (current)"
+          "label": "Factory V5 (current)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
           "role": "other",
-          "label": "UniswapV2Factory (graduation target)"
+          "label": "UniswapV2Factory (graduation target)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -1085,7 +1131,8 @@
         {
           "address": "0xe769d832934f0a196a25e5c7b69cdf1920bc7734",
           "role": "launcher",
-          "label": "Trencher launcher (cluster by tx.to)"
+          "label": "Trencher launcher (cluster by tx.to)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -1130,22 +1177,26 @@
         {
           "address": "0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007",
           "role": "router",
-          "label": "launch router (emits PreLaunched)"
+          "label": "launch router (emits PreLaunched)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4",
           "role": "factory",
-          "label": "factory/registry (NewApplication, deploys tokens)"
+          "label": "factory/registry (NewApplication, deploys tokens)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31",
           "role": "token",
-          "label": "VIRTUAL (quote asset)"
+          "label": "VIRTUAL (quote asset)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0xfc2e4da3edb2e18100473339c763705d263d20a9",
           "role": "other",
-          "label": "Virtuals-side pair factory (proxy)"
+          "label": "Virtuals-side pair factory (proxy)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -1192,7 +1243,8 @@
         {
           "address": "0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae",
           "role": "factory",
-          "label": "IMORTAL factory"
+          "label": "IMORTAL factory",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -1236,22 +1288,26 @@
         {
           "address": "0xef1a648373dc19072d692429b704bb63cf597950",
           "role": "factory",
-          "label": "sale factory (seen deploying sale contracts)"
+          "label": "sale factory (seen deploying sale contracts)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x8284476327db79dd37d682a64968c8155a4c770e",
-          "role": "factory",
-          "label": "sale factory (second)"
+          "role": "deployer",
+          "label": "EOA entrypoint observed deploying sale contracts (tx.to); not a contract",
+          "checked": "2026-10-21"
         },
         {
           "address": "0xc4dC11d586608E29bf73F26288d590321a2E0496",
           "role": "curve",
-          "label": "$RUNNER sale/curve (example, EIP-1967 proxy)"
+          "label": "$RUNNER sale/curve (example, EIP-1967 proxy)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
           "role": "token",
-          "label": "USDC quote (6 decimals)"
+          "label": "USDC quote (6 decimals)",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {
@@ -1300,22 +1356,26 @@
         {
           "address": "0x1333692eB905823df110762525c26f7489BB9300",
           "role": "program",
-          "label": "launchpadCore (current)"
+          "label": "launchpadCore (current)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0xd948740da926e8908a08414879490d0d8f96d463",
           "role": "program",
-          "label": "launchpadCore (older)"
+          "label": "launchpadCore (older)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0xebf62508f322137ee0986935ee3b4a60a3f0d227",
           "role": "program",
-          "label": "launchpadCore (legacy)"
+          "label": "launchpadCore (legacy)",
+          "checked": "2026-10-21"
         },
         {
           "address": "0x615EDD898be2F44d18CE875Bbc75A1065E8D9BA2",
           "role": "factory",
-          "label": "launchTokenFactory"
+          "label": "launchTokenFactory",
+          "checked": "2026-10-21"
         }
       ],
       "launch": {

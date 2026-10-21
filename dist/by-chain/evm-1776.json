@@ -14,7 +14,8 @@
       {
         "address": "0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae",
         "role": "factory",
-        "label": "IMORTAL factory"
+        "label": "IMORTAL factory",
+        "checked": "2026-10-21"
       }
     ],
     "launch": {
@@ -58,22 +59,26 @@
       {
         "address": "0xef1a648373dc19072d692429b704bb63cf597950",
         "role": "factory",
-        "label": "sale factory (seen deploying sale contracts)"
+        "label": "sale factory (seen deploying sale contracts)",
+        "checked": "2026-10-21"
       },
       {
         "address": "0x8284476327db79dd37d682a64968c8155a4c770e",
-        "role": "factory",
-        "label": "sale factory (second)"
+        "role": "deployer",
+        "label": "EOA entrypoint observed deploying sale contracts (tx.to); not a contract",
+        "checked": "2026-10-21"
       },
       {
         "address": "0xc4dC11d586608E29bf73F26288d590321a2E0496",
         "role": "curve",
-        "label": "$RUNNER sale/curve (example, EIP-1967 proxy)"
+        "label": "$RUNNER sale/curve (example, EIP-1967 proxy)",
+        "checked": "2026-10-21"
       },
       {
         "address": "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
         "role": "token",
-        "label": "USDC quote (6 decimals)"
+        "label": "USDC quote (6 decimals)",
+        "checked": "2026-10-21"
       }
     ],
     "launch": {
@@ -122,22 +127,26 @@
       {
         "address": "0x1333692eB905823df110762525c26f7489BB9300",
         "role": "program",
-        "label": "launchpadCore (current)"
+        "label": "launchpadCore (current)",
+        "checked": "2026-10-21"
       },
       {
         "address": "0xd948740da926e8908a08414879490d0d8f96d463",
         "role": "program",
-        "label": "launchpadCore (older)"
+        "label": "launchpadCore (older)",
+        "checked": "2026-10-21"
       },
       {
         "address": "0xebf62508f322137ee0986935ee3b4a60a3f0d227",
         "role": "program",
-        "label": "launchpadCore (legacy)"
+        "label": "launchpadCore (legacy)",
+        "checked": "2026-10-21"
       },
       {
         "address": "0x615EDD898be2F44d18CE875Bbc75A1065E8D9BA2",
         "role": "factory",
-        "label": "launchTokenFactory"
+        "label": "launchTokenFactory",
+        "checked": "2026-10-21"
       }
     ],
     "launch": {

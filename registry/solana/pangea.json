@@ -16,22 +16,26 @@
     {
       "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
       "role": "program",
-      "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)"
+      "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)",
+      "checked": "2026-10-21"
     },
     {
       "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
       "role": "program",
-      "label": "LayerZero OFT program (token is omnichain)"
+      "label": "LayerZero OFT program (token is omnichain)",
+      "checked": "2026-10-21"
     },
     {
       "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
       "role": "deployer",
-      "label": "platform relayer/payer that signs every Launch"
+      "label": "platform relayer/payer that signs every Launch",
+      "checked": "2026-10-21"
     },
     {
       "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
       "role": "other",
-      "label": "Meteora DAMM v2 (pool created in the same tx)"
+      "label": "Meteora DAMM v2 (pool created in the same tx)",
+      "checked": "2026-10-21"
     }
   ],
   "launch": {

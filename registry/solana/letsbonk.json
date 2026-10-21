@@ -1,12 +1,57 @@
 {
-  "id": "letsbonk", "name": "letsbonk.fun", "website": "https://letsbonk.fun", "socials": { "x": "bonk_fun" },
-  "chain": { "family": "solana", "id": "mainnet-beta" }, "status": "active", "firstSeen": "2025-04-28", "model": "bonding-curve", "builtOn": "raydium-launchlab",
+  "id": "letsbonk",
+  "name": "letsbonk.fun",
+  "website": "https://letsbonk.fun",
+  "socials": {
+    "x": "bonk_fun"
+  },
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2025-04-28",
+  "model": "bonding-curve",
+  "builtOn": "raydium-launchlab",
   "contracts": [
-    { "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1", "role": "platform-config", "label": "letsbonk platform config (primary)" },
-    { "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4", "role": "platform-config", "label": "letsbonk platform config (secondary)" }
+    {
+      "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1",
+      "role": "platform-config",
+      "label": "letsbonk platform config (primary)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4",
+      "role": "platform-config",
+      "label": "letsbonk platform config (secondary)",
+      "checked": "2026-10-21"
+    }
   ],
-  "launch": { "kind": "instruction", "name": "initialize", "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above." },
-  "token": { "standard": "spl", "metadata": "metaplex", "decimals": 6, "addressPattern": "bonk$" },
-  "graduation": { "target": "raydium-cpmm" }, "quotes": ["SOL"], "tags": ["memecoin", "frontend"],
-  "sources": ["https://letsbonk.fun", "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"], "updated": "2026-10-21"
+  "launch": {
+    "kind": "instruction",
+    "name": "initialize",
+    "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above.",
+    "discriminator": "afaf6d1f0d989bed"
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "decimals": 6,
+    "addressPattern": "bonk$"
+  },
+  "graduation": {
+    "target": "raydium-cpmm"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "frontend"
+  ],
+  "sources": [
+    "https://letsbonk.fun",
+    "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
+  ],
+  "updated": "2026-10-21"
 }

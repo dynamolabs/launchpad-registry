@@ -1,10 +1,49 @@
 {
-  "id": "hoodpump", "name": "HoodPump", "website": "https://hoodpump.fun",
-  "chain": { "family": "evm", "id": 4663 }, "status": "active", "firstSeen": "2026-07-05", "model": "bonding-curve",
-  "contracts": [{"address":"0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b","role":"curve","label":"HoodPump bonding curve + factory"}],
-  "launch": {"kind":"event","name":"Created","signature":"Created(address indexed token,address indexed creator,string name,string symbol,address metaPtr,uint256 ts)","topic0":"0x3794109b2940f03560225200c3d62de2cb3933623779e29e612558c9876c68dc","tokenField":"topics[1]","creatorField":"topics[2]","notes":"No DEX pool at launch, so pool-based detectors miss it. Graduated(token,pool,...) and Trade(...) events follow."},
-  "token": {"standard":"erc20","metadata":"calldata","decimals":18},
-  "graduation": {"target":"uniswap-v3","event":"Graduated"},
-  "quotes": ["ETH"], "tags": ["bonding-curve"],
-  "sources": ["https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"], "notes": "", "updated": "2026-10-21"
+  "id": "hoodpump",
+  "name": "HoodPump",
+  "website": "https://hoodpump.fun",
+  "chain": {
+    "family": "evm",
+    "id": 4663
+  },
+  "status": "active",
+  "firstSeen": "2026-07-05",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b",
+      "role": "curve",
+      "label": "HoodPump bonding curve + factory",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "Created",
+    "signature": "Created(address indexed token,address indexed creator,string name,string symbol,address metaPtr,uint256 ts)",
+    "topic0": "0x3794109b2940f03560225200c3d62de2cb3933623779e29e612558c9876c68dc",
+    "tokenField": "topics[1]",
+    "creatorField": "topics[2]",
+    "notes": "No DEX pool at launch, so pool-based detectors miss it. Graduated(token,pool,...) and Trade(...) events follow."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "calldata",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "uniswap-v3",
+    "event": "Graduated"
+  },
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "bonding-curve"
+  ],
+  "sources": [
+    "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
+  ],
+  "notes": "",
+  "updated": "2026-10-21"
 }

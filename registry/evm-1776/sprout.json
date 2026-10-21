@@ -1,14 +1,66 @@
 {
-  "id": "sprout", "name": "Sprout", "website": "https://trysprout.fun", "socials": { "x": "trysproutfun" },
-  "chain": { "family": "evm", "id": 1776 }, "status": "active", "firstSeen": "2026-09-25", "model": "bonding-curve",
+  "id": "sprout",
+  "name": "Sprout",
+  "website": "https://trysprout.fun",
+  "socials": {
+    "x": "trysproutfun"
+  },
+  "chain": {
+    "family": "evm",
+    "id": 1776
+  },
+  "status": "active",
+  "firstSeen": "2026-09-25",
+  "model": "bonding-curve",
   "contracts": [
-    { "address": "0x1333692eB905823df110762525c26f7489BB9300", "role": "program", "label": "launchpadCore (current)" },
-    { "address": "0xd948740da926e8908a08414879490d0d8f96d463", "role": "program", "label": "launchpadCore (older)" },
-    { "address": "0xebf62508f322137ee0986935ee3b4a60a3f0d227", "role": "program", "label": "launchpadCore (legacy)" },
-    { "address": "0x615EDD898be2F44d18CE875Bbc75A1065E8D9BA2", "role": "factory", "label": "launchTokenFactory" }
+    {
+      "address": "0x1333692eB905823df110762525c26f7489BB9300",
+      "role": "program",
+      "label": "launchpadCore (current)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0xd948740da926e8908a08414879490d0d8f96d463",
+      "role": "program",
+      "label": "launchpadCore (older)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0xebf62508f322137ee0986935ee3b4a60a3f0d227",
+      "role": "program",
+      "label": "launchpadCore (legacy)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0x615EDD898be2F44d18CE875Bbc75A1065E8D9BA2",
+      "role": "factory",
+      "label": "launchTokenFactory",
+      "checked": "2026-10-21"
+    }
   ],
-  "launch": { "kind": "event", "name": "launch created on launchpadCore", "notes": "Each launch has an onchainId; buy with buyNative(onchainId, minOut, to, deadline) sending INJ. Public API lists launches and /health." },
-  "token": { "standard": "erc20", "metadata": "api", "decimals": 18 },
-  "graduation": { "target": "unknown" }, "quotes": ["INJ"], "tags": ["bonding-curve", "native-quote"],
-  "sources": ["https://trysprout.fun", "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"], "updated": "2026-10-21"
+  "launch": {
+    "kind": "event",
+    "name": "launch created on launchpadCore",
+    "notes": "Each launch has an onchainId; buy with buyNative(onchainId, minOut, to, deadline) sending INJ. Public API lists launches and /health."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "api",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "unknown"
+  },
+  "quotes": [
+    "INJ"
+  ],
+  "tags": [
+    "bonding-curve",
+    "native-quote"
+  ],
+  "sources": [
+    "https://trysprout.fun",
+    "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
+  ],
+  "updated": "2026-10-21"
 }

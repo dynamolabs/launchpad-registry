@@ -1,10 +1,52 @@
 {
-  "id": "doppler-robinhood", "name": "Doppler (Robinhood Chain)", "website": "https://doppler.lol",
-  "chain": { "family": "evm", "id": 4663 }, "status": "unknown", "firstSeen": "2026-07-16", "model": "direct-pool",
-  "contracts": [{"address":"0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544","role":"hook","label":"DopplerHookInitializer"},{"address":"0x8366a39cc670b4001a1121b8f6a443a643e40951","role":"other","label":"Uniswap V4 PoolManager"}],
-  "launch": {"kind":"event","name":"Initialize","topic0":"0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438","notes":"Uniswap V4: identify by hooks address in Initialize data."},
-  "token": {"standard":"erc20","metadata":"unknown","decimals":18},
-  "graduation": {"target":"uniswap-v4"},
-  "quotes": ["ETH"], "tags": ["uniswap-v4","hook"],
-  "sources": ["https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"], "notes": "", "updated": "2026-10-21"
+  "id": "doppler-robinhood",
+  "name": "Doppler (Robinhood Chain)",
+  "website": "https://doppler.lol",
+  "chain": {
+    "family": "evm",
+    "id": 4663
+  },
+  "status": "unknown",
+  "firstSeen": "2026-07-16",
+  "model": "direct-pool",
+  "contracts": [
+    {
+      "address": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
+      "role": "hook",
+      "label": "DopplerHookInitializer",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "role": "other",
+      "label": "Uniswap V4 PoolManager",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "Initialize",
+    "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+    "notes": "Uniswap V4: identify by hooks address in Initialize data."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "unknown",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "uniswap-v4"
+  },
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "uniswap-v4",
+    "hook"
+  ],
+  "sources": [
+    "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
+  ],
+  "notes": "",
+  "updated": "2026-10-21"
 }

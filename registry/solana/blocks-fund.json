@@ -1,9 +1,44 @@
 {
-  "id": "blocks-fund", "name": "Blocks", "website": "https://blocks.fund",
-  "chain": { "family": "solana", "id": "mainnet-beta" }, "status": "active", "model": "bonding-curve", "builtOn": "meteora-dbc",
-  "contracts": [ { "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V", "role": "partner-config", "label": "DBC PartnerMetadata account" } ],
-  "launch": { "kind": "instruction", "name": "initialize_virtual_pool_with_spl_token", "notes": "Filter DBC launches whose config belongs to this partner." },
-  "token": { "standard": "spl", "metadata": "metaplex" },
-  "graduation": { "target": "meteora-damm-v2" }, "quotes": ["SOL"], "tags": ["frontend"],
-  "sources": ["https://blocks.fund", "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"], "updated": "2026-10-21"
+  "id": "blocks-fund",
+  "name": "Blocks",
+  "website": "https://blocks.fund",
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "model": "bonding-curve",
+  "builtOn": "meteora-dbc",
+  "contracts": [
+    {
+      "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
+      "role": "partner-config",
+      "label": "DBC PartnerMetadata account",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "initialize_virtual_pool_with_spl_token",
+    "notes": "Filter DBC launches whose config belongs to this partner.",
+    "discriminator": "8c55d7b06636684f"
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex"
+  },
+  "graduation": {
+    "target": "meteora-damm-v2"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "sources": [
+    "https://blocks.fund",
+    "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
+  ],
+  "updated": "2026-10-21"
 }

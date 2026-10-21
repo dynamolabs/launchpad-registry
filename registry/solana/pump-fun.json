@@ -17,13 +17,15 @@
       "address": "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
       "role": "program",
       "label": "pump.fun bonding curve",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     },
     {
       "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
       "role": "other",
       "label": "PumpSwap AMM (graduation target)",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     }
   ],
   "launch": {
@@ -31,7 +33,8 @@
     "name": "create",
     "tokenField": "accounts[0] (mint, signer)",
     "creatorField": "accounts[7] (user)",
-    "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx."
+    "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx.",
+    "discriminator": "181ec828051c0777"
   },
   "token": {
     "standard": "spl",

@@ -1,10 +1,59 @@
 {
-  "id": "pons", "name": "Pons", "website": "https://pons.fun",
-  "chain": { "family": "evm", "id": 4663 }, "status": "active", "firstSeen": "2026-07-10", "model": "direct-pool",
-  "contracts": [{"address":"0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb","role":"factory","label":"PonsLaunchFactory","verified":true},{"address":"0x1f7d7550b1b028f7571e69a784071f0205fd2efa","role":"other","label":"UniswapV3Factory (pool created at launch)"}],
-  "launch": {"kind":"event","name":"TokenLaunched","signature":"TokenLaunched(address indexed token,address indexed deployer,address indexed dexFactory,address pairToken,address pool,uint256 dexId,uint256 launchConfigId,uint256 positionId,uint256 restrictionsEndBlock,uint256 initialBuyAmount)","topic0":"0xdb51ea9ad51ab453a65a4cb7e60c3cb378c9501bb002609f8f97778fb6c4235a","tokenField":"topics[1]","creatorField":"topics[2]","notes":"Also emits TokenDeployed 0x1461370115e1c2be79cb529f8cfcbd11316e789d9c6099fc83417b0b4c48c62a. Multi-tenant: several frontends route through whitelistedLaunchers. Deploys straight to a Uniswap V3 1% pool, instantly tradeable; initialBuyAmount (ETH) is the dev buy."},
-  "token": {"standard":"erc20","metadata":"api","decimals":18},
-  "graduation": {"target":"uniswap-v3","address":"0x1f7d7550b1b028f7571e69a784071f0205fd2efa","notes":"no curve; pool exists from launch"},
-  "quotes": ["ETH"], "tags": ["direct-pool","multi-tenant","dominant"],
-  "sources": ["https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"], "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).", "updated": "2026-10-21"
+  "id": "pons",
+  "name": "Pons",
+  "website": "https://pons.fun",
+  "chain": {
+    "family": "evm",
+    "id": 4663
+  },
+  "status": "active",
+  "firstSeen": "2026-07-10",
+  "model": "direct-pool",
+  "contracts": [
+    {
+      "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
+      "role": "factory",
+      "label": "PonsLaunchFactory",
+      "verified": true,
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+      "role": "other",
+      "label": "UniswapV3Factory (pool created at launch)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "TokenLaunched",
+    "signature": "TokenLaunched(address indexed token,address indexed deployer,address indexed dexFactory,address pairToken,address pool,uint256 dexId,uint256 launchConfigId,uint256 positionId,uint256 restrictionsEndBlock,uint256 initialBuyAmount)",
+    "topic0": "0xdb51ea9ad51ab453a65a4cb7e60c3cb378c9501bb002609f8f97778fb6c4235a",
+    "tokenField": "topics[1]",
+    "creatorField": "topics[2]",
+    "notes": "Also emits TokenDeployed 0x1461370115e1c2be79cb529f8cfcbd11316e789d9c6099fc83417b0b4c48c62a. Multi-tenant: several frontends route through whitelistedLaunchers. Deploys straight to a Uniswap V3 1% pool, instantly tradeable; initialBuyAmount (ETH) is the dev buy."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "api",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "uniswap-v3",
+    "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+    "notes": "no curve; pool exists from launch"
+  },
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool",
+    "multi-tenant",
+    "dominant"
+  ],
+  "sources": [
+    "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
+  ],
+  "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
+  "updated": "2026-10-21"
 }

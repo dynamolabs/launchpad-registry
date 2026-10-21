@@ -5,83 +5,318 @@
   "description": "One token launchpad (or launchpad frontend) on one chain: the on-chain identities a bot needs to detect its launches.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "name", "chain", "status", "model", "contracts", "token", "sources"],
+  "required": [
+    "id",
+    "name",
+    "chain",
+    "status",
+    "model",
+    "contracts",
+    "token",
+    "sources"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,48}$", "description": "Stable slug, unique across the whole registry. Suffix with the chain when the same brand exists on several chains, e.g. virtuals-robinhood." },
-    "name": { "type": "string", "minLength": 1, "maxLength": 80 },
-    "website": { "type": "string", "format": "uri" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,48}$",
+      "description": "Stable slug, unique across the whole registry. Suffix with the chain when the same brand exists on several chains, e.g. virtuals-robinhood."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "website": {
+      "type": "string",
+      "format": "uri"
+    },
     "socials": {
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "x": { "type": "string", "pattern": "^[A-Za-z0-9_]{1,15}$", "description": "X/Twitter handle without @" },
-        "telegram": { "type": "string", "format": "uri" },
-        "discord": { "type": "string", "format": "uri" },
-        "github": { "type": "string", "format": "uri" }
+        "x": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_]{1,15}$",
+          "description": "X/Twitter handle without @"
+        },
+        "telegram": {
+          "type": "string",
+          "format": "uri"
+        },
+        "discord": {
+          "type": "string",
+          "format": "uri"
+        },
+        "github": {
+          "type": "string",
+          "format": "uri"
+        }
       }
     },
     "chain": {
-      "type": "object", "additionalProperties": false, "required": ["family", "id"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family",
+        "id"
+      ],
       "properties": {
-        "family": { "enum": ["solana", "evm"] },
-        "id": { "oneOf": [ { "type": "string", "enum": ["mainnet-beta", "devnet"] }, { "type": "integer", "minimum": 1 } ], "description": "Solana cluster name, or EVM chainId (decimal)." }
+        "family": {
+          "enum": [
+            "solana",
+            "evm"
+          ]
+        },
+        "id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "mainnet-beta",
+                "devnet"
+              ]
+            },
+            {
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "description": "Solana cluster name, or EVM chainId (decimal)."
+        }
       }
     },
-    "status": { "enum": ["active", "inactive", "test", "unknown"], "description": "active = launching tokens now; inactive = no launches for 30+ days or frontend dead; test = only test launches observed." },
-    "firstSeen": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Date (UTC) of the first launch observed or the program/factory deployment." },
-    "model": { "enum": ["bonding-curve", "direct-pool", "funding-round", "meta-launchpad", "other"], "description": "bonding-curve = virtual curve then graduation; direct-pool = token + DEX pool in one tx; funding-round = timed raise then pool; meta-launchpad = deploys launchpads for others." },
-    "builtOn": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,48}$", "description": "id of the underlying launchpad program this frontend uses (e.g. letsbonk is builtOn raydium-launchlab)." },
+    "status": {
+      "enum": [
+        "active",
+        "inactive",
+        "test",
+        "unknown"
+      ],
+      "description": "active = launching tokens now; inactive = no launches for 30+ days or frontend dead; test = only test launches observed."
+    },
+    "firstSeen": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Date (UTC) of the first launch observed or the program/factory deployment."
+    },
+    "model": {
+      "enum": [
+        "bonding-curve",
+        "direct-pool",
+        "funding-round",
+        "meta-launchpad",
+        "other"
+      ],
+      "description": "bonding-curve = virtual curve then graduation; direct-pool = token + DEX pool in one tx; funding-round = timed raise then pool; meta-launchpad = deploys launchpads for others."
+    },
+    "builtOn": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,48}$",
+      "description": "id of the underlying launchpad program this frontend uses (e.g. letsbonk is builtOn raydium-launchlab)."
+    },
     "contracts": {
-      "type": "array", "minItems": 1,
+      "type": "array",
+      "minItems": 1,
       "items": {
-        "type": "object", "additionalProperties": false, "required": ["address", "role"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "address",
+          "role"
+        ],
         "properties": {
-          "address": { "type": "string", "description": "Solana base58 pubkey or EVM 0x address (checksum or lowercase)." },
-          "role": { "enum": ["program", "factory", "launcher", "hook", "curve", "router", "registry", "platform-config", "partner-config", "fee-collector", "deployer", "authority", "token", "other"] },
-          "label": { "type": "string", "maxLength": 120 },
-          "verified": { "type": "boolean", "description": "true = source verified on an explorer (EVM) or IDL published on-chain (Solana)." },
-          "notes": { "type": "string", "maxLength": 500 }
+          "address": {
+            "type": "string",
+            "description": "Solana base58 pubkey or EVM 0x address (checksum or lowercase)."
+          },
+          "role": {
+            "enum": [
+              "program",
+              "factory",
+              "launcher",
+              "hook",
+              "curve",
+              "router",
+              "registry",
+              "platform-config",
+              "partner-config",
+              "fee-collector",
+              "deployer",
+              "authority",
+              "token",
+              "other"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "true = source verified on an explorer (EVM) or IDL published on-chain (Solana)."
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "checked": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "Last date scripts/verify-onchain.mjs confirmed the account/contract exists (executable program or contract code)."
+          }
         }
       }
     },
     "launch": {
-      "type": "object", "additionalProperties": false, "required": ["kind"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
       "description": "How a single launch shows up on-chain, so a bot can subscribe to it.",
       "properties": {
-        "kind": { "enum": ["instruction", "event", "log", "calldata", "mint-only"] },
-        "name": { "type": "string", "description": "Instruction / event name as in the IDL or ABI." },
-        "signature": { "type": "string", "description": "Full ABI event signature or Anchor instruction name." },
-        "topic0": { "type": "string", "pattern": "^0x[0-9a-f]{64}$" },
-        "selector": { "type": "string", "pattern": "^0x[0-9a-f]{8}$", "description": "EVM 4-byte function selector of the launch call." },
-        "discriminator": { "type": "string", "pattern": "^[0-9a-f]{16}$", "description": "Anchor 8-byte instruction discriminator (hex)." },
-        "tokenField": { "type": "string", "description": "Where the new token address sits, e.g. topics[1], accounts[2], data.token." },
-        "creatorField": { "type": "string" },
-        "notes": { "type": "string", "maxLength": 1000 }
+        "kind": {
+          "enum": [
+            "instruction",
+            "event",
+            "log",
+            "calldata",
+            "mint-only"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Instruction / event name as in the IDL or ABI."
+        },
+        "signature": {
+          "type": "string",
+          "description": "Full ABI event signature or Anchor instruction name."
+        },
+        "topic0": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$"
+        },
+        "selector": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{8}$",
+          "description": "EVM 4-byte function selector of the launch call."
+        },
+        "discriminator": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$",
+          "description": "Anchor 8-byte instruction discriminator (hex)."
+        },
+        "tokenField": {
+          "type": "string",
+          "description": "Where the new token address sits, e.g. topics[1], accounts[2], data.token."
+        },
+        "creatorField": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 1000
+        }
       }
     },
     "token": {
-      "type": "object", "additionalProperties": false, "required": ["standard"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard"
+      ],
       "properties": {
-        "standard": { "enum": ["spl", "token-2022", "erc20", "mixed"] },
-        "metadata": { "enum": ["metaplex", "token-2022-extension", "uri", "calldata", "api", "none", "unknown"], "description": "Where name/symbol/image/socials come from." },
-        "metadataApi": { "type": "string", "format": "uri-template", "description": "URL template with {address} if the launchpad exposes a metadata API." },
-        "decimals": { "type": "integer", "minimum": 0, "maximum": 18 },
-        "addressPattern": { "type": "string", "description": "Regex a token address matches (vanity suffixes like pump, kids, 4663)." }
+        "standard": {
+          "enum": [
+            "spl",
+            "token-2022",
+            "erc20",
+            "mixed"
+          ]
+        },
+        "metadata": {
+          "enum": [
+            "metaplex",
+            "token-2022-extension",
+            "uri",
+            "calldata",
+            "api",
+            "none",
+            "unknown"
+          ],
+          "description": "Where name/symbol/image/socials come from."
+        },
+        "metadataApi": {
+          "type": "string",
+          "format": "uri-template",
+          "description": "URL template with {address} if the launchpad exposes a metadata API."
+        },
+        "decimals": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18
+        },
+        "addressPattern": {
+          "type": "string",
+          "description": "Regex a token address matches (vanity suffixes like pump, kids, 4663)."
+        }
       }
     },
     "graduation": {
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "target": { "type": "string", "description": "DEX the token migrates to (e.g. raydium-cpmm, pumpswap, meteora-damm-v2, uniswap-v2)." },
-        "address": { "type": "string" },
-        "threshold": { "type": "string", "description": "Human-readable trigger, e.g. '85 SOL raised', '$44k mcap'." },
-        "event": { "type": "string" },
-        "notes": { "type": "string", "maxLength": 500 }
+        "target": {
+          "type": "string",
+          "description": "DEX the token migrates to (e.g. raydium-cpmm, pumpswap, meteora-damm-v2, uniswap-v2)."
+        },
+        "address": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": "string",
+          "description": "Human-readable trigger, e.g. '85 SOL raised', '$44k mcap'."
+        },
+        "event": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 500
+        }
       }
     },
-    "quotes": { "type": "array", "items": { "type": "string" }, "description": "Quote assets launches pair against (SOL, USDC, ETH, VIRTUAL, INJ...)." },
-    "tags": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }, "uniqueItems": true },
-    "sources": { "type": "array", "minItems": 1, "items": { "type": "string", "format": "uri" }, "description": "Docs, explorer links, IDL, announcements backing the data above." },
-    "notes": { "type": "string", "maxLength": 2000 },
-    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+    "quotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Quote assets launches pair against (SOL, USDC, ETH, VIRTUAL, INJ...)."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Docs, explorer links, IDL, announcements backing the data above."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
   }
 }

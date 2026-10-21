@@ -18,19 +18,22 @@
       "address": "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
       "role": "program",
       "label": "Dynamic Bonding Curve",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     },
     {
       "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
       "role": "other",
       "label": "DAMM v2 (default graduation target)",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     },
     {
       "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
       "role": "other",
       "label": "DAMM v1 (alternative graduation target)",
-      "verified": true
+      "verified": true,
+      "checked": "2026-10-21"
     }
   ],
   "launch": {

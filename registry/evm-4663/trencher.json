@@ -1,10 +1,46 @@
 {
-  "id": "trencher", "name": "Trencher", "website": "https://dexscreener.com/robinhood",
-  "chain": { "family": "evm", "id": 4663 }, "status": "unknown", "firstSeen": "2026-07-16", "model": "direct-pool",
-  "contracts": [{"address":"0xe769d832934f0a196a25e5c7b69cdf1920bc7734","role":"launcher","label":"Trencher launcher (cluster by tx.to)"}],
-  "launch": {"kind":"event","name":"PoolCreated","topic0":"0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118","notes":"Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."},
-  "token": {"standard":"erc20","metadata":"unknown","decimals":18},
-  "graduation": {"target":"uniswap-v3"},
-  "quotes": ["ETH"], "tags": ["direct-pool","needs-abi"],
-  "sources": ["https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"], "notes": "Website unknown; identified on-chain only.", "updated": "2026-10-21"
+  "id": "trencher",
+  "name": "Trencher",
+  "website": "https://dexscreener.com/robinhood",
+  "chain": {
+    "family": "evm",
+    "id": 4663
+  },
+  "status": "unknown",
+  "firstSeen": "2026-07-16",
+  "model": "direct-pool",
+  "contracts": [
+    {
+      "address": "0xe769d832934f0a196a25e5c7b69cdf1920bc7734",
+      "role": "launcher",
+      "label": "Trencher launcher (cluster by tx.to)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "PoolCreated",
+    "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+    "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "unknown",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "uniswap-v3"
+  },
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool",
+    "needs-abi"
+  ],
+  "sources": [
+    "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
+  ],
+  "notes": "Website unknown; identified on-chain only.",
+  "updated": "2026-10-21"
 }

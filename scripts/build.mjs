@@ -21,4 +21,5 @@ writeFileSync(join(out, 'launchpads.json'), JSON.stringify({ ...meta, launchpads
 writeFileSync(join(out, 'addresses.json'), JSON.stringify({ generated: meta.generated, addresses }, null, 2) + '\n');
 writeFileSync(join(out, 'chains.json'), JSON.stringify(chains, null, 2) + '\n');
 for (const [dir, list] of Object.entries(byChain)) writeFileSync(join(out, 'by-chain', `${dir}.json`), JSON.stringify(list, null, 2) + '\n');
+import('./site.mjs').catch(e => console.error('site:', e.message));
 console.log(`built dist/: ${all.length} launchpads, ${Object.keys(addresses).length} addresses, ${chains.length} chains`);

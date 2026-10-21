@@ -316,8 +316,8 @@
     "evm-1776:0x8284476327db79dd37d682a64968c8155a4c770e": [
       {
         "id": "runup",
-        "role": "factory",
-        "label": "sale factory (second)"
+        "role": "deployer",
+        "label": "EOA entrypoint observed deploying sale contracts (tx.to); not a contract"
       }
     ],
     "evm-1776:0xc4dc11d586608e29bf73f26288d590321a2e0496": [

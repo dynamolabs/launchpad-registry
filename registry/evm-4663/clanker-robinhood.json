@@ -1,10 +1,52 @@
 {
-  "id": "clanker-robinhood", "name": "Clanker (Robinhood Chain)", "website": "https://www.clanker.world",
-  "chain": { "family": "evm", "id": 4663 }, "status": "unknown", "firstSeen": "2026-07-16", "model": "direct-pool",
-  "contracts": [{"address":"0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc","role":"hook","label":"ClankerHookStaticFeeV2"},{"address":"0x8366a39cc670b4001a1121b8f6a443a643e40951","role":"other","label":"Uniswap V4 PoolManager"}],
-  "launch": {"kind":"event","name":"Initialize","topic0":"0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438","notes":"Uniswap V4: identify by hooks address in Initialize data."},
-  "token": {"standard":"erc20","metadata":"unknown","decimals":18},
-  "graduation": {"target":"uniswap-v4"},
-  "quotes": ["ETH"], "tags": ["uniswap-v4","hook"],
-  "sources": ["https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"], "notes": "", "updated": "2026-10-21"
+  "id": "clanker-robinhood",
+  "name": "Clanker (Robinhood Chain)",
+  "website": "https://www.clanker.world",
+  "chain": {
+    "family": "evm",
+    "id": 4663
+  },
+  "status": "unknown",
+  "firstSeen": "2026-07-16",
+  "model": "direct-pool",
+  "contracts": [
+    {
+      "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
+      "role": "hook",
+      "label": "ClankerHookStaticFeeV2",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "role": "other",
+      "label": "Uniswap V4 PoolManager",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "Initialize",
+    "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+    "notes": "Uniswap V4: identify by hooks address in Initialize data."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "unknown",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "uniswap-v4"
+  },
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "uniswap-v4",
+    "hook"
+  ],
+  "sources": [
+    "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
+  ],
+  "notes": "",
+  "updated": "2026-10-21"
 }

@@ -1,10 +1,59 @@
 {
-  "id": "robinfun", "name": "RobinFun", "website": "https://robin.fun",
-  "chain": { "family": "evm", "id": 4663 }, "status": "active", "firstSeen": "2026-07-01", "model": "bonding-curve",
-  "contracts": [{"address":"0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d","role":"factory","label":"Factory V5 (current)"},{"address":"0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f","role":"other","label":"UniswapV2Factory (graduation target)"}],
-  "launch": {"kind":"event","name":"TokenCreated","signature":"TokenCreated(address indexed token,address indexed creator,string name,string symbol,uint256 supply,uint256,uint256,uint256)","topic0":"0x545e893dd3da1d713637212939d8e88d928bf255857b067b97f5aaf4f3b31abe","tokenField":"topics[1]","creatorField":"topics[2]","notes":"Buy topic0 0x75a85e7be0265abefef113ee168a0d751385a985c3a37920ae97ae192d2eadb4."},
-  "token": {"standard":"erc20","metadata":"calldata","decimals":18,"addressPattern":"4663$"},
-  "graduation": {"target":"uniswap-v2","address":"0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f","threshold":"~$44k mcap","notes":"LP burned on graduation"},
-  "quotes": ["ETH"], "tags": ["bonding-curve","vanity-address"],
-  "sources": ["https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"], "notes": "", "updated": "2026-10-21"
+  "id": "robinfun",
+  "name": "RobinFun",
+  "website": "https://robin.fun",
+  "chain": {
+    "family": "evm",
+    "id": 4663
+  },
+  "status": "active",
+  "firstSeen": "2026-07-01",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d",
+      "role": "factory",
+      "label": "Factory V5 (current)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+      "role": "other",
+      "label": "UniswapV2Factory (graduation target)",
+      "checked": "2026-10-21"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "TokenCreated",
+    "signature": "TokenCreated(address indexed token,address indexed creator,string name,string symbol,uint256 supply,uint256,uint256,uint256)",
+    "topic0": "0x545e893dd3da1d713637212939d8e88d928bf255857b067b97f5aaf4f3b31abe",
+    "tokenField": "topics[1]",
+    "creatorField": "topics[2]",
+    "notes": "Buy topic0 0x75a85e7be0265abefef113ee168a0d751385a985c3a37920ae97ae192d2eadb4."
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "calldata",
+    "decimals": 18,
+    "addressPattern": "4663$"
+  },
+  "graduation": {
+    "target": "uniswap-v2",
+    "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+    "threshold": "~$44k mcap",
+    "notes": "LP burned on graduation"
+  },
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "bonding-curve",
+    "vanity-address"
+  ],
+  "sources": [
+    "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
+  ],
+  "notes": "",
+  "updated": "2026-10-21"
 }

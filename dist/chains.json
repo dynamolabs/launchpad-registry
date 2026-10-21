@@ -22,7 +22,17 @@
     ],
     "explorer": "https://robinhoodchain.blockscout.com",
     "dexscreenerId": "robinhood",
-    "notes": "Arbitrum Orbit L2, ~100 ms blocks, mainnet 2026-07-01. Launchpad identity on Uniswap V4 is the hook address, not tx.to."
+    "notes": "Arbitrum Orbit L2, ~100 ms blocks, mainnet 2026-07-01. Launchpad identity on Uniswap V4 is the hook address, not tx.to.",
+    "ignore": [
+      "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+      "0x89e5db8b5aa49aa85ac63f691524311aeb649eba",
+      "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+      "0xe51960f1b45f1c9fb6d166e6a884f866fc70433b",
+      "0x73991a25c818bf1f1128deaab1492d45638de0d3",
+      "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "0xfc2e4da3edb2e18100473339c763705d263d20a9"
+    ]
   },
   {
     "family": "evm",

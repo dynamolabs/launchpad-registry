@@ -1,13 +1,55 @@
 {
-  "id": "stonkfun", "name": "StonkFun", "website": "https://www.stonkfun.xyz",
-  "chain": { "family": "solana", "id": "mainnet-beta" }, "status": "active", "firstSeen": "2025-09-01", "model": "bonding-curve", "builtOn": "raydium-launchlab",
+  "id": "stonkfun",
+  "name": "StonkFun",
+  "website": "https://www.stonkfun.xyz",
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2025-09-01",
+  "model": "bonding-curve",
+  "builtOn": "raydium-launchlab",
   "contracts": [
-    { "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt", "role": "platform-config" },
-    { "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7", "role": "platform-config" },
-    { "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi", "role": "platform-config" }
+    {
+      "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
+      "role": "platform-config",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
+      "role": "platform-config",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
+      "role": "platform-config",
+      "checked": "2026-10-21"
+    }
   ],
-  "launch": { "kind": "instruction", "name": "initialize" },
-  "token": { "standard": "spl", "metadata": "metaplex", "decimals": 6 },
-  "graduation": { "target": "raydium-cpmm" }, "quotes": ["SOL"], "tags": ["stocks-theme", "frontend"],
-  "sources": ["https://www.stonkfun.xyz", "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"], "updated": "2026-10-21"
+  "launch": {
+    "kind": "instruction",
+    "name": "initialize",
+    "discriminator": "afaf6d1f0d989bed"
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "decimals": 6
+  },
+  "graduation": {
+    "target": "raydium-cpmm"
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "stocks-theme",
+    "frontend"
+  ],
+  "sources": [
+    "https://www.stonkfun.xyz",
+    "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
+  ],
+  "updated": "2026-10-21"
 }

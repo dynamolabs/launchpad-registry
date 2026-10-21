@@ -1,14 +1,61 @@
 {
-  "id": "kids-fun", "name": "kids.fun", "website": "https://kids.fun", "socials": { "x": "YokaiCapital" },
-  "chain": { "family": "solana", "id": "mainnet-beta" }, "status": "active", "firstSeen": "2026-10-19", "model": "funding-round",
+  "id": "kids-fun",
+  "name": "kids.fun",
+  "website": "https://kids.fun",
+  "socials": {
+    "x": "YokaiCapital"
+  },
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2026-10-19",
+  "model": "funding-round",
   "contracts": [
-    { "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC", "role": "program", "label": "KIDS launchpad program (deployed 2026-10-19)" },
-    { "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y", "role": "authority", "label": "upgrade authority (shared with fee collector)" },
-    { "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN", "role": "fee-collector" }
+    {
+      "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
+      "role": "program",
+      "label": "KIDS launchpad program (deployed 2026-10-19)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
+      "role": "authority",
+      "label": "upgrade authority (shared with fee collector)",
+      "checked": "2026-10-21"
+    },
+    {
+      "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
+      "role": "fee-collector",
+      "checked": "2026-10-21"
+    }
   ],
-  "launch": { "kind": "mint-only", "notes": "Token is minted by the dev wallet as a plain SPL + Metaplex mint BEFORE the program is involved; the program then runs a ~1 h funding round and creates a locked Raydium CPMM pool. Detect via the program's round-open instruction or the public API." },
-  "token": { "standard": "spl", "metadata": "metaplex", "metadataApi": "https://kids.fun/api/account/{address}/state", "addressPattern": "kids$" },
-  "graduation": { "target": "raydium-cpmm", "threshold": "funding round closes (~1 h)", "notes": "LP locked; dev allocation 75% vesting." },
-  "quotes": ["SOL"], "tags": ["funding-round", "vesting"],
-  "sources": ["https://kids.fun", "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"], "updated": "2026-10-21"
+  "launch": {
+    "kind": "mint-only",
+    "notes": "Token is minted by the dev wallet as a plain SPL + Metaplex mint BEFORE the program is involved; the program then runs a ~1 h funding round and creates a locked Raydium CPMM pool. Detect via the program's round-open instruction or the public API."
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "metadataApi": "https://kids.fun/api/account/{address}/state",
+    "addressPattern": "kids$"
+  },
+  "graduation": {
+    "target": "raydium-cpmm",
+    "threshold": "funding round closes (~1 h)",
+    "notes": "LP locked; dev allocation 75% vesting."
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "funding-round",
+    "vesting"
+  ],
+  "sources": [
+    "https://kids.fun",
+    "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
+  ],
+  "updated": "2026-10-21"
 }
