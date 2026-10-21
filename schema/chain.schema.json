@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Chain",
+  "type": "object", "additionalProperties": false,
+  "required": ["family", "id", "name", "dir"],
+  "properties": {
+    "family": { "enum": ["solana", "evm"] },
+    "id": { "oneOf": [ { "type": "string" }, { "type": "integer" } ] },
+    "name": { "type": "string" },
+    "dir": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "registry/<dir>/ holds this chain's launchpads" },
+    "nativeSymbol": { "type": "string" },
+    "rpc": { "type": "array", "items": { "type": "string", "format": "uri" } },
+    "explorer": { "type": "string", "format": "uri" },
+    "dexscreenerId": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

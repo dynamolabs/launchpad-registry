@@ -1,0 +1,543 @@
+[
+  {
+    "id": "blocks-fund",
+    "name": "Blocks",
+    "website": "https://blocks.fund",
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "model": "bonding-curve",
+    "builtOn": "meteora-dbc",
+    "contracts": [
+      {
+        "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize_virtual_pool_with_spl_token",
+      "notes": "Filter DBC launches whose config belongs to this partner."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "frontend"
+    ],
+    "sources": [
+      "https://blocks.fund",
+      "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "bots-family",
+    "name": "Bots Family",
+    "website": "https://bots.family",
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "model": "bonding-curve",
+    "builtOn": "meteora-dbc",
+    "contracts": [
+      {
+        "address": "8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize_virtual_pool_with_spl_token",
+      "notes": "Filter DBC launches whose config belongs to this partner."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "frontend"
+    ],
+    "sources": [
+      "https://bots.family",
+      "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "farmfun",
+    "name": "FarmFun",
+    "website": "https://farmfun.farm",
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "model": "bonding-curve",
+    "builtOn": "meteora-dbc",
+    "contracts": [
+      {
+        "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize_virtual_pool_with_spl_token",
+      "notes": "Filter DBC launches whose config belongs to this partner."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "frontend"
+    ],
+    "sources": [
+      "https://farmfun.farm",
+      "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "kids-fun",
+    "name": "kids.fun",
+    "website": "https://kids.fun",
+    "socials": {
+      "x": "YokaiCapital"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2026-10-19",
+    "model": "funding-round",
+    "contracts": [
+      {
+        "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
+        "role": "program",
+        "label": "KIDS launchpad program (deployed 2026-10-19)"
+      },
+      {
+        "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
+        "role": "authority",
+        "label": "upgrade authority (shared with fee collector)"
+      },
+      {
+        "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
+        "role": "fee-collector"
+      }
+    ],
+    "launch": {
+      "kind": "mint-only",
+      "notes": "Token is minted by the dev wallet as a plain SPL + Metaplex mint BEFORE the program is involved; the program then runs a ~1 h funding round and creates a locked Raydium CPMM pool. Detect via the program's round-open instruction or the public API."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "metadataApi": "https://kids.fun/api/account/{address}/state",
+      "addressPattern": "kids$"
+    },
+    "graduation": {
+      "target": "raydium-cpmm",
+      "threshold": "funding round closes (~1 h)",
+      "notes": "LP locked; dev allocation 75% vesting."
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "funding-round",
+      "vesting"
+    ],
+    "sources": [
+      "https://kids.fun",
+      "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "letsbonk",
+    "name": "letsbonk.fun",
+    "website": "https://letsbonk.fun",
+    "socials": {
+      "x": "bonk_fun"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2025-04-28",
+    "model": "bonding-curve",
+    "builtOn": "raydium-launchlab",
+    "contracts": [
+      {
+        "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1",
+        "role": "platform-config",
+        "label": "letsbonk platform config (primary)"
+      },
+      {
+        "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4",
+        "role": "platform-config",
+        "label": "letsbonk platform config (secondary)"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize",
+      "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "decimals": 6,
+      "addressPattern": "bonk$"
+    },
+    "graduation": {
+      "target": "raydium-cpmm"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "memecoin",
+      "frontend"
+    ],
+    "sources": [
+      "https://letsbonk.fun",
+      "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "meteora-dbc",
+    "name": "Meteora Dynamic Bonding Curve",
+    "website": "https://launch.meteora.ag",
+    "socials": {
+      "x": "MeteoraAG",
+      "github": "https://github.com/MeteoraAg/dynamic-bonding-curve"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2025-04-01",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
+        "role": "program",
+        "label": "Dynamic Bonding Curve",
+        "verified": true
+      },
+      {
+        "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+        "role": "other",
+        "label": "DAMM v2 (default graduation target)",
+        "verified": true
+      },
+      {
+        "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
+        "role": "other",
+        "label": "DAMM v1 (alternative graduation target)",
+        "verified": true
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize_virtual_pool_with_spl_token | initialize_virtual_pool_with_token2022",
+      "notes": "Multi-tenant: every frontend (partner) creates a Config account (fee claimer, curve, migration target) and optionally a PartnerMetadata account (name, website, logo). Launches reference the config, so the config address identifies the frontend. Configs without PartnerMetadata are common; infer the brand from the token metadata URI host."
+    },
+    "token": {
+      "standard": "mixed",
+      "metadata": "metaplex"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2",
+      "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+      "threshold": "per-config migration quote threshold",
+      "notes": "Migration is a separate tx (migrate_meteora_damm / migration_damm_v2) that creates the DAMM pool and locks LP per config."
+    },
+    "quotes": [
+      "SOL",
+      "USDC",
+      "custom"
+    ],
+    "tags": [
+      "bonding-curve",
+      "multi-tenant",
+      "sdk"
+    ],
+    "sources": [
+      "https://docs.meteora.ag/developer-guide/guides/dbc",
+      "https://github.com/MeteoraAg/dynamic-bonding-curve",
+      "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "pangea",
+    "name": "Pangea",
+    "website": "https://pangea.trade",
+    "socials": {
+      "x": "LaunchOnPangea"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2026-10-18",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
+        "role": "program",
+        "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)"
+      },
+      {
+        "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
+        "role": "program",
+        "label": "LayerZero OFT program (token is omnichain)"
+      },
+      {
+        "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+        "role": "deployer",
+        "label": "platform relayer/payer that signs every Launch"
+      },
+      {
+        "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+        "role": "other",
+        "label": "Meteora DAMM v2 (pool created in the same tx)"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "Launch",
+      "notes": "Single tx: Token-2022 mint (PDA, not a signer) + LayerZero OFT init + DAMM v2 InitializeCustomizablePool + PermanentLockPosition. Tx carries a jitodontfront…Pangea account. Multi-chain: the EVM leg uses a Uniswap v4 hook (addresses not yet registered)."
+    },
+    "token": {
+      "standard": "token-2022",
+      "metadata": "token-2022-extension"
+    },
+    "graduation": {
+      "target": "meteora-damm-v2",
+      "notes": "No curve: liquid from block one, LP permanently locked."
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "direct-pool",
+      "omnichain",
+      "layerzero"
+    ],
+    "sources": [
+      "https://pangea.trade",
+      "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "pump-fun",
+    "name": "pump.fun",
+    "website": "https://pump.fun",
+    "socials": {
+      "x": "pumpdotfun"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2024-01-19",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
+        "role": "program",
+        "label": "pump.fun bonding curve",
+        "verified": true
+      },
+      {
+        "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+        "role": "other",
+        "label": "PumpSwap AMM (graduation target)",
+        "verified": true
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "create",
+      "tokenField": "accounts[0] (mint, signer)",
+      "creatorField": "accounts[7] (user)",
+      "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "decimals": 6,
+      "addressPattern": "pump$"
+    },
+    "graduation": {
+      "target": "pumpswap",
+      "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+      "threshold": "~85 SOL in curve",
+      "notes": "Migrated to Raydium AMM v4 before PumpSwap launched (2025-03)."
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "memecoin",
+      "bonding-curve"
+    ],
+    "sources": [
+      "https://pump.fun",
+      "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "raydium-launchlab",
+    "name": "Raydium LaunchLab",
+    "website": "https://raydium.io/launchpad/",
+    "socials": {
+      "x": "RaydiumProtocol"
+    },
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2025-04-16",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+        "role": "program",
+        "label": "LaunchLab (launchpad program)",
+        "verified": true
+      },
+      {
+        "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
+        "role": "platform-config",
+        "label": "Raydium's own platform config"
+      },
+      {
+        "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+        "role": "other",
+        "label": "Raydium CPMM (graduation target)",
+        "verified": true
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize",
+      "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8."
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "decimals": 6
+    },
+    "graduation": {
+      "target": "raydium-cpmm",
+      "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+      "threshold": "fundraising target reached (default 85 SOL)"
+    },
+    "quotes": [
+      "SOL",
+      "USDC"
+    ],
+    "tags": [
+      "bonding-curve",
+      "multi-tenant"
+    ],
+    "sources": [
+      "https://docs.raydium.io/raydium/pool-creation/launchlab",
+      "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
+    ],
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "stonkfun",
+    "name": "StonkFun",
+    "website": "https://www.stonkfun.xyz",
+    "chain": {
+      "family": "solana",
+      "id": "mainnet-beta"
+    },
+    "status": "active",
+    "firstSeen": "2025-09-01",
+    "model": "bonding-curve",
+    "builtOn": "raydium-launchlab",
+    "contracts": [
+      {
+        "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
+        "role": "platform-config"
+      },
+      {
+        "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
+        "role": "platform-config"
+      },
+      {
+        "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
+        "role": "platform-config"
+      }
+    ],
+    "launch": {
+      "kind": "instruction",
+      "name": "initialize"
+    },
+    "token": {
+      "standard": "spl",
+      "metadata": "metaplex",
+      "decimals": 6
+    },
+    "graduation": {
+      "target": "raydium-cpmm"
+    },
+    "quotes": [
+      "SOL"
+    ],
+    "tags": [
+      "stocks-theme",
+      "frontend"
+    ],
+    "sources": [
+      "https://www.stonkfun.xyz",
+      "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
+    ],
+    "updated": "2026-10-21"
+  }
+]

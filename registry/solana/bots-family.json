@@ -1,0 +1,9 @@
+{
+  "id": "bots-family", "name": "Bots Family", "website": "https://bots.family",
+  "chain": { "family": "solana", "id": "mainnet-beta" }, "status": "active", "model": "bonding-curve", "builtOn": "meteora-dbc",
+  "contracts": [ { "address": "8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS", "role": "partner-config", "label": "DBC PartnerMetadata account" } ],
+  "launch": { "kind": "instruction", "name": "initialize_virtual_pool_with_spl_token", "notes": "Filter DBC launches whose config belongs to this partner." },
+  "token": { "standard": "spl", "metadata": "metaplex" },
+  "graduation": { "target": "meteora-damm-v2" }, "quotes": ["SOL"], "tags": ["frontend"],
+  "sources": ["https://bots.family", "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"], "updated": "2026-10-21"
+}

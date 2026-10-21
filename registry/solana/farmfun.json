@@ -1,0 +1,9 @@
+{
+  "id": "farmfun", "name": "FarmFun", "website": "https://farmfun.farm",
+  "chain": { "family": "solana", "id": "mainnet-beta" }, "status": "active", "model": "bonding-curve", "builtOn": "meteora-dbc",
+  "contracts": [ { "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau", "role": "partner-config", "label": "DBC PartnerMetadata account" } ],
+  "launch": { "kind": "instruction", "name": "initialize_virtual_pool_with_spl_token", "notes": "Filter DBC launches whose config belongs to this partner." },
+  "token": { "standard": "spl", "metadata": "metaplex" },
+  "graduation": { "target": "meteora-damm-v2" }, "quotes": ["SOL"], "tags": ["frontend"],
+  "sources": ["https://farmfun.farm", "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"], "updated": "2026-10-21"
+}

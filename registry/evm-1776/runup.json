@@ -1,0 +1,14 @@
+{
+  "id": "runup", "name": "runup.fun", "website": "https://runup.fun", "socials": { "x": "runupfun" },
+  "chain": { "family": "evm", "id": 1776 }, "status": "active", "firstSeen": "2026-10-01", "model": "funding-round",
+  "contracts": [
+    { "address": "0xef1a648373dc19072d692429b704bb63cf597950", "role": "factory", "label": "sale factory (seen deploying sale contracts)" },
+    { "address": "0x8284476327db79dd37d682a64968c8155a4c770e", "role": "factory", "label": "sale factory (second)" },
+    { "address": "0xc4dC11d586608E29bf73F26288d590321a2E0496", "role": "curve", "label": "$RUNNER sale/curve (example, EIP-1967 proxy)" },
+    { "address": "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a", "role": "token", "label": "USDC quote (6 decimals)" }
+  ],
+  "launch": { "kind": "calldata", "name": "sale deployment", "selector": "0x8906b078", "notes": "The address users share is the SALE contract, not the ERC-20: token() points to it. Phase 0 = founding tickets (subscribe()), then public curve buy(uint256,uint256,address,uint256,bool) selector 0x8906b078 opens at a scheduled time (advancePhase). quoteBuy(uint256) reverts until open." },
+  "token": { "standard": "erc20", "metadata": "api", "decimals": 18 },
+  "graduation": { "target": "unknown" }, "quotes": ["USDC"], "tags": ["funding-round", "scheduled-open", "stocks-theme"],
+  "sources": ["https://runup.fun", "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"], "updated": "2026-10-21"
+}

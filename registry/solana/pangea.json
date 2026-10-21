@@ -1,0 +1,63 @@
+{
+  "id": "pangea",
+  "name": "Pangea",
+  "website": "https://pangea.trade",
+  "socials": {
+    "x": "LaunchOnPangea"
+  },
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2026-10-18",
+  "model": "direct-pool",
+  "contracts": [
+    {
+      "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
+      "role": "program",
+      "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)"
+    },
+    {
+      "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
+      "role": "program",
+      "label": "LayerZero OFT program (token is omnichain)"
+    },
+    {
+      "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+      "role": "deployer",
+      "label": "platform relayer/payer that signs every Launch"
+    },
+    {
+      "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+      "role": "other",
+      "label": "Meteora DAMM v2 (pool created in the same tx)"
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "Launch",
+    "notes": "Single tx: Token-2022 mint (PDA, not a signer) + LayerZero OFT init + DAMM v2 InitializeCustomizablePool + PermanentLockPosition. Tx carries a jitodontfront…Pangea account. Multi-chain: the EVM leg uses a Uniswap v4 hook (addresses not yet registered)."
+  },
+  "token": {
+    "standard": "token-2022",
+    "metadata": "token-2022-extension"
+  },
+  "graduation": {
+    "target": "meteora-damm-v2",
+    "notes": "No curve: liquid from block one, LP permanently locked."
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "direct-pool",
+    "omnichain",
+    "layerzero"
+  ],
+  "sources": [
+    "https://pangea.trade",
+    "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
+  ],
+  "updated": "2026-10-21"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "launchpad-registry",
+  "version": "0.1.0",
+  "description": "Community-maintained registry of token launchpads (program IDs, factories, launch events) across Solana and EVM chains, plus a generic new-launchpad detector.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "npm run validate && npm run build && git diff --exit-code -- dist || (echo 'dist/ is stale: run npm run build and commit' && exit 1)"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

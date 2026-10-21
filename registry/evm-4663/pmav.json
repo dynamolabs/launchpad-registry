@@ -1,0 +1,10 @@
+{
+  "id": "pmav", "name": "pmav.fun", "website": "https://pmav.fun",
+  "chain": { "family": "evm", "id": 4663 }, "status": "active", "firstSeen": "2026-07-10", "model": "direct-pool",
+  "contracts": [{"address":"0x97472ae141ff13a4d317328bc4f3f95172fba8cc","role":"hook","label":"PmavHook"},{"address":"0x54198ff2fce9b0df255051d49748fe53a8e428cc","role":"hook","label":"PmavHook (rotated)"},{"address":"0x8366a39cc670b4001a1121b8f6a443a643e40951","role":"other","label":"Uniswap V4 PoolManager (singleton)"}],
+  "launch": {"kind":"event","name":"Initialize","signature":"Initialize(bytes32 indexed id,address indexed currency0,address indexed currency1,uint24 fee,int24 tickSpacing,address hooks,uint160 sqrtPriceX96,int24 tick)","topic0":"0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438","tokenField":"non-WETH currency among topics[2..3]","notes":"Uniswap V4 pad: identify by hooks == one of the PmavHook addresses (data word 2). Hooks rotate; new ones have a contract name containing pmav. tx.to is the shared PositionManager, so never key on tx.to."},
+  "token": {"standard":"erc20","metadata":"api","decimals":18},
+  "graduation": {"target":"uniswap-v4","notes":"liquid from launch"},
+  "quotes": ["ETH"], "tags": ["direct-pool","uniswap-v4","hook"],
+  "sources": ["https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"], "notes": "", "updated": "2026-10-21"
+}

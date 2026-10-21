@@ -1,0 +1,9 @@
+{
+  "id": "imortal", "name": "IMORTAL", "website": "https://imortal.buzz",
+  "chain": { "family": "evm", "id": 1776 }, "status": "active", "firstSeen": "2026-10-03", "model": "meta-launchpad",
+  "contracts": [ { "address": "0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae", "role": "factory", "label": "IMORTAL factory" } ],
+  "launch": { "kind": "calldata", "name": "create", "selector": "0xbc12a244", "notes": "\"Deploy your own launchpad\" meta-launchpad originating from the Robinhood Chain ecosystem, expanded to Injective EVM. Metadata hosted on imortal.buzz." },
+  "token": { "standard": "erc20", "metadata": "api", "decimals": 18 },
+  "quotes": ["INJ"], "tags": ["meta-launchpad"],
+  "sources": ["https://imortal.buzz", "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"], "updated": "2026-10-21"
+}

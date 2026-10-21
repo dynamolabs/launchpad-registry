@@ -1,0 +1,60 @@
+{
+  "id": "pump-fun",
+  "name": "pump.fun",
+  "website": "https://pump.fun",
+  "socials": {
+    "x": "pumpdotfun"
+  },
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2024-01-19",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
+      "role": "program",
+      "label": "pump.fun bonding curve",
+      "verified": true
+    },
+    {
+      "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+      "role": "other",
+      "label": "PumpSwap AMM (graduation target)",
+      "verified": true
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "create",
+    "tokenField": "accounts[0] (mint, signer)",
+    "creatorField": "accounts[7] (user)",
+    "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx."
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "decimals": 6,
+    "addressPattern": "pump$"
+  },
+  "graduation": {
+    "target": "pumpswap",
+    "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+    "threshold": "~85 SOL in curve",
+    "notes": "Migrated to Raydium AMM v4 before PumpSwap launched (2025-03)."
+  },
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve"
+  ],
+  "sources": [
+    "https://pump.fun",
+    "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
+  ],
+  "updated": "2026-10-21"
+}

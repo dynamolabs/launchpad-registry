@@ -1,0 +1,62 @@
+{
+  "id": "raydium-launchlab",
+  "name": "Raydium LaunchLab",
+  "website": "https://raydium.io/launchpad/",
+  "socials": {
+    "x": "RaydiumProtocol"
+  },
+  "chain": {
+    "family": "solana",
+    "id": "mainnet-beta"
+  },
+  "status": "active",
+  "firstSeen": "2025-04-16",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+      "role": "program",
+      "label": "LaunchLab (launchpad program)",
+      "verified": true
+    },
+    {
+      "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
+      "role": "platform-config",
+      "label": "Raydium's own platform config"
+    },
+    {
+      "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+      "role": "other",
+      "label": "Raydium CPMM (graduation target)",
+      "verified": true
+    }
+  ],
+  "launch": {
+    "kind": "instruction",
+    "name": "initialize",
+    "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8."
+  },
+  "token": {
+    "standard": "spl",
+    "metadata": "metaplex",
+    "decimals": 6
+  },
+  "graduation": {
+    "target": "raydium-cpmm",
+    "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+    "threshold": "fundraising target reached (default 85 SOL)"
+  },
+  "quotes": [
+    "SOL",
+    "USDC"
+  ],
+  "tags": [
+    "bonding-curve",
+    "multi-tenant"
+  ],
+  "sources": [
+    "https://docs.raydium.io/raydium/pool-creation/launchlab",
+    "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
+  ],
+  "updated": "2026-10-21"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "noxa", "name": "NOXA", "website": "https://noxa.io",
+  "chain": { "family": "evm", "id": 4663 }, "status": "unknown", "firstSeen": "2026-07-02", "model": "direct-pool",
+  "contracts": [{"address":"0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe","role":"factory","label":"LaunchFactory"}],
+  "launch": {"kind":"calldata","name":"launchToken","notes":"launchToken calldata carries socials (telegram, twitter, discord, website, farcaster) + logo. Pool on Uniswap V3. Frontend went dark for days in July 2026 and has been intermittent since."},
+  "token": {"standard":"erc20","metadata":"calldata","metadataApi":"https://indexer.noxa.io/tokens/{address}","decimals":18},
+  "graduation": {"target":"uniswap-v3"},
+  "quotes": ["ETH"], "tags": ["direct-pool"],
+  "sources": ["https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"], "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png", "updated": "2026-10-21"
+}

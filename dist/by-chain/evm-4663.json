@@ -1,0 +1,606 @@
+[
+  {
+    "id": "clanker-robinhood",
+    "name": "Clanker (Robinhood Chain)",
+    "website": "https://www.clanker.world",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-07-16",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
+        "role": "hook",
+        "label": "ClankerHookStaticFeeV2"
+      },
+      {
+        "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "role": "other",
+        "label": "Uniswap V4 PoolManager"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "Initialize",
+      "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+      "notes": "Uniswap V4: identify by hooks address in Initialize data."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "unknown",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v4"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "uniswap-v4",
+      "hook"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "doppler-robinhood",
+    "name": "Doppler (Robinhood Chain)",
+    "website": "https://doppler.lol",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-07-16",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
+        "role": "hook",
+        "label": "DopplerHookInitializer"
+      },
+      {
+        "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "role": "other",
+        "label": "Uniswap V4 PoolManager"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "Initialize",
+      "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+      "notes": "Uniswap V4: identify by hooks address in Initialize data."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "unknown",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v4"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "uniswap-v4",
+      "hook"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "hoodpump",
+    "name": "HoodPump",
+    "website": "https://hoodpump.fun",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "active",
+    "firstSeen": "2026-07-05",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b",
+        "role": "curve",
+        "label": "HoodPump bonding curve + factory"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "Created",
+      "signature": "Created(address indexed token,address indexed creator,string name,string symbol,address metaPtr,uint256 ts)",
+      "topic0": "0x3794109b2940f03560225200c3d62de2cb3933623779e29e612558c9876c68dc",
+      "tokenField": "topics[1]",
+      "creatorField": "topics[2]",
+      "notes": "No DEX pool at launch, so pool-based detectors miss it. Graduated(token,pool,...) and Trade(...) events follow."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "calldata",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3",
+      "event": "Graduated"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "bonding-curve"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "hudpad",
+    "name": "HudPad",
+    "website": "https://dexscreener.com/robinhood",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-07-16",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0x360bd5ab9a20fb9920be1caec2c8abaf097dc876",
+        "role": "launcher",
+        "label": "HudPadLauncher (cluster by tx.to)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "PoolCreated",
+      "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+      "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "unknown",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "direct-pool",
+      "needs-abi"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x360bd5ab9a20fb9920be1caec2c8abaf097dc876"
+    ],
+    "notes": "Website unknown; identified on-chain only.",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "launchhood",
+    "name": "LaunchHood",
+    "website": "https://dexscreener.com/robinhood",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-07-16",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0x62b33a039d289cbda50ebeb72fe4261449e61bcf",
+        "role": "launcher",
+        "label": "LaunchHoodV3Factory (cluster by tx.to)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "PoolCreated",
+      "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+      "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "unknown",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "direct-pool",
+      "needs-abi"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
+    ],
+    "notes": "Website unknown; identified on-chain only.",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "launchproof",
+    "name": "launchproof.fun",
+    "website": "https://launchproof.fun",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-08-04",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0x000000e200088d55c39a11f609e5f667729ad49b",
+        "role": "launcher",
+        "label": "entrypoint seen 2026-08-04 (rotates)"
+      }
+    ],
+    "launch": {
+      "kind": "mint-only",
+      "notes": "Rotates its tx.to entrypoint, which defeats tx.to-based identity: watch the DEX factory events (PoolCreated/Initialize) and the deployer instead."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "unknown",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "rotating-entrypoint"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x000000e200088d55c39a11f609e5f667729ad49b"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "noxa",
+    "name": "NOXA",
+    "website": "https://noxa.io",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-07-02",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe",
+        "role": "factory",
+        "label": "LaunchFactory"
+      }
+    ],
+    "launch": {
+      "kind": "calldata",
+      "name": "launchToken",
+      "notes": "launchToken calldata carries socials (telegram, twitter, discord, website, farcaster) + logo. Pool on Uniswap V3. Frontend went dark for days in July 2026 and has been intermittent since."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "calldata",
+      "metadataApi": "https://indexer.noxa.io/tokens/{address}",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "direct-pool"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
+    ],
+    "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "pmav",
+    "name": "pmav.fun",
+    "website": "https://pmav.fun",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "active",
+    "firstSeen": "2026-07-10",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
+        "role": "hook",
+        "label": "PmavHook"
+      },
+      {
+        "address": "0x54198ff2fce9b0df255051d49748fe53a8e428cc",
+        "role": "hook",
+        "label": "PmavHook (rotated)"
+      },
+      {
+        "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "role": "other",
+        "label": "Uniswap V4 PoolManager (singleton)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "Initialize",
+      "signature": "Initialize(bytes32 indexed id,address indexed currency0,address indexed currency1,uint24 fee,int24 tickSpacing,address hooks,uint160 sqrtPriceX96,int24 tick)",
+      "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+      "tokenField": "non-WETH currency among topics[2..3]",
+      "notes": "Uniswap V4 pad: identify by hooks == one of the PmavHook addresses (data word 2). Hooks rotate; new ones have a contract name containing pmav. tx.to is the shared PositionManager, so never key on tx.to."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "api",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v4",
+      "notes": "liquid from launch"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "direct-pool",
+      "uniswap-v4",
+      "hook"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "pons",
+    "name": "Pons",
+    "website": "https://pons.fun",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "active",
+    "firstSeen": "2026-07-10",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
+        "role": "factory",
+        "label": "PonsLaunchFactory",
+        "verified": true
+      },
+      {
+        "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "role": "other",
+        "label": "UniswapV3Factory (pool created at launch)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "TokenLaunched",
+      "signature": "TokenLaunched(address indexed token,address indexed deployer,address indexed dexFactory,address pairToken,address pool,uint256 dexId,uint256 launchConfigId,uint256 positionId,uint256 restrictionsEndBlock,uint256 initialBuyAmount)",
+      "topic0": "0xdb51ea9ad51ab453a65a4cb7e60c3cb378c9501bb002609f8f97778fb6c4235a",
+      "tokenField": "topics[1]",
+      "creatorField": "topics[2]",
+      "notes": "Also emits TokenDeployed 0x1461370115e1c2be79cb529f8cfcbd11316e789d9c6099fc83417b0b4c48c62a. Multi-tenant: several frontends route through whitelistedLaunchers. Deploys straight to a Uniswap V3 1% pool, instantly tradeable; initialBuyAmount (ETH) is the dev buy."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "api",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3",
+      "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+      "notes": "no curve; pool exists from launch"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "direct-pool",
+      "multi-tenant",
+      "dominant"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
+    ],
+    "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "robinfun",
+    "name": "RobinFun",
+    "website": "https://robin.fun",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "active",
+    "firstSeen": "2026-07-01",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d",
+        "role": "factory",
+        "label": "Factory V5 (current)"
+      },
+      {
+        "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+        "role": "other",
+        "label": "UniswapV2Factory (graduation target)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "TokenCreated",
+      "signature": "TokenCreated(address indexed token,address indexed creator,string name,string symbol,uint256 supply,uint256,uint256,uint256)",
+      "topic0": "0x545e893dd3da1d713637212939d8e88d928bf255857b067b97f5aaf4f3b31abe",
+      "tokenField": "topics[1]",
+      "creatorField": "topics[2]",
+      "notes": "Buy topic0 0x75a85e7be0265abefef113ee168a0d751385a985c3a37920ae97ae192d2eadb4."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "calldata",
+      "decimals": 18,
+      "addressPattern": "4663$"
+    },
+    "graduation": {
+      "target": "uniswap-v2",
+      "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+      "threshold": "~$44k mcap",
+      "notes": "LP burned on graduation"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "bonding-curve",
+      "vanity-address"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "trencher",
+    "name": "Trencher",
+    "website": "https://dexscreener.com/robinhood",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "unknown",
+    "firstSeen": "2026-07-16",
+    "model": "direct-pool",
+    "contracts": [
+      {
+        "address": "0xe769d832934f0a196a25e5c7b69cdf1920bc7734",
+        "role": "launcher",
+        "label": "Trencher launcher (cluster by tx.to)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "PoolCreated",
+      "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+      "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "unknown",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v3"
+    },
+    "quotes": [
+      "ETH"
+    ],
+    "tags": [
+      "direct-pool",
+      "needs-abi"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
+    ],
+    "notes": "Website unknown; identified on-chain only.",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "virtuals-robinhood",
+    "name": "Virtuals Protocol (Robinhood Chain)",
+    "website": "https://app.virtuals.io",
+    "chain": {
+      "family": "evm",
+      "id": 4663
+    },
+    "status": "active",
+    "firstSeen": "2026-07-01",
+    "model": "bonding-curve",
+    "contracts": [
+      {
+        "address": "0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007",
+        "role": "router",
+        "label": "launch router (emits PreLaunched)"
+      },
+      {
+        "address": "0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4",
+        "role": "factory",
+        "label": "factory/registry (NewApplication, deploys tokens)"
+      },
+      {
+        "address": "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31",
+        "role": "token",
+        "label": "VIRTUAL (quote asset)"
+      },
+      {
+        "address": "0xfc2e4da3edb2e18100473339c763705d263d20a9",
+        "role": "other",
+        "label": "Virtuals-side pair factory (proxy)"
+      }
+    ],
+    "launch": {
+      "kind": "event",
+      "name": "PreLaunched",
+      "topic0": "0xb9ee8aa6d909a3efd0bf1b0bc2bde7f998f7ad30178b0d45f9227f5382cebc8f",
+      "tokenField": "topics[1]",
+      "notes": "pool = topics[2]. Bonds against $VIRTUAL, not ETH."
+    },
+    "token": {
+      "standard": "erc20",
+      "metadata": "api",
+      "decimals": 18
+    },
+    "graduation": {
+      "target": "uniswap-v2",
+      "notes": "Virtuals-style graduation to its own pair factory"
+    },
+    "quotes": [
+      "VIRTUAL"
+    ],
+    "tags": [
+      "bonding-curve",
+      "ai-agents"
+    ],
+    "sources": [
+      "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
+    ],
+    "notes": "",
+    "updated": "2026-10-21"
+  }
+]

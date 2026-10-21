@@ -1,0 +1,52 @@
+[
+  {
+    "family": "solana",
+    "id": "mainnet-beta",
+    "name": "Solana",
+    "dir": "solana",
+    "nativeSymbol": "SOL",
+    "rpc": [
+      "https://api.mainnet-beta.solana.com"
+    ],
+    "explorer": "https://solscan.io",
+    "dexscreenerId": "solana"
+  },
+  {
+    "family": "evm",
+    "id": 4663,
+    "name": "Robinhood Chain",
+    "dir": "evm-4663",
+    "nativeSymbol": "ETH",
+    "rpc": [
+      "https://rpc.mainnet.chain.robinhood.com"
+    ],
+    "explorer": "https://robinhoodchain.blockscout.com",
+    "dexscreenerId": "robinhood",
+    "notes": "Arbitrum Orbit L2, ~100 ms blocks, mainnet 2026-07-01. Launchpad identity on Uniswap V4 is the hook address, not tx.to."
+  },
+  {
+    "family": "evm",
+    "id": 1776,
+    "name": "Injective EVM",
+    "dir": "evm-1776",
+    "nativeSymbol": "INJ",
+    "rpc": [
+      "https://sentry.evm-rpc.injective.network"
+    ],
+    "explorer": "https://blockscout.injective.network",
+    "dexscreenerId": "injective"
+  },
+  {
+    "family": "evm",
+    "id": 5042,
+    "name": "Arc",
+    "dir": "evm-5042",
+    "nativeSymbol": "USDC",
+    "rpc": [
+      "https://rpc.mainnet.arc.io"
+    ],
+    "explorer": "https://arcexplorer.org",
+    "dexscreenerId": "arc",
+    "notes": "Circle Arc L1, mainnet 2026-09-16. USDC is gas and also ERC-20 at 0x3600000000000000000000000000000000000000. Launchpads seen on DexScreener (o1-launchpad, aka.fun) are not registered yet: PRs welcome."
+  }
+]

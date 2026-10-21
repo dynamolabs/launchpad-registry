@@ -1,0 +1,366 @@
+{
+  "generated": "2026-10-21",
+  "addresses": {
+    "solana:BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V": [
+      {
+        "id": "blocks-fund",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "solana:8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS": [
+      {
+        "id": "bots-family",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "solana:FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau": [
+      {
+        "id": "farmfun",
+        "role": "partner-config",
+        "label": "DBC PartnerMetadata account"
+      }
+    ],
+    "solana:JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC": [
+      {
+        "id": "kids-fun",
+        "role": "program",
+        "label": "KIDS launchpad program (deployed 2026-10-19)"
+      }
+    ],
+    "solana:EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y": [
+      {
+        "id": "kids-fun",
+        "role": "authority",
+        "label": "upgrade authority (shared with fee collector)"
+      }
+    ],
+    "solana:BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN": [
+      {
+        "id": "kids-fun",
+        "role": "fee-collector"
+      }
+    ],
+    "solana:FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1": [
+      {
+        "id": "letsbonk",
+        "role": "platform-config",
+        "label": "letsbonk platform config (primary)"
+      }
+    ],
+    "solana:BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4": [
+      {
+        "id": "letsbonk",
+        "role": "platform-config",
+        "label": "letsbonk platform config (secondary)"
+      }
+    ],
+    "solana:dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN": [
+      {
+        "id": "meteora-dbc",
+        "role": "program",
+        "label": "Dynamic Bonding Curve"
+      }
+    ],
+    "solana:cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG": [
+      {
+        "id": "meteora-dbc",
+        "role": "other",
+        "label": "DAMM v2 (default graduation target)"
+      },
+      {
+        "id": "pangea",
+        "role": "other",
+        "label": "Meteora DAMM v2 (pool created in the same tx)"
+      }
+    ],
+    "solana:Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB": [
+      {
+        "id": "meteora-dbc",
+        "role": "other",
+        "label": "DAMM v1 (alternative graduation target)"
+      }
+    ],
+    "solana:Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej": [
+      {
+        "id": "pangea",
+        "role": "program",
+        "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)"
+      }
+    ],
+    "solana:SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf": [
+      {
+        "id": "pangea",
+        "role": "program",
+        "label": "LayerZero OFT program (token is omnichain)"
+      }
+    ],
+    "solana:848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL": [
+      {
+        "id": "pangea",
+        "role": "deployer",
+        "label": "platform relayer/payer that signs every Launch"
+      }
+    ],
+    "solana:6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P": [
+      {
+        "id": "pump-fun",
+        "role": "program",
+        "label": "pump.fun bonding curve"
+      }
+    ],
+    "solana:pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA": [
+      {
+        "id": "pump-fun",
+        "role": "other",
+        "label": "PumpSwap AMM (graduation target)"
+      }
+    ],
+    "solana:LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": [
+      {
+        "id": "raydium-launchlab",
+        "role": "program",
+        "label": "LaunchLab (launchpad program)"
+      }
+    ],
+    "solana:4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4": [
+      {
+        "id": "raydium-launchlab",
+        "role": "platform-config",
+        "label": "Raydium's own platform config"
+      }
+    ],
+    "solana:CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C": [
+      {
+        "id": "raydium-launchlab",
+        "role": "other",
+        "label": "Raydium CPMM (graduation target)"
+      }
+    ],
+    "solana:6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt": [
+      {
+        "id": "stonkfun",
+        "role": "platform-config"
+      }
+    ],
+    "solana:4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7": [
+      {
+        "id": "stonkfun",
+        "role": "platform-config"
+      }
+    ],
+    "solana:CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi": [
+      {
+        "id": "stonkfun",
+        "role": "platform-config"
+      }
+    ],
+    "evm-4663:0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc": [
+      {
+        "id": "clanker-robinhood",
+        "role": "hook",
+        "label": "ClankerHookStaticFeeV2"
+      }
+    ],
+    "evm-4663:0x8366a39cc670b4001a1121b8f6a443a643e40951": [
+      {
+        "id": "clanker-robinhood",
+        "role": "other",
+        "label": "Uniswap V4 PoolManager"
+      },
+      {
+        "id": "doppler-robinhood",
+        "role": "other",
+        "label": "Uniswap V4 PoolManager"
+      },
+      {
+        "id": "pmav",
+        "role": "other",
+        "label": "Uniswap V4 PoolManager (singleton)"
+      }
+    ],
+    "evm-4663:0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544": [
+      {
+        "id": "doppler-robinhood",
+        "role": "hook",
+        "label": "DopplerHookInitializer"
+      }
+    ],
+    "evm-4663:0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b": [
+      {
+        "id": "hoodpump",
+        "role": "curve",
+        "label": "HoodPump bonding curve + factory"
+      }
+    ],
+    "evm-4663:0x360bd5ab9a20fb9920be1caec2c8abaf097dc876": [
+      {
+        "id": "hudpad",
+        "role": "launcher",
+        "label": "HudPadLauncher (cluster by tx.to)"
+      }
+    ],
+    "evm-4663:0x62b33a039d289cbda50ebeb72fe4261449e61bcf": [
+      {
+        "id": "launchhood",
+        "role": "launcher",
+        "label": "LaunchHoodV3Factory (cluster by tx.to)"
+      }
+    ],
+    "evm-4663:0x000000e200088d55c39a11f609e5f667729ad49b": [
+      {
+        "id": "launchproof",
+        "role": "launcher",
+        "label": "entrypoint seen 2026-08-04 (rotates)"
+      }
+    ],
+    "evm-4663:0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe": [
+      {
+        "id": "noxa",
+        "role": "factory",
+        "label": "LaunchFactory"
+      }
+    ],
+    "evm-4663:0x97472ae141ff13a4d317328bc4f3f95172fba8cc": [
+      {
+        "id": "pmav",
+        "role": "hook",
+        "label": "PmavHook"
+      }
+    ],
+    "evm-4663:0x54198ff2fce9b0df255051d49748fe53a8e428cc": [
+      {
+        "id": "pmav",
+        "role": "hook",
+        "label": "PmavHook (rotated)"
+      }
+    ],
+    "evm-4663:0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb": [
+      {
+        "id": "pons",
+        "role": "factory",
+        "label": "PonsLaunchFactory"
+      }
+    ],
+    "evm-4663:0x1f7d7550b1b028f7571e69a784071f0205fd2efa": [
+      {
+        "id": "pons",
+        "role": "other",
+        "label": "UniswapV3Factory (pool created at launch)"
+      }
+    ],
+    "evm-4663:0xd861cb5dc71a0171e8f0f6586cadb069f3a35e4d": [
+      {
+        "id": "robinfun",
+        "role": "factory",
+        "label": "Factory V5 (current)"
+      }
+    ],
+    "evm-4663:0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f": [
+      {
+        "id": "robinfun",
+        "role": "other",
+        "label": "UniswapV2Factory (graduation target)"
+      }
+    ],
+    "evm-4663:0xe769d832934f0a196a25e5c7b69cdf1920bc7734": [
+      {
+        "id": "trencher",
+        "role": "launcher",
+        "label": "Trencher launcher (cluster by tx.to)"
+      }
+    ],
+    "evm-4663:0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007": [
+      {
+        "id": "virtuals-robinhood",
+        "role": "router",
+        "label": "launch router (emits PreLaunched)"
+      }
+    ],
+    "evm-4663:0x43e4c17b15365596caae8e7d00e42bc8e988c2d4": [
+      {
+        "id": "virtuals-robinhood",
+        "role": "factory",
+        "label": "factory/registry (NewApplication, deploys tokens)"
+      }
+    ],
+    "evm-4663:0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31": [
+      {
+        "id": "virtuals-robinhood",
+        "role": "token",
+        "label": "VIRTUAL (quote asset)"
+      }
+    ],
+    "evm-4663:0xfc2e4da3edb2e18100473339c763705d263d20a9": [
+      {
+        "id": "virtuals-robinhood",
+        "role": "other",
+        "label": "Virtuals-side pair factory (proxy)"
+      }
+    ],
+    "evm-1776:0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae": [
+      {
+        "id": "imortal",
+        "role": "factory",
+        "label": "IMORTAL factory"
+      }
+    ],
+    "evm-1776:0xef1a648373dc19072d692429b704bb63cf597950": [
+      {
+        "id": "runup",
+        "role": "factory",
+        "label": "sale factory (seen deploying sale contracts)"
+      }
+    ],
+    "evm-1776:0x8284476327db79dd37d682a64968c8155a4c770e": [
+      {
+        "id": "runup",
+        "role": "factory",
+        "label": "sale factory (second)"
+      }
+    ],
+    "evm-1776:0xc4dc11d586608e29bf73f26288d590321a2e0496": [
+      {
+        "id": "runup",
+        "role": "curve",
+        "label": "$RUNNER sale/curve (example, EIP-1967 proxy)"
+      }
+    ],
+    "evm-1776:0xa00c59ff5a080d2b954d0c75e46e22a0c371235a": [
+      {
+        "id": "runup",
+        "role": "token",
+        "label": "USDC quote (6 decimals)"
+      }
+    ],
+    "evm-1776:0x1333692eb905823df110762525c26f7489bb9300": [
+      {
+        "id": "sprout",
+        "role": "program",
+        "label": "launchpadCore (current)"
+      }
+    ],
+    "evm-1776:0xd948740da926e8908a08414879490d0d8f96d463": [
+      {
+        "id": "sprout",
+        "role": "program",
+        "label": "launchpadCore (older)"
+      }
+    ],
+    "evm-1776:0xebf62508f322137ee0986935ee3b4a60a3f0d227": [
+      {
+        "id": "sprout",
+        "role": "program",
+        "label": "launchpadCore (legacy)"
+      }
+    ],
+    "evm-1776:0x615edd898be2f44d18ce875bbc75a1065e8d9ba2": [
+      {
+        "id": "sprout",
+        "role": "factory",
+        "label": "launchTokenFactory"
+      }
+    ]
+  }
+}

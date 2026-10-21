@@ -1,0 +1,1348 @@
+{
+  "generated": "2026-10-21",
+  "count": 25,
+  "chains": [
+    {
+      "family": "solana",
+      "id": "mainnet-beta",
+      "dir": "solana",
+      "name": "Solana",
+      "count": 10
+    },
+    {
+      "family": "evm",
+      "id": 4663,
+      "dir": "evm-4663",
+      "name": "Robinhood Chain",
+      "count": 12
+    },
+    {
+      "family": "evm",
+      "id": 1776,
+      "dir": "evm-1776",
+      "name": "Injective EVM",
+      "count": 3
+    },
+    {
+      "family": "evm",
+      "id": 5042,
+      "dir": "evm-5042",
+      "name": "Arc",
+      "count": 0
+    }
+  ],
+  "launchpads": [
+    {
+      "id": "blocks-fund",
+      "name": "Blocks",
+      "website": "https://blocks.fund",
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "model": "bonding-curve",
+      "builtOn": "meteora-dbc",
+      "contracts": [
+        {
+          "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
+          "role": "partner-config",
+          "label": "DBC PartnerMetadata account"
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize_virtual_pool_with_spl_token",
+        "notes": "Filter DBC launches whose config belongs to this partner."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex"
+      },
+      "graduation": {
+        "target": "meteora-damm-v2"
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "frontend"
+      ],
+      "sources": [
+        "https://blocks.fund",
+        "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "bots-family",
+      "name": "Bots Family",
+      "website": "https://bots.family",
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "model": "bonding-curve",
+      "builtOn": "meteora-dbc",
+      "contracts": [
+        {
+          "address": "8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS",
+          "role": "partner-config",
+          "label": "DBC PartnerMetadata account"
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize_virtual_pool_with_spl_token",
+        "notes": "Filter DBC launches whose config belongs to this partner."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex"
+      },
+      "graduation": {
+        "target": "meteora-damm-v2"
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "frontend"
+      ],
+      "sources": [
+        "https://bots.family",
+        "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "farmfun",
+      "name": "FarmFun",
+      "website": "https://farmfun.farm",
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "model": "bonding-curve",
+      "builtOn": "meteora-dbc",
+      "contracts": [
+        {
+          "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau",
+          "role": "partner-config",
+          "label": "DBC PartnerMetadata account"
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize_virtual_pool_with_spl_token",
+        "notes": "Filter DBC launches whose config belongs to this partner."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex"
+      },
+      "graduation": {
+        "target": "meteora-damm-v2"
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "frontend"
+      ],
+      "sources": [
+        "https://farmfun.farm",
+        "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "kids-fun",
+      "name": "kids.fun",
+      "website": "https://kids.fun",
+      "socials": {
+        "x": "YokaiCapital"
+      },
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2026-10-19",
+      "model": "funding-round",
+      "contracts": [
+        {
+          "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
+          "role": "program",
+          "label": "KIDS launchpad program (deployed 2026-10-19)"
+        },
+        {
+          "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
+          "role": "authority",
+          "label": "upgrade authority (shared with fee collector)"
+        },
+        {
+          "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
+          "role": "fee-collector"
+        }
+      ],
+      "launch": {
+        "kind": "mint-only",
+        "notes": "Token is minted by the dev wallet as a plain SPL + Metaplex mint BEFORE the program is involved; the program then runs a ~1 h funding round and creates a locked Raydium CPMM pool. Detect via the program's round-open instruction or the public API."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex",
+        "metadataApi": "https://kids.fun/api/account/{address}/state",
+        "addressPattern": "kids$"
+      },
+      "graduation": {
+        "target": "raydium-cpmm",
+        "threshold": "funding round closes (~1 h)",
+        "notes": "LP locked; dev allocation 75% vesting."
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "funding-round",
+        "vesting"
+      ],
+      "sources": [
+        "https://kids.fun",
+        "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "letsbonk",
+      "name": "letsbonk.fun",
+      "website": "https://letsbonk.fun",
+      "socials": {
+        "x": "bonk_fun"
+      },
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2025-04-28",
+      "model": "bonding-curve",
+      "builtOn": "raydium-launchlab",
+      "contracts": [
+        {
+          "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1",
+          "role": "platform-config",
+          "label": "letsbonk platform config (primary)"
+        },
+        {
+          "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4",
+          "role": "platform-config",
+          "label": "letsbonk platform config (secondary)"
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize",
+        "notes": "Filter LaunchLab initialize by platform_config == one of the addresses above."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex",
+        "decimals": 6,
+        "addressPattern": "bonk$"
+      },
+      "graduation": {
+        "target": "raydium-cpmm"
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "memecoin",
+        "frontend"
+      ],
+      "sources": [
+        "https://letsbonk.fun",
+        "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "meteora-dbc",
+      "name": "Meteora Dynamic Bonding Curve",
+      "website": "https://launch.meteora.ag",
+      "socials": {
+        "x": "MeteoraAG",
+        "github": "https://github.com/MeteoraAg/dynamic-bonding-curve"
+      },
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2025-04-01",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
+          "role": "program",
+          "label": "Dynamic Bonding Curve",
+          "verified": true
+        },
+        {
+          "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+          "role": "other",
+          "label": "DAMM v2 (default graduation target)",
+          "verified": true
+        },
+        {
+          "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
+          "role": "other",
+          "label": "DAMM v1 (alternative graduation target)",
+          "verified": true
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize_virtual_pool_with_spl_token | initialize_virtual_pool_with_token2022",
+        "notes": "Multi-tenant: every frontend (partner) creates a Config account (fee claimer, curve, migration target) and optionally a PartnerMetadata account (name, website, logo). Launches reference the config, so the config address identifies the frontend. Configs without PartnerMetadata are common; infer the brand from the token metadata URI host."
+      },
+      "token": {
+        "standard": "mixed",
+        "metadata": "metaplex"
+      },
+      "graduation": {
+        "target": "meteora-damm-v2",
+        "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+        "threshold": "per-config migration quote threshold",
+        "notes": "Migration is a separate tx (migrate_meteora_damm / migration_damm_v2) that creates the DAMM pool and locks LP per config."
+      },
+      "quotes": [
+        "SOL",
+        "USDC",
+        "custom"
+      ],
+      "tags": [
+        "bonding-curve",
+        "multi-tenant",
+        "sdk"
+      ],
+      "sources": [
+        "https://docs.meteora.ag/developer-guide/guides/dbc",
+        "https://github.com/MeteoraAg/dynamic-bonding-curve",
+        "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "pangea",
+      "name": "Pangea",
+      "website": "https://pangea.trade",
+      "socials": {
+        "x": "LaunchOnPangea"
+      },
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2026-10-18",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
+          "role": "program",
+          "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)"
+        },
+        {
+          "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
+          "role": "program",
+          "label": "LayerZero OFT program (token is omnichain)"
+        },
+        {
+          "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
+          "role": "deployer",
+          "label": "platform relayer/payer that signs every Launch"
+        },
+        {
+          "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+          "role": "other",
+          "label": "Meteora DAMM v2 (pool created in the same tx)"
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "Launch",
+        "notes": "Single tx: Token-2022 mint (PDA, not a signer) + LayerZero OFT init + DAMM v2 InitializeCustomizablePool + PermanentLockPosition. Tx carries a jitodontfront…Pangea account. Multi-chain: the EVM leg uses a Uniswap v4 hook (addresses not yet registered)."
+      },
+      "token": {
+        "standard": "token-2022",
+        "metadata": "token-2022-extension"
+      },
+      "graduation": {
+        "target": "meteora-damm-v2",
+        "notes": "No curve: liquid from block one, LP permanently locked."
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "direct-pool",
+        "omnichain",
+        "layerzero"
+      ],
+      "sources": [
+        "https://pangea.trade",
+        "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "pump-fun",
+      "name": "pump.fun",
+      "website": "https://pump.fun",
+      "socials": {
+        "x": "pumpdotfun"
+      },
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2024-01-19",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
+          "role": "program",
+          "label": "pump.fun bonding curve",
+          "verified": true
+        },
+        {
+          "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+          "role": "other",
+          "label": "PumpSwap AMM (graduation target)",
+          "verified": true
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "create",
+        "tokenField": "accounts[0] (mint, signer)",
+        "creatorField": "accounts[7] (user)",
+        "notes": "Mint + bonding curve created in one instruction; dev buy usually follows in the same tx."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex",
+        "decimals": 6,
+        "addressPattern": "pump$"
+      },
+      "graduation": {
+        "target": "pumpswap",
+        "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+        "threshold": "~85 SOL in curve",
+        "notes": "Migrated to Raydium AMM v4 before PumpSwap launched (2025-03)."
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "memecoin",
+        "bonding-curve"
+      ],
+      "sources": [
+        "https://pump.fun",
+        "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "raydium-launchlab",
+      "name": "Raydium LaunchLab",
+      "website": "https://raydium.io/launchpad/",
+      "socials": {
+        "x": "RaydiumProtocol"
+      },
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2025-04-16",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+          "role": "program",
+          "label": "LaunchLab (launchpad program)",
+          "verified": true
+        },
+        {
+          "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
+          "role": "platform-config",
+          "label": "Raydium's own platform config"
+        },
+        {
+          "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+          "role": "other",
+          "label": "Raydium CPMM (graduation target)",
+          "verified": true
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize",
+        "notes": "One tx creates mint + pool state; the platform_config account identifies the frontend (letsbonk, stonkfun...). Each frontend registers a PlatformConfig account whose data holds name (0..64) and web (64..320) as UTF-8."
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex",
+        "decimals": 6
+      },
+      "graduation": {
+        "target": "raydium-cpmm",
+        "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+        "threshold": "fundraising target reached (default 85 SOL)"
+      },
+      "quotes": [
+        "SOL",
+        "USDC"
+      ],
+      "tags": [
+        "bonding-curve",
+        "multi-tenant"
+      ],
+      "sources": [
+        "https://docs.raydium.io/raydium/pool-creation/launchlab",
+        "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "stonkfun",
+      "name": "StonkFun",
+      "website": "https://www.stonkfun.xyz",
+      "chain": {
+        "family": "solana",
+        "id": "mainnet-beta"
+      },
+      "status": "active",
+      "firstSeen": "2025-09-01",
+      "model": "bonding-curve",
+      "builtOn": "raydium-launchlab",
+      "contracts": [
+        {
+          "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
+          "role": "platform-config"
+        },
+        {
+          "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
+          "role": "platform-config"
+        },
+        {
+          "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
+          "role": "platform-config"
+        }
+      ],
+      "launch": {
+        "kind": "instruction",
+        "name": "initialize"
+      },
+      "token": {
+        "standard": "spl",
+        "metadata": "metaplex",
+        "decimals": 6
+      },
+      "graduation": {
+        "target": "raydium-cpmm"
+      },
+      "quotes": [
+        "SOL"
+      ],
+      "tags": [
+        "stocks-theme",
+        "frontend"
+      ],
+      "sources": [
+        "https://www.stonkfun.xyz",
+        "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "clanker-robinhood",
+      "name": "Clanker (Robinhood Chain)",
+      "website": "https://www.clanker.world",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-07-16",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
+          "role": "hook",
+          "label": "ClankerHookStaticFeeV2"
+        },
+        {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "role": "other",
+          "label": "Uniswap V4 PoolManager"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "Initialize",
+        "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+        "notes": "Uniswap V4: identify by hooks address in Initialize data."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v4"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "uniswap-v4",
+        "hook"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "doppler-robinhood",
+      "name": "Doppler (Robinhood Chain)",
+      "website": "https://doppler.lol",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-07-16",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
+          "role": "hook",
+          "label": "DopplerHookInitializer"
+        },
+        {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "role": "other",
+          "label": "Uniswap V4 PoolManager"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "Initialize",
+        "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+        "notes": "Uniswap V4: identify by hooks address in Initialize data."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v4"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "uniswap-v4",
+        "hook"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "hoodpump",
+      "name": "HoodPump",
+      "website": "https://hoodpump.fun",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "active",
+      "firstSeen": "2026-07-05",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b",
+          "role": "curve",
+          "label": "HoodPump bonding curve + factory"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "Created",
+        "signature": "Created(address indexed token,address indexed creator,string name,string symbol,address metaPtr,uint256 ts)",
+        "topic0": "0x3794109b2940f03560225200c3d62de2cb3933623779e29e612558c9876c68dc",
+        "tokenField": "topics[1]",
+        "creatorField": "topics[2]",
+        "notes": "No DEX pool at launch, so pool-based detectors miss it. Graduated(token,pool,...) and Trade(...) events follow."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "calldata",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3",
+        "event": "Graduated"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "bonding-curve"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "hudpad",
+      "name": "HudPad",
+      "website": "https://dexscreener.com/robinhood",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-07-16",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0x360bd5ab9a20fb9920be1caec2c8abaf097dc876",
+          "role": "launcher",
+          "label": "HudPadLauncher (cluster by tx.to)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "PoolCreated",
+        "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+        "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "direct-pool",
+        "needs-abi"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x360bd5ab9a20fb9920be1caec2c8abaf097dc876"
+      ],
+      "notes": "Website unknown; identified on-chain only.",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "launchhood",
+      "name": "LaunchHood",
+      "website": "https://dexscreener.com/robinhood",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-07-16",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0x62b33a039d289cbda50ebeb72fe4261449e61bcf",
+          "role": "launcher",
+          "label": "LaunchHoodV3Factory (cluster by tx.to)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "PoolCreated",
+        "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+        "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "direct-pool",
+        "needs-abi"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
+      ],
+      "notes": "Website unknown; identified on-chain only.",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "launchproof",
+      "name": "launchproof.fun",
+      "website": "https://launchproof.fun",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-08-04",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0x000000e200088d55c39a11f609e5f667729ad49b",
+          "role": "launcher",
+          "label": "entrypoint seen 2026-08-04 (rotates)"
+        }
+      ],
+      "launch": {
+        "kind": "mint-only",
+        "notes": "Rotates its tx.to entrypoint, which defeats tx.to-based identity: watch the DEX factory events (PoolCreated/Initialize) and the deployer instead."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "rotating-entrypoint"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x000000e200088d55c39a11f609e5f667729ad49b"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "noxa",
+      "name": "NOXA",
+      "website": "https://noxa.io",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-07-02",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe",
+          "role": "factory",
+          "label": "LaunchFactory"
+        }
+      ],
+      "launch": {
+        "kind": "calldata",
+        "name": "launchToken",
+        "notes": "launchToken calldata carries socials (telegram, twitter, discord, website, farcaster) + logo. Pool on Uniswap V3. Frontend went dark for days in July 2026 and has been intermittent since."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "calldata",
+        "metadataApi": "https://indexer.noxa.io/tokens/{address}",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "direct-pool"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
+      ],
+      "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "pmav",
+      "name": "pmav.fun",
+      "website": "https://pmav.fun",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "active",
+      "firstSeen": "2026-07-10",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
+          "role": "hook",
+          "label": "PmavHook"
+        },
+        {
+          "address": "0x54198ff2fce9b0df255051d49748fe53a8e428cc",
+          "role": "hook",
+          "label": "PmavHook (rotated)"
+        },
+        {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "role": "other",
+          "label": "Uniswap V4 PoolManager (singleton)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "Initialize",
+        "signature": "Initialize(bytes32 indexed id,address indexed currency0,address indexed currency1,uint24 fee,int24 tickSpacing,address hooks,uint160 sqrtPriceX96,int24 tick)",
+        "topic0": "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+        "tokenField": "non-WETH currency among topics[2..3]",
+        "notes": "Uniswap V4 pad: identify by hooks == one of the PmavHook addresses (data word 2). Hooks rotate; new ones have a contract name containing pmav. tx.to is the shared PositionManager, so never key on tx.to."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "api",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v4",
+        "notes": "liquid from launch"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "direct-pool",
+        "uniswap-v4",
+        "hook"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "pons",
+      "name": "Pons",
+      "website": "https://pons.fun",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "active",
+      "firstSeen": "2026-07-10",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
+          "role": "factory",
+          "label": "PonsLaunchFactory",
+          "verified": true
+        },
+        {
+          "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+          "role": "other",
+          "label": "UniswapV3Factory (pool created at launch)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "TokenLaunched",
+        "signature": "TokenLaunched(address indexed token,address indexed deployer,address indexed dexFactory,address pairToken,address pool,uint256 dexId,uint256 launchConfigId,uint256 positionId,uint256 restrictionsEndBlock,uint256 initialBuyAmount)",
+        "topic0": "0xdb51ea9ad51ab453a65a4cb7e60c3cb378c9501bb002609f8f97778fb6c4235a",
+        "tokenField": "topics[1]",
+        "creatorField": "topics[2]",
+        "notes": "Also emits TokenDeployed 0x1461370115e1c2be79cb529f8cfcbd11316e789d9c6099fc83417b0b4c48c62a. Multi-tenant: several frontends route through whitelistedLaunchers. Deploys straight to a Uniswap V3 1% pool, instantly tradeable; initialBuyAmount (ETH) is the dev buy."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "api",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3",
+        "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "notes": "no curve; pool exists from launch"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "direct-pool",
+        "multi-tenant",
+        "dominant"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
+      ],
+      "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "robinfun",
+      "name": "RobinFun",
+      "website": "https://robin.fun",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "active",
+      "firstSeen": "2026-07-01",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d",
+          "role": "factory",
+          "label": "Factory V5 (current)"
+        },
+        {
+          "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+          "role": "other",
+          "label": "UniswapV2Factory (graduation target)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "TokenCreated",
+        "signature": "TokenCreated(address indexed token,address indexed creator,string name,string symbol,uint256 supply,uint256,uint256,uint256)",
+        "topic0": "0x545e893dd3da1d713637212939d8e88d928bf255857b067b97f5aaf4f3b31abe",
+        "tokenField": "topics[1]",
+        "creatorField": "topics[2]",
+        "notes": "Buy topic0 0x75a85e7be0265abefef113ee168a0d751385a985c3a37920ae97ae192d2eadb4."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "calldata",
+        "decimals": 18,
+        "addressPattern": "4663$"
+      },
+      "graduation": {
+        "target": "uniswap-v2",
+        "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+        "threshold": "~$44k mcap",
+        "notes": "LP burned on graduation"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "bonding-curve",
+        "vanity-address"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "trencher",
+      "name": "Trencher",
+      "website": "https://dexscreener.com/robinhood",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "unknown",
+      "firstSeen": "2026-07-16",
+      "model": "direct-pool",
+      "contracts": [
+        {
+          "address": "0xe769d832934f0a196a25e5c7b69cdf1920bc7734",
+          "role": "launcher",
+          "label": "Trencher launcher (cluster by tx.to)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "PoolCreated",
+        "topic0": "0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4e6b7118",
+        "notes": "Uniswap V3 launcher: new token + pool in one tx from this entrypoint. Launch ABI not decoded yet: PRs welcome."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v3"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "direct-pool",
+        "needs-abi"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
+      ],
+      "notes": "Website unknown; identified on-chain only.",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "virtuals-robinhood",
+      "name": "Virtuals Protocol (Robinhood Chain)",
+      "website": "https://app.virtuals.io",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "active",
+      "firstSeen": "2026-07-01",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007",
+          "role": "router",
+          "label": "launch router (emits PreLaunched)"
+        },
+        {
+          "address": "0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4",
+          "role": "factory",
+          "label": "factory/registry (NewApplication, deploys tokens)"
+        },
+        {
+          "address": "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31",
+          "role": "token",
+          "label": "VIRTUAL (quote asset)"
+        },
+        {
+          "address": "0xfc2e4da3edb2e18100473339c763705d263d20a9",
+          "role": "other",
+          "label": "Virtuals-side pair factory (proxy)"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "PreLaunched",
+        "topic0": "0xb9ee8aa6d909a3efd0bf1b0bc2bde7f998f7ad30178b0d45f9227f5382cebc8f",
+        "tokenField": "topics[1]",
+        "notes": "pool = topics[2]. Bonds against $VIRTUAL, not ETH."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "api",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v2",
+        "notes": "Virtuals-style graduation to its own pair factory"
+      },
+      "quotes": [
+        "VIRTUAL"
+      ],
+      "tags": [
+        "bonding-curve",
+        "ai-agents"
+      ],
+      "sources": [
+        "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
+      ],
+      "notes": "",
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "imortal",
+      "name": "IMORTAL",
+      "website": "https://imortal.buzz",
+      "chain": {
+        "family": "evm",
+        "id": 1776
+      },
+      "status": "active",
+      "firstSeen": "2026-10-03",
+      "model": "meta-launchpad",
+      "contracts": [
+        {
+          "address": "0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae",
+          "role": "factory",
+          "label": "IMORTAL factory"
+        }
+      ],
+      "launch": {
+        "kind": "calldata",
+        "name": "create",
+        "selector": "0xbc12a244",
+        "notes": "\"Deploy your own launchpad\" meta-launchpad originating from the Robinhood Chain ecosystem, expanded to Injective EVM. Metadata hosted on imortal.buzz."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "api",
+        "decimals": 18
+      },
+      "quotes": [
+        "INJ"
+      ],
+      "tags": [
+        "meta-launchpad"
+      ],
+      "sources": [
+        "https://imortal.buzz",
+        "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "runup",
+      "name": "runup.fun",
+      "website": "https://runup.fun",
+      "socials": {
+        "x": "runupfun"
+      },
+      "chain": {
+        "family": "evm",
+        "id": 1776
+      },
+      "status": "active",
+      "firstSeen": "2026-10-01",
+      "model": "funding-round",
+      "contracts": [
+        {
+          "address": "0xef1a648373dc19072d692429b704bb63cf597950",
+          "role": "factory",
+          "label": "sale factory (seen deploying sale contracts)"
+        },
+        {
+          "address": "0x8284476327db79dd37d682a64968c8155a4c770e",
+          "role": "factory",
+          "label": "sale factory (second)"
+        },
+        {
+          "address": "0xc4dC11d586608E29bf73F26288d590321a2E0496",
+          "role": "curve",
+          "label": "$RUNNER sale/curve (example, EIP-1967 proxy)"
+        },
+        {
+          "address": "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
+          "role": "token",
+          "label": "USDC quote (6 decimals)"
+        }
+      ],
+      "launch": {
+        "kind": "calldata",
+        "name": "sale deployment",
+        "selector": "0x8906b078",
+        "notes": "The address users share is the SALE contract, not the ERC-20: token() points to it. Phase 0 = founding tickets (subscribe()), then public curve buy(uint256,uint256,address,uint256,bool) selector 0x8906b078 opens at a scheduled time (advancePhase). quoteBuy(uint256) reverts until open."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "api",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "unknown"
+      },
+      "quotes": [
+        "USDC"
+      ],
+      "tags": [
+        "funding-round",
+        "scheduled-open",
+        "stocks-theme"
+      ],
+      "sources": [
+        "https://runup.fun",
+        "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"
+      ],
+      "updated": "2026-10-21"
+    },
+    {
+      "id": "sprout",
+      "name": "Sprout",
+      "website": "https://trysprout.fun",
+      "socials": {
+        "x": "trysproutfun"
+      },
+      "chain": {
+        "family": "evm",
+        "id": 1776
+      },
+      "status": "active",
+      "firstSeen": "2026-09-25",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0x1333692eB905823df110762525c26f7489BB9300",
+          "role": "program",
+          "label": "launchpadCore (current)"
+        },
+        {
+          "address": "0xd948740da926e8908a08414879490d0d8f96d463",
+          "role": "program",
+          "label": "launchpadCore (older)"
+        },
+        {
+          "address": "0xebf62508f322137ee0986935ee3b4a60a3f0d227",
+          "role": "program",
+          "label": "launchpadCore (legacy)"
+        },
+        {
+          "address": "0x615EDD898be2F44d18CE875Bbc75A1065E8D9BA2",
+          "role": "factory",
+          "label": "launchTokenFactory"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "launch created on launchpadCore",
+        "notes": "Each launch has an onchainId; buy with buyNative(onchainId, minOut, to, deadline) sending INJ. Public API lists launches and /health."
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "api",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "unknown"
+      },
+      "quotes": [
+        "INJ"
+      ],
+      "tags": [
+        "bonding-curve",
+        "native-quote"
+      ],
+      "sources": [
+        "https://trysprout.fun",
+        "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
+      ],
+      "updated": "2026-10-21"
+    }
+  ]
+}
