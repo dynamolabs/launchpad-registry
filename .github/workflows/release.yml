@@ -7,7 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
-        with: { node-version: 20, cache: npm, registry-url: 'https://registry.npmjs.org' }
+        with: { node-version: 22, cache: npm, registry-url: 'https://registry.npmjs.org' }
+      - run: npm i -g npm@latest # trusted publishing (OIDC) needs npm >= 11.5
       - run: npm ci && npm run validate && npm run build && npm test
       - name: version must match tag
         run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
@@ -15,7 +16,7 @@ jobs:
         run: |
           V=$(node -p "require('./package.json').version")
           if npm view "launchpad-registry@$V" version >/dev/null 2>&1; then echo "launchpad-registry@$V is already published, skipping"; else npm publish --provenance --access public; fi
-        env: { NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}' }
+        # no token: npm authenticates through GitHub OIDC (trusted publisher configured on npmjs.com for this workflow file)
       - uses: softprops/action-gh-release@v3
         with:
           files: |
