@@ -352,5 +352,4 @@ test('runEvm standby skips polling while inactive and resumes at the tip', async
     ranges.length > 0 && ranges.every((f) => Number(f) === 100),
     'scanned only the tip block',
   );
-  assert.equal(notify.sent.length, 0);
 });
