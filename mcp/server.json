@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
-  "name": "io.github.OWNER/launchpad-registry",
+  "name": "io.github.dynamolabs/launchpad-registry",
   "description": "Query the open registry of token launchpads (Solana + EVM): which program/factory/hook is which launchpad, launch events, status.",
   "repository": {
-    "url": "https://github.com/OWNER/launchpad-registry",
+    "url": "https://github.com/dynamolabs/launchpad-registry",
     "source": "github"
   },
   "version_detail": {

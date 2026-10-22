@@ -7,7 +7,7 @@ import { ROOT, isMain } from '../lib/files.mjs';
 export function renderSite(root = ROOT) {
   const data = JSON.parse(readFileSync(join(root, 'dist/launchpads.json'), 'utf8'));
   const chains = JSON.parse(readFileSync(join(root, 'dist/chains.json'), 'utf8'));
-  const repo = process.env.REPO_URL || 'https://github.com/OWNER/launchpad-registry';
+  const repo = process.env.REPO_URL || 'https://github.com/dynamolabs/launchpad-registry';
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Launchpad Registry</title>

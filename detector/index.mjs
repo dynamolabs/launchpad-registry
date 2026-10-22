@@ -48,7 +48,7 @@ export function buildConfig(args, chain, env = process.env) {
       a.toLowerCase(),
     ),
     ignore: [...(chain.ignore || []), ...splitList(args.ignore)],
-    repoUrl: env.REPO_URL || 'https://github.com/OWNER/launchpad-registry',
+    repoUrl: env.REPO_URL || 'https://github.com/dynamolabs/launchpad-registry',
   };
 }
 

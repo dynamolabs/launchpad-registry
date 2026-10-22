@@ -7,7 +7,7 @@
 
 # launchpad-registry
 
-[![validate](https://github.com/OWNER/launchpad-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/launchpad-registry/actions/workflows/ci.yml)
+[![validate](https://github.com/dynamolabs/launchpad-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/dynamolabs/launchpad-registry/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/launchpad-registry)](https://www.npmjs.com/package/launchpad-registry)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -15,7 +15,7 @@
 
 Every sniper, radar, dashboard and wallet tracker reverse-engineers the same addresses from raw transactions. This repo makes that work shared, versioned and reviewable, the way [`ethereum-lists/chains`](https://github.com/ethereum-lists/chains) did for chain IDs.
 
-**Browse:** https://OWNER.github.io/launchpad-registry · **Data:** [`dist/launchpads.json`](dist/launchpads.json) · **Add one:** [CONTRIBUTING.md](CONTRIBUTING.md)
+**Browse:** https://dynamolabs.github.io/launchpad-registry · **Data:** [`dist/launchpads.json`](dist/launchpads.json) · **Add one:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Coverage
 
@@ -35,7 +35,7 @@ Every address was checked on-chain (`npm run verify`): programs are executable, 
 ```js
 const { launchpads } = await (
   await fetch(
-    'https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/launchpads.json',
+    'https://raw.githubusercontent.com/dynamolabs/launchpad-registry/main/dist/launchpads.json',
   )
 ).json();
 ```
