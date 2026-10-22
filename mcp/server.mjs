@@ -5,7 +5,17 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { isMain } from '../lib/files.mjs';
-import { launchpads, chains, meta, byId, lookup, forChain, frontendsOf } from '../index.mjs';
+import {
+  launchpads,
+  chains,
+  meta,
+  byId,
+  lookup,
+  forChain,
+  frontendsOf,
+  tradeLinks,
+  buyLinks,
+} from '../index.mjs';
 
 const json = (value) => ({ content: [{ type: 'text', text: JSON.stringify(value, null, 2) }] });
 
@@ -86,6 +96,25 @@ export function createServer() {
     'Branded frontends built on a multi-tenant launchpad program (e.g. raydium-launchlab, meteora-dbc).',
     { id: z.string() },
     async ({ id }) => json(frontendsOf(id).map(slim)),
+  );
+
+  server.tool(
+    'buy_links',
+    'Buy-button URLs for one token: trading bots and terminals (Trojan, BONKbot, GMGN, Axiom, …) with their deep links filled in. Pass your referral code as ref to include apps that need one; pool for Photon.',
+    {
+      chain: z.string().describe('registry chain dir: solana, evm-4663, evm-1776, evm-5042'),
+      token: z.string().describe('mint or contract address'),
+      ref: z.string().optional(),
+      pool: z.string().optional(),
+    },
+    async (args) => json(buyLinks(args)),
+  );
+
+  server.tool(
+    'list_trade_links',
+    'The trade-link templates themselves ({token}, {ref}, {pool} placeholders) with verification level and sources.',
+    {},
+    async () => json(tradeLinks),
   );
 
   server.tool('list_chains', 'Chains covered by the registry with counts.', {}, async () =>

@@ -65,3 +65,14 @@ test('createServer reports the dataset version', () => {
   const server = createServer();
   assert.ok(server, 'server constructed');
 });
+
+test('buy_links tool fills templates for a Solana mint', async () => {
+  const { buyLinks } = await import('../index.mjs');
+  const links = buyLinks({
+    chain: 'solana',
+    token: 'So11111111111111111111111111111111111111112',
+    ref: 'x',
+  });
+  assert.ok(links.length >= 8, `expected many buy links, got ${links.length}`);
+  assert.ok(links.every((l) => l.url.startsWith('https://') && !l.url.includes('{')));
+});
