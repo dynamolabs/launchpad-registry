@@ -3,6 +3,10 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule: { interval: monthly }
+    ignore:
+      # major bumps of runtime deps need a manual migration (zod 4 and @noble/hashes 2 both broke the tests)
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: monthly }
