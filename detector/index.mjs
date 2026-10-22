@@ -50,6 +50,8 @@ export function buildConfig(args, chain, env = process.env) {
     repoUrl: env.REPO_URL || 'https://github.com/dynamolabs/launchpad-registry',
     // --watch (Telegram commands only) / --watch all / --watch pump-fun,bags (broadcast to every sink)
     watch: args.watch ? (args.watch === 'true' ? [] : splitList(args.watch)) : null,
+    // with --watch: poll the chain only while some chat (or --watch id) is subscribed
+    scanOnDemand: args['scan-on-demand'] === 'true',
     tradeRef: env.TRADE_REF || '',
     buyButtons: splitList(env.BUY_BUTTONS),
     telegramAllow: splitList(env.TELEGRAM_ALLOW),
@@ -82,6 +84,7 @@ async function main() {
     `launchpad-registry detector · ${chain.name} · rpc ${rpcUrl.replace(/(api[-_]?key=)[^&]+/i, '$1…')}`,
   );
   let onLaunch;
+  let standby;
   if (cfg.watch) {
     const watch = createWatch({
       chain,
@@ -95,9 +98,13 @@ async function main() {
       repoUrl: cfg.repoUrl,
     });
     onLaunch = watch.onLaunch;
+    if (cfg.scanOnDemand) {
+      standby = { active: () => watch.watchlist.size() > 0 || watch.broadcast.length > 0 };
+    }
     const token = process.env.TELEGRAM_BOT_TOKEN;
     log(
       `[watch] broadcast ${watch.broadcast.length ? watch.broadcast.join(',') : '-'}, ${watch.watchlist.size()} chats watching, ` +
+        `${cfg.scanOnDemand ? 'scan on demand, ' : ''}` +
         `buy ref ${cfg.tradeRef ? 'set' : '-'}, commands ${token ? 'on' : 'off (no TELEGRAM_BOT_TOKEN)'}`,
     );
     if (token) {
@@ -112,7 +119,7 @@ async function main() {
     }
   }
   const run = chain.family === 'solana' ? runSolana : runEvm;
-  await run({ chain, rpcUrl, registry, notify, state, cfg, log, onLaunch });
+  await run({ chain, rpcUrl, registry, notify, state, cfg, log, onLaunch, standby });
 }
 
 // only run when executed directly (tests import parseArgs/buildConfig)

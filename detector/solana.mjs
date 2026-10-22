@@ -180,6 +180,8 @@ export function buildAlert({ chain, hit, cfg }) {
  * cfg: { windowMin, minTokens, pollMs, batch, ignore, repoUrl }
  * onLaunch (optional, from detector/watch.mjs) receives every launch that touches a registered program:
  * { programs: registered program ids in the tx, accounts: every account of the tx, token }.
+ * standby (optional) { active: () => boolean, pollMs? }: while active() is false the chain is not polled at
+ * all (scan-on-demand); on resume scanning restarts at the tip, not from the old cursor.
  */
 export async function runSolana({
   chain,
@@ -191,6 +193,7 @@ export async function runSolana({
   log,
   rpc,
   onLaunch,
+  standby,
   maxRounds = Infinity,
 }) {
   rpc ??= makeRpc(rpcUrl, {
@@ -364,8 +367,24 @@ export async function runSolana({
     }`,
   );
 
+  let paused = false;
   for (let round = 0; round < maxRounds; round++) {
     try {
+      if (standby && !standby.active()) {
+        if (!paused) {
+          paused = true;
+          s.slot = null; // resume at the tip, not through the backlog
+          s.cursor = null;
+          state.touch();
+          log('[solana] standby: nobody is watching, chain polling paused');
+        }
+        await sleep(standby.pollMs ?? 5000);
+        continue;
+      }
+      if (paused) {
+        paused = false;
+        log('[solana] resuming at the tip');
+      }
       if (source === 'blocks') await pollBlocks();
       else await pollMetadata();
       if (round % 50 === 49 && tracker.prune() > 0) state.touch();

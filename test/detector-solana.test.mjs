@@ -486,3 +486,32 @@ test('a program seen both as outer program and as CPI target in one tx counts th
   const { notify } = await run(fakeChain(twice, { count: 2 }).rpc);
   assert.equal(notify.sent.length, 0, '2 launches must not read as 4');
 });
+
+test('standby: no RPC calls while inactive, resumes at the tip once active', async () => {
+  const rpc = fakeSlots({ head: 1000, start: 990 });
+  let active = false;
+  const state = createMemoryState({ slot: 990 });
+  const logs = [];
+  const ctx = {
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify: collectNotifier(),
+    state,
+    log: (m) => logs.push(m),
+    rpc,
+    cfg: { ...blockCfg, minTokens: 999 },
+    standby: { active: () => active, pollMs: 1 },
+  };
+  await runSolana({ ...ctx, maxRounds: 3 });
+  assert.equal(rpc.calls.length, 0, 'nothing polled while paused');
+  assert.equal(state.get().slot, null, 'old cursor dropped');
+  assert.ok(logs.some((l) => /standby/.test(l)));
+  active = true;
+  await runSolana({ ...ctx, maxRounds: 1 });
+  assert.deepEqual(
+    rpc.calls.filter((c) => c.method === 'getBlock').map((c) => c.params[0]),
+    [1000],
+    'resumed at the tip, not from slot 990',
+  );
+});

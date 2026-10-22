@@ -129,6 +129,7 @@ const toHex = (n) => '0x' + n.toString(16);
  * @param {Function} [ctx.rpc]    injected JSON-RPC client (tests); defaults to makeRpc(rpcUrl)
  * @param {Function} [ctx.onLaunch]  from detector/watch.mjs: every launch on a *registered* entrypoint / hook,
  *   as { programs: [address], accounts: [], token }
+ * @param {{ active: () => boolean, pollMs?: number }} [ctx.standby]  scan-on-demand: no RPC calls while inactive
  * @param {number} [ctx.maxRounds]  stop after this many poll rounds (tests); default forever
  */
 export async function runEvm({
@@ -141,6 +142,7 @@ export async function runEvm({
   log,
   rpc,
   onLaunch,
+  standby,
   maxRounds = Infinity,
 }) {
   rpc ??= makeRpc(rpcUrl, { minIntervalMs: cfg.rpcIntervalMs ?? 60 });
@@ -240,9 +242,23 @@ export async function runEvm({
     `[evm-${chain.id}] head ${head}, cursor ${cursor}, window ${cfg.windowMin} min, min ${cfg.minTokens} tokens, v4 ${cfg.v4PoolManager || '-'}`,
   );
 
+  let paused = false;
   for (let round = 0; round < maxRounds; round++) {
     try {
+      if (standby && !standby.active()) {
+        if (!paused) {
+          paused = true;
+          log(`[evm-${chain.id}] standby: nobody is watching, chain polling paused`);
+        }
+        await sleep(standby.pollMs ?? 5000);
+        continue;
+      }
       head = Number(await rpc('eth_blockNumber'));
+      if (paused) {
+        paused = false;
+        cursor = head - 1; // resume at the tip, not through the backlog
+        log(`[evm-${chain.id}] resuming at block ${head}`);
+      }
       if (head <= cursor) {
         await sleep(cfg.pollMs);
         continue;

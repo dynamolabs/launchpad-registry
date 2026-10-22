@@ -2,6 +2,10 @@
 
 Data follows semver (see CONTRIBUTING.md): **major** = an entry or address removed / changed, **minor** = entries or addresses added, **patch** = metadata only.
 
+## 0.5.1 — 2026-10-22
+- `--scan-on-demand` (with `--watch`): the chain is not polled while nobody is subscribed and resumes at the tip when someone is. Solana block scanning costs ~70 % of a core; a hosted watch bot with an empty list was starving the other processes on the same box.
+- `/watch` also matches a launchpad's website domain (`/watch pangea.trade`), suggestions are looser, and an unknown name answers with a pre-filled "add to registry" issue link and is counted in `state.watch.requests`.
+
 ## 0.5.0 — 2026-10-22
 - **Watch feed** (`detector --watch`): launches on *registered* launchpads, as token cards with buy buttons, for Telegram chats that subscribe with `/watch <id|name>` / `/unwatch` / `/watching` / `/launchpads` (per-chat lists persisted in the state file; `TELEGRAM_ALLOW` restricts who may subscribe) or broadcast to every sink for `--watch pump-fun,bags` / `--watch all`. Credits a launch to the launchpad whose program, factory or hook runs in the transaction or whose partner/platform config is among its accounts, preferring a frontend (`builtOn`) over its base; shared DEX programs and other roles (fee wallets…) never credit. Solana cards carry name/symbol from Token-2022 metadata or the Metaplex create-metadata instruction. Sends are queued (the chain cursor never waits for Telegram), chats that blocked the bot are unsubscribed, queued updates from before the first start are skipped, `--watch` names are resolved and unknown ones reported.
 - Notifier: `buttons` on an alert become a Telegram inline keyboard (`TRADE_REF`, `BUY_BUTTONS`), per-chat sends with a status result, one retry after a Telegram 429.

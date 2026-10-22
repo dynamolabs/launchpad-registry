@@ -327,3 +327,30 @@ test('runEvm reports launches on a registered hook to onLaunch and skips unknown
   assert.equal(launches[0].token.symbol, 'SPCX');
   assert.equal(notify.sent.length, 0);
 });
+
+test('runEvm standby skips polling while inactive and resumes at the tip', async () => {
+  const rpc = fakeChain();
+  let checks = 0;
+  const state = createMemoryState({ cursor: 50 });
+  const notify = collectNotifier();
+  await runEvm({
+    chain,
+    rpcUrl: '',
+    registry: registry(),
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg,
+    standby: { active: () => ++checks > 2, pollMs: 1 }, // paused for two rounds, then active
+    maxRounds: 4,
+  });
+  const ranges = rpc.calls
+    .filter((c) => c.method === 'eth_getLogs')
+    .map((c) => c.params[0].fromBlock);
+  assert.ok(
+    ranges.length > 0 && ranges.every((f) => Number(f) === 100),
+    'scanned only the tip block',
+  );
+  assert.equal(notify.sent.length, 0);
+});
