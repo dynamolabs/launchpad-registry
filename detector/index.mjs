@@ -3,6 +3,8 @@
 //   node detector/index.mjs --chain evm-4663 --rpc https://... [--min 3] [--window 60] [--v4 0xPoolManager]
 //   node detector/index.mjs --chain solana   --rpc https://... [--min 5] [--window 60] [--source blocks|metadata]
 // Notify via env: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID, DISCORD_WEBHOOK, WEBHOOK_URL.
+// --watch [ids|all] adds the watchlist feed: launches of registered launchpads, picked per Telegram chat
+// (/watch, /unwatch, /watching) or broadcast for the listed ids; TRADE_REF + BUY_BUTTONS shape the buy buttons.
 // State in --state (default ./detector-state-<chain>.json). See detector/README.md.
 import { readFileSync } from 'node:fs';
 import { isMain } from '../lib/files.mjs';
@@ -11,6 +13,8 @@ import { loadRegistry } from './registry.mjs';
 import { openState } from './state.mjs';
 import { runEvm } from './evm.mjs';
 import { runSolana } from './solana.mjs';
+import { createWatch } from './watch.mjs';
+import { pollCommands } from './telegram.mjs';
 
 /** `--flag value` / `--flag` (boolean) → object. Exported for tests. */
 export function parseArgs(argv) {
@@ -49,6 +53,11 @@ export function buildConfig(args, chain, env = process.env) {
     ),
     ignore: [...(chain.ignore || []), ...splitList(args.ignore)],
     repoUrl: env.REPO_URL || 'https://github.com/dynamolabs/launchpad-registry',
+    // --watch (Telegram commands only) / --watch all / --watch pump-fun,bags (broadcast to every sink)
+    watch: args.watch ? (args.watch === 'true' ? [] : splitList(args.watch)) : null,
+    tradeRef: env.TRADE_REF || '',
+    buyButtons: splitList(env.BUY_BUTTONS),
+    telegramAllow: splitList(env.TELEGRAM_ALLOW),
   };
 }
 
@@ -77,8 +86,36 @@ async function main() {
   log(
     `launchpad-registry detector · ${chain.name} · rpc ${rpcUrl.replace(/(api[-_]?key=)[^&]+/i, '$1…')}`,
   );
+  let onLaunch;
+  if (cfg.watch) {
+    const watch = createWatch({
+      chain,
+      state,
+      notify,
+      log,
+      broadcast: cfg.watch,
+      ref: cfg.tradeRef,
+      apps: cfg.buyButtons,
+    });
+    onLaunch = watch.onLaunch;
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    log(
+      `[watch] broadcast ${cfg.watch.length ? cfg.watch.join(',') : '-'}, ${watch.watchlist.size()} chats watching, ` +
+        `buy ref ${cfg.tradeRef ? 'set' : '-'}, commands ${token ? 'on' : 'off (no TELEGRAM_BOT_TOKEN)'}`,
+    );
+    if (token) {
+      pollCommands({
+        token,
+        state,
+        command: watch.command,
+        reply: notify.telegramText,
+        allow: cfg.telegramAllow,
+        log,
+      }).catch((err) => log(`[telegram] poller stopped: ${err.message}`));
+    }
+  }
   const run = chain.family === 'solana' ? runSolana : runEvm;
-  await run({ chain, rpcUrl, registry, notify, state, cfg, log });
+  await run({ chain, rpcUrl, registry, notify, state, cfg, log, onLaunch });
 }
 
 // only run when executed directly (tests import parseArgs/buildConfig)

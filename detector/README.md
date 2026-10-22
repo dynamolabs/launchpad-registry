@@ -24,8 +24,23 @@ node detector/index.mjs --chain solana   --rpc https://your-rpc --source metadat
 | `--lag`                        | 60                                                                                 | Solana `blocks`: when the RPC cannot keep up, skip ahead to at most this many slots behind the tip                                                                                                                                  |
 | `--concurrency`                | 3                                                                                  | Solana `blocks`: blocks fetched in parallel (applied in slot order); raise on a dedicated RPC, lower to 1 if the RPC rate-limits                                                                                                    |
 | `--poll`, `--chunk`, `--batch` | 4000 ms (EVM) / 1000 ms (Solana blocks) / 8000 ms (metadata); 200 blocks; 100 sigs | tuning                                                                                                                                                                                                                              |
+| `--watch`                      | off                                                                                | watch feed (below): `--watch` alone enables the Telegram commands; `--watch pump-fun,bags` or `--watch all` also broadcasts those launchpads' launches to every configured sink                                                     |
 
 Notifications (all optional): `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`, `DISCORD_WEBHOOK`, `WEBHOOK_URL` (JSON POST). Console always.
+
+## Watch feed (`--watch`)
+
+The threshold alert above fires once per _unknown_ launchpad. The watch feed is the opposite: every launch on a launchpad that **is** registered, for the people who asked for it, as a token card with buy buttons.
+
+```
+TELEGRAM_BOT_TOKEN=… TRADE_REF=yourcode node detector/index.mjs --chain solana --watch
+```
+
+- Anyone who opens the bot picks launchpads with `/watch pump.fun` (id, name or alias; `/launchpads` lists them, `/watch all` takes everything), drops them with `/unwatch <id>` / `/unwatch all`, and checks `/watching`. Lists are stored per chat in the state file (`watch.chats`), so they survive restarts. `TELEGRAM_ALLOW=123,456` restricts the commands to those chat ids; by default anyone may use them, which is what a public feed bot wants. Other `/commands` are ignored, so the bot can live in a group with other bots.
+- `--watch pump-fun,bags` (or `all`) additionally sends those launches to **every** configured sink (console, `TELEGRAM_CHAT_ID`, Discord, webhook) without anyone subscribing. Webhook payloads carry `kind: "launch"`, `launchpad`, and `token` (`address`, `symbol`, `name`, `creator` when known).
+- Buy buttons come from `registry/trade-links.json` through `buyLinks()`: `TRADE_REF` is your referral code (apps that need one are skipped without it), `BUY_BUTTONS=trojan,based,gmgn-telegram,bonkbot,axiom,dexscreener` picks and orders them (that list is the default). Bots that run their own copy use their own referral; the dataset ships none.
+- A launch is credited to the registered launchpad whose program, factory, hook, or partner/platform config appears in the transaction; a frontend built on another entry (`builtOn`, e.g. Bags on Meteora DBC) wins over the base, and shared DEX programs (role `other`) are never credited. Name and symbol are read from Token-2022 metadata (pump.fun and clones); Metaplex-only launches are reported without them.
+- Telegram's bot limits apply: ~1 message per second per chat and 30 per second overall. pump.fun alone launches ~15 tokens per minute at busy hours, so a watcher of `all` on Solana gets a busy chat; a 429 is retried once after Telegram's `retry_after`. One `getUpdates` poller per bot token: Telegram answers 409 to a second one, which the log names.
 
 ## Modules
 
@@ -36,7 +51,9 @@ Notifications (all optional): `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`, `DISCOR
 | `tracker.mjs`            | rolling-window counter: when does an entrypoint become an alert                         |
 | `registry.mjs`           | loads `dist/addresses.json` (path or URL), hourly refresh                               |
 | `state.mjs`              | persisted cursor / seen set / counters                                                  |
-| `notify.mjs`             | console, Telegram, Discord, webhook                                                     |
+| `notify.mjs`             | console, Telegram, Discord, webhook; inline keyboards for buy buttons                   |
+| `watch.mjs`              | watch feed: per-chat lists, `/watch` commands, launch cards with buy buttons            |
+| `telegram.mjs`           | `getUpdates` long-poll that answers the watch commands                                  |
 
 Engines accept an injected `rpc` function and `maxRounds`, which is how `test/detector-*.test.mjs` run them offline against recorded RPC answers in `test/fixtures/`.
 

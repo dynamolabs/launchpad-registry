@@ -2,6 +2,11 @@
 
 Data follows semver (see CONTRIBUTING.md): **major** = an entry or address removed / changed, **minor** = entries or addresses added, **patch** = metadata only.
 
+## 0.5.0 — 2026-10-22
+- **Watch feed** (`detector --watch`): launches on *registered* launchpads, as token cards with buy buttons, for Telegram chats that subscribe with `/watch <id|name>` / `/unwatch` / `/watching` / `/launchpads` (per-chat lists persisted in the state file; `TELEGRAM_ALLOW` restricts who may subscribe) or broadcast to every sink for `--watch pump-fun,bags` / `--watch all`. Credits a launch to the launchpad whose program, factory, hook or partner/platform config is in the transaction, preferring a frontend (`builtOn`) over its base; shared DEX programs are never credited. Solana cards carry name/symbol from Token-2022 metadata.
+- Notifier: `buttons` on an alert become a Telegram inline keyboard (`TRADE_REF`, `BUY_BUTTONS`), per-chat sends, one retry after a Telegram 429.
+- Release assets now include `dist/trade-links.json`; `npm test` runs `node --test` without a directory argument (Node 22 stopped recursing into `test/`).
+
 ## 0.4.0 — 2026-10-22
 - **Trade links**: `registry/trade-links.json` (+ `schema/trade-link.schema.json`, `dist/trade-links.json`) lists the trading bots and terminals that alert bots put under a token card, with their deep-link templates and a verification level (production / docs / community) and sources: Trojan, BONKbot, GMGN (Telegram + web), Maestro, Banana Gun, SolTradingBot, Unibot, Bloom, Based, Blazing Sol, Axiom, Photon, BullX, DEX Screener.
 - Library: `tradeLinks` and `buyLinks({ chain, token, ref, pool })` fill the templates for one token and skip apps whose inputs are missing; types in `index.d.ts`.

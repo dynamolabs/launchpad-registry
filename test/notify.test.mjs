@@ -72,3 +72,62 @@ test('send with nothing configured only logs', async () => {
   await notifier.send(alert);
   assert.equal(logs.length, 1);
 });
+
+import { telegramKeyboard } from '../detector/notify.mjs';
+
+test('buttons become a Telegram inline keyboard and plain links elsewhere', async () => {
+  const withButtons = {
+    ...alert,
+    buttons: [1, 2, 3, 4].map((i) => ({ text: `b${i}`, url: `https://b/${i}` })),
+  };
+  assert.deepEqual(
+    telegramKeyboard(withButtons).inline_keyboard.map((r) => r.length),
+    [3, 1],
+  );
+  assert.equal(telegramKeyboard(alert), undefined);
+  assert.match(renderDiscord(withButtons), /\[b4\]\(<https:\/\/b\/4>\)/);
+  assert.match(renderText(withButtons), /b4: https:\/\/b\/4/);
+  assert.ok(!renderTelegram(withButtons).includes('b4'), 'keyboard, not text');
+
+  const posts = [];
+  const notifier = makeNotifier({
+    telegramToken: 'T',
+    telegramChat: '42',
+    discordWebhook: '',
+    webhook: '',
+    fetch: async (url, init) => {
+      posts.push({ url, body: JSON.parse(init.body) });
+      return new Response('{}', { status: 200 });
+    },
+    log: () => {},
+  });
+  await notifier.send(withButtons);
+  assert.equal(posts[0].body.reply_markup.inline_keyboard[0][0].url, 'https://b/1');
+  await notifier.telegram('99', withButtons);
+  assert.equal(posts[1].body.chat_id, '99');
+  assert.equal(posts[1].body.reply_markup.inline_keyboard.length, 2);
+  await notifier.telegramText('7', '<b>hi</b>');
+  assert.deepEqual(posts[2].body, {
+    chat_id: '7',
+    parse_mode: 'HTML',
+    disable_web_page_preview: true,
+    text: '<b>hi</b>',
+  });
+});
+
+test('post retries once after a Telegram 429 using retry_after', async () => {
+  let calls = 0;
+  const notifier = makeNotifier({
+    telegramToken: 'T',
+    telegramChat: '42',
+    discordWebhook: '',
+    webhook: '',
+    fetch: async () =>
+      ++calls === 1
+        ? new Response('{"ok":false,"parameters":{"retry_after":0}}', { status: 429 })
+        : new Response('{}', { status: 200 }),
+    log: () => {},
+  });
+  await notifier.send(alert);
+  assert.equal(calls, 2);
+});

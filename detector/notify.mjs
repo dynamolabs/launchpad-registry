@@ -1,24 +1,41 @@
 // Fan-out of one alert to console + Telegram + Discord + generic webhook. All optional, all best-effort.
+// An alert is { title, lines, links, buttons?, payload? }; buttons become a Telegram inline keyboard.
+import { sleep } from '../lib/rpc.mjs';
 
 /** HTML-escapes a value for Telegram's HTML parse mode. */
 export const escapeHtml = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-/** Renders an alert as plain text (console, Discord without markup). */
+const allLinks = (alert) => [...(alert.links || []), ...(alert.buttons || [])];
+
+/** Renders an alert as plain text (console, webhook logs). */
 export function renderText(alert) {
-  const links = alert.links.map((l) => `${l.text}: ${l.url}`);
+  const links = allLinks(alert).map((l) => `${l.text}: ${l.url}`);
   return [alert.title, ...alert.lines, ...links].join('\n');
 }
 
-/** Renders an alert as Telegram HTML. */
+/** Renders an alert as Telegram HTML (buttons go to the keyboard, not the text). */
 export function renderTelegram(alert) {
-  const links = alert.links.map((l) => `<a href="${l.url}">${escapeHtml(l.text)}</a>`).join(' · ');
+  const links = (alert.links || [])
+    .map((l) => `<a href="${l.url}">${escapeHtml(l.text)}</a>`)
+    .join(' · ');
   return `<b>${escapeHtml(alert.title)}</b>\n${alert.lines.map(escapeHtml).join('\n')}\n${links}`;
+}
+
+/** Telegram inline keyboard for alert.buttons (rows of three), or undefined. */
+export function telegramKeyboard(alert, perRow = 3) {
+  const buttons = (alert.buttons || []).map((b) => ({ text: b.text, url: b.url }));
+  if (!buttons.length) return undefined;
+  const rows = [];
+  for (let i = 0; i < buttons.length; i += perRow) rows.push(buttons.slice(i, i + perRow));
+  return { inline_keyboard: rows };
 }
 
 /** Renders an alert as Discord markdown. */
 export function renderDiscord(alert) {
-  const links = alert.links.map((l) => `[${l.text}](<${l.url}>)`).join(' · ');
+  const links = allLinks(alert)
+    .map((l) => `[${l.text}](<${l.url}>)`)
+    .join(' · ');
   return `**${alert.title}**\n${alert.lines.join('\n')}\n${links}`;
 }
 
@@ -36,34 +53,58 @@ export function makeNotifier(opts = {}) {
     fetch: fetchImpl = globalThis.fetch,
   } = opts;
 
-  async function post(url, body) {
+  /** POSTs JSON; one retry after Telegram's retry_after on 429. Never throws. */
+  async function post(url, body, retry = true) {
     try {
       const res = await fetchImpl(url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body),
       });
-      if (!res.ok)
-        log(`[notify] ${new URL(url).host} ${res.status} ${(await res.text()).slice(0, 200)}`);
+      if (res.ok) return;
+      const text = await res.text();
+      if (res.status === 429 && retry) {
+        const wait = Number(/"retry_after":\s*(\d+)/.exec(text)?.[1] || 3);
+        await sleep(Math.min(wait, 30) * 1000);
+        return post(url, body, false);
+      }
+      log(`[notify] ${new URL(url).host} ${res.status} ${text.slice(0, 200)}`);
     } catch (err) {
       log(`[notify] ${err.message}`);
     }
   }
 
+  const telegramUrl = () => `https://api.telegram.org/bot${telegramToken}/sendMessage`;
+
+  /** Sends HTML text to one Telegram chat (no-op without a bot token). */
+  async function telegramText(chat, html, extra = {}) {
+    if (!telegramToken) return;
+    await post(telegramUrl(), {
+      chat_id: chat,
+      parse_mode: 'HTML',
+      disable_web_page_preview: true,
+      text: html,
+      ...extra,
+    });
+  }
+
   return {
+    telegramText,
+    /** Sends one alert (with keyboard) to one Telegram chat. */
+    telegram: (chat, alert) =>
+      telegramText(chat, renderTelegram(alert), { reply_markup: telegramKeyboard(alert) }),
     /**
-     * @param {{ title: string, lines: string[], links: {text: string, url: string}[], payload?: object }} alert
+     * Sends one alert to every configured sink.
+     * @param {{ title: string, lines: string[], links: {text: string, url: string}[],
+     *   buttons?: {text: string, url: string}[], payload?: object }} alert
      */
     async send(alert) {
       log('\n' + renderText(alert));
       const jobs = [];
       if (telegramToken && telegramChat) {
         jobs.push(
-          post(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
-            chat_id: telegramChat,
-            parse_mode: 'HTML',
-            disable_web_page_preview: true,
-            text: renderTelegram(alert),
+          telegramText(telegramChat, renderTelegram(alert), {
+            reply_markup: telegramKeyboard(alert),
           }),
         );
       }
@@ -75,6 +116,7 @@ export function makeNotifier(opts = {}) {
             title: alert.title,
             lines: alert.lines,
             links: alert.links,
+            buttons: alert.buttons,
             ts: new Date().toISOString(),
           }),
         );

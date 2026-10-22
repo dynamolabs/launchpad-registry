@@ -6,6 +6,7 @@
 // Either way every non-system outer program of a launch tx is counted by the tracker.
 import { makeRpc, sleep } from '../lib/rpc.mjs';
 import { createTracker, migrateLegacyKeys } from './tracker.mjs';
+import { launchpadIdsOf } from './watch.mjs';
 
 export const METADATA_PROGRAM = 'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s';
 
@@ -62,10 +63,27 @@ export function innerPrograms(tx, ignore = BASE_IGNORE) {
 /** First signer (fee payer) of a jsonParsed transaction. */
 export const feePayer = (tx) => tx.transaction.message.accountKeys.find((k) => k.signer)?.pubkey;
 
+/** Every account the transaction touches (static keys + addresses loaded from lookup tables). */
+export const accountKeys = (tx) => [
+  ...tx.transaction.message.accountKeys.map((k) => k.pubkey),
+  ...(tx.meta?.loadedAddresses?.writable || []),
+  ...(tx.meta?.loadedAddresses?.readonly || []),
+];
+
+/**
+ * Name and symbol from a Token-2022 `initializeTokenMetadata` instruction (pump.fun and clones), or {}.
+ * Metaplex metadata is not jsonParsed by RPCs, so Metaplex-only launches stay nameless here.
+ */
+export function tokenMetadata(tx) {
+  const ix = allInstructions(tx).find((i) => i.parsed?.type === 'initializeTokenMetadata');
+  const info = ix?.parsed?.info;
+  return info ? { name: info.name, symbol: info.symbol } : {};
+}
+
 /**
  * Fungible-mint births inside one jsonParsed block.
  * @returns {{ signature: string, mint: string, decimals: number, programs: string[],
- *   innerPrograms: string[], payer: string }[]}
+ *   innerPrograms: string[], accounts: string[], payer: string, name?: string, symbol?: string }[]}
  */
 export function scanBlock(block, ignore = BASE_IGNORE) {
   const out = [];
@@ -78,7 +96,9 @@ export function scanBlock(block, ignore = BASE_IGNORE) {
       decimals: minted.decimals,
       programs: outerPrograms(tx, ignore),
       innerPrograms: innerPrograms(tx, ignore),
+      accounts: accountKeys(tx),
       payer: feePayer(tx),
+      ...tokenMetadata(tx),
     });
   }
   return out;
@@ -118,6 +138,7 @@ export function buildAlert({ chain, hit, cfg }) {
 /**
  * Runs the Solana engine until the process exits. Same context shape as runEvm.
  * cfg: { windowMin, minTokens, pollMs, batch, ignore, repoUrl }
+ * onLaunch (optional, from detector/watch.mjs) receives every launch on a *registered* launchpad.
  */
 export async function runSolana({
   chain,
@@ -128,6 +149,7 @@ export async function runSolana({
   cfg,
   log,
   rpc,
+  onLaunch,
   maxRounds = Infinity,
 }) {
   rpc ??= makeRpc(rpcUrl, {
@@ -171,12 +193,25 @@ export async function runSolana({
    * Counts one birth. When any program in the tx (outer or CPI) is a registered launchpad, the birth
    * belongs to that launchpad: wrappers / bundlers that CPI into pump.fun are not launchpads themselves.
    */
-  async function recordBirth({ mint, payer, programs, innerPrograms: inner = [] }) {
+  async function recordBirth({
+    mint,
+    payer,
+    programs,
+    innerPrograms: inner = [],
+    accounts = [],
+    name,
+    symbol,
+  }) {
     const token = { address: mint, creator: payer };
     const known = [...programs, ...inner].filter((p) => registry.known(chain.dir, p));
     for (const programId of known.length ? known : programs) {
       const hit = tracker.record('program', programId, token);
       if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
+    }
+    if (onLaunch && known.length) {
+      // partner / platform configs are plain accounts of the tx, so they are matched too (Bags, Jupiter Studio…)
+      const ids = launchpadIdsOf(registry, chain.dir, [...known, ...accounts]);
+      if (ids.length) await onLaunch({ ids, token: { ...token, name, symbol } });
     }
   }
 
@@ -194,6 +229,8 @@ export async function runSolana({
           payer: feePayer(tx),
           programs: outerPrograms(tx, ignore),
           innerPrograms: innerPrograms(tx, ignore),
+          accounts: accountKeys(tx),
+          ...tokenMetadata(tx),
         });
       }
       state.markSeen(signature);

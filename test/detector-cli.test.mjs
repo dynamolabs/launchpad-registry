@@ -47,3 +47,22 @@ test('buildConfig exposes block-fetch concurrency', () => {
   assert.equal(buildConfig({}, { family: 'solana' }, {}).concurrency, 3);
   assert.equal(buildConfig({ concurrency: '5' }, { family: 'solana' }, {}).concurrency, 5);
 });
+
+test('buildConfig parses --watch and the buy-button env', () => {
+  const solana = { family: 'solana' };
+  assert.equal(buildConfig({}, solana, {}).watch, null);
+  assert.deepEqual(buildConfig({ watch: 'true' }, solana, {}).watch, []);
+  assert.deepEqual(buildConfig({ watch: 'pump-fun, bags' }, solana, {}).watch, [
+    'pump-fun',
+    'bags',
+  ]);
+  const cfg = buildConfig({ watch: 'all' }, solana, {
+    TRADE_REF: 'me',
+    BUY_BUTTONS: 'trojan,dexscreener',
+    TELEGRAM_ALLOW: '1,2',
+  });
+  assert.deepEqual(cfg.watch, ['all']);
+  assert.equal(cfg.tradeRef, 'me');
+  assert.deepEqual(cfg.buyButtons, ['trojan', 'dexscreener']);
+  assert.deepEqual(cfg.telegramAllow, ['1', '2']);
+});

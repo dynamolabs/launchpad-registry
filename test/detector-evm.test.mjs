@@ -290,3 +290,43 @@ test('runEvm does not count the same V4 pool twice when a range is retried', asy
     2,
   );
 });
+
+test('runEvm reports launches on a registered hook to onLaunch and skips unknown ones', async () => {
+  const rpc = scriptedRpc({
+    eth_blockNumber: () => '0x64',
+    eth_getLogs: ([{ topics }]) =>
+      topics[0] === V4_INITIALIZE_TOPIC
+        ? dopplerReceipt.logs.filter((l) => l.topics[0] === V4_INITIALIZE_TOPIC)
+        : [],
+    eth_getTransactionByHash: () => ({ ...clankerTx, from: '0xabc' }),
+    eth_call: () => fx('rh-doppler-symbol'),
+    eth_getCode: () => '0x',
+  });
+  const HOOK = '0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544';
+  const launches = [];
+  const notify = collectNotifier();
+  await runEvm({
+    chain,
+    rpcUrl: '',
+    registry: {
+      known: (_d, a) => a === HOOK,
+      lookup: (_d, a) => (a === HOOK ? [{ id: 'doppler-robinhood', role: 'hook' }] : []),
+    },
+    notify,
+    state: createMemoryState(),
+    log: silent,
+    rpc,
+    maxRounds: 2,
+    cfg: {
+      ...cfg,
+      v4PoolManager: '0x8366a39cc670b4001a1121b8f6a443a643e40951',
+      quoteTokens: [SPCX],
+    },
+    onLaunch: async (l) => launches.push(l),
+  });
+  assert.equal(launches.length, 1);
+  assert.deepEqual(launches[0].ids, ['doppler-robinhood']);
+  assert.equal(launches[0].token.address, MOONME);
+  assert.equal(launches[0].token.symbol, 'SPCX');
+  assert.equal(notify.sent.length, 0);
+});

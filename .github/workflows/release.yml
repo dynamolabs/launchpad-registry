@@ -24,4 +24,5 @@ jobs:
             dist/launchpads.min.json
             dist/addresses.json
             dist/launchpads.csv
+            dist/trade-links.json
           generate_release_notes: true

@@ -428,3 +428,41 @@ test('block source with a pending slot inside a parallel batch stops exactly the
   const again = await runBlocks(rpc, { start: 1002, overrides: { concurrency: 3 } });
   assert.equal(again.state.get().slot, 1006);
 });
+
+// ---- watch feed (onLaunch) ----------------------------------------------------------------------
+import { tokenMetadata, accountKeys } from '../detector/solana.mjs';
+
+test('tokenMetadata and accountKeys read the pump.fun launch tx', () => {
+  assert.deepEqual(tokenMetadata(pump), { name: 'KIMCHIPCS', symbol: 'KIMCHIPCS' });
+  assert.deepEqual(tokenMetadata(launchlab), {}, 'Metaplex-only launches have no parsed metadata');
+  assert.ok(accountKeys(pump).includes(PUMP));
+});
+
+test('block source hands every launch on a registered launchpad to onLaunch, with name and symbol', async () => {
+  const rpc = fakeSlots({ head: 997, start: 995 });
+  const launches = [];
+  const state = createMemoryState({ slot: 995 });
+  const notify = collectNotifier();
+  const registry = {
+    known: (_d, a) => a === PUMP,
+    lookup: (_d, a) => (a === PUMP ? [{ id: 'pump-fun', role: 'program' }] : []),
+  };
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry,
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg: blockCfg,
+    maxRounds: 1,
+    onLaunch: async (l) => launches.push(l),
+  });
+  assert.equal(notify.sent.length, 0, 'registered programs never trigger the unknown alert');
+  assert.equal(launches.length, 2, 'one launch per scanned block');
+  assert.deepEqual(launches[0].ids, ['pump-fun']);
+  assert.equal(launches[0].token.symbol, 'cyber', 'Token-2022 metadata of the recorded block');
+  assert.match(launches[0].token.address, /^[1-9A-HJ-NP-Za-km-z]{32,44}$/);
+  assert.ok(launches[0].token.creator);
+});

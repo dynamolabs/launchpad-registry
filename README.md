@@ -123,6 +123,8 @@ node detector/index.mjs --chain solana --rpc https://your-rpc --min 5
 
 Any program, entrypoint or hook that creates ≥ N fungible tokens in a rolling window **and is not in the registry** triggers one alert (console, Telegram, Discord or webhook) with a pre-filled issue link. Merged PRs silence it automatically because the detector reloads the registry hourly. Details and pm2/Docker recipes in [`detector/README.md`](detector/README.md).
 
+The same process can run a **watch feed** (`--watch`): every launch on a launchpad that _is_ registered, as a card with buy buttons, for the Telegram chats that asked for it with `/watch pump.fun` (`/unwatch`, `/watching`, `/launchpads`) or broadcast for the ids you pass (`--watch pump-fun,bags`, `--watch all`). Buttons come from the trade links above with your own `TRADE_REF`.
+
 ## Used by
 
 - `sol-launchpad-radar` and `inj-launchpad-radar` (Telegram radars for new launchpads on Solana / Injective) load `dist/addresses.json` hourly to tell registered programs from unknown ones. Add yours via PR.
