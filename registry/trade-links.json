@@ -1,0 +1,228 @@
+[
+  {
+    "id": "trojan",
+    "name": "Trojan",
+    "kind": "telegram",
+    "website": "https://trojan.gg",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/solana_trojanbot?start=r-{ref}-{token}",
+      "referral": "https://t.me/solana_trojanbot?start=r-{ref}"
+    },
+    "verified": "production",
+    "sources": ["https://t.me/solana_trojanbot"],
+    "checked": "2026-10-22",
+    "notes": "Regional instances (paris_trojanbot, achilles_trojanbot, …) accept the same start payload. Referral code is the Telegram handle shown under Referrals in the bot."
+  },
+  {
+    "id": "bonkbot",
+    "name": "BONKbot",
+    "kind": "telegram",
+    "website": "https://bonkbot.io",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/bonkbot_bot?start=ref_{ref}_ca_{token}",
+      "referral": "https://t.me/bonkbot_bot?start=ref_{ref}"
+    },
+    "verified": "community",
+    "sources": ["https://bitpinas.com/learn-how-to-guides/bonkbot-telegram-bot-guide-solana/"],
+    "checked": "2026-10-22",
+    "notes": "Format from third-party guides and links in the wild; the official docs do not publish it."
+  },
+  {
+    "id": "gmgn-telegram",
+    "name": "GMGN (Telegram)",
+    "kind": "telegram",
+    "website": "https://gmgn.ai",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/GMGN_sol_bot?start=i_{ref}_c_{token}",
+      "referral": "https://t.me/GMGN_sol_bot?start=i_{ref}"
+    },
+    "verified": "docs",
+    "sources": ["https://docs.gmgn.ai/index/referral-link"],
+    "checked": "2026-10-22",
+    "notes": "The cross-chain bot accepts https://t.me/gmgnaibot?start=i_{ref}_{chain}_{token} with chain in sol, eth, base, bsc, tron, blast."
+  },
+  {
+    "id": "gmgn-web",
+    "name": "GMGN",
+    "kind": "web",
+    "website": "https://gmgn.ai",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://gmgn.ai/sol/token/{ref}_{token}",
+      "tokenNoRef": "https://gmgn.ai/sol/token/{token}",
+      "referral": "https://gmgn.ai/?ref={ref}"
+    },
+    "verified": "docs",
+    "sources": ["https://docs.gmgn.ai/index/referral-link"],
+    "checked": "2026-10-22",
+    "notes": "Other chains use https://gmgn.ai/{chain}/token/{ref}_{token} with chain in sol, eth, base, bsc, tron, blast."
+  },
+  {
+    "id": "maestro",
+    "name": "Maestro",
+    "kind": "telegram",
+    "website": "https://maestrobots.com",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/MaestroSniperBot?start={token}",
+      "referral": null
+    },
+    "verified": "production",
+    "sources": ["https://docs.maestrobots.com/sniper/referral-program"],
+    "checked": "2026-10-22",
+    "notes": "Referral and quick-buy links are generated inside the bot (/referral); their payload is not documented, so only the plain token link is listed."
+  },
+  {
+    "id": "bananagun",
+    "name": "Banana Gun",
+    "kind": "telegram",
+    "website": "https://bananagun.io",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/BananaGun_bot?start=ref_{ref}_{token}",
+      "referral": "https://t.me/BananaGun_bot?start=ref_{ref}"
+    },
+    "verified": "production",
+    "sources": ["https://banana-gun.gitbook.io/banana-gun/get-started/official-links"],
+    "checked": "2026-10-22",
+    "notes": "Referral codes come from https://dashboard.bananagun.io/rewards. The EVM sniper is @BananaGunSniper_bot; its token payload is not published, so it is not listed."
+  },
+  {
+    "id": "soltradingbot",
+    "name": "SolTradingBot",
+    "kind": "telegram",
+    "website": "https://soltradingbot.com",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/SolTradingBot?start={token}-{ref}",
+      "referral": "https://t.me/SolTradingBot?start={ref}"
+    },
+    "verified": "production",
+    "sources": ["https://t.me/SolTradingBot"],
+    "checked": "2026-10-22"
+  },
+  {
+    "id": "unibot",
+    "name": "Unibot (Solana)",
+    "kind": "telegram",
+    "website": "https://unibot.app",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/UnisolUnibot?start={ref}-{token}",
+      "tokenNoRef": "https://t.me/UnisolUnibot?start=funcs_buy_{token}",
+      "referral": "https://t.me/UnisolUnibot?start={ref}"
+    },
+    "verified": "docs",
+    "sources": ["https://docs.unibot.app/dev/deeplink"],
+    "checked": "2026-10-22",
+    "notes": "EVM (Ethereum, Base, Arbitrum) uses @unibotsniper_bot with the same payloads. Web: https://unibot.app/x/?ref={ref}&chain=solana&token={token}&swapMode=swap&swapType=buy."
+  },
+  {
+    "id": "bloom",
+    "name": "Bloom",
+    "kind": "telegram",
+    "website": "https://bloombot.app",
+    "chains": ["solana"],
+    "links": {
+      "token": null,
+      "referral": "https://t.me/BloomSolana_bot?start={ref}"
+    },
+    "verified": "docs",
+    "sources": ["https://docs.bloombot.app/solana/solana-bot/referrals"],
+    "checked": "2026-10-22",
+    "notes": "No documented token deep link; the EVM bot is @BloomEVMbot with the same referral payload."
+  },
+  {
+    "id": "based",
+    "name": "Based",
+    "kind": "telegram",
+    "website": "https://based.fail",
+    "chains": ["solana", "evm-4663"],
+    "links": {
+      "token": "https://t.me/based_eth_bot?start=r_{ref}_b_{token}",
+      "tokenNoRef": "https://t.me/based_eth_bot?start={token}",
+      "referral": "https://t.me/based_eth_bot?start=r_{ref}"
+    },
+    "verified": "production",
+    "sources": ["https://t.me/based_eth_bot"],
+    "checked": "2026-10-22",
+    "notes": "One bot for several chains; the token address decides the chain."
+  },
+  {
+    "id": "blazingsol",
+    "name": "Blazing Sol",
+    "kind": "telegram",
+    "website": "https://t.me/BlazingSolBot",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://t.me/BlazingSolBot?start={token}",
+      "referral": null
+    },
+    "verified": "production",
+    "sources": ["https://t.me/BlazingSolBot"],
+    "checked": "2026-10-22"
+  },
+  {
+    "id": "axiom",
+    "name": "Axiom",
+    "kind": "web",
+    "website": "https://axiom.trade",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://axiom.trade/t/{token}",
+      "referral": "https://axiom.trade/@{ref}"
+    },
+    "verified": "community",
+    "sources": ["https://axiom.trade"],
+    "checked": "2026-10-22",
+    "notes": "The referral landing (/@code) and the token page (/t/mint) are separate; no documented way to combine them in one URL."
+  },
+  {
+    "id": "photon",
+    "name": "Photon",
+    "kind": "web",
+    "website": "https://photon-sol.tinyastro.io",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://photon-sol.tinyastro.io/en/lp/{pool}",
+      "referral": null
+    },
+    "verified": "production",
+    "sources": ["https://photon-sol.tinyastro.io"],
+    "checked": "2026-10-22",
+    "notes": "Takes the pool (LP) address, not the mint."
+  },
+  {
+    "id": "bullx",
+    "name": "BullX",
+    "kind": "web",
+    "website": "https://bullx.io",
+    "chains": ["solana"],
+    "links": {
+      "token": "https://bullx.io/terminal?chainId=1399811149&address={token}",
+      "referral": null
+    },
+    "verified": "production",
+    "sources": ["https://bullx.io"],
+    "checked": "2026-10-22",
+    "notes": "1399811149 is BullX's chain id for Solana mainnet."
+  },
+  {
+    "id": "dexscreener",
+    "name": "DEX Screener",
+    "kind": "chart",
+    "website": "https://dexscreener.com",
+    "chains": ["solana", "evm-4663", "evm-1776", "evm-5042"],
+    "links": {
+      "token": "https://dexscreener.com/{dexscreenerId}/{token}",
+      "referral": null
+    },
+    "verified": "production",
+    "sources": ["https://dexscreener.com"],
+    "checked": "2026-10-22",
+    "notes": "{dexscreenerId} comes from the chain entry in chains.json (solana, robinhood, injective, arc)."
+  }
+]

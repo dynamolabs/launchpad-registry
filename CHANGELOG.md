@@ -2,6 +2,12 @@
 
 Data follows semver (see CONTRIBUTING.md): **major** = an entry or address removed / changed, **minor** = entries or addresses added, **patch** = metadata only.
 
+## 0.4.0 — 2026-10-22
+- **Trade links**: `registry/trade-links.json` (+ `schema/trade-link.schema.json`, `dist/trade-links.json`) lists the trading bots and terminals that alert bots put under a token card, with their deep-link templates and a verification level (production / docs / community) and sources: Trojan, BONKbot, GMGN (Telegram + web), Maestro, Banana Gun, SolTradingBot, Unibot, Bloom, Based, Blazing Sol, Axiom, Photon, BullX, DEX Screener.
+- Library: `tradeLinks` and `buyLinks({ chain, token, ref, pool })` fill the templates for one token and skip apps whose inputs are missing; types in `index.d.ts`.
+- Brand assets in `brand/` (mark, wordmark, lockups), used by the README and the site.
+- Release workflow publishes through npm trusted publishing; Dependabot skips major npm bumps.
+
 ## 0.3.0 — 2026-10-22
 - **Code rewrite for contributors**: shared `lib/` (JSON-RPC client with pacing + 429/-32005 backoff, hashing, file helpers), detector split into pure helpers + `tracker.mjs` + thin loops, every script reformatted (Prettier/ESLint, 100 columns) and runnable only as a CLI (`isMain`), so modules import cleanly in tests.
 - **Tests 8 → 58**, all offline: detector engines run against recorded RPC answers (`test/fixtures/`: pump.fun, LaunchLab, Clanker, Doppler on Robinhood Chain), tracker window/threshold rules, state persistence, notifier fan-out, CLI config, RPC retry/pacing.

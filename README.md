@@ -17,6 +17,18 @@ Every sniper, radar, dashboard and wallet tracker reverse-engineers the same add
 
 **Browse:** https://dynamolabs.github.io/launchpad-registry · **Data:** [`dist/launchpads.json`](dist/launchpads.json) · **Add one:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Buy buttons (trade links)
+
+Every alert bot ends its token card with the same row of buttons: Trojan, BONKbot, GMGN, Maestro, Axiom, Photon, BullX, DEX Screener… `registry/trade-links.json` holds their deep-link templates (`{token}`, `{ref}`, `{pool}`), each marked `production` (used by bots we run), `docs` (the app's own documentation) or `community` (links in the wild), with the source and the date checked.
+
+```js
+import { buyLinks } from 'launchpad-registry';
+buyLinks({ chain: 'solana', token: mint, ref: 'yourcode' });
+// → [{ id: 'trojan', name: 'Trojan', kind: 'telegram', url: 'https://t.me/solana_trojanbot?start=r-yourcode-<mint>', verified: 'production' }, …]
+```
+
+Apps whose template needs a referral code are left out when you pass none (unless they have a no-referral variant). Referral codes are yours; the registry only carries the URL shape. Fix or add one in `registry/trade-links.json` with a source link.
+
 ## Coverage
 
 | chain                  | dir        | launchpads                                                                                                                                                                                       |

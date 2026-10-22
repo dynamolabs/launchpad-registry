@@ -138,6 +138,37 @@ export interface Meta {
   chains: { family: ChainFamily; id: string | number; dir: string; name: string; count: number }[];
 }
 
+export type TradeLinkKind = 'telegram' | 'web' | 'chart';
+export type Verified = 'production' | 'docs' | 'community';
+export interface TradeLink {
+  id: string;
+  name: string;
+  kind: TradeLinkKind;
+  website: string;
+  /** registry chain dirs (solana, evm-4663, …) */
+  chains: string[];
+  links: { token: string | null; tokenNoRef?: string; referral: string | null };
+  verified: Verified;
+  sources: string[];
+  checked: string;
+  notes?: string;
+}
+export interface BuyLink {
+  id: string;
+  name: string;
+  kind: TradeLinkKind;
+  url: string;
+  verified: Verified;
+}
+/** Trading bots and terminals with their deep-link templates ({token}, {ref}, {pool}, {dexscreenerId}). */
+export const tradeLinks: TradeLink[];
+/** Buy-button URLs for one token on one chain; apps needing a missing input are skipped. */
+export function buyLinks(opts: {
+  chain: ChainRef;
+  token: string;
+  ref?: string;
+  pool?: string;
+}): BuyLink[];
 export const launchpads: Launchpad[];
 export const chains: Chain[];
 export const meta: Meta;

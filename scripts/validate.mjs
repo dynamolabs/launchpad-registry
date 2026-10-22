@@ -17,6 +17,7 @@ async function main() {
   addFormats(ajv);
   const validateLaunchpad = ajv.compile(readJson(join(ROOT, 'schema/launchpad.schema.json')));
   const validateChain = ajv.compile(readJson(join(ROOT, 'schema/chain.schema.json')));
+  const validateTradeLink = ajv.compile(readJson(join(ROOT, 'schema/trade-link.schema.json')));
 
   const errors = [];
   const fail = (file, message) => errors.push(`${file}: ${message}`);
@@ -28,6 +29,27 @@ async function main() {
   for (const chain of chains) {
     if (!validateChain(chain)) fail('registry/chains.json', ajv.errorsText(validateChain.errors));
     chainByDir.set(chain.dir, chain);
+  }
+
+  const tradeLinks = readJson(join(ROOT, 'registry/trade-links.json'));
+  if (!Array.isArray(tradeLinks)) throw new Error('registry/trade-links.json must be an array');
+  const linkIds = new Set();
+  for (const app of tradeLinks) {
+    const file = `registry/trade-links.json#${app.id}`;
+    if (!validateTradeLink(app)) fail(file, ajv.errorsText(validateTradeLink.errors));
+    if (linkIds.has(app.id)) fail(file, 'duplicate id');
+    linkIds.add(app.id);
+    for (const dir of app.chains || [])
+      if (!chainByDir.has(dir)) fail(file, `chain "${dir}" not in registry/chains.json`);
+    for (const [key, tpl] of Object.entries(app.links || {})) {
+      if (!tpl) continue;
+      const unknown = tpl.replace(/\{(token|ref|pool|dexscreenerId)\}/g, '').match(/[{}]/);
+      if (unknown) fail(file, `links.${key}: unknown placeholder in ${tpl}`);
+      if (key === 'referral' && !tpl.includes('{ref}'))
+        fail(file, 'links.referral must contain {ref}');
+      if (key === 'tokenNoRef' && tpl.includes('{ref}'))
+        fail(file, 'links.tokenNoRef must not contain {ref}');
+    }
   }
 
   const ids = new Map(); // id → file

@@ -57,6 +57,13 @@ async function main() {
   writeJson(join(out, 'addresses.json'), { generated: meta.generated, addresses });
   writeJson(join(out, 'chains.json'), chains);
   writeJson(join(out, 'tags.json'), tags);
+  const tradeLinks = readJson(join(ROOT, 'registry/trade-links.json'));
+  writeJson(join(out, 'trade-links.json'), {
+    version,
+    generated: meta.generated,
+    count: tradeLinks.length,
+    links: tradeLinks,
+  });
   for (const [dir, list] of Object.entries(byChain))
     writeJson(join(out, 'by-chain', `${dir}.json`), list);
 

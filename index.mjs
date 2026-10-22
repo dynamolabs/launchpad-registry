@@ -10,6 +10,42 @@ export const launchpads = data.launchpads;
 /** Chains that have a registry directory (registry/chains.json). */
 export const chains = load('chains.json');
 
+/** Trading bots and terminals that alert bots link to (shape: schema/trade-link.schema.json). */
+export const tradeLinks = load('trade-links.json').links;
+
+/**
+ * Buy-button URLs for one token: every trade link that supports `chain` and whose template can be
+ * filled from the inputs. Apps that need a referral code are skipped unless `ref` is given (or they
+ * have a `tokenNoRef` variant); Photon needs `pool`. Returns [{ id, name, kind, url, verified }].
+ */
+function chainDirOf(ref) {
+  if (!ref || typeof ref !== 'object') return ref;
+  const c = chains.find((x) => x.family === ref.family && String(x.id) === String(ref.id));
+  return c && c.dir;
+}
+
+export function buyLinks({ chain, token, ref, pool } = {}) {
+  const dir = typeof chain === 'string' ? chain : chainDirOf(chain);
+  const c = chains.find((x) => x.dir === dir);
+  if (!c || !token) return [];
+  const vars = { token, ref, pool, dexscreenerId: c.dexscreenerId };
+  const fill = (tpl) => {
+    let missing = false;
+    const url = tpl.replace(/\{(token|ref|pool|dexscreenerId)\}/g, (_, k) => {
+      if (vars[k] == null || vars[k] === '') missing = true;
+      return String(vars[k] ?? '');
+    });
+    return missing ? null : url;
+  };
+  const out = [];
+  for (const app of tradeLinks) {
+    if (!app.chains.includes(dir) || !app.links.token) continue;
+    const url = fill(app.links.token) || (app.links.tokenNoRef && fill(app.links.tokenNoRef));
+    if (url) out.push({ id: app.id, name: app.name, kind: app.kind, url, verified: app.verified });
+  }
+  return out;
+}
+
 /** Dataset version, build date and per-chain counts. */
 export const meta = {
   version: data.version,
@@ -68,4 +104,16 @@ export const active = () => launchpads.filter((l) => l.status === 'active');
 /** Branded frontends built on a multi-tenant program, e.g. frontendsOf('raydium-launchlab'). */
 export const frontendsOf = (id) => launchpads.filter((l) => l.builtOn === id);
 
-export default { launchpads, chains, meta, byId, forChain, lookup, isKnown, active, frontendsOf };
+export default {
+  launchpads,
+  chains,
+  meta,
+  byId,
+  forChain,
+  lookup,
+  isKnown,
+  active,
+  frontendsOf,
+  tradeLinks,
+  buyLinks,
+};

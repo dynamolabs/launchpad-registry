@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dynamolabs/launchpad-registry/schema/trade-link.schema.json",
+  "title": "Trade link",
+  "description": "A trading bot or terminal that alert bots link to from a token card: the URL templates to open a token (with or without a referral code) and to refer a user. Placeholders: {token} (mint or contract address), {ref} (your referral code), {pool} (pool address), {dexscreenerId} (from chains.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "kind",
+    "website",
+    "chains",
+    "links",
+    "verified",
+    "sources",
+    "checked"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "kind": { "type": "string", "enum": ["telegram", "web", "chart"] },
+    "website": { "type": "string", "format": "uri" },
+    "chains": {
+      "description": "Registry chain dirs this app can trade on (solana, evm-4663, …).",
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(solana|evm-[0-9]+)$" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["token", "referral"],
+      "properties": {
+        "token": {
+          "description": "Opens the token; may need {ref}. null when the app has no documented token deep link.",
+          "type": ["string", "null"],
+          "pattern": "^https://"
+        },
+        "tokenNoRef": {
+          "description": "Opens the token without a referral code, when that is a different URL.",
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "referral": {
+          "description": "Refers a user without a token. null when the app has no referral program or no public format.",
+          "type": ["string", "null"],
+          "pattern": "^https://"
+        }
+      }
+    },
+    "verified": {
+      "description": "production = used by live bots we run; docs = the app's own documentation; community = third-party guides and links in the wild.",
+      "type": "string",
+      "enum": ["production", "docs", "community"]
+    },
+    "sources": { "type": "array", "items": { "type": "string", "format": "uri" }, "minItems": 1 },
+    "checked": { "type": "string", "format": "date" },
+    "notes": { "type": "string" }
+  }
+}
