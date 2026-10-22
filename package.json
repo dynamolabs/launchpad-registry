@@ -7,7 +7,7 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "build": "node scripts/build.mjs",
-    "test": "node --test test/",
+    "test": "node --test",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "check": "npm run lint && npm run validate && npm run build && npm test && git diff --exit-code -- dist docs/index.html || (echo 'dist/docs stale: run npm run build and commit' && exit 1)",
