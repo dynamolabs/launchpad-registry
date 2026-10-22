@@ -308,10 +308,7 @@ test('runEvm reports launches on a registered hook to onLaunch and skips unknown
   await runEvm({
     chain,
     rpcUrl: '',
-    registry: {
-      known: (_d, a) => a === HOOK,
-      lookup: (_d, a) => (a === HOOK ? [{ id: 'doppler-robinhood', role: 'hook' }] : []),
-    },
+    registry: { known: (_d, a) => a === HOOK },
     notify,
     state: createMemoryState(),
     log: silent,
@@ -325,7 +322,7 @@ test('runEvm reports launches on a registered hook to onLaunch and skips unknown
     onLaunch: async (l) => launches.push(l),
   });
   assert.equal(launches.length, 1);
-  assert.deepEqual(launches[0].ids, ['doppler-robinhood']);
+  assert.deepEqual(launches[0].programs, [HOOK]);
   assert.equal(launches[0].token.address, MOONME);
   assert.equal(launches[0].token.symbol, 'SPCX');
   assert.equal(notify.sent.length, 0);

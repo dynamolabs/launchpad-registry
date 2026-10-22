@@ -24,6 +24,7 @@ const update = (id, chat, text) => ({ update_id: id, message: { chat: { id: chat
 test('pollCommands answers commands, advances the offset and skips chats outside the allow list', async () => {
   const state = createMemoryState();
   const tg = fakeTelegram([
+    { ok: true, result: [update(9, 1, '/watch stale')] }, // backlog from before this start
     {
       ok: true,
       result: [
@@ -45,16 +46,48 @@ test('pollCommands answers commands, advances the offset and skips chats outside
     log: silent,
     maxRounds: 2,
   });
-  assert.deepEqual(replies, [{ chat: 1, html: '1:/watch pump-fun' }]);
+  assert.deepEqual(
+    replies,
+    [{ chat: 1, html: '1:/watch pump-fun' }],
+    'the stale command is skipped',
+  );
   assert.equal(state.get().watch.offset, 14);
-  assert.equal(tg.calls[1].body.offset, 14, 'second poll starts after the last update');
-  assert.equal(tg.calls[0].body.offset, 0);
+  assert.deepEqual(tg.calls[0].body, { allowed_updates: ['message'], offset: -1, timeout: 0 });
+  assert.equal(tg.calls[1].body.offset, 10, 'first real poll starts after the backlog');
+  assert.equal(tg.calls[2].body.offset, 14, 'second poll starts after the last update');
+});
+
+test('pollCommands keeps a persisted offset and starts at 0 without a backlog', async () => {
+  const state = createMemoryState({ watch: { offset: 5 } });
+  const tg = fakeTelegram([{ ok: true, result: [] }]);
+  const run = (st, f) =>
+    pollCommands({
+      token: 'T',
+      state: st,
+      command: () => null,
+      reply: async () => {},
+      fetch: f,
+      log: silent,
+      maxRounds: 1,
+    });
+  await run(state, tg.fetch);
+  assert.equal(tg.calls[0].body.offset, 5, 'a persisted offset skips the drain');
+  const fresh = createMemoryState();
+  const tg2 = fakeTelegram([
+    { ok: true, result: [] },
+    { ok: true, result: [] },
+  ]);
+  await run(fresh, tg2.fetch);
+  assert.equal(fresh.get().watch.offset, 0);
 });
 
 test('pollCommands logs a 409 (second poller) and keeps going', async () => {
   const state = createMemoryState();
   const logs = [];
-  const tg = fakeTelegram([{ ok: false, description: 'Conflict: terminated by other getUpdates' }]);
+  const tg = fakeTelegram([
+    { ok: true, result: [] },
+    { ok: false, description: 'Conflict: terminated by other getUpdates' },
+  ]);
   const t0 = Date.now();
   await pollCommands({
     token: 'T',

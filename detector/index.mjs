@@ -8,6 +8,7 @@
 // State in --state (default ./detector-state-<chain>.json). See detector/README.md.
 import { readFileSync } from 'node:fs';
 import { isMain } from '../lib/files.mjs';
+import { splitList } from '../lib/text.mjs';
 import { makeNotifier } from './notify.mjs';
 import { loadRegistry } from './registry.mjs';
 import { openState } from './state.mjs';
@@ -26,12 +27,6 @@ export function parseArgs(argv) {
   }
   return out;
 }
-
-const splitList = (value) =>
-  (value || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
 
 /** Resolves CLI flags + chain defaults into the engine config. Exported for tests. */
 export function buildConfig(args, chain, env = process.env) {
@@ -92,6 +87,7 @@ async function main() {
       chain,
       state,
       notify,
+      registry,
       log,
       broadcast: cfg.watch,
       ref: cfg.tradeRef,
@@ -100,7 +96,7 @@ async function main() {
     onLaunch = watch.onLaunch;
     const token = process.env.TELEGRAM_BOT_TOKEN;
     log(
-      `[watch] broadcast ${cfg.watch.length ? cfg.watch.join(',') : '-'}, ${watch.watchlist.size()} chats watching, ` +
+      `[watch] broadcast ${watch.broadcast.length ? watch.broadcast.join(',') : '-'}, ${watch.watchlist.size()} chats watching, ` +
         `buy ref ${cfg.tradeRef ? 'set' : '-'}, commands ${token ? 'on' : 'off (no TELEGRAM_BOT_TOKEN)'}`,
     );
     if (token) {

@@ -1,10 +1,9 @@
 // Fan-out of one alert to console + Telegram + Discord + generic webhook. All optional, all best-effort.
 // An alert is { title, lines, links, buttons?, payload? }; buttons become a Telegram inline keyboard.
 import { sleep } from '../lib/rpc.mjs';
+import { escapeHtml } from '../lib/text.mjs';
 
-/** HTML-escapes a value for Telegram's HTML parse mode. */
-export const escapeHtml = (s) =>
-  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+export { escapeHtml };
 
 const allLinks = (alert) => [...(alert.links || []), ...(alert.buttons || [])];
 
@@ -53,7 +52,10 @@ export function makeNotifier(opts = {}) {
     fetch: fetchImpl = globalThis.fetch,
   } = opts;
 
-  /** POSTs JSON; one retry after Telegram's retry_after on 429. Never throws. */
+  /**
+   * POSTs JSON; one retry after Telegram's retry_after on 429. Never throws.
+   * @returns {Promise<{ ok: boolean, status: number, text: string }>}  status 0 = network error
+   */
   async function post(url, body, retry = true) {
     try {
       const res = await fetchImpl(url, {
@@ -61,7 +63,7 @@ export function makeNotifier(opts = {}) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body),
       });
-      if (res.ok) return;
+      if (res.ok) return { ok: true, status: res.status, text: '' };
       const text = await res.text();
       if (res.status === 429 && retry) {
         const wait = Number(/"retry_after":\s*(\d+)/.exec(text)?.[1] || 3);
@@ -69,17 +71,19 @@ export function makeNotifier(opts = {}) {
         return post(url, body, false);
       }
       log(`[notify] ${new URL(url).host} ${res.status} ${text.slice(0, 200)}`);
+      return { ok: false, status: res.status, text };
     } catch (err) {
       log(`[notify] ${err.message}`);
+      return { ok: false, status: 0, text: err.message };
     }
   }
 
   const telegramUrl = () => `https://api.telegram.org/bot${telegramToken}/sendMessage`;
 
-  /** Sends HTML text to one Telegram chat (no-op without a bot token). */
+  /** Sends HTML text to one Telegram chat; resolves to the post() result (ok: false without a token). */
   async function telegramText(chat, html, extra = {}) {
-    if (!telegramToken) return;
-    await post(telegramUrl(), {
+    if (!telegramToken) return { ok: false, status: 0, text: 'no TELEGRAM_BOT_TOKEN' };
+    return post(telegramUrl(), {
       chat_id: chat,
       parse_mode: 'HTML',
       disable_web_page_preview: true,

@@ -6,6 +6,8 @@ import {
   parseCommand,
   handleCommand,
   launchpadIdsOf,
+  creditedIds,
+  preferFrontends,
   buildLaunchAlert,
   createWatch,
   DEFAULT_BUTTONS,
@@ -77,25 +79,35 @@ test('handleCommand drives the watchlist and answers in Telegram HTML', () => {
   assert.match(run('/watch <b>'), /&lt;b&gt;/, 'user input is escaped');
 });
 
-test('launchpadIdsOf credits launch roles only and prefers a frontend over its base', () => {
-  const registry = {
-    lookup: (_dir, a) =>
-      ({
-        PUMP: [{ id: 'pump-fun', role: 'program' }],
-        DBC: [{ id: 'meteora-dbc', role: 'program' }],
-        BAGSCFG: [{ id: 'bags', role: 'partner-config' }],
-        RAY: [{ id: 'pump-fun', role: 'other' }],
-      })[a] || [],
-  };
-  assert.deepEqual(launchpadIdsOf(registry, 'solana', ['PUMP', 'RAY', 'X']), ['pump-fun']);
-  assert.deepEqual(launchpadIdsOf(registry, 'solana', ['RAY']), []);
+const fakeRegistry = {
+  known: () => true,
+  lookup: (_dir, a) =>
+    ({
+      PUMP: [{ id: 'pump-fun', role: 'program' }],
+      DBC: [{ id: 'meteora-dbc', role: 'program' }],
+      BAGSCFG: [{ id: 'bags', role: 'partner-config' }],
+      RAY: [{ id: 'pump-fun', role: 'other' }],
+      FEE: [{ id: 'heaven', role: 'fee-collector' }],
+    })[a] || [],
+};
+
+test('crediting: launch roles for programs, config roles for accounts, frontends over their base', () => {
+  const r = fakeRegistry;
+  assert.deepEqual(creditedIds(r, 'solana', ['PUMP', 'RAY', 'X']), ['pump-fun']);
+  assert.deepEqual(creditedIds(r, 'solana', ['FEE', 'BAGSCFG'], ['partner-config']), ['bags']);
   assert.equal(byId('bags').builtOn, 'meteora-dbc', 'fixture assumption');
-  assert.deepEqual(launchpadIdsOf(registry, 'solana', ['DBC', 'BAGSCFG']), ['bags']);
+  assert.deepEqual(preferFrontends(['meteora-dbc', 'bags']), ['bags']);
   assert.deepEqual(
-    launchpadIdsOf({ known: () => true }, 'solana', ['DBC']),
-    [],
-    'no lookup → none',
+    launchpadIdsOf(r, 'solana', { programs: ['DBC'], accounts: ['BAGSCFG', 'FEE'] }),
+    ['bags'],
   );
+  assert.deepEqual(
+    launchpadIdsOf(r, 'solana', { programs: ['DBC'], accounts: ['FEE'] }),
+    ['meteora-dbc'],
+    'a fee wallet of another launchpad in the tx does not credit it',
+  );
+  assert.deepEqual(launchpadIdsOf(r, 'solana', { programs: ['RAY'] }), []);
+  assert.deepEqual(launchpadIdsOf({ known: () => true }, 'solana', { programs: ['DBC'] }), []);
 });
 
 test('buildLaunchAlert carries explorer/dexscreener links and buy buttons with the referral', () => {
@@ -139,30 +151,55 @@ function collect() {
     chats,
     notify: {
       send: async (alert) => sent.push(alert),
-      telegram: async (chat, alert) => chats.push({ chat, alert }),
+      telegram: async (chat, alert) => {
+        chats.push({ chat, alert });
+        return { ok: true, status: 200, text: '' };
+      },
     },
   };
 }
 
-test('createWatch routes a launch to the chats watching it, once per chat, and to broadcast sinks', async () => {
+const launch = (programs, address, extra = {}, accounts = []) => ({
+  programs,
+  accounts,
+  token: { address, ...extra },
+});
+
+test('createWatch routes a launch to the chats watching it, once per chat, and once to broadcast sinks', async () => {
   const state = createMemoryState();
   const { sent, chats, notify } = collect();
-  const watch = createWatch({ chain, state, notify, broadcast: ['bags'], ref: 'me', apps: [] });
+  const logs = [];
+  const watch = createWatch({
+    chain,
+    state,
+    notify,
+    registry: fakeRegistry,
+    log: (m) => logs.push(m),
+    broadcast: ['Bags', 'meteora-dbc', 'nope'],
+    ref: 'me',
+    apps: [],
+  });
+  assert.deepEqual(watch.broadcast, ['bags', 'meteora-dbc'], 'names resolve like /watch');
+  assert.ok(logs.some((l) => /--watch nope: no such launchpad/.test(l)));
   watch.command('/watch pump.fun', 'A');
   watch.command('/watch all', 'B');
   watch.command('/watch bags', 'C');
   watch.command('/watch meteora-dbc', 'C');
 
-  await watch.onLaunch({ ids: ['pump-fun'], token: { address: 'M1', symbol: 'ONE' } });
+  await watch.onLaunch(launch(['PUMP'], 'M1', { symbol: 'ONE' }));
+  await watch.idle();
   assert.deepEqual(
     chats.map((c) => c.chat),
     ['A', 'B'],
   );
   assert.equal(sent.length, 0, 'pump-fun is not in the broadcast list');
   assert.equal(chats[0].alert.buttons.length, DEFAULT_BUTTONS.length, 'empty apps → defaults');
+  assert.equal(chats[0].alert.title, '🆕 pump.fun: ONE');
 
-  await watch.onLaunch({ ids: ['bags', 'meteora-dbc'], token: { address: 'M2' } });
-  assert.equal(sent.length, 1, 'broadcast for bags');
+  await watch.onLaunch(launch(['DBC'], 'M2', {}, ['BAGSCFG']));
+  await watch.idle();
+  assert.equal(sent.length, 1, 'bags and meteora-dbc both broadcast, but one card per token');
+  assert.equal(sent[0].payload.launchpad, 'bags');
   const second = chats.slice(2);
   assert.deepEqual(
     second.map((c) => c.chat).sort(),
@@ -171,29 +208,74 @@ test('createWatch routes a launch to the chats watching it, once per chat, and t
   );
   assert.equal(second.find((c) => c.chat === 'C').alert.payload.launchpad, 'bags');
 
-  await watch.onLaunch({ ids: ['pump-fun'], token: { address: 'M1' } });
+  await watch.onLaunch(launch(['PUMP'], 'M1'));
+  await watch.idle();
   assert.equal(chats.length, 4, 'a token is reported once');
 
-  await watch.onLaunch({ ids: ['not-registered'], token: { address: 'M3' } });
-  assert.equal(chats.length, 4);
+  await watch.onLaunch(launch(['RAY'], 'M3'));
+  await watch.onLaunch(launch(['DBC'], 'M4', {}, ['FEE']));
+  await watch.idle();
+  assert.equal(
+    chats.length,
+    6,
+    'role other never credits; the fee-wallet tx goes to B (all) and C (dbc)',
+  );
+  assert.deepEqual(
+    chats.slice(4).map((c) => c.alert.payload.launchpad),
+    ['meteora-dbc', 'meteora-dbc'],
+  );
   assert.deepEqual(state.get().watch.chats.C, ['bags', 'meteora-dbc'], 'persisted in state');
 });
 
-test('createWatch keeps sending to other chats when one Telegram send throws', async () => {
+test('createWatch does not block the caller on sends and unsubscribes dead chats', async () => {
   const state = createMemoryState();
   const logs = [];
   const got = [];
+  let release;
+  const gate = new Promise((r) => (release = r));
   const notify = {
     send: async () => {},
     telegram: async (chat) => {
-      if (chat === 'bad') throw new Error('blocked');
+      if (chat === 'slow') await gate;
+      if (chat === 'gone')
+        return { ok: false, status: 403, text: 'Forbidden: bot was blocked by the user' };
+      if (chat === 'boom') throw new Error('socket hang up');
       got.push(chat);
+      return { ok: true, status: 200, text: '' };
     },
   };
-  const watch = createWatch({ chain, state, notify, log: (m) => logs.push(m), apps: [] });
-  watch.command('/watch all', 'bad');
-  watch.command('/watch all', 'good');
-  await watch.onLaunch({ ids: ['pump-fun'], token: { address: 'M' } });
-  assert.deepEqual(got, ['good']);
-  assert.ok(logs.some((l) => /blocked/.test(l)));
+  const watch = createWatch({
+    chain,
+    state,
+    notify,
+    registry: fakeRegistry,
+    log: (m) => logs.push(m),
+    apps: [],
+  });
+  for (const chat of ['slow', 'gone', 'boom', 'good']) watch.command('/watch all', chat);
+  const t0 = Date.now();
+  await watch.onLaunch(launch(['PUMP'], 'M'));
+  assert.ok(Date.now() - t0 < 50, 'onLaunch returns before the slow send finishes');
+  release();
+  await watch.idle();
+  assert.deepEqual(got, ['slow', 'good']);
+  assert.deepEqual(watch.watchlist.list('gone'), [], '403 → unsubscribed');
+  assert.deepEqual(watch.watchlist.list('boom'), ['all'], 'a network error keeps the subscription');
+  assert.ok(logs.some((l) => /gone unsubscribed: 403/.test(l)));
+  assert.ok(logs.some((l) => /socket hang up/.test(l)));
+});
+
+test('createWatch still cards a launchpad id the bundled package does not know', async () => {
+  const state = createMemoryState();
+  const { chats, notify } = collect();
+  const registry = {
+    lookup: (_d, a) => (a === 'NEW' ? [{ id: 'brand-new', role: 'program' }] : []),
+  };
+  const watch = createWatch({ chain, state, notify, registry, log: () => {}, apps: [] });
+  watch.command('/watch all', 'Z');
+  await watch.onLaunch(launch(['NEW'], 'M'));
+  await watch.idle();
+  assert.equal(chats.length, 1);
+  assert.equal(chats[0].alert.payload.launchpad, 'brand-new');
+  assert.match(chats[0].alert.title, /brand-new/);
 });

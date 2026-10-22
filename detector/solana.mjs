@@ -5,8 +5,8 @@
 //   metadata polls the Token Metadata program's signatures: cheap, but blind to Token-2022-only mints.
 // Either way every non-system outer program of a launch tx is counted by the tracker.
 import { makeRpc, sleep } from '../lib/rpc.mjs';
+import { base58Decode } from '../lib/text.mjs';
 import { createTracker, migrateLegacyKeys } from './tracker.mjs';
-import { launchpadIdsOf } from './watch.mjs';
 
 export const METADATA_PROGRAM = 'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s';
 
@@ -70,14 +70,46 @@ export const accountKeys = (tx) => [
   ...(tx.meta?.loadedAddresses?.readonly || []),
 ];
 
+/** Borsh string (u32 LE length + utf8) at `offset`; null when the buffer is too short. */
+function borshString(bytes, offset) {
+  if (offset + 4 > bytes.length) return null;
+  const len =
+    bytes[offset] |
+    (bytes[offset + 1] << 8) |
+    (bytes[offset + 2] << 16) |
+    (bytes[offset + 3] << 24);
+  if (len < 0 || len > 256 || offset + 4 + len > bytes.length) return null;
+  const text = new TextDecoder().decode(bytes.subarray(offset + 4, offset + 4 + len));
+  return { value: text.replace(/\0+$/, '').trim(), next: offset + 4 + len };
+}
+
 /**
- * Name and symbol from a Token-2022 `initializeTokenMetadata` instruction (pump.fun and clones), or {}.
- * Metaplex metadata is not jsonParsed by RPCs, so Metaplex-only launches stay nameless here.
+ * Name and symbol of a Metaplex `CreateMetadataAccount` (v1 0, v2 17, v3 33) instruction's data:
+ * the (DataV2) struct starts with name and symbol right after the one-byte discriminator.
+ */
+export function metaplexMetadata(data) {
+  const bytes = base58Decode(data);
+  if (!bytes || ![0, 17, 33].includes(bytes[0])) return null;
+  const name = borshString(bytes, 1);
+  const symbol = name && borshString(bytes, name.next);
+  return name && symbol ? { name: name.value, symbol: symbol.value } : null;
+}
+
+/**
+ * Name and symbol of the launched token, or {}: from a Token-2022 `initializeTokenMetadata`
+ * (pump.fun and clones, jsonParsed by the RPC) or a Metaplex create-metadata instruction
+ * (LaunchLab, letsbonk, Meteora DBC…; decoded from its raw data).
  */
 export function tokenMetadata(tx) {
-  const ix = allInstructions(tx).find((i) => i.parsed?.type === 'initializeTokenMetadata');
-  const info = ix?.parsed?.info;
-  return info ? { name: info.name, symbol: info.symbol } : {};
+  const ixs = allInstructions(tx);
+  const parsed = ixs.find((i) => i.parsed?.type === 'initializeTokenMetadata')?.parsed?.info;
+  if (parsed) return { name: parsed.name, symbol: parsed.symbol };
+  for (const ix of ixs) {
+    if (ix.programId !== METADATA_PROGRAM || !ix.data) continue;
+    const meta = metaplexMetadata(ix.data);
+    if (meta) return meta;
+  }
+  return {};
 }
 
 /**
@@ -138,7 +170,8 @@ export function buildAlert({ chain, hit, cfg }) {
 /**
  * Runs the Solana engine until the process exits. Same context shape as runEvm.
  * cfg: { windowMin, minTokens, pollMs, batch, ignore, repoUrl }
- * onLaunch (optional, from detector/watch.mjs) receives every launch on a *registered* launchpad.
+ * onLaunch (optional, from detector/watch.mjs) receives every launch that touches a registered program:
+ * { programs: registered program ids in the tx, accounts: every account of the tx, token }.
  */
 export async function runSolana({
   chain,
@@ -203,15 +236,15 @@ export async function runSolana({
     symbol,
   }) {
     const token = { address: mint, creator: payer };
-    const known = [...programs, ...inner].filter((p) => registry.known(chain.dir, p));
+    // deduped: a launchpad can appear as the outer program and again as a CPI target in one tx
+    const known = [...new Set([...programs, ...inner])].filter((p) => registry.known(chain.dir, p));
     for (const programId of known.length ? known : programs) {
       const hit = tracker.record('program', programId, token);
       if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
     }
+    // the watch feed credits the launch itself (partner / platform configs are plain accounts of the tx)
     if (onLaunch && known.length) {
-      // partner / platform configs are plain accounts of the tx, so they are matched too (Bags, Jupiter Studio…)
-      const ids = launchpadIdsOf(registry, chain.dir, [...known, ...accounts]);
-      if (ids.length) await onLaunch({ ids, token: { ...token, name, symbol } });
+      await onLaunch({ programs: known, accounts, token: { ...token, name, symbol } });
     }
   }
 

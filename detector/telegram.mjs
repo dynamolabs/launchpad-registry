@@ -28,19 +28,26 @@ export async function pollCommands({
   const s = state.get();
   s.watch ??= {};
   const allowed = new Set(allow.map(String));
+  const getUpdates = async (body) => {
+    const res = await fetchImpl(`https://api.telegram.org/bot${token}/getUpdates`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ allowed_updates: ['message'], ...body }),
+      signal: AbortSignal.timeout(((body.timeout || 0) + 10) * 1000),
+    });
+    return { res, json: await res.json().catch(() => ({})) };
+  };
   for (let round = 0; round < maxRounds; round++) {
     try {
-      const res = await fetchImpl(`https://api.telegram.org/bot${token}/getUpdates`, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          offset: s.watch.offset || 0,
-          timeout: timeoutS,
-          allowed_updates: ['message'],
-        }),
-        signal: AbortSignal.timeout((timeoutS + 10) * 1000),
-      });
-      const json = await res.json().catch(() => ({}));
+      if (s.watch.offset == null) {
+        // first start with this token: skip whatever queued up before (old commands, another bot's messages)
+        const { json } = await getUpdates({ offset: -1, timeout: 0 });
+        const last = json.ok && json.result?.at(-1);
+        s.watch.offset = last ? last.update_id + 1 : 0;
+        state.touch();
+        if (last) log('[telegram] skipped the queued updates from before this start');
+      }
+      const { res, json } = await getUpdates({ offset: s.watch.offset, timeout: timeoutS });
       if (!json.ok) {
         log(
           `[telegram] getUpdates ${res.status} ${json.description || ''}${

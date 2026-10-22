@@ -4,6 +4,7 @@
 //   broadcast  `--watch pump-fun,bags` or `--watch all` sends to every configured sink (console, Discord, …)
 // Pure helpers + fan-out; the Telegram command loop is in telegram.mjs.
 import { buyLinks, byId, forChain } from '../index.mjs';
+import { escapeHtml, splitList } from '../lib/text.mjs';
 
 /** Buy buttons under a launch card, in order (ids from registry/trade-links.json). */
 export const DEFAULT_BUTTONS = [
@@ -15,9 +16,11 @@ export const DEFAULT_BUTTONS = [
   'dexscreener',
 ];
 
-export const escapeHtml = (s) =>
-  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+/** Roles that credit a launch when the address is merely an *account* of the tx (not a program). */
+export const CONFIG_ROLES = ['partner-config', 'platform-config'];
 
+/** Queued Telegram sends beyond this are dropped oldest-first (a stalled bot must not eat memory). */
+export const MAX_QUEUE = 5000;
 /**
  * Per-chat watch lists, persisted inside the detector state file (`state.watch.chats`).
  * A list may hold launchpad ids or the word `all`.
@@ -169,20 +172,37 @@ export function handleCommand({ text, chat, watchlist, launchpads, chain }) {
 }
 
 /**
- * Registered launchpads that own any of these addresses (launch roles only: shared DEX programs are
- * role `other` and never credited). A frontend built on another entry (`builtOn`) wins over its base,
- * so a Bags launch is reported as Bags, not as Meteora DBC.
+ * Registered launchpad ids owning any of these addresses, restricted to `roles` when given;
+ * role `other` (shared DEX programs) never credits.
  */
-export function launchpadIdsOf(registry, dir, addresses) {
+export function creditedIds(registry, dir, addresses, roles) {
   const ids = new Set();
   for (const address of addresses || []) {
     for (const owner of registry.lookup?.(dir, address) || []) {
-      if (owner.role !== 'other') ids.add(owner.id);
+      if (owner.role === 'other') continue;
+      if (roles && !roles.includes(owner.role)) continue;
+      ids.add(owner.id);
     }
   }
-  const bases = new Set([...ids].map((id) => byId(id)?.builtOn).filter(Boolean));
-  return [...ids].filter((id) => !bases.has(id));
+  return [...ids];
 }
+
+/** A frontend built on another entry (`builtOn`) wins over its base: a Bags launch is Bags, not Meteora DBC. */
+export function preferFrontends(ids) {
+  const set = new Set(ids);
+  const bases = new Set([...set].map((id) => byId(id)?.builtOn).filter(Boolean));
+  return [...set].filter((id) => !bases.has(id));
+}
+
+/**
+ * Launchpads credited with a launch: any launch role for the programs / entrypoints / hooks of the tx,
+ * partner / platform configs for its plain accounts (Bags, Jupiter Studio… on Meteora DBC).
+ */
+export const launchpadIdsOf = (registry, dir, { programs = [], accounts = [] }) =>
+  preferFrontends([
+    ...creditedIds(registry, dir, programs),
+    ...creditedIds(registry, dir, accounts, CONFIG_ROLES),
+  ]);
 
 /** The card for one launch on a registered launchpad. */
 export function buildLaunchAlert({ chain, launchpad, token, ref, apps = DEFAULT_BUTTONS }) {
@@ -219,28 +239,25 @@ export function buildLaunchAlert({ chain, launchpad, token, ref, apps = DEFAULT_
   };
 }
 
-const splitList = (value) =>
-  (value || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
-
 /**
- * Builds the launch fan-out for one chain.
+ * Builds the launch fan-out for one chain. Sends are queued and drained by one worker, so a slow
+ * Telegram never stalls the chain cursor; `idle()` resolves once the queue is empty.
  * @param {object} p
  * @param {object} p.chain        entry from registry/chains.json
  * @param {object} p.state        detector/state.mjs (watch lists live under state.watch)
  * @param {object} p.notify       detector/notify.mjs
- * @param {string[]} [p.broadcast]  launchpad ids (or 'all') sent to every configured sink
+ * @param {object} p.registry     detector/registry.mjs (lookup) — the live, refreshed address index
+ * @param {string[]} [p.broadcast]  launchpad ids / names (or 'all') sent to every configured sink
  * @param {string} [p.ref]        referral code for the buy buttons (env TRADE_REF)
  * @param {string[]} [p.apps]     button ids (env BUY_BUTTONS, comma list)
- * @param {object[]} [p.launchpads]  registry entries of this chain
- * @returns {{ watchlist, onLaunch, command }}
+ * @param {object[]} [p.launchpads]  registry entries of this chain (names, aliases, websites)
+ * @returns {{ watchlist, broadcast, onLaunch, command, idle }}
  */
 export function createWatch({
   chain,
   state,
   notify,
+  registry,
   log = console.log,
   broadcast = [],
   ref = process.env.TRADE_REF,
@@ -251,36 +268,90 @@ export function createWatch({
   s.watch ??= {};
   const watchlist = createWatchlist(s.watch);
   const entries = new Map(launchpads.map((l) => [l.id, l]));
-  const everything = broadcast.includes('all');
   if (!apps.length) apps = DEFAULT_BUTTONS;
 
-  /**
-   * One launch, credited to one or more registered launchpads.
-   * @param {{ ids: string[], token: { address: string, symbol?: string, name?: string, creator?: string } }} launch
-   */
-  async function onLaunch({ ids, token }) {
-    if (!state.markSeen(`launch:${token.address}`)) return;
-    const targets = new Map(); // chat → alert (one card per chat even when two launchpads match)
-    for (const id of new Set(ids)) {
-      const launchpad = entries.get(id);
-      if (!launchpad) continue;
-      const alert = buildLaunchAlert({ chain, launchpad, token, ref, apps });
-      if (everything || broadcast.includes(id)) await notify.send(alert);
-      for (const chat of watchlist.watchers(id)) if (!targets.has(chat)) targets.set(chat, alert);
-    }
-    for (const [chat, alert] of targets) {
+  // --watch names are resolved like /watch (id, name, alias); unknown ones are reported, not silently ignored
+  const broadcastIds = [];
+  for (const want of broadcast) {
+    const l = want.toLowerCase() === 'all' ? { id: 'all' } : resolveLaunchpad(want, launchpads);
+    if (l) broadcastIds.push(l.id);
+    else log(`[watch] --watch ${want}: no such launchpad on ${chain.name} (see /launchpads)`);
+  }
+  const everything = broadcastIds.includes('all');
+
+  // ---- send queue: one worker, dead chats are unsubscribed on 403 / "chat not found"
+  const queue = [];
+  let draining = Promise.resolve();
+  let running = false;
+  async function drain() {
+    while (queue.length) {
+      const job = queue.shift();
       try {
-        await notify.telegram(chat, alert);
+        if (job.chat == null) {
+          await notify.send(job.alert);
+          continue;
+        }
+        const res = await notify.telegram(job.chat, job.alert);
+        if (
+          res &&
+          !res.ok &&
+          (res.status === 403 || /chat not found|deactivated/i.test(res.text))
+        ) {
+          watchlist.clear(job.chat);
+          state.touch();
+          log(`[watch] chat ${job.chat} unsubscribed: ${res.status} ${res.text.slice(0, 80)}`);
+        }
       } catch (err) {
-        log(`[watch] chat ${chat}: ${err.message}`);
+        log(`[watch] chat ${job.chat ?? '-'}: ${err.message}`);
       }
     }
+  }
+  function enqueue(job) {
+    queue.push(job);
+    if (queue.length > MAX_QUEUE) {
+      queue.splice(0, queue.length - MAX_QUEUE);
+      log(`[watch] send queue full, dropped the oldest cards`);
+    }
+    if (!running) {
+      running = true;
+      draining = drain().finally(() => {
+        running = false;
+      });
+    }
+  }
+
+  /**
+   * One launch: the registered programs of its tx, every account of its tx, and the token.
+   * Credits it, dedupes per token, and queues one card per sink / chat.
+   * @param {object} launch
+   * @param {string[]} launch.programs   registered program ids / entrypoints / hooks of the tx
+   * @param {string[]} [launch.accounts]  every account of the tx (partner / platform configs live here)
+   * @param {{ address: string, symbol?: string, name?: string, creator?: string }} launch.token
+   */
+  async function onLaunch({ programs, accounts = [], token }) {
+    const ids = launchpadIdsOf(registry, chain.dir, { programs, accounts });
+    if (!ids.length || !state.markSeen(`launch:${token.address}`)) return;
+    // a launchpad merged upstream but not in this package yet still gets a card under its id
+    const entry = (id) => entries.get(id) || { id, name: id };
+    const cards = new Map(
+      ids.map((id) => [id, buildLaunchAlert({ chain, launchpad: entry(id), token, ref, apps })]),
+    );
+    const broadcastId = everything ? ids[0] : ids.find((id) => broadcastIds.includes(id));
+    if (broadcastId) enqueue({ alert: cards.get(broadcastId) });
+    const targets = new Map(); // chat → first matching card
+    for (const id of ids)
+      for (const chat of watchlist.watchers(id))
+        if (!targets.has(chat)) targets.set(chat, cards.get(id));
+    for (const [chat, alert] of targets) enqueue({ chat, alert });
     state.touch();
   }
 
   return {
     watchlist,
+    broadcast: broadcastIds,
     onLaunch,
+    /** Resolves once every queued card has been sent. */
+    idle: () => draining,
     /** Telegram command → HTML reply or null. */
     command: (text, chat) => {
       const reply = handleCommand({ text, chat, watchlist, launchpads, chain });

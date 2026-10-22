@@ -430,11 +430,14 @@ test('block source with a pending slot inside a parallel batch stops exactly the
 });
 
 // ---- watch feed (onLaunch) ----------------------------------------------------------------------
-import { tokenMetadata, accountKeys } from '../detector/solana.mjs';
+import { tokenMetadata, metaplexMetadata, accountKeys } from '../detector/solana.mjs';
 
 test('tokenMetadata and accountKeys read the pump.fun launch tx', () => {
   assert.deepEqual(tokenMetadata(pump), { name: 'KIMCHIPCS', symbol: 'KIMCHIPCS' });
-  assert.deepEqual(tokenMetadata(launchlab), {}, 'Metaplex-only launches have no parsed metadata');
+  const lab = tokenMetadata(launchlab);
+  assert.ok(lab.name && lab.symbol, 'Metaplex create-metadata data is decoded (LaunchLab)');
+  assert.equal(metaplexMetadata('11'), null);
+  assert.equal(metaplexMetadata('0OIl'), null, 'invalid base58');
   assert.ok(accountKeys(pump).includes(PUMP));
 });
 
@@ -461,8 +464,19 @@ test('block source hands every launch on a registered launchpad to onLaunch, wit
   });
   assert.equal(notify.sent.length, 0, 'registered programs never trigger the unknown alert');
   assert.equal(launches.length, 2, 'one launch per scanned block');
-  assert.deepEqual(launches[0].ids, ['pump-fun']);
+  assert.deepEqual(launches[0].programs, [PUMP]);
+  assert.ok(launches[0].accounts.includes(PUMP));
   assert.equal(launches[0].token.symbol, 'cyber', 'Token-2022 metadata of the recorded block');
   assert.match(launches[0].token.address, /^[1-9A-HJ-NP-Za-km-z]{32,44}$/);
   assert.ok(launches[0].token.creator);
+});
+
+test('a program seen both as outer program and as CPI target in one tx counts the birth once', async () => {
+  const twice = structuredClone(pump);
+  twice.meta.innerInstructions.push({
+    index: 0,
+    instructions: [{ programId: PUMP, accounts: [], data: '' }],
+  });
+  const { notify } = await run(fakeChain(twice, { count: 2 }).rpc);
+  assert.equal(notify.sent.length, 0, '2 launches must not read as 4');
 });

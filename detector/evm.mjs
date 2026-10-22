@@ -2,7 +2,6 @@
 // → counted per window by the tracker → one alert per unknown entrypoint.
 import { makeRpc, isRateLimit, sleep } from '../lib/rpc.mjs';
 import { createTracker, migrateLegacyKeys } from './tracker.mjs';
-import { launchpadIdsOf } from './watch.mjs';
 
 export const TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
 export const V4_INITIALIZE_TOPIC =
@@ -128,7 +127,8 @@ const toHex = (n) => '0x' + n.toString(16);
  * @param {object} ctx.cfg        { windowMin, minTokens, pollMs, chunk, v4PoolManager, quoteTokens, ignore, repoUrl }
  * @param {Function} ctx.log
  * @param {Function} [ctx.rpc]    injected JSON-RPC client (tests); defaults to makeRpc(rpcUrl)
- * @param {Function} [ctx.onLaunch]  from detector/watch.mjs: every launch on a *registered* entrypoint / hook
+ * @param {Function} [ctx.onLaunch]  from detector/watch.mjs: every launch on a *registered* entrypoint / hook,
+ *   as { programs: [address], accounts: [], token }
  * @param {number} [ctx.maxRounds]  stop after this many poll rounds (tests); default forever
  */
 export async function runEvm({
@@ -174,9 +174,8 @@ export async function runEvm({
   async function report(kind, address, token) {
     const hit = tracker.record(kind, address, token);
     if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
-    if (onLaunch) {
-      const ids = launchpadIdsOf(registry, chain.dir, [address]);
-      if (ids.length) await onLaunch({ ids, token });
+    if (onLaunch && registry.known(chain.dir, address)) {
+      await onLaunch({ programs: [address], accounts: [], token });
     }
     state.touch();
   }
