@@ -37,14 +37,8 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "memecoin",
-    "bonding-curve",
-    "frontend"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["memecoin", "bonding-curve", "frontend"],
   "externalIds": {
     "geckoterminal": "bags-fm",
     "solanatracker": "bags"

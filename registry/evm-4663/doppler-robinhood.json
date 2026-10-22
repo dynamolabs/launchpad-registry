@@ -37,33 +37,28 @@
   "graduation": {
     "target": "uniswap-v4"
   },
-  "quotes": [
-    "ETH"
-  ],
-  "tags": [
-    "uniswap-v4",
-    "hook"
-  ],
+  "quotes": ["ETH"],
+  "tags": ["uniswap-v4", "hook"],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
   ],
   "notes": "",
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "logo": "icons/doppler-robinhood.png",
   "fixtures": [
     {
       "tx": "0x2457e14dff2a9bb3b77137f0b12d73857d8234cd5be0194e44f546c052019da4",
-      "token": "0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
+      "token": "0xb783754bcc9469efd8e85bdd4d2584c36f57240d",
       "creator": "0x43378e9b88da4d4e34056c975a689a626eff13f7",
       "date": "2026-10-21",
-      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94577634-94582633)"
+      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94577634-94582633); token = currency minted in the tx (the other V4 currency is the numeraire)"
     },
     {
       "tx": "0x5b485420b877b70975c600e1343fed1f37ca9603b1c7989cbe4728cad30d0aa3",
-      "token": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "token": "0xfb2a9e0c9b96f2a678fbc6c662df23cd12c8cba3",
       "creator": "0x9ec9cc60845566260bacfe8688e4f7ef9337bc34",
       "date": "2026-10-21",
-      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94572564-94577563)"
+      "note": "found by scripts/fixtures.mjs (topic0 in blocks 94572564-94577563); token = currency minted in the tx (the other V4 currency is the numeraire)"
     }
   ],
   "lastActivity": "2026-10-21"

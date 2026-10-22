@@ -42,13 +42,8 @@
   "graduation": {
     "target": "raydium-cpmm"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "stocks-theme",
-    "frontend"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["stocks-theme", "frontend"],
   "sources": [
     "https://www.stonkfun.xyz",
     "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"

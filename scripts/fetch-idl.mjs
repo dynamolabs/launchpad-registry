@@ -1,23 +1,64 @@
 #!/usr/bin/env node
-// Snapshots the on-chain IDL of every Solana `program` contract into idl/<id>.json via idl.solana.com (PMP first, Anchor fallback).
+// Snapshots the on-chain IDL of every Solana `program` contract into idl/<id>.json via idl.solana.com.
 //   node scripts/fetch-idl.mjs [id ...]      (no args = all Solana entries)
-import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-const root = new URL('..', import.meta.url).pathname, API = process.env.IDL_API || 'https://idl-one.vercel.app/api/idl';
-mkdirSync(join(root, 'idl'), { recursive: true });
+import { ROOT, loadChains, loadEntries, writeJson, today } from '../lib/files.mjs';
+import { sleep } from '../lib/rpc.mjs';
+
+const API = process.env.IDL_API || 'https://idl-one.vercel.app/api/idl';
 const only = new Set(process.argv.slice(2));
-for (const f of readdirSync(join(root, 'registry/solana')).filter(f => f.endsWith('.json'))) {
-  const file = join(root, 'registry/solana', f), e = JSON.parse(readFileSync(file, 'utf8'));
-  if (only.size && !only.has(e.id)) continue;
-  const prog = e.contracts.find(c => c.role === 'program'); if (!prog) continue;
+mkdirSync(join(ROOT, 'idl'), { recursive: true });
+
+/** The API answers { idl } or { content }, sometimes JSON-encoded as a string, sometimes nested once more. */
+function unwrap(answer) {
+  let idl = answer.idl ?? answer.content;
+  if (typeof idl === 'string') {
+    try {
+      idl = JSON.parse(idl);
+    } catch {
+      return null;
+    }
+  }
+  return idl?.idl ?? idl ?? null;
+}
+
+const solana = loadChains().find((c) => c.family === 'solana');
+for (const { file, entry } of loadEntries(solana)) {
+  if (only.size && !only.has(entry.id)) continue;
+  const program = entry.contracts.find((c) => c.role === 'program');
+  if (!program) continue;
   try {
-    const r = await fetch(`${API}?programId=${prog.address}`); const d = await r.json();
-    let c = d.idl ?? d.content; if (typeof c === 'string') { try { c = JSON.parse(c); } catch {} } if (c?.idl) c = c.idl;
-    if (!c || d.error) { console.log(`- ${e.id}: ${d.error || 'no IDL'}`); continue; }
-    const name = c.name || c.metadata?.name, version = c.version || c.metadata?.version;
-    writeFileSync(join(root, `idl/${e.id}.json`), JSON.stringify({ programId: prog.address, name, version, source: d.type, fetched: new Date().toISOString().slice(0, 10), via: 'https://idl.solana.com', idl: c }, null, 1) + '\n');
-    if (!e.idl) { e.idl = `idl/${e.id}.json`; writeFileSync(file, JSON.stringify(e, null, 2) + '\n'); }
-    console.log(`+ ${e.id}: ${name}@${version} (${d.type}, ${c.instructions?.length ?? 0} ix)`);
-  } catch (x) { console.log(`- ${e.id}: ${x.message}`); }
-  await new Promise(r => setTimeout(r, 300));
+    const answer = await (await fetch(`${API}?programId=${program.address}`)).json();
+    const idl = unwrap(answer);
+    if (!idl || answer.error) {
+      console.log(`- ${entry.id}: ${answer.error || 'no IDL'}`);
+      continue;
+    }
+    const name = idl.name || idl.metadata?.name;
+    const version = idl.version || idl.metadata?.version;
+    writeJson(
+      join(ROOT, `idl/${entry.id}.json`),
+      {
+        programId: program.address,
+        name,
+        version,
+        source: answer.type,
+        fetched: today(),
+        via: 'https://idl.solana.com',
+        idl,
+      },
+      1,
+    );
+    if (!entry.idl) {
+      entry.idl = `idl/${entry.id}.json`;
+      writeJson(file, entry);
+    }
+    console.log(
+      `+ ${entry.id}: ${name}@${version} (${answer.type}, ${idl.instructions?.length ?? 0} ix)`,
+    );
+  } catch (err) {
+    console.log(`- ${entry.id}: ${err.message}`);
+  }
+  await sleep(300);
 }

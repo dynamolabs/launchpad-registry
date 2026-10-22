@@ -44,13 +44,8 @@
   "graduation": {
     "target": "raydium-cpmm"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "memecoin",
-    "frontend"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["memecoin", "frontend"],
   "sources": [
     "https://letsbonk.fun",
     "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"

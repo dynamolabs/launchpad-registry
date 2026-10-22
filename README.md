@@ -12,12 +12,12 @@ Every sniper, radar, dashboard and wallet tracker reverse-engineers the same add
 
 ## Coverage
 
-| chain | dir | launchpads |
-|---|---|---|
-| Solana | `solana` | pump.fun · Raydium LaunchLab (+ letsbonk, StonkFun) · Meteora DBC (+ Bags, Moonshot, Jupiter Studio, Blocks, FarmFun, Bots Family) · Moonit (legacy program) · Boop · Heaven · Pangea · kids.fun |
-| Robinhood Chain `4663` | `evm-4663` | Pons · HoodPump · NOXA · RobinFun · Virtuals · pmav · launchproof · LaunchHood · Trencher · HudPad · Clanker · Doppler |
-| Injective EVM `1776` | `evm-1776` | runup.fun · Sprout · IMORTAL |
-| Arc `5042` | `evm-5042` | none yet |
+| chain                  | dir        | launchpads                                                                                                                                                                                       |
+| ---------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Solana                 | `solana`   | pump.fun · Raydium LaunchLab (+ letsbonk, StonkFun) · Meteora DBC (+ Bags, Moonshot, Jupiter Studio, Blocks, FarmFun, Bots Family) · Moonit (legacy program) · Boop · Heaven · Pangea · kids.fun |
+| Robinhood Chain `4663` | `evm-4663` | Pons · HoodPump · NOXA · RobinFun · Virtuals · pmav · launchproof · LaunchHood · Trencher · HudPad · Clanker · Doppler                                                                           |
+| Injective EVM `1776`   | `evm-1776` | runup.fun · Sprout · IMORTAL                                                                                                                                                                     |
+| Arc `5042`             | `evm-5042` | none yet                                                                                                                                                                                         |
 
 Every address was checked on-chain (`npm run verify`): programs are executable, contracts have code, Anchor discriminators and `topic0` hashes are recomputed in CI. Entries carry a real launch tx as a **fixture** (`scripts/fixtures.mjs`), the program's **IDL snapshot** (`idl/`), a **logo** (`icons/`) and an automated weekly **liveness** stamp (`lastActivity`, status flips after 30 quiet days).
 
@@ -26,7 +26,11 @@ Every address was checked on-chain (`npm run verify`): programs are executable, 
 **Fetch** (no install):
 
 ```js
-const { launchpads } = await (await fetch('https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/launchpads.json')).json();
+const { launchpads } = await (
+  await fetch(
+    'https://raw.githubusercontent.com/OWNER/launchpad-registry/main/dist/launchpads.json',
+  )
+).json();
 ```
 
 **npm:**
@@ -41,10 +45,10 @@ import { lookup, isKnown, forChain, frontendsOf, active } from 'launchpad-regist
 lookup('solana', 'LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj');
 // → [{ launchpad: { id: 'raydium-launchlab', … }, role: 'program' }]
 
-isKnown('evm-4663', hookAddress);         // Uniswap V4 pads are keyed by hook, case-insensitive
-forChain({ family: 'evm', id: 4663 });    // every Robinhood Chain launchpad
-frontendsOf('meteora-dbc');               // pads built on a multi-tenant program
-active();                                 // status === 'active'
+isKnown('evm-4663', hookAddress); // Uniswap V4 pads are keyed by hook, case-insensitive
+forChain({ family: 'evm', id: 4663 }); // every Robinhood Chain launchpad
+frontendsOf('meteora-dbc'); // pads built on a multi-tenant program
+active(); // status === 'active'
 ```
 
 Files in `dist/`: `launchpads.json` (all), `launchpads.min.json` (ids + addresses only), `addresses.json` (reverse index `chain:address → [{id, role}]`), `launchpads.csv` (one row per address, for Dune / spreadsheets), `by-chain/<dir>.json`, `chains.json`, `tags.json`. Every file carries `version` (semver of the dataset) and `generated`. CDN: `https://cdn.jsdelivr.net/gh/OWNER/launchpad-registry@main/dist/launchpads.json`. TypeScript types ship in `index.d.ts`.
@@ -55,29 +59,39 @@ Files in `dist/`: `launchpads.json` (all), `launchpads.min.json` (ids + addresse
 
 ```jsonc
 {
-  "id": "hoodpump", "name": "HoodPump", "website": "https://hoodpump.fun",
-  "chain": { "family": "evm", "id": 4663 }, "status": "active", "model": "bonding-curve",
+  "id": "hoodpump",
+  "name": "HoodPump",
+  "website": "https://hoodpump.fun",
+  "chain": { "family": "evm", "id": 4663 },
+  "status": "active",
+  "model": "bonding-curve",
   "contracts": [{ "address": "0x12db…892b", "role": "curve", "checked": "2026-10-21" }],
-  "launch": { "kind": "event", "name": "Created", "signature": "Created(address indexed token, …)",
-              "topic0": "0x3794…68dc", "tokenField": "topics[1]", "creatorField": "topics[2]" },
+  "launch": {
+    "kind": "event",
+    "name": "Created",
+    "signature": "Created(address indexed token, …)",
+    "topic0": "0x3794…68dc",
+    "tokenField": "topics[1]",
+    "creatorField": "topics[2]",
+  },
   "token": { "standard": "erc20", "metadata": "calldata", "decimals": 18 },
   "graduation": { "target": "uniswap-v3", "event": "Graduated" },
-  "sources": ["https://robinhoodchain.blockscout.com/address/0x12db…"]
+  "sources": ["https://robinhoodchain.blockscout.com/address/0x12db…"],
 }
 ```
 
-| field | why a bot needs it |
-|---|---|
-| `contracts[].role` | what to subscribe to: `program`, `factory`, `launcher` (tx.to), `hook` (Uniswap V4), `platform-config` / `partner-config` (frontends on Raydium LaunchLab, Meteora DBC), `deployer`, `curve` |
-| `launch` | how one launch appears: Anchor instruction + `discriminator`, ABI event + `topic0`, 4-byte `selector`, and which field carries the new token |
-| `builtOn` | frontend → underlying program (`letsbonk` → `raydium-launchlab`) |
-| `model` | `bonding-curve` · `direct-pool` · `funding-round` · `meta-launchpad` |
-| `token` | `spl` / `token-2022` / `erc20`, where metadata lives, vanity suffix (`pump$`, `4663$`) |
-| `graduation` | where and when a curve migrates |
-| `sources` | the explorer / docs links every claim is backed by |
-| `fixtures` | real launch txs that prove the spec; `idl` / `abi` point to decoder files in-repo |
-| `externalIds` | the same launchpad's name at Codex, Solana Tracker, DexScreener… so datasets join |
-| `checked` / `lastActivity` | last on-chain verification (`npm run verify`) and last observed launch (weekly liveness job) |
+| field                      | why a bot needs it                                                                                                                                                                           |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `contracts[].role`         | what to subscribe to: `program`, `factory`, `launcher` (tx.to), `hook` (Uniswap V4), `platform-config` / `partner-config` (frontends on Raydium LaunchLab, Meteora DBC), `deployer`, `curve` |
+| `launch`                   | how one launch appears: Anchor instruction + `discriminator`, ABI event + `topic0`, 4-byte `selector`, and which field carries the new token                                                 |
+| `builtOn`                  | frontend → underlying program (`letsbonk` → `raydium-launchlab`)                                                                                                                             |
+| `model`                    | `bonding-curve` · `direct-pool` · `funding-round` · `meta-launchpad`                                                                                                                         |
+| `token`                    | `spl` / `token-2022` / `erc20`, where metadata lives, vanity suffix (`pump$`, `4663$`)                                                                                                       |
+| `graduation`               | where and when a curve migrates                                                                                                                                                              |
+| `sources`                  | the explorer / docs links every claim is backed by                                                                                                                                           |
+| `fixtures`                 | real launch txs that prove the spec; `idl` / `abi` point to decoder files in-repo                                                                                                            |
+| `externalIds`              | the same launchpad's name at Codex, Solana Tracker, DexScreener… so datasets join                                                                                                            |
+| `checked` / `lastActivity` | last on-chain verification (`npm run verify`) and last observed launch (weekly liveness job)                                                                                                 |
 
 Schema: [`schema/launchpad.schema.json`](schema/launchpad.schema.json). Chains: [`registry/chains.json`](registry/chains.json).
 
@@ -101,9 +115,13 @@ npm ci
 # add registry/<chain>/<id>.json  (copy the closest existing file)
 npm run validate   # schema + unique ids + address format + builtOn resolves
 npm run verify     # every address exists on-chain; fills discriminators / topic0
+npm run fixtures -- <id>   # finds a real launch tx and records it under `fixtures`
 npm run build      # regenerates dist/ and docs/index.html
-npm test
+npm test           # offline: registry rules + detector engines against recorded RPC answers
+npm run lint       # eslint + prettier (`npm run format` fixes)
 ```
+
+Code layout: `lib/` (JSON-RPC client with pacing and 429 backoff, hashing, file helpers) is shared by `scripts/` and `detector/`; the detector's chain engines are pure functions plus a thin polling loop, so every rule is unit-tested without a network.
 
 Rules in short: one launchpad per file, file name = `id`, every address backed by a `sources` link, `status` honest, no paid listings, no referral links. The long version is [CONTRIBUTING.md](CONTRIBUTING.md).
 

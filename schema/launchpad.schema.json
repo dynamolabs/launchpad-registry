@@ -5,16 +5,7 @@
   "description": "One token launchpad (or launchpad frontend) on one chain: the on-chain identities a bot needs to detect its launches.",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "id",
-    "name",
-    "chain",
-    "status",
-    "model",
-    "contracts",
-    "token",
-    "sources"
-  ],
+  "required": ["id", "name", "chain", "status", "model", "contracts", "token", "sources"],
   "properties": {
     "id": {
       "type": "string",
@@ -56,25 +47,16 @@
     "chain": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "family",
-        "id"
-      ],
+      "required": ["family", "id"],
       "properties": {
         "family": {
-          "enum": [
-            "solana",
-            "evm"
-          ]
+          "enum": ["solana", "evm"]
         },
         "id": {
           "oneOf": [
             {
               "type": "string",
-              "enum": [
-                "mainnet-beta",
-                "devnet"
-              ]
+              "enum": ["mainnet-beta", "devnet"]
             },
             {
               "type": "integer",
@@ -86,12 +68,7 @@
       }
     },
     "status": {
-      "enum": [
-        "active",
-        "inactive",
-        "test",
-        "unknown"
-      ],
+      "enum": ["active", "inactive", "test", "unknown"],
       "description": "active = launching tokens now; inactive = no launches for 30+ days or frontend dead; test = only test launches observed."
     },
     "firstSeen": {
@@ -100,13 +77,7 @@
       "description": "Date (UTC) of the first launch observed or the program/factory deployment."
     },
     "model": {
-      "enum": [
-        "bonding-curve",
-        "direct-pool",
-        "funding-round",
-        "meta-launchpad",
-        "other"
-      ],
+      "enum": ["bonding-curve", "direct-pool", "funding-round", "meta-launchpad", "other"],
       "description": "bonding-curve = virtual curve then graduation; direct-pool = token + DEX pool in one tx; funding-round = timed raise then pool; meta-launchpad = deploys launchpads for others."
     },
     "builtOn": {
@@ -120,10 +91,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "address",
-          "role"
-        ],
+        "required": ["address", "role"],
         "properties": {
           "address": {
             "type": "string",
@@ -170,19 +138,11 @@
     "launch": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "kind"
-      ],
+      "required": ["kind"],
       "description": "How a single launch shows up on-chain, so a bot can subscribe to it.",
       "properties": {
         "kind": {
-          "enum": [
-            "instruction",
-            "event",
-            "log",
-            "calldata",
-            "mint-only"
-          ]
+          "enum": ["instruction", "event", "log", "calldata", "mint-only"]
         },
         "name": {
           "type": "string",
@@ -222,28 +182,13 @@
     "token": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "standard"
-      ],
+      "required": ["standard"],
       "properties": {
         "standard": {
-          "enum": [
-            "spl",
-            "token-2022",
-            "erc20",
-            "mixed"
-          ]
+          "enum": ["spl", "token-2022", "erc20", "mixed"]
         },
         "metadata": {
-          "enum": [
-            "metaplex",
-            "token-2022-extension",
-            "uri",
-            "calldata",
-            "api",
-            "none",
-            "unknown"
-          ],
+          "enum": ["metaplex", "token-2022-extension", "uri", "calldata", "api", "none", "unknown"],
           "description": "Where name/symbol/image/socials come from."
         },
         "metadataApi": {
@@ -370,9 +315,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "tx"
-        ],
+        "required": ["tx"],
         "properties": {
           "tx": {
             "type": "string",

@@ -37,13 +37,8 @@
   "graduation": {
     "target": "uniswap-v4"
   },
-  "quotes": [
-    "ETH"
-  ],
-  "tags": [
-    "uniswap-v4",
-    "hook"
-  ],
+  "quotes": ["ETH"],
+  "tags": ["uniswap-v4", "hook"],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
   ],

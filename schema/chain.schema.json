@@ -3,18 +3,10 @@
   "title": "Chain",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "family",
-    "id",
-    "name",
-    "dir"
-  ],
+  "required": ["family", "id", "name", "dir"],
   "properties": {
     "family": {
-      "enum": [
-        "solana",
-        "evm"
-      ]
+      "enum": ["solana", "evm"]
     },
     "id": {
       "oneOf": [

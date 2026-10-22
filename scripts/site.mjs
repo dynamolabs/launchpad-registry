@@ -28,7 +28,7 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:20px}
 </style></head><body>
 <header><h1>Launchpad Registry <small>${data.count} launchpads · ${chains.length} chains · built ${data.generated}</small></h1>
 <p>Program IDs, factories, hooks and launch events a bot needs to detect token launches. Open data, MIT. <a href="${repo}">GitHub</a> · <a href="${repo}/blob/main/dist/launchpads.json">launchpads.json</a> · <a href="${repo}/blob/main/CONTRIBUTING.md">add one</a></p></header>
-<div class="bar"><input id="q" placeholder="search name, id, address, tag…"><select id="ch"><option value="">all chains</option>${chains.map(c => `<option value="${c.dir}">${c.name}</option>`).join('')}</select>
+<div class="bar"><input id="q" placeholder="search name, id, address, tag…"><select id="ch"><option value="">all chains</option>${chains.map((c) => `<option value="${c.dir}">${c.name}</option>`).join('')}</select>
 <select id="st"><option value="">any status</option><option>active</option><option>inactive</option><option>test</option><option>unknown</option></select>
 <select id="mo"><option value="">any model</option><option>bonding-curve</option><option>direct-pool</option><option>funding-round</option><option>meta-launchpad</option><option>other</option></select></div>
 <main id="list"></main>

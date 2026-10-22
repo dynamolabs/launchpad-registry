@@ -51,13 +51,8 @@
     "target": "uniswap-v2",
     "notes": "Virtuals-style graduation to its own pair factory"
   },
-  "quotes": [
-    "VIRTUAL"
-  ],
-  "tags": [
-    "bonding-curve",
-    "ai-agents"
-  ],
+  "quotes": ["VIRTUAL"],
+  "tags": ["bonding-curve", "ai-agents"],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
   ],

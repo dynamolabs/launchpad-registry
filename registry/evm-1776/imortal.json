@@ -28,12 +28,8 @@
     "metadata": "api",
     "decimals": 18
   },
-  "quotes": [
-    "INJ"
-  ],
-  "tags": [
-    "meta-launchpad"
-  ],
+  "quotes": ["INJ"],
+  "tags": ["meta-launchpad"],
   "sources": [
     "https://imortal.buzz",
     "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"

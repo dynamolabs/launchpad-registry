@@ -1,0 +1,8 @@
+dist/
+docs/
+idl/
+abi/
+icons/
+test/fixtures/
+package-lock.json
+CHANGELOG.md

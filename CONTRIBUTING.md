@@ -40,6 +40,12 @@ Maintainers bump `package.json` version, add a CHANGELOG line and push a `vX.Y.Z
 
 Add the chain to `registry/chains.json` (`dir` must match the directory name) before adding its first launchpad.
 
+## Code changes
+
+- `npm run lint` must pass (ESLint + Prettier, 100 columns). `npm run format` fixes formatting.
+- Detector and script logic lives in small exported functions; add a unit test in `test/` for every rule you touch. Tests run offline against recorded RPC answers in `test/fixtures/` (add a new recording with `curl` when you need a new shape; strip nothing, the files are data).
+- Shared helpers go in `lib/` (`rpc.mjs` for JSON-RPC with pacing/backoff, `files.mjs` for registry I/O, `hash.mjs` for discriminators/topics). Scripts must not run on import: guard the entry point with `isMain(import.meta.url)`.
+
 ## Review checklist (maintainers)
 
 - [ ] address format matches chain family; EVM addresses either checksummed or lowercase

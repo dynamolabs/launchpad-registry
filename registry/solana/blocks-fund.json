@@ -32,12 +32,8 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "frontend"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["frontend"],
   "sources": [
     "https://blocks.fund",
     "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"

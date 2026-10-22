@@ -37,13 +37,8 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "frontend",
-    "bonding-curve"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["frontend", "bonding-curve"],
   "sources": [
     "https://jup.ag/studio",
     "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"

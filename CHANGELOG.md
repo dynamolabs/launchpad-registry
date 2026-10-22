@@ -2,6 +2,14 @@
 
 Data follows semver (see CONTRIBUTING.md): **major** = an entry or address removed / changed, **minor** = entries or addresses added, **patch** = metadata only.
 
+## 0.3.0 — 2026-10-22
+- **Code rewrite for contributors**: shared `lib/` (JSON-RPC client with pacing + 429/-32005 backoff, hashing, file helpers), detector split into pure helpers + `tracker.mjs` + thin loops, every script reformatted (Prettier/ESLint, 100 columns) and runnable only as a CLI (`isMain`), so modules import cleanly in tests.
+- **Tests 8 → 58**, all offline: detector engines run against recorded RPC answers (`test/fixtures/`: pump.fun, LaunchLab, Clanker, Doppler on Robinhood Chain), tracker window/threshold rules, state persistence, notifier fan-out, CLI config, RPC retry/pacing.
+- **Fixed** detector state growth: `seen` capped (20 000), idle entrypoints pruned; MCP server now reports the dataset version (was `0.0.0`); V4 hook pools name the currency minted in the same tx as the launched token (was: first non-quote currency).
+- **Fixed data**: `doppler-robinhood` fixtures pointed at the numeraire (SPCX / VIRTUAL) instead of the launched token.
+- `meta.version` exported from the library; `index.d.ts` covers `fixtures`, `externalIds`, `idl`, `abi`, `logo`, `lastActivity`, chain `caip2`/`ignore`/`quoteTokens`/`maxLogRange`.
+- CI runs lint + tests; new npm scripts `lint`, `format`, `fixtures`, `liveness`.
+
 ## 0.2.0 — 2026-10-21
 - **Added** Solana: Moonshot/Moonit (legacy program **and** its current Meteora DBC config, USDC quote), Bags (DBC config), Boop.fun, Heaven, Jupiter Studio (DBC partner). Injective: RunUp token factory address.
 - `externalIds.geckoterminal` dex ids for every Solana launchpad GeckoTerminal lists (pump-fun, raydium-launchlab, letsbonk-fun, meteora-dbc, moonit, moonshot, boop-fun, heaven, bags-fm).

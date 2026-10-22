@@ -46,13 +46,8 @@
     "threshold": "funding round closes (~1 h)",
     "notes": "LP locked; dev allocation 75% vesting."
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "funding-round",
-    "vesting"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["funding-round", "vesting"],
   "sources": [
     "https://kids.fun",
     "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"

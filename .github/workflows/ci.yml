@@ -8,7 +8,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci
+      - run: npm run lint
       - run: npm run validate
+      - run: npm test
       - run: npm run build
       - name: dist must be committed up to date
         run: git diff --exit-code -- dist || (echo "::error::dist/ is stale — run 'npm run build' and commit" && exit 1)

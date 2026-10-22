@@ -1,59 +1,118 @@
 #!/usr/bin/env node
-// Validates every registry file against the schema + cross-file rules. Exit 1 on any error.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, basename } from 'node:path';
+// Validates every registry file against the schema plus cross-file rules. Exit 1 on any error.
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { basename, join } from 'node:path';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { ROOT, readJson } from '../lib/files.mjs';
 
-const root = new URL('..', import.meta.url).pathname;
+const BASE58 = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+const EVM_ADDRESS = /^0x[0-9a-fA-F]{40}$/;
+const MAX_LOGO_BYTES = 65536;
+/** roles that several entries may legitimately share (quote tokens, shared DEX programs, multi-tenant configs) */
+const SHARED_ROLES = new Set(['token', 'platform-config', 'partner-config', 'router', 'other']);
+
 const ajv = new Ajv2020({ allErrors: true, strict: true });
 addFormats(ajv);
-const vLaunchpad = ajv.compile(JSON.parse(readFileSync(join(root, 'schema/launchpad.schema.json'), 'utf8')));
-const vChain = ajv.compile(JSON.parse(readFileSync(join(root, 'schema/chain.schema.json'), 'utf8')));
+const validateLaunchpad = ajv.compile(readJson(join(ROOT, 'schema/launchpad.schema.json')));
+const validateChain = ajv.compile(readJson(join(ROOT, 'schema/chain.schema.json')));
 
 const errors = [];
-const err = (f, m) => errors.push(`${f}: ${m}`);
-const chains = JSON.parse(readFileSync(join(root, 'registry/chains.json'), 'utf8'));
+const fail = (file, message) => errors.push(`${file}: ${message}`);
+
+const chains = readJson(join(ROOT, 'registry/chains.json'));
 if (!Array.isArray(chains)) throw new Error('registry/chains.json must be an array');
-const TAGS = JSON.parse(readFileSync(join(root, 'registry/tags.json'), 'utf8'));
-const { existsSync } = await import('node:fs');
+const tags = readJson(join(ROOT, 'registry/tags.json'));
 const chainByDir = new Map();
-for (const c of chains) {
-  if (!vChain(c)) err('registry/chains.json', ajv.errorsText(vChain.errors));
-  chainByDir.set(c.dir, c);
+for (const chain of chains) {
+  if (!validateChain(chain)) fail('registry/chains.json', ajv.errorsText(validateChain.errors));
+  chainByDir.set(chain.dir, chain);
 }
 
-const B58 = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/, EVM = /^0x[0-9a-fA-F]{40}$/;
-const ids = new Map(), addrs = new Map(), entries = [];
-for (const dir of readdirSync(join(root, 'registry'))) {
-  const p = join(root, 'registry', dir);
-  if (!statSync(p).isDirectory()) continue;
-  const chain = chainByDir.get(dir);
-  if (!chain) { err(`registry/${dir}`, 'directory has no entry in registry/chains.json'); continue; }
-  for (const f of readdirSync(p).filter(x => x.endsWith('.json')).sort()) {
-    const file = `registry/${dir}/${f}`;
-    let e;
-    try { e = JSON.parse(readFileSync(join(p, f), 'utf8')); } catch (x) { err(file, `invalid JSON: ${x.message}`); continue; }
-    if (!vLaunchpad(e)) { err(file, ajv.errorsText(vLaunchpad.errors, { separator: '\n    ' })); continue; }
-    if (e.id !== basename(f, '.json')) err(file, `file name must equal id "${e.id}"`);
-    if (ids.has(e.id)) err(file, `duplicate id, also in ${ids.get(e.id)}`); ids.set(e.id, file);
-    if (e.chain.family !== chain.family || String(e.chain.id) !== String(chain.id)) err(file, `chain ${e.chain.family}:${e.chain.id} does not match directory ${dir} (${chain.family}:${chain.id})`);
-    for (const c of e.contracts) {
-      const ok = chain.family === 'solana' ? B58.test(c.address) : EVM.test(c.address);
-      if (!ok) err(file, `bad ${chain.family} address "${c.address}"`);
-      const key = `${dir}:${chain.family === 'evm' ? c.address.toLowerCase() : c.address}`;
-      if (addrs.has(key) && addrs.get(key) !== e.id && !['token', 'platform-config', 'partner-config', 'router', 'other'].includes(c.role) && !e.builtOn) err(file, `address ${c.address} already claimed by ${addrs.get(key)} (set builtOn if this is a frontend)`);
-      addrs.set(key, e.id);
+const ids = new Map(); // id → file
+const claimed = new Map(); // "dir:address" → id
+const entries = [];
+
+function checkEntry(file, entry, chain, dir) {
+  if (entry.id !== basename(file, '.json')) fail(file, `file name must equal id "${entry.id}"`);
+  if (ids.has(entry.id)) fail(file, `duplicate id, also in ${ids.get(entry.id)}`);
+  ids.set(entry.id, file);
+
+  if (entry.chain.family !== chain.family || String(entry.chain.id) !== String(chain.id)) {
+    fail(
+      file,
+      `chain ${entry.chain.family}:${entry.chain.id} does not match directory ${dir} (${chain.family}:${chain.id})`,
+    );
+  }
+
+  for (const contract of entry.contracts) {
+    const pattern = chain.family === 'solana' ? BASE58 : EVM_ADDRESS;
+    if (!pattern.test(contract.address))
+      fail(file, `bad ${chain.family} address "${contract.address}"`);
+    const key = `${dir}:${chain.family === 'evm' ? contract.address.toLowerCase() : contract.address}`;
+    const owner = claimed.get(key);
+    if (owner && owner !== entry.id && !SHARED_ROLES.has(contract.role) && !entry.builtOn) {
+      fail(
+        file,
+        `address ${contract.address} already claimed by ${owner} (set builtOn if this is a frontend)`,
+      );
     }
-    for (const t of e.tags || []) if (!TAGS[t]) err(file, `tag "${t}" not in registry/tags.json`);
-    for (const k of ['logo', 'idl', 'abi']) if (e[k] && !existsSync(join(root, e[k]))) err(file, `${k} file ${e[k]} missing`);
-    if (e.logo) { const st = statSync(join(root, e.logo)); if (st.size > 65536) err(file, `logo ${e.logo} is ${st.size} bytes (max 65536)`); }
-    if (e.launch?.topic0 && chain.family !== 'evm') err(file, 'topic0 only valid on EVM');
-    if (e.launch?.discriminator && chain.family !== 'solana') err(file, 'discriminator only valid on Solana');
-    entries.push({ file, e });
+    claimed.set(key, entry.id);
+  }
+
+  for (const tag of entry.tags || [])
+    if (!tags[tag]) fail(file, `tag "${tag}" not in registry/tags.json`);
+
+  for (const field of ['logo', 'idl', 'abi']) {
+    if (entry[field] && !existsSync(join(ROOT, entry[field])))
+      fail(file, `${field} file ${entry[field]} missing`);
+  }
+  if (entry.logo && existsSync(join(ROOT, entry.logo))) {
+    const size = statSync(join(ROOT, entry.logo)).size;
+    if (size > MAX_LOGO_BYTES)
+      fail(file, `logo ${entry.logo} is ${size} bytes (max ${MAX_LOGO_BYTES})`);
+  }
+
+  if (entry.launch?.topic0 && chain.family !== 'evm') fail(file, 'topic0 only valid on EVM');
+  if (entry.launch?.discriminator && chain.family !== 'solana')
+    fail(file, 'discriminator only valid on Solana');
+}
+
+for (const dir of readdirSync(join(ROOT, 'registry'))) {
+  const dirPath = join(ROOT, 'registry', dir);
+  if (!statSync(dirPath).isDirectory()) continue;
+  const chain = chainByDir.get(dir);
+  if (!chain) {
+    fail(`registry/${dir}`, 'directory has no entry in registry/chains.json');
+    continue;
+  }
+  for (const name of readdirSync(dirPath)
+    .filter((f) => f.endsWith('.json'))
+    .sort()) {
+    const file = `registry/${dir}/${name}`;
+    let entry;
+    try {
+      entry = JSON.parse(readFileSync(join(dirPath, name), 'utf8'));
+    } catch (err) {
+      fail(file, `invalid JSON: ${err.message}`);
+      continue;
+    }
+    if (!validateLaunchpad(entry)) {
+      fail(file, ajv.errorsText(validateLaunchpad.errors, { separator: '\n    ' }));
+      continue;
+    }
+    checkEntry(file, entry, chain, dir);
+    entries.push({ file, entry });
   }
 }
-for (const { file, e } of entries) if (e.builtOn && !ids.has(e.builtOn)) err(file, `builtOn "${e.builtOn}" is not a registered id`);
 
-if (errors.length) { console.error(`✖ ${errors.length} problem(s):\n` + errors.map(x => '  ' + x).join('\n')); process.exit(1); }
+for (const { file, entry } of entries) {
+  if (entry.builtOn && !ids.has(entry.builtOn))
+    fail(file, `builtOn "${entry.builtOn}" is not a registered id`);
+}
+
+if (errors.length) {
+  console.error(`✖ ${errors.length} problem(s):\n` + errors.map((e) => '  ' + e).join('\n'));
+  process.exit(1);
+}
 console.log(`✔ ${entries.length} launchpads across ${chainByDir.size} chains valid`);

@@ -51,14 +51,8 @@
     "target": "meteora-damm-v2",
     "notes": "No curve: liquid from block one, LP permanently locked."
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "direct-pool",
-    "omnichain",
-    "layerzero"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["direct-pool", "omnichain", "layerzero"],
   "sources": [
     "https://pangea.trade",
     "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"

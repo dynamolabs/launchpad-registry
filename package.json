@@ -1,21 +1,29 @@
 {
   "name": "launchpad-registry",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Community-maintained registry of token launchpads (program IDs, factories, launch events) across Solana and EVM chains, plus a generic new-launchpad detector.",
   "type": "module",
   "license": "MIT",
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "build": "node scripts/build.mjs",
-    "check": "npm run validate && npm run build && npm test && git diff --exit-code -- dist docs/index.html || (echo 'dist/docs stale: run npm run build and commit' && exit 1)",
     "test": "node --test test/",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "check": "npm run lint && npm run validate && npm run build && npm test && git diff --exit-code -- dist docs/index.html || (echo 'dist/docs stale: run npm run build and commit' && exit 1)",
     "verify": "node scripts/verify-onchain.mjs",
+    "liveness": "node scripts/liveness.mjs",
+    "fixtures": "node scripts/fixtures.mjs",
     "detect": "node detector/index.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^9.27.0",
     "@noble/hashes": "^1.7.1",
     "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3"
   },
   "main": "./index.mjs",
   "types": "./index.d.ts",
@@ -40,6 +48,7 @@
     "idl/",
     "index.d.ts",
     "index.mjs",
+    "lib/",
     "llms.txt",
     "mcp/",
     "registry/",
