@@ -54,7 +54,7 @@
     "https://pump.fun",
     "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "logo": "icons/pump-fun.png",
   "idl": "idl/pump-fun.json",
   "externalIds": {
@@ -64,6 +64,13 @@
     "geckoterminal": "pump-fun"
   },
   "fixtures": [
+    {
+      "tx": "4GK468pdZbBc1T5KxTKjSAW45CZafkWNkKNNgREPmUQiuFnX51Y9HKxp32sM3F1JZnsRVB1gjerBmqsoJu3FACBk",
+      "token": "6yrtFVUedNMm4L67LW93uMJ8D7gyg4eVvxpFHXt9pump",
+      "creator": "AmQKYgvWZnWm6yyxDte5ALby6ZHGgJiZ9qfCsdPkusmA",
+      "date": "2026-10-22",
+      "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
+    },
     {
       "tx": "4WwHRyYgKMbNWL8UdUTExZ3xiZTEF7dHZAjMDWzp7wpbNZD7xC1oMw8bAFBJbJbXTHTrcgbFVScfg5sJf4yfYVrB",
       "token": "CDamKWeSQ5CS8s6tm5aDdw9fC3tpwEHAgNGrCCWppump",
