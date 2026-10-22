@@ -37,6 +37,7 @@ export function buildConfig(args, chain, env = process.env) {
   return {
     source,
     maxLag: Number(args.lag || 60),
+    concurrency: Number(args.concurrency || 3),
     windowMin: Number(args.window || 60),
     minTokens: Number(args.min || (solana ? 5 : 3)),
     pollMs: Number(args.poll || defaultPoll),

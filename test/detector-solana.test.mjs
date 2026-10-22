@@ -389,3 +389,42 @@ test('the same wrapper IS alerted when the launchpad it calls is unknown', async
   assert.equal(notify.sent.length, 1);
   assert.equal(notify.sent[0].payload.address, WRAPPER);
 });
+
+test('block source fetches blocks in parallel but applies them in slot order', async () => {
+  const order = [];
+  const rpc = scriptedRpc({
+    getSlot: () => 1006,
+    getBlock: async ([slot]) => {
+      order.push(slot);
+      await new Promise((r) => setTimeout(r, slot % 2 ? 15 : 1)); // odd slots answer late
+      return block;
+    },
+  });
+  const state = createMemoryState({ slot: 1000 });
+  const notify = collectNotifier();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg: { ...blockCfg, concurrency: 3 },
+    maxRounds: 1,
+  });
+  assert.deepEqual(order, [1001, 1002, 1003, 1004, 1005, 1006], 'issued in batches of 3, in order');
+  assert.equal(state.get().slot, 1006);
+  assert.equal(notify.sent.length, 1, '6 births counted once each');
+  assert.equal(notify.sent[0].payload.count, 3, 'alert fired at the threshold, in slot order');
+});
+
+test('block source with a pending slot inside a parallel batch stops exactly there', async () => {
+  const pending = [1003];
+  const rpc = fakeSlots({ head: 1006, pending });
+  const { state } = await runBlocks(rpc, { start: 1000, overrides: { concurrency: 3 } });
+  assert.equal(state.get().slot, 1002);
+  pending.length = 0;
+  const again = await runBlocks(rpc, { start: 1002, overrides: { concurrency: 3 } });
+  assert.equal(again.state.get().slot, 1006);
+});

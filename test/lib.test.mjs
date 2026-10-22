@@ -132,3 +132,22 @@ test('isRateLimit ignores result-set-too-large answers and numbers that merely c
   assert.ok(isRateLimit({ code: -32005, message: 'x' }));
   assert.ok(isRateLimit(new Error('{"code":429,"message":"Too Many Requests"}')));
 });
+
+test('makeRpc concurrency allows N requests in flight and never more', async () => {
+  let inFlight = 0;
+  let peak = 0;
+  const fetch = async () => {
+    inFlight++;
+    peak = Math.max(peak, inFlight);
+    await new Promise((r) => setTimeout(r, 20));
+    inFlight--;
+    return jsonResponse({ jsonrpc: '2.0', id: 1, result: 1 });
+  };
+  const rpc = makeRpc('http://x', { fetch, concurrency: 3 });
+  await Promise.all(Array.from({ length: 8 }, () => rpc('m')));
+  assert.equal(peak, 3);
+  const serial = makeRpc('http://x', { fetch, concurrency: 1 });
+  peak = 0;
+  await Promise.all([serial('a'), serial('b'), serial('c')]);
+  assert.equal(peak, 1);
+});

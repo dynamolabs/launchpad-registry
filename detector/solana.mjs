@@ -130,7 +130,10 @@ export async function runSolana({
   rpc,
   maxRounds = Infinity,
 }) {
-  rpc ??= makeRpc(rpcUrl, { minIntervalMs: cfg.rpcIntervalMs ?? 120 });
+  rpc ??= makeRpc(rpcUrl, {
+    minIntervalMs: cfg.rpcIntervalMs ?? 120,
+    concurrency: cfg.source === 'metadata' ? 1 : cfg.concurrency || 3,
+  });
   const s = state.get();
   s.entrypoints ??= {};
   if (migrateLegacyKeys(s.entrypoints) > 0) state.touch();
@@ -244,7 +247,10 @@ export async function runSolana({
     }
   }
 
-  /** Source "blocks": every confirmed slot since the cursor, capped at cfg.maxLag slots behind the tip. */
+  /**
+   * Source "blocks": every confirmed slot since the cursor, capped at cfg.maxLag slots behind the tip,
+   * cfg.concurrency blocks fetched in parallel.
+   */
   async function pollBlocks() {
     const head = Number(await rpc('getSlot', [{ commitment: 'confirmed' }]));
     if (s.slot == null) s.slot = head - 1;
@@ -255,15 +261,21 @@ export async function runSolana({
       s.slot = head - cfg.maxLag;
       state.touch();
     }
+    // fetch up to cfg.concurrency blocks at once, but apply them strictly in slot order
+    const width = Math.max(1, cfg.concurrency || 1);
     while (s.slot < head) {
-      const slot = s.slot + 1;
-      const { block, skipped, pending } = await getBlock(slot);
-      if (pending) return; // confirmed tip not served yet; next round
-      if (!skipped) {
-        for (const birth of scanBlock(block, ignore)) await recordBirth(birth);
+      const slots = [];
+      for (let slot = s.slot + 1; slot <= Math.min(head, s.slot + width); slot++) slots.push(slot);
+      const results = await Promise.all(slots.map(getBlock));
+      for (let i = 0; i < slots.length; i++) {
+        const { block, skipped, pending } = results[i];
+        if (pending) return; // confirmed tip not served yet; next round resumes here
+        if (!skipped) {
+          for (const birth of scanBlock(block, ignore)) await recordBirth(birth);
+        }
+        s.slot = slots[i];
+        state.touch();
       }
-      s.slot = slot;
-      state.touch();
     }
   }
 

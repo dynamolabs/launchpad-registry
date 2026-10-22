@@ -42,3 +42,8 @@ test('buildConfig picks the Solana source and its poll interval', () => {
   assert.equal(buildConfig({ source: 'metadata' }, sol, {}).pollMs, 8000);
   assert.equal(buildConfig({ lag: '20' }, sol, {}).maxLag, 20);
 });
+
+test('buildConfig exposes block-fetch concurrency', () => {
+  assert.equal(buildConfig({}, { family: 'solana' }, {}).concurrency, 3);
+  assert.equal(buildConfig({ concurrency: '5' }, { family: 'solana' }, {}).concurrency, 5);
+});
