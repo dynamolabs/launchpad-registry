@@ -151,3 +151,21 @@ test('makeRpc concurrency allows N requests in flight and never more', async () 
   await Promise.all([serial('a'), serial('b'), serial('c')]);
   assert.equal(peak, 1);
 });
+
+import { isMain } from '../lib/files.mjs';
+import { fileURLToPath } from 'node:url';
+
+test('isMain recognises the entry script by argv[1] or by pm2 pm_exec_path', () => {
+  const me = import.meta.url;
+  const path = fileURLToPath(me);
+  assert.equal(isMain(me, { argv: ['node', path], env: {} }), true);
+  assert.equal(
+    isMain(me, {
+      argv: ['node', '/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js'],
+      env: { pm_exec_path: path },
+    }),
+    true,
+  );
+  assert.equal(isMain(me, { argv: ['node', '/nope.mjs'], env: {} }), false);
+  assert.equal(isMain(me, { argv: ['node'], env: {} }), false);
+});
