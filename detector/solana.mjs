@@ -1,6 +1,9 @@
-// Solana engine: polls the Token Metadata program's signatures, keeps transactions that initialise a
-// fungible mint (decimals > 0), and counts every non-system outer program of those transactions.
-// HTTP RPC only, no gRPC. Token-2022 mints that skip Metaplex are not covered yet.
+// Solana engine. Two sources, both HTTP-only (no gRPC):
+//   blocks   (default) polls every confirmed block with getBlock and scans all transactions for an
+//            initializeMint(2) with decimals > 0. Catches Token-2022 metadata-extension launches
+//            (pump.fun and its clones) that never touch Metaplex. ~3 MB per block on jsonParsed.
+//   metadata polls the Token Metadata program's signatures: cheap, but blind to Token-2022-only mints.
+// Either way every non-system outer program of a launch tx is counted by the tracker.
 import { makeRpc, sleep } from '../lib/rpc.mjs';
 import { createTracker, migrateLegacyKeys } from './tracker.mjs';
 
@@ -47,8 +50,39 @@ export function outerPrograms(tx, ignore = BASE_IGNORE) {
   );
 }
 
+/** Distinct program ids invoked via CPI (inner instructions) minus the ignore set. */
+export function innerPrograms(tx, ignore = BASE_IGNORE) {
+  const ignored = new Set(ignore);
+  const ids = (tx.meta?.innerInstructions || []).flatMap((i) =>
+    i.instructions.map((x) => x.programId),
+  );
+  return [...new Set(ids)].filter((p) => !ignored.has(p));
+}
+
 /** First signer (fee payer) of a jsonParsed transaction. */
 export const feePayer = (tx) => tx.transaction.message.accountKeys.find((k) => k.signer)?.pubkey;
+
+/**
+ * Fungible-mint births inside one jsonParsed block.
+ * @returns {{ signature: string, mint: string, decimals: number, programs: string[],
+ *   innerPrograms: string[], payer: string }[]}
+ */
+export function scanBlock(block, ignore = BASE_IGNORE) {
+  const out = [];
+  for (const tx of block?.transactions || []) {
+    const minted = findFungibleMint(tx);
+    if (!minted) continue;
+    out.push({
+      signature: tx.transaction.signatures?.[0],
+      mint: minted.mint,
+      decimals: minted.decimals,
+      programs: outerPrograms(tx, ignore),
+      innerPrograms: innerPrograms(tx, ignore),
+      payer: feePayer(tx),
+    });
+  }
+  return out;
+}
 
 /** Builds the alert for one unknown program. */
 export function buildAlert({ chain, hit, cfg }) {
@@ -131,6 +165,19 @@ export async function runSolana({
   }
 
   /**
+   * Counts one birth. When any program in the tx (outer or CPI) is a registered launchpad, the birth
+   * belongs to that launchpad: wrappers / bundlers that CPI into pump.fun are not launchpads themselves.
+   */
+  async function recordBirth({ mint, payer, programs, innerPrograms: inner = [] }) {
+    const token = { address: mint, creator: payer };
+    const known = [...programs, ...inner].filter((p) => registry.known(chain.dir, p));
+    for (const programId of known.length ? known : programs) {
+      const hit = tracker.record('program', programId, token);
+      if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
+    }
+  }
+
+  /**
    * Marks the signature seen and moves the cursor only after it was fully processed,
    * so a failure is retried on the next poll instead of being lost.
    */
@@ -139,42 +186,98 @@ export async function runSolana({
       const tx = await getTransaction(signature);
       const minted = findFungibleMint(tx);
       if (minted) {
-        const token = { address: minted.mint, creator: feePayer(tx) };
-        for (const programId of outerPrograms(tx, ignore)) {
-          const hit = tracker.record('program', programId, token);
-          if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
-        }
+        await recordBirth({
+          mint: minted.mint,
+          payer: feePayer(tx),
+          programs: outerPrograms(tx, ignore),
+          innerPrograms: innerPrograms(tx, ignore),
+        });
       }
       state.markSeen(signature);
     }
-    newest = signature;
     s.cursor = signature;
     state.touch();
   }
 
+  /** Source "metadata": new signatures on the Token Metadata program. */
+  async function pollMetadata() {
+    const sigs = await rpc('getSignaturesForAddress', [
+      METADATA_PROGRAM,
+      { limit: cfg.batch, commitment: 'confirmed' },
+    ]);
+    const fresh = [];
+    for (const x of sigs) {
+      if (x.signature === s.cursor) break;
+      if (!x.err) fresh.push(x.signature);
+    }
+    for (const signature of fresh.reverse()) await processSignature(signature);
+    if (sigs[0] && sigs[0].signature !== s.cursor) {
+      // every fresh signature processed (errored ones were skipped): cursor jumps to the batch head
+      s.cursor = sigs[0].signature;
+      state.touch();
+    }
+  }
+
+  // RPCs answer -32015 when they need a lower maxSupportedTransactionVersion; -32007/-32009 = slot skipped,
+  // -32004 = block not yet available (retry later)
+  async function getBlock(slot) {
+    const params = () => [
+      slot,
+      {
+        encoding: 'jsonParsed',
+        transactionDetails: 'full',
+        rewards: false,
+        maxSupportedTransactionVersion: maxVersion,
+        commitment: 'confirmed',
+      },
+    ];
+    try {
+      return { block: await rpc('getBlock', params()) };
+    } catch (err) {
+      if (maxVersion !== 0 && /-32015|version/i.test(err.message)) {
+        maxVersion = 0;
+        return getBlock(slot);
+      }
+      if (/-32007|-32009|skipped|missing/i.test(err.message)) return { skipped: true };
+      if (/-32004|not available/i.test(err.message)) return { pending: true };
+      throw err;
+    }
+  }
+
+  /** Source "blocks": every confirmed slot since the cursor, capped at cfg.maxLag slots behind the tip. */
+  async function pollBlocks() {
+    const head = Number(await rpc('getSlot', [{ commitment: 'confirmed' }]));
+    if (s.slot == null) s.slot = head - 1;
+    if (head - s.slot > cfg.maxLag) {
+      log(
+        `[solana] ${head - s.slot} slots behind, skipping to ${head - cfg.maxLag} (RPC too slow for every block)`,
+      );
+      s.slot = head - cfg.maxLag;
+      state.touch();
+    }
+    while (s.slot < head) {
+      const slot = s.slot + 1;
+      const { block, skipped, pending } = await getBlock(slot);
+      if (pending) return; // confirmed tip not served yet; next round
+      if (!skipped) {
+        for (const birth of scanBlock(block, ignore)) await recordBirth(birth);
+      }
+      s.slot = slot;
+      state.touch();
+    }
+  }
+
+  const source = cfg.source === 'metadata' ? 'metadata' : 'blocks';
   log(
-    `[solana] polling ${METADATA_PROGRAM} every ${cfg.pollMs} ms, window ${cfg.windowMin} min, min ${cfg.minTokens}`,
+    `[solana] source ${source}, poll ${cfg.pollMs} ms, window ${cfg.windowMin} min, min ${cfg.minTokens}${
+      source === 'blocks' ? `, max lag ${cfg.maxLag} slots` : ''
+    }`,
   );
-  let newest = s.cursor || null;
 
   for (let round = 0; round < maxRounds; round++) {
     try {
-      const sigs = await rpc('getSignaturesForAddress', [
-        METADATA_PROGRAM,
-        { limit: cfg.batch, commitment: 'confirmed' },
-      ]);
-      const fresh = [];
-      for (const x of sigs) {
-        if (x.signature === newest) break;
-        if (!x.err) fresh.push(x.signature);
-      }
-      for (const signature of fresh.reverse()) await processSignature(signature);
-      if (sigs[0] && sigs[0].signature !== newest) {
-        // every fresh signature processed (errored ones were skipped): cursor jumps to the batch head
-        newest = sigs[0].signature;
-        s.cursor = newest;
-        state.touch();
-      }
+      if (source === 'blocks') await pollBlocks();
+      else await pollMetadata();
       if (round % 50 === 49 && tracker.prune() > 0) state.touch();
     } catch (err) {
       log(`[solana] ${err.message}`);

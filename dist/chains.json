@@ -10,7 +10,17 @@
     ],
     "explorer": "https://solscan.io",
     "dexscreenerId": "solana",
-    "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+    "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "ignore": [
+      "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8",
+      "CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK",
+      "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
+      "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+      "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
+      "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc",
+      "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA"
+    ],
+    "notes": "ignore = DEX programs whose pool creation mints an LP token (Raydium AMM v4 / CLMM / CPMM, Meteora DLMM / DAMM v2, Orca Whirlpools, PumpSwap); never launchpads."
   },
   {
     "family": "evm",

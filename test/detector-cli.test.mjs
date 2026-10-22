@@ -14,7 +14,7 @@ test('parseArgs handles values and boolean flags', () => {
 test('buildConfig applies per-family defaults', () => {
   const sol = buildConfig({}, { family: 'solana' }, {});
   assert.equal(sol.minTokens, 5);
-  assert.equal(sol.pollMs, 8000);
+  assert.equal(sol.pollMs, 1000);
   const evm = buildConfig({}, { family: 'evm' }, {});
   assert.equal(evm.minTokens, 3);
   assert.equal(evm.pollMs, 4000);
@@ -33,4 +33,12 @@ test('buildConfig clamps chunk to the chain maxLogRange and merges chain + CLI l
   assert.deepEqual(cfg.ignore, ['0x1', '0x2']);
   assert.equal(cfg.v4PoolManager, '0xpm');
   assert.equal(cfg.repoUrl, 'https://me');
+});
+
+test('buildConfig picks the Solana source and its poll interval', () => {
+  const sol = { family: 'solana' };
+  assert.equal(buildConfig({}, sol, {}).source, 'blocks');
+  assert.equal(buildConfig({}, sol, {}).pollMs, 1000);
+  assert.equal(buildConfig({ source: 'metadata' }, sol, {}).pollMs, 8000);
+  assert.equal(buildConfig({ lag: '20' }, sol, {}).maxLag, 20);
 });

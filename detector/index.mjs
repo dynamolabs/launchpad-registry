@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Generic new-launchpad detector: flags programs / factories / hooks that mint tokens but are NOT in the registry.
 //   node detector/index.mjs --chain evm-4663 --rpc https://... [--min 3] [--window 60] [--v4 0xPoolManager]
-//   node detector/index.mjs --chain solana   --rpc https://... [--min 5] [--window 60]
+//   node detector/index.mjs --chain solana   --rpc https://... [--min 5] [--window 60] [--source blocks|metadata]
 // Notify via env: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID, DISCORD_WEBHOOK, WEBHOOK_URL.
 // State in --state (default ./detector-state-<chain>.json). See detector/README.md.
 import { readFileSync } from 'node:fs';
@@ -32,10 +32,14 @@ const splitList = (value) =>
 /** Resolves CLI flags + chain defaults into the engine config. Exported for tests. */
 export function buildConfig(args, chain, env = process.env) {
   const solana = chain.family === 'solana';
+  const source = args.source || 'blocks';
+  const defaultPoll = solana ? (source === 'metadata' ? 8000 : 1000) : 4000;
   return {
+    source,
+    maxLag: Number(args.lag || 60),
     windowMin: Number(args.window || 60),
     minTokens: Number(args.min || (solana ? 5 : 3)),
-    pollMs: Number(args.poll || (solana ? 8000 : 4000)),
+    pollMs: Number(args.poll || defaultPoll),
     chunk: Math.min(Number(args.chunk || 200), chain.maxLogRange || 200),
     batch: Number(args.batch || 100),
     v4PoolManager: args.v4?.toLowerCase(),

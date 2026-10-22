@@ -133,7 +133,8 @@ The dataset is semver'd (`version` in every `dist/` file, tags `vX.Y.Z`, [CHANGE
 
 - [ ] Base, BNB, Ethereum mainnet, Arc entries (Clanker, Zora, Flaunch, four.meme, Virtuals Base…)
 - [ ] Bags, Believe, DAOs.fun config keys on Solana (need fixture txs)
-- [ ] Token-2022 metadata-extension mints and Yellowstone gRPC mode in the detector
+- [x] Token-2022 metadata-extension mints in the detector (block scanning, 0.3.0)
+- [ ] Yellowstone gRPC mode in the detector (block scanning over HTTP needs ~8 MB/s)
 - [ ] Public keyless lookup API
 - [ ] Schema registered at SchemaStore
 

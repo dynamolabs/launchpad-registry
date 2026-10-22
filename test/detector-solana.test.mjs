@@ -73,6 +73,7 @@ const cfg = {
   batch: 100,
   ignore: [],
   repoUrl: 'https://r',
+  source: 'metadata',
 };
 
 /** RPC where every signature resolves to the given tx (so one program mints N tokens). */
@@ -173,4 +174,218 @@ test('runSolana resumes the rest of a batch after a mid-batch RPC failure', asyn
     6,
     'one retry, no re-fetch of done sigs',
   );
+});
+
+// ---- block source -------------------------------------------------------------------------------
+import { scanBlock } from '../detector/solana.mjs';
+const block = fx('sol-block');
+
+test('scanBlock finds the pump.fun launch in a real block and skips failed / plain transactions', () => {
+  const births = scanBlock(block);
+  assert.equal(births.length, 1);
+  assert.deepEqual(births[0].programs, [PUMP]);
+  assert.equal(births[0].decimals, 6);
+  assert.match(births[0].mint, /^[1-9A-HJ-NP-Za-km-z]{32,44}$/);
+  assert.ok(births[0].signature && births[0].payer);
+  assert.ok(block.transactions.length > 1, 'fixture also contains non-launch transactions');
+});
+
+test('scanBlock on an empty or missing block yields nothing', () => {
+  assert.deepEqual(scanBlock(null), []);
+  assert.deepEqual(scanBlock({ transactions: [] }), []);
+});
+
+const blockCfg = { ...cfg, source: 'blocks', maxLag: 60, pollMs: 1 };
+
+/** Chain tip at `head`; every slot answers with the recorded block unless listed in `skipped` / `pending`. */
+function fakeSlots({ head = 1000, start = 995, skipped = [], pending = [] } = {}) {
+  return scriptedRpc({
+    getSlot: () => head,
+    getBlock: ([slot]) => {
+      if (skipped.includes(slot)) throw new Error('{"code":-32007,"message":"Slot was skipped"}');
+      if (pending.includes(slot))
+        throw new Error('{"code":-32004,"message":"Block not available for slot"}');
+      return block;
+    },
+    _start: start,
+  });
+}
+
+async function runBlocks(rpc, { start = 995, rounds = 1, overrides = {} } = {}) {
+  const state = createMemoryState({ slot: start });
+  const notify = collectNotifier();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg: { ...blockCfg, ...overrides },
+    maxRounds: rounds,
+  });
+  return { state, notify };
+}
+
+test('block source scans every slot from the cursor to the tip and alerts on the unknown program', async () => {
+  const rpc = fakeSlots();
+  const { state, notify } = await runBlocks(rpc);
+  assert.equal(state.get().slot, 1000);
+  assert.deepEqual(
+    rpc.calls.filter((c) => c.method === 'getBlock').map((c) => c.params[0]),
+    [996, 997, 998, 999, 1000],
+  );
+  assert.equal(notify.sent.length, 1, '5 births from pump.fun ≥ minTokens 3');
+  assert.equal(notify.sent[0].payload.address, PUMP);
+  assert.equal(rpc.calls[1].params[1].maxSupportedTransactionVersion, 1);
+});
+
+test('block source skips skipped slots and waits on not-yet-available ones', async () => {
+  const pending = [999];
+  const rpc = fakeSlots({ skipped: [997], pending });
+  const { state, notify } = await runBlocks(rpc, { overrides: { minTokens: 3 } });
+  assert.equal(state.get().slot, 998, 'stops before the pending slot without advancing past it');
+  assert.equal(notify.sent.length, 0, 'only 996 and 998 counted so far');
+  pending.length = 0; // the block is served on the next poll
+  const again = await runBlocks(rpc, { start: state.get().slot });
+  assert.equal(again.state.get().slot, 1000);
+});
+
+test('block source caps catch-up at maxLag slots and logs the gap', async () => {
+  const rpc = fakeSlots({ head: 5000, start: 100 });
+  const logs = [];
+  const state = createMemoryState({ slot: 100 });
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify: collectNotifier(),
+    state,
+    log: (m) => logs.push(m),
+    rpc,
+    cfg: { ...blockCfg, maxLag: 10 },
+    maxRounds: 1,
+  });
+  assert.equal(rpc.calls.filter((c) => c.method === 'getBlock').length, 10);
+  assert.equal(state.get().slot, 5000);
+  assert.ok(logs.some((l) => /slots behind/.test(l)));
+});
+
+test('block source starts at the tip on a fresh state and falls back to tx version 0 on -32015', async () => {
+  let rejected = 0;
+  const rpc = scriptedRpc({
+    getSlot: () => 50,
+    getBlock: ([, opts]) => {
+      if (opts.maxSupportedTransactionVersion === 1) {
+        rejected++;
+        throw new Error('{"code":-32015,"message":"Transaction version (1) is not supported"}');
+      }
+      return block;
+    },
+  });
+  const state = createMemoryState();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify: collectNotifier(),
+    state,
+    log: silent,
+    rpc,
+    cfg: blockCfg,
+    maxRounds: 2,
+  });
+  assert.equal(state.get().slot, 50);
+  assert.equal(rejected, 1);
+});
+
+test('metadata source still works when selected explicitly', async () => {
+  const { rpc } = fakeChain(pump);
+  const state = createMemoryState();
+  const notify = collectNotifier();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg: { ...cfg, source: 'metadata' },
+    maxRounds: 1,
+  });
+  assert.equal(notify.sent.length, 1);
+  assert.equal(state.get().cursor, 'sig0');
+});
+
+// ---- wrappers that CPI into a known launchpad -----------------------------------------------------
+import { innerPrograms } from '../detector/solana.mjs';
+const WRAPPER = 'J7pourVwqP1VtRNBiFNqbdGxwkx7ta2LHAURURRRJqmd';
+
+/** The recorded pump.fun tx rewritten as if a bundler program had CPI'd into pump.fun. */
+function wrapped() {
+  const tx = structuredClone(pump);
+  const outer = tx.transaction.message.instructions;
+  const pumpIxs = outer.filter((i) => i.programId === PUMP);
+  tx.transaction.message.instructions = [
+    ...outer.filter((i) => i.programId !== PUMP),
+    { programId: WRAPPER, accounts: [], data: 'x' },
+  ];
+  tx.meta.innerInstructions.push({
+    index: tx.transaction.message.instructions.length - 1,
+    instructions: pumpIxs,
+  });
+  return tx;
+}
+
+test('innerPrograms lists CPI targets minus system programs', () => {
+  const inner = innerPrograms(wrapped());
+  assert.ok(inner.includes(PUMP), 'pump.fun reached via CPI');
+  assert.ok(!inner.includes(WRAPPER));
+  assert.ok(
+    !inner.includes('TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'),
+    'system programs dropped',
+  );
+  assert.deepEqual(outerPrograms(wrapped()), [WRAPPER]);
+});
+
+test('a wrapper that CPIs into a registered launchpad is credited to the launchpad, not alerted', async () => {
+  const sigs = Array.from({ length: 4 }, (_, i) => ({ signature: `w${i}`, err: null }));
+  const rpc = scriptedRpc({ getSignaturesForAddress: () => sigs, getTransaction: () => wrapped() });
+  const state = createMemoryState();
+  const notify = collectNotifier();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: (_d, a) => a === PUMP },
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg: { ...cfg, minTokens: 3 },
+    maxRounds: 1,
+  });
+  assert.equal(notify.sent.length, 0);
+  assert.equal(state.get().entrypoints[`program:${WRAPPER}`], undefined, 'wrapper never counted');
+  assert.equal(state.get().entrypoints[`program:${PUMP}`].tokens.length, 4);
+});
+
+test('the same wrapper IS alerted when the launchpad it calls is unknown', async () => {
+  const sigs = Array.from({ length: 3 }, (_, i) => ({ signature: `u${i}`, err: null }));
+  const rpc = scriptedRpc({ getSignaturesForAddress: () => sigs, getTransaction: () => wrapped() });
+  const notify = collectNotifier();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify,
+    state: createMemoryState(),
+    log: silent,
+    rpc,
+    cfg: { ...cfg, minTokens: 3 },
+    maxRounds: 1,
+  });
+  assert.equal(notify.sent.length, 1);
+  assert.equal(notify.sent[0].payload.address, WRAPPER);
 });
