@@ -92,6 +92,7 @@ async function main() {
       broadcast: cfg.watch,
       ref: cfg.tradeRef,
       apps: cfg.buyButtons,
+      repoUrl: cfg.repoUrl,
     });
     onLaunch = watch.onLaunch;
     const token = process.env.TELEGRAM_BOT_TOKEN;

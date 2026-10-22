@@ -63,23 +63,44 @@ const norm = (s) =>
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '');
 
-/** Launchpad by id, name or alias (case/punctuation-insensitive); null when nothing matches exactly. */
+const host = (url) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
+
+/**
+ * Launchpad by id, name, alias or website domain (case/punctuation-insensitive: "pump.fun",
+ * "PumpFun", "pangea.trade" all work); null when nothing matches exactly.
+ */
 export function resolveLaunchpad(query, launchpads) {
-  const q = norm(query);
+  const raw = String(query || '')
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\//, '')
+    .replace(/\/.*$/, '');
+  const q = norm(raw);
   if (!q) return null;
   return (
-    launchpads.find((l) => l.id === String(query).trim().toLowerCase()) ||
+    launchpads.find((l) => l.id === raw) ||
     launchpads.find(
       (l) => norm(l.name) === q || norm(l.id) === q || (l.aliases || []).some((a) => norm(a) === q),
     ) ||
+    launchpads.find((l) => host(l.website) === raw.replace(/^www\./, '')) ||
     null
   );
 }
 
-/** Launchpads whose id or name contains the query (for "did you mean"). */
+/** Launchpads whose id, name or domain contains the query, or is contained in it (for "did you mean"). */
 export const suggestLaunchpads = (query, launchpads) => {
   const q = norm(query);
-  return q ? launchpads.filter((l) => norm(l.id).includes(q) || norm(l.name).includes(q)) : [];
+  if (!q) return [];
+  const near = (s) => s && (s.includes(q) || (s.length >= 4 && q.includes(s)));
+  return launchpads.filter(
+    (l) => near(norm(l.id)) || near(norm(l.name)) || near(norm(host(l.website).split('.')[0])),
+  );
 };
 
 /** `/watch@bot pump.fun` → { cmd: 'watch', arg: 'pump.fun' }; null for ordinary text. */
@@ -109,14 +130,21 @@ function helpText(chain, launchpads) {
  * this bot owns (so a shared group chat is not spammed).
  * @param {{ text: string, chat: string|number, watchlist: object, launchpads: object[], chain: object }} p
  */
-export function handleCommand({ text, chat, watchlist, launchpads, chain }) {
+export function handleCommand({ text, chat, watchlist, launchpads, chain, repoUrl, onRequest }) {
   const c = parseCommand(text);
   if (!c) return null;
   const notFound = (arg) => {
     const hints = suggestLaunchpads(arg, launchpads).slice(0, 5);
+    if (hints.length)
+      return `Unknown launchpad "${escapeHtml(arg)}". Did you mean: ${hints.map(show).join(', ')}?`;
+    onRequest?.(arg, chat);
+    const issue = repoUrl
+      ? `${repoUrl}/issues/new?template=new-launchpad.md&title=${encodeURIComponent(`[${chain.dir}] ${arg}`)}`
+      : null;
     return (
-      `Unknown launchpad "${escapeHtml(arg)}".` +
-      (hints.length ? ` Did you mean: ${hints.map(show).join(', ')}?` : ' See /launchpads.')
+      `"${escapeHtml(arg)}" is not in the registry yet (ids: /launchpads). ` +
+      `The detector flags every program that launches tokens, so once it is added it can be watched here. ` +
+      (issue ? `Ask for it: <a href="${issue}">add ${escapeHtml(arg)} to the registry</a>` : '')
     );
   };
   switch (c.cmd) {
@@ -263,6 +291,7 @@ export function createWatch({
   ref = process.env.TRADE_REF,
   apps = splitList(process.env.BUY_BUTTONS),
   launchpads = forChain(chain.dir),
+  repoUrl = 'https://github.com/dynamolabs/launchpad-registry',
 }) {
   const s = state.get();
   s.watch ??= {};
@@ -354,7 +383,20 @@ export function createWatch({
     idle: () => draining,
     /** Telegram command → HTML reply or null. */
     command: (text, chat) => {
-      const reply = handleCommand({ text, chat, watchlist, launchpads, chain });
+      const reply = handleCommand({
+        text,
+        chat,
+        watchlist,
+        launchpads,
+        chain,
+        repoUrl,
+        // unknown names are logged so maintainers see which launchpads people ask for
+        onRequest: (name, from) => {
+          s.watch.requests ??= {};
+          s.watch.requests[name] = (s.watch.requests[name] || 0) + 1;
+          log(`[watch] request for "${name}" from chat ${from} (${s.watch.requests[name]}×)`);
+        },
+      });
       if (reply) state.touch();
       return reply;
     },

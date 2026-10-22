@@ -49,6 +49,34 @@ test('resolveLaunchpad matches id, name and aliases loosely but not substrings',
   assert.equal(resolveLaunchpad('Raydium LaunchLab', launchpads).id, 'raydium-launchlab');
   assert.equal(resolveLaunchpad('fun', launchpads), null);
   assert.equal(resolveLaunchpad('', launchpads), null);
+  assert.equal(resolveLaunchpad('pangea.trade', launchpads).id, 'pangea', 'website domain');
+  assert.equal(resolveLaunchpad('https://www.pangea.trade/launch', launchpads).id, 'pangea');
+  assert.equal(resolveLaunchpad('bags.fm', launchpads).id, 'bags');
+});
+
+test('unknown launchpads get suggestions when close, otherwise a registry request link', () => {
+  const watchlist = createWatchlist({});
+  const requests = [];
+  const run = (text) =>
+    handleCommand({
+      text,
+      chat: 7,
+      watchlist,
+      launchpads,
+      chain,
+      repoUrl: 'https://r',
+      onRequest: (name, chat) => requests.push([name, chat]),
+    });
+  assert.match(run('/watch pumpfun.xyz'), /Did you mean: pump\.fun/);
+  assert.match(run('/watch letsbonkk'), /Did you mean: letsbonk/);
+  const reply = run('/watch moonpad.io');
+  assert.match(reply, /not in the registry yet/);
+  assert.match(
+    reply,
+    /href="https:\/\/r\/issues\/new\?template=new-launchpad\.md&title=%5Bsolana%5D%20moonpad\.io"/,
+  );
+  assert.deepEqual(requests, [['moonpad.io', 7]]);
+  assert.equal(watchlist.list(7).length, 0);
 });
 
 test('parseCommand strips the bot suffix and keeps the argument', () => {
@@ -66,7 +94,7 @@ test('handleCommand drives the watchlist and answers in Telegram HTML', () => {
   assert.match(run('/watch pump.fun'), /✅ Watching pump\.fun <code>pump-fun<\/code>/);
   assert.match(run('/watch pump-fun'), /Already watching/);
   assert.match(run('/watch pump'), /Did you mean: pump\.fun <code>pump-fun<\/code>\?/);
-  assert.match(run('/watch zzz'), /Unknown launchpad "zzz"\. See \/launchpads/);
+  assert.match(run('/watch zzz'), /"zzz" is not in the registry yet/);
   assert.match(run('/watching'), /pump-fun/);
   assert.match(run('/unwatch bags'), /was not on your list/);
   assert.match(run('/unwatch pump-fun'), /Removed pump\.fun/);
