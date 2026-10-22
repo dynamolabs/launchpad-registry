@@ -17,18 +17,6 @@ Every sniper, radar, dashboard and wallet tracker reverse-engineers the same add
 
 **Browse:** https://dynamolabs.github.io/launchpad-registry · **Data:** [`dist/launchpads.json`](dist/launchpads.json) · **Add one:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Buy buttons (trade links)
-
-Every alert bot ends its token card with the same row of buttons: Trojan, BONKbot, GMGN, Maestro, Axiom, Photon, BullX, DEX Screener… `registry/trade-links.json` holds their deep-link templates (`{token}`, `{ref}`, `{pool}`), each marked `production` (used by bots we run), `docs` (the app's own documentation) or `community` (links in the wild), with the source and the date checked.
-
-```js
-import { buyLinks } from 'launchpad-registry';
-buyLinks({ chain: 'solana', token: mint, ref: 'yourcode' });
-// → [{ id: 'trojan', name: 'Trojan', kind: 'telegram', url: 'https://t.me/solana_trojanbot?start=r-yourcode-<mint>', verified: 'production' }, …]
-```
-
-Apps whose template needs a referral code are left out when you pass none (unless they have a no-referral variant). Referral codes are yours; the registry only carries the URL shape. Fix or add one in `registry/trade-links.json` with a source link.
-
 ## Coverage
 
 | chain                  | dir        | launchpads                                                                                                                                                                                       |
@@ -70,9 +58,21 @@ frontendsOf('meteora-dbc'); // pads built on a multi-tenant program
 active(); // status === 'active'
 ```
 
-Files in `dist/`: `launchpads.json` (all), `launchpads.min.json` (ids + addresses only), `addresses.json` (reverse index `chain:address → [{id, role}]`), `launchpads.csv` (one row per address, for Dune / spreadsheets), `by-chain/<dir>.json`, `chains.json`, `tags.json`. Every file carries `version` (semver of the dataset) and `generated`. CDN: `https://cdn.jsdelivr.net/gh/OWNER/launchpad-registry@main/dist/launchpads.json`. TypeScript types ship in `index.d.ts`.
+Files in `dist/`: `launchpads.json` (all), `launchpads.min.json` (ids + addresses only), `addresses.json` (reverse index `chain:address → [{id, role}]`), `launchpads.csv` (one row per address, for Dune / spreadsheets), `by-chain/<dir>.json`, `chains.json`, `tags.json`. Every file carries `version` (semver of the dataset) and `generated`. CDN: `https://cdn.jsdelivr.net/gh/dynamolabs/launchpad-registry@main/dist/launchpads.json`. TypeScript types ship in `index.d.ts`.
 
-**AI agents:** `mcp/` is an MCP server (`lookup`, `search`, `get`, `frontends_of`, `list_chains`), see [`mcp/README.md`](mcp/README.md); `llms.txt` summarises the data for LLMs; `skills/add-launchpad` teaches an agent how to contribute an entry.
+**AI agents:** `mcp/` is an MCP server (`lookup`, `search`, `get`, `frontends_of`, `list_chains`, `buy_links`), see [`mcp/README.md`](mcp/README.md); `llms.txt` summarises the data for LLMs; `skills/add-launchpad` teaches an agent how to contribute an entry.
+
+## Buy buttons (trade links)
+
+Every alert bot ends its token card with the same row of buttons: Trojan, BONKbot, GMGN, Maestro, Axiom, Photon, BullX, DEX Screener… `registry/trade-links.json` holds their deep-link templates (`{token}`, `{ref}`, `{pool}`), each marked `production` (used by bots we run), `docs` (the app's own documentation) or `community` (links in the wild), with the source and the date checked.
+
+```js
+import { buyLinks } from 'launchpad-registry';
+buyLinks({ chain: 'solana', token: mint, ref: 'yourcode' });
+// → [{ id: 'trojan', name: 'Trojan', kind: 'telegram', url: 'https://t.me/solana_trojanbot?start=r-yourcode-<mint>', verified: 'production' }, …]
+```
+
+Apps whose template needs a referral code are left out when you pass none (unless they have a no-referral variant). Referral codes are yours; the registry only carries the URL shape. Fix or add one in `registry/trade-links.json` with a source link.
 
 ## What one entry looks like
 
@@ -128,6 +128,7 @@ The same process can run a **watch feed** (`--watch`): every launch on a launchp
 ## Used by
 
 - `sol-launchpad-radar` and `inj-launchpad-radar` (Telegram radars for new launchpads on Solana / Injective) load `dist/addresses.json` hourly to tell registered programs from unknown ones. Add yours via PR.
+- [@Launchpadwatcher_bot](https://t.me/Launchpadwatcher_bot) is this repo's detector with `--watch`: pick launchpads, get every launch as a card with buy buttons.
 
 ## Contribute
 
@@ -148,13 +149,14 @@ Rules in short: one launchpad per file, file name = `id`, every address backed b
 
 ## Versioning
 
-The dataset is semver'd (`version` in every `dist/` file, tags `vX.Y.Z`, [CHANGELOG](CHANGELOG.md)): **major** when an entry or address is removed or changed, **minor** when entries/addresses are added, **patch** for metadata. Pin a tag if you need stability: `cdn.jsdelivr.net/gh/OWNER/launchpad-registry@v0.1.0/dist/launchpads.json`.
+The dataset is semver'd (`version` in every `dist/` file, tags `vX.Y.Z`, [CHANGELOG](CHANGELOG.md)): **major** when an entry or address is removed or changed, **minor** when entries/addresses are added, **patch** for metadata. Pin a tag if you need stability: `cdn.jsdelivr.net/gh/dynamolabs/launchpad-registry@v0.5.0/dist/launchpads.json`.
 
 ## Roadmap
 
 - [ ] Base, BNB, Ethereum mainnet, Arc entries (Clanker, Zora, Flaunch, four.meme, Virtuals Base…)
-- [ ] Bags, Believe, DAOs.fun config keys on Solana (need fixture txs)
+- [ ] Believe, DAOs.fun, Time.fun config keys on Solana (need fixture txs)
 - [x] Token-2022 metadata-extension mints in the detector (block scanning, 0.3.0)
+- [x] Buy-button deep links (0.4.0) and the per-chat watch feed (0.5.0)
 - [ ] Yellowstone gRPC mode in the detector (block scanning over HTTP needs ~8 MB/s)
 - [ ] Public keyless lookup API
 - [ ] Schema registered at SchemaStore
