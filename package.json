@@ -70,7 +70,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dynamolabs/launchpad-registry.git"
+    "url": "git+https://github.com/dynamolabs/launchpad-registry.git"
   },
   "engines": {
     "node": ">=20"
@@ -80,7 +80,7 @@
     "zod": "^3.24.4"
   },
   "bin": {
-    "launchpad-registry-mcp": "./mcp/server.mjs",
-    "launchpad-detector": "./detector/index.mjs"
+    "launchpad-registry-mcp": "mcp/server.mjs",
+    "launchpad-detector": "detector/index.mjs"
   }
 }
