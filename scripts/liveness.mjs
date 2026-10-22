@@ -7,8 +7,13 @@ import { makeRpc, isRateLimit, sleep } from '../lib/rpc.mjs';
 import { hookFromInitLog } from '../detector/evm.mjs';
 
 const WRITE = process.argv.includes('--write');
-const daysArg = process.argv.indexOf('--days');
-const QUIET_DAYS = Number(daysArg > -1 ? process.argv[daysArg + 1] : 30);
+/** `--days N` → N; missing or non-numeric → 30. Exported for tests. */
+export function parseDays(argv, fallback = 30) {
+  const i = argv.indexOf('--days');
+  const n = i > -1 ? Number(argv[i + 1]) : NaN;
+  return Number.isFinite(n) && n > 0 ? n : fallback;
+}
+const QUIET_DAYS = parseDays(process.argv);
 const DAY_MS = 864e5;
 const ACTIVE_ROLES = new Set([
   'program',

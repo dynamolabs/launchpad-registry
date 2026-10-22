@@ -63,3 +63,24 @@ test('prune drops quiet never-alerted entrypoints and keeps alerted ones', () =>
   assert.deepEqual(Object.keys(state), ['entrypoint:0x2']);
   assert.equal(state['entrypoint:0x2'].tokens.length, 0, 'old tokens trimmed');
 });
+
+import { migrateLegacyKeys } from '../detector/tracker.mjs';
+
+test('migrateLegacyKeys renames v0.2 prefixes and keeps alerted flags', () => {
+  const state = {
+    'to:0xaaa': { kind: 'entrypoint', first: 5, tokens: [], alerted: true },
+    'prog:Prog1': { kind: 'program', first: 7, tokens: [], alerted: false },
+    'entrypoint:0xbbb': { kind: 'entrypoint', first: 9, tokens: [], alerted: false },
+    'entrypoint:0xaaa': { kind: 'entrypoint', first: 10, tokens: [], alerted: false },
+  };
+  assert.equal(migrateLegacyKeys(state), 2);
+  assert.deepEqual(Object.keys(state).sort(), [
+    'entrypoint:0xaaa',
+    'entrypoint:0xbbb',
+    'program:Prog1',
+  ]);
+  assert.equal(state['entrypoint:0xaaa'].alerted, true, 'merged entry keeps the alert');
+  assert.equal(state['entrypoint:0xaaa'].first, 5);
+  assert.equal(state['program:Prog1'].kind, 'program');
+  assert.equal(migrateLegacyKeys(state), 0, 'idempotent');
+});

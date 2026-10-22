@@ -1,7 +1,7 @@
 // EVM engine: every ERC-20 mint-from-zero → the tx.to entrypoint (or the Uniswap V4 hook) that created it
 // → counted per window by the tracker → one alert per unknown entrypoint.
 import { makeRpc, isRateLimit, sleep } from '../lib/rpc.mjs';
-import { createTracker } from './tracker.mjs';
+import { createTracker, migrateLegacyKeys } from './tracker.mjs';
 
 export const TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
 export const V4_INITIALIZE_TOPIC =
@@ -144,6 +144,7 @@ export async function runEvm({
   const call = (to, data) => rpc('eth_call', [{ to, data }, 'latest']).catch(() => null);
   const s = state.get();
   s.entrypoints ??= {};
+  if (migrateLegacyKeys(s.entrypoints) > 0) state.touch();
   const tracker = createTracker({
     state: s.entrypoints,
     windowMin: cfg.windowMin,
@@ -177,24 +178,30 @@ export async function runEvm({
     const logs = await rpc('eth_getLogs', [{ ...range, topics: [TRANSFER_TOPIC, ZERO_WORD] }]);
     const minted = new Set();
     for (const [txHash, addresses] of mintsByTx(logs)) {
-      const fresh = [...addresses].filter((a) => state.markSeen(a));
+      // a token is marked seen only once fully processed, so an RPC failure mid-range is retried, not lost
+      const fresh = [...addresses].filter((a) => !s.seen[a]);
       if (!fresh.length) continue;
       const tx = await rpc('eth_getTransactionByHash', [txHash]);
       if (!tx) continue;
       for (const address of fresh) {
-        if (await existedBefore(address, tx.blockNumber)) continue;
-        const token = await describeToken(address);
-        if (!token) continue;
-        minted.add(address);
-        token.creator = tx.from.toLowerCase();
-        if (tx.to) await report('entrypoint', tx.to, token);
-        else
-          log(
-            `[evm-${chain.id}] direct deploy ${token.symbol} ${address} by ${tx.from} (no entrypoint)`,
-          );
+        await classifyMint(address, tx);
+        state.markSeen(address);
       }
     }
     return minted;
+
+    async function classifyMint(address, tx) {
+      if (await existedBefore(address, tx.blockNumber)) return;
+      const token = await describeToken(address);
+      if (!token) return;
+      minted.add(address);
+      token.creator = tx.from.toLowerCase();
+      if (tx.to) await report('entrypoint', tx.to, token);
+      else
+        log(
+          `[evm-${chain.id}] direct deploy ${token.symbol} ${address} by ${tx.from} (no entrypoint)`,
+        );
+    }
   }
 
   async function processV4Pools(range, minted) {
@@ -204,6 +211,8 @@ export async function runEvm({
     for (const log of logs) {
       const hook = hookFromInitLog(log);
       if (!hook) continue;
+      const seenKey = `v4:${log.transactionHash}:${hook}`;
+      if (s.seen[seenKey]) continue;
       const tokenAddress = tokenFromInitLog(log, {
         quoteTokens: cfg.quoteTokens,
         mintedInTx: minted,
@@ -215,6 +224,7 @@ export async function runEvm({
         symbol,
         creator: tx?.from?.toLowerCase() || '?',
       });
+      state.markSeen(seenKey);
     }
   }
 
@@ -238,7 +248,7 @@ export async function runEvm({
       cursor = to;
       s.cursor = cursor;
       state.touch();
-      if (round % 50 === 49) tracker.prune();
+      if (round % 50 === 49 && tracker.prune() > 0) state.touch();
       if (to < head) continue; // still catching up: no sleep
     } catch (err) {
       const rateLimited = isRateLimit(err);

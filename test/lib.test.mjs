@@ -117,3 +117,18 @@ test('addressKey lower-cases EVM only; rpcUrlFor honours env overrides', () => {
     'https://s',
   );
 });
+
+test('isRateLimit ignores result-set-too-large answers and numbers that merely contain 429', () => {
+  assert.ok(
+    !isRateLimit(
+      new Error(
+        'eth_getLogs: {"code":-32000,"message":"block range too large: 94294290-94299289"}',
+      ),
+    ),
+  );
+  assert.ok(!isRateLimit(new Error('query returned more than 10000 results')));
+  assert.ok(!isRateLimit(new Error('tx 0x4290000000000000000000000000000000000000 not found')));
+  assert.ok(isRateLimit(new Error('HTTP 429')));
+  assert.ok(isRateLimit({ code: -32005, message: 'x' }));
+  assert.ok(isRateLimit(new Error('{"code":429,"message":"Too Many Requests"}')));
+});

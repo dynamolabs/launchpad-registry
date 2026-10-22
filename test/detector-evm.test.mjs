@@ -192,7 +192,8 @@ test('runEvm keys V4 pools by hook and names the minted currency', async () => {
   const init = dopplerReceipt.logs.find((l) => l.topics[0] === V4_INITIALIZE_TOPIC);
   const rpc = scriptedRpc({
     eth_blockNumber: () => '0x64',
-    eth_getLogs: ([{ address }]) => (address ? [init, init, init] : []),
+    eth_getLogs: ([{ address }]) =>
+      address ? [0, 1, 2].map((i) => ({ ...init, transactionHash: `0xpool${i}` })) : [],
     eth_getTransactionByHash: () => ({ from: '0xDEV' }),
     eth_call: () => fx('rh-doppler-symbol'),
   });
@@ -233,4 +234,59 @@ test('runEvm survives RPC errors and keeps polling', async () => {
   });
   const { state } = await run(rpc, { minRounds: 3 });
   assert.equal(state.get().cursor, 100);
+});
+
+test('runEvm retries a range after a tx fetch failure without losing the tokens', async () => {
+  let failed = false;
+  const base = fakeChain();
+  const rpc = scriptedRpc({
+    eth_blockNumber: () => '0x64',
+    eth_getLogs: (p) => base('eth_getLogs', p),
+    eth_getTransactionByHash: ([hash]) => {
+      if (hash === '0xtx1' && !failed) {
+        failed = true;
+        throw new Error('fetch timeout');
+      }
+      return base('eth_getTransactionByHash', [hash]);
+    },
+    eth_getCode: () => '0x',
+    eth_call: (p) => base('eth_call', p),
+  });
+  const { notify, state } = await run(rpc, { minRounds: 4 });
+  assert.equal(notify.sent.length, 1, 'all three tokens eventually counted');
+  assert.equal(notify.sent[0].payload.count, 3);
+  assert.equal(state.get().cursor, 100);
+});
+
+test('runEvm does not count the same V4 pool twice when a range is retried', async () => {
+  const init = dopplerReceipt.logs.find((l) => l.topics[0] === V4_INITIALIZE_TOPIC);
+  let calls = 0;
+  const rpc = scriptedRpc({
+    eth_blockNumber: () => '0x64',
+    eth_getLogs: ([{ address }]) =>
+      address ? [0, 1].map((i) => ({ ...init, transactionHash: `0xpool${i}` })) : [],
+    eth_getTransactionByHash: () => {
+      if (calls++ === 1) throw new Error('fetch timeout'); // second pool fetch fails → range retried
+      return { from: '0xdev' };
+    },
+    eth_call: () => fx('rh-doppler-symbol'),
+  });
+  const state = createMemoryState();
+  const notify = collectNotifier();
+  await runEvm({
+    chain,
+    rpcUrl: '',
+    registry: registry(),
+    notify,
+    state,
+    log: silent,
+    rpc,
+    maxRounds: 4,
+    cfg: { ...cfg, minTokens: 3, v4PoolManager: '0x8366a39cc670b4001a1121b8f6a443a643e40951' },
+  });
+  assert.equal(notify.sent.length, 0, 'two pools stay two births after the retry, never three');
+  assert.equal(
+    state.get().entrypoints['hook:0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544'].tokens.length,
+    2,
+  );
 });

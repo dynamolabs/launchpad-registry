@@ -10,6 +10,28 @@
  * @param {Iterable<string>} [opts.ignore]   addresses never reported (DEX routers, account-abstraction entrypoints…)
  * @param {() => number} [opts.now]
  */
+/** v0.2 state files used `to:` / `prog:` prefixes; rename them so alerted flags survive an upgrade. */
+export function migrateLegacyKeys(state) {
+  const renames = { 'to:': 'entrypoint:', 'prog:': 'program:' };
+  let moved = 0;
+  for (const [key, entry] of Object.entries(state)) {
+    const prefix = Object.keys(renames).find((p) => key.startsWith(p));
+    if (!prefix) continue;
+    const next = renames[prefix] + key.slice(prefix.length);
+    const existing = state[next];
+    state[next] = existing
+      ? {
+          ...existing,
+          alerted: existing.alerted || entry.alerted,
+          first: Math.min(existing.first, entry.first),
+        }
+      : { ...entry, kind: renames[prefix].slice(0, -1) };
+    delete state[key];
+    moved++;
+  }
+  return moved;
+}
+
 export function createTracker({
   state,
   windowMin,

@@ -9,7 +9,13 @@
 // Tuning: FIXTURE_MAX_SIGS (3000), FIXTURE_BATCH (25), FIXTURE_PACE_MS (250), FIXTURE_MAX_BLOCKS (400000).
 import { loadAllEntries, rpcUrlFor, writeJson, today, isMain } from '../lib/files.mjs';
 import { makeRpc, rpcBatch, isRateLimit, sleep } from '../lib/rpc.mjs';
-import { TRANSFER_TOPIC, wordToAddress, hookFromInitLog } from '../detector/evm.mjs';
+import {
+  TRANSFER_TOPIC,
+  wordToAddress,
+  hookFromInitLog,
+  mintsByTx,
+  tokenFromInitLog,
+} from '../detector/evm.mjs';
 import { findFungibleMint, allInstructions, feePayer } from '../detector/solana.mjs';
 
 const env = process.env;
@@ -18,7 +24,6 @@ const BATCH = Number(env.FIXTURE_BATCH || 25);
 const PACE_MS = Number(env.FIXTURE_PACE_MS || 250);
 const MAX_BLOCKS = Number(env.FIXTURE_MAX_BLOCKS || 400000);
 const ZERO_WORD = '0x' + '0'.repeat(64);
-const ZERO_ADDRESS = '0x' + '0'.repeat(40);
 const TX_OPTS = { encoding: 'jsonParsed', maxSupportedTransactionVersion: 1 };
 const toHex = (n) => '0x' + n.toString(16);
 const dateOf = (unixSeconds) => new Date(unixSeconds * 1000).toISOString().slice(0, 10);
@@ -121,13 +126,14 @@ export async function findSolana(url, entry, mintHint) {
   return null;
 }
 
-/** Which currency of a V4 Initialize log is the launched token (non-quote, non-zero, else currency1). */
-function hookPoolToken(log, chain) {
-  const quotes = new Set(
-    [...(chain.quoteTokens || []), ...(chain.ignore || [])].map((a) => a.toLowerCase()),
+async function hookPoolToken(rpc, log, chain) {
+  // same rule as the detector: the currency minted in this tx wins, then the first non-quote currency
+  const receipt = await rpc('eth_getTransactionReceipt', [log.transactionHash]).catch(() => null);
+  const mintedInTx = new Set(
+    [...mintsByTx(receipt?.logs || []).values()].flatMap((set) => [...set]),
   );
-  const currencies = [log.topics[2], log.topics[3]].map(wordToAddress);
-  return currencies.find((c) => !quotes.has(c) && c !== ZERO_ADDRESS) || currencies[1];
+  const quoteTokens = [...(chain.quoteTokens || []), ...(chain.ignore || [])];
+  return tokenFromInitLog(log, { quoteTokens, mintedInTx });
 }
 
 export async function findEvm(url, entry, chain) {
@@ -164,16 +170,24 @@ export async function findEvm(url, entry, chain) {
     return [];
   }
 
+  let retries = 0;
   for (let to = head; to > head - MAX_BLOCKS; to -= step) {
     const range = { fromBlock: toHex(Math.max(0, to - step + 1)), toBlock: toHex(to) };
     let logs;
     try {
       logs = await logsIn(range);
+      retries = 0;
     } catch (err) {
-      if (isRateLimit(err) || /limit of|exceeds|too many/i.test(err.message)) {
+      if (isRateLimit(err) && retries++ < 5) {
         await sleep(3000);
-        to += step; // retry the same range
+        to += step; // retry the same range, at most 5 times in a row
         continue;
+      }
+      if (/limit of|exceeds|too many|more than|too large/i.test(err.message)) {
+        console.log(
+          `  (skipping blocks ${Number(range.fromBlock)}-${Number(range.toBlock)}: ${err.message.slice(0, 80)})`,
+        );
+        continue; // deterministic "result set too large": move on instead of looping forever
       }
       throw err;
     }
@@ -186,7 +200,7 @@ export async function findEvm(url, entry, chain) {
     const block = await rpc('eth_getBlockByNumber', [log.blockNumber, false]);
     let token;
     const fieldMatch = /topics\[(\d)\]/.exec(launch.tokenField || '');
-    if (hooks.length && poolManager) token = hookPoolToken(log, chain);
+    if (hooks.length && poolManager) token = await hookPoolToken(rpc, log, chain);
     else if (fieldMatch) token = wordToAddress(log.topics[Number(fieldMatch[1])]);
     else if (launch.topic0 && log.topics[1]) token = wordToAddress(log.topics[1]);
     else token = log.address;

@@ -1,8 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
-import { keccak_256 } from '@noble/hashes/sha3';
-import { sha256 } from '@noble/hashes/sha256';
+import { topic0, anchorDiscriminator } from '../lib/hash.mjs';
 import {
   launchpads,
   chains,
@@ -13,7 +12,6 @@ import {
   active,
   frontendsOf,
 } from '../index.mjs';
-const hex = (b) => Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
 
 test('ids are unique and match file names', () => {
   const ids = launchpads.map((l) => l.id);
@@ -50,11 +48,7 @@ test('topic0 equals keccak(signature) wherever both are given', () => {
     const s = l.launch?.signature,
       t = l.launch?.topic0;
     if (!s || !t || l.chain.family !== 'evm') continue;
-    const canon = s
-      .replace(/\s+indexed\s+/g, ' ')
-      .replace(/\s*,\s*/g, ',')
-      .replace(/ \w+(?=,|\))/g, '');
-    assert.equal(t, '0x' + hex(keccak_256(new TextEncoder().encode(canon))), l.id);
+    assert.equal(t, topic0(s), l.id);
   }
 });
 test('anchor discriminators match global:<name>', () => {
@@ -62,7 +56,7 @@ test('anchor discriminators match global:<name>', () => {
     const n = l.launch?.name,
       d = l.launch?.discriminator;
     if (!d || !/^[a-z0-9_]+$/.test(n || '')) continue;
-    assert.equal(d, hex(sha256(new TextEncoder().encode(`global:${n}`)).slice(0, 8)), l.id);
+    assert.equal(d, anchorDiscriminator(n), l.id);
   }
 });
 test('helpers', () => {

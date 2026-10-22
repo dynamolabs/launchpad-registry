@@ -136,3 +136,41 @@ test('runSolana falls back to maxSupportedTransactionVersion 0 on -32015 and rem
   assert.equal(notify.sent.length, 1);
   assert.equal(fake.versionErrors(), 1, 'only the first call pays for the fallback');
 });
+
+test('runSolana resumes the rest of a batch after a mid-batch RPC failure', async () => {
+  const sigs = ['sig4', 'sig3', 'sig2', 'sig1', 'sig0'].map((signature) => ({
+    signature,
+    err: null,
+  }));
+  let failed = false;
+  const rpc = scriptedRpc({
+    getSignaturesForAddress: () => sigs,
+    getTransaction: ([signature]) => {
+      if (signature === 'sig2' && !failed) {
+        failed = true;
+        throw new Error('The operation was aborted due to timeout');
+      }
+      return pump;
+    },
+  });
+  const state = createMemoryState();
+  const notify = collectNotifier();
+  await runSolana({
+    chain,
+    rpcUrl: '',
+    registry: { known: () => false },
+    notify,
+    state,
+    log: silent,
+    rpc,
+    cfg: { ...cfg, minTokens: 5 },
+    maxRounds: 3,
+  });
+  assert.equal(notify.sent.length, 1, 'all five signatures were processed in the end');
+  assert.equal(state.get().cursor, 'sig4');
+  assert.equal(
+    rpc.calls.filter((c) => c.method === 'getTransaction').length,
+    6,
+    'one retry, no re-fetch of done sigs',
+  );
+});

@@ -1169,6 +1169,13 @@
       "logo": "icons/doppler-robinhood.png",
       "fixtures": [
         {
+          "tx": "0x6c1dbde36e62270568c2c9081c4cf879fc0b8daee5798f087aa926e861eae2e9",
+          "token": "0xe8f224321964df7af4014447b24452d9ee55e643",
+          "creator": "0x43370350f0a1c28aba50545fb34722b06ae25627",
+          "date": "2026-10-22",
+          "note": "found by scripts/fixtures.mjs (topic0 in blocks 94781992-94786991)"
+        },
+        {
           "tx": "0x2457e14dff2a9bb3b77137f0b12d73857d8234cd5be0194e44f546c052019da4",
           "token": "0xb783754bcc9469efd8e85bdd4d2584c36f57240d",
           "creator": "0x43378e9b88da4d4e34056c975a689a626eff13f7",

@@ -2,7 +2,7 @@
 // fungible mint (decimals > 0), and counts every non-system outer program of those transactions.
 // HTTP RPC only, no gRPC. Token-2022 mints that skip Metaplex are not covered yet.
 import { makeRpc, sleep } from '../lib/rpc.mjs';
-import { createTracker } from './tracker.mjs';
+import { createTracker, migrateLegacyKeys } from './tracker.mjs';
 
 export const METADATA_PROGRAM = 'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s';
 
@@ -99,6 +99,7 @@ export async function runSolana({
   rpc ??= makeRpc(rpcUrl, { minIntervalMs: cfg.rpcIntervalMs ?? 120 });
   const s = state.get();
   s.entrypoints ??= {};
+  if (migrateLegacyKeys(s.entrypoints) > 0) state.touch();
   const tracker = createTracker({
     state: s.entrypoints,
     windowMin: cfg.windowMin,
@@ -129,16 +130,25 @@ export async function runSolana({
     }
   }
 
+  /**
+   * Marks the signature seen and moves the cursor only after it was fully processed,
+   * so a failure is retried on the next poll instead of being lost.
+   */
   async function processSignature(signature) {
-    if (!state.markSeen(signature)) return;
-    const tx = await getTransaction(signature);
-    const minted = findFungibleMint(tx);
-    if (!minted) return;
-    const token = { address: minted.mint, creator: feePayer(tx) };
-    for (const programId of outerPrograms(tx, ignore)) {
-      const hit = tracker.record('program', programId, token);
-      if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
+    if (!s.seen[signature]) {
+      const tx = await getTransaction(signature);
+      const minted = findFungibleMint(tx);
+      if (minted) {
+        const token = { address: minted.mint, creator: feePayer(tx) };
+        for (const programId of outerPrograms(tx, ignore)) {
+          const hit = tracker.record('program', programId, token);
+          if (hit) await notify.send(buildAlert({ chain, hit, cfg }));
+        }
+      }
+      state.markSeen(signature);
     }
+    newest = signature;
+    s.cursor = signature;
     state.touch();
   }
 
@@ -158,13 +168,14 @@ export async function runSolana({
         if (x.signature === newest) break;
         if (!x.err) fresh.push(x.signature);
       }
-      if (sigs[0]) {
+      for (const signature of fresh.reverse()) await processSignature(signature);
+      if (sigs[0] && sigs[0].signature !== newest) {
+        // every fresh signature processed (errored ones were skipped): cursor jumps to the batch head
         newest = sigs[0].signature;
         s.cursor = newest;
         state.touch();
       }
-      for (const signature of fresh.reverse()) await processSignature(signature);
-      if (round % 50 === 49) tracker.prune();
+      if (round % 50 === 49 && tracker.prune() > 0) state.touch();
     } catch (err) {
       log(`[solana] ${err.message}`);
       await sleep(cfg.pollMs * 2);

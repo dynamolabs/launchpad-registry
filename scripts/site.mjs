@@ -1,11 +1,14 @@
 // Renders docs/index.html (GitHub Pages) from dist/. Self-contained, no CDN.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-const root = new URL('..', import.meta.url).pathname;
-const data = JSON.parse(readFileSync(join(root, 'dist/launchpads.json'), 'utf8'));
-const chains = JSON.parse(readFileSync(join(root, 'dist/chains.json'), 'utf8'));
-const repo = process.env.REPO_URL || 'https://github.com/OWNER/launchpad-registry';
-const html = `<!doctype html>
+import { ROOT, isMain } from '../lib/files.mjs';
+
+/** Renders docs/index.html from dist/. Returns the HTML size in bytes. */
+export function renderSite(root = ROOT) {
+  const data = JSON.parse(readFileSync(join(root, 'dist/launchpads.json'), 'utf8'));
+  const chains = JSON.parse(readFileSync(join(root, 'dist/chains.json'), 'utf8'));
+  const repo = process.env.REPO_URL || 'https://github.com/OWNER/launchpad-registry';
+  const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Launchpad Registry</title>
 <meta name="description" content="Open registry of token launchpads: program IDs, factories, hooks and launch events on Solana and EVM chains.">
@@ -51,6 +54,10 @@ list.innerHTML=out.map(card).join('')||'<p>nothing matches</p>'}
 [q,ch,st,mo].forEach(e=>e.addEventListener('input',render));if(location.hash){q.value=location.hash.slice(1)}render();
 </script></body></html>
 `;
-mkdirSync(join(root, 'docs'), { recursive: true });
-writeFileSync(join(root, 'docs/index.html'), html);
-console.log(`docs/index.html: ${(html.length / 1024).toFixed(0)} KB`);
+  mkdirSync(join(root, 'docs'), { recursive: true });
+  writeFileSync(join(root, 'docs/index.html'), html);
+  console.log(`docs/index.html: ${(html.length / 1024).toFixed(0)} KB`);
+  return html.length;
+}
+
+if (isMain(import.meta.url)) renderSite();
