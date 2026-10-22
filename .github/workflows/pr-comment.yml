@@ -17,7 +17,7 @@ jobs:
           echo "code=$CODE" >> $GITHUB_OUTPUT
           { echo 'out<<EOF'; echo "$OUT"; echo EOF; } >> $GITHUB_OUTPUT
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v9
         with:
           script: |
             const ok = '${{ steps.v.outputs.code }}' === '0';
