@@ -23,7 +23,7 @@
     "ajv-formats": "^3.0.1",
     "eslint": "^9.27.0",
     "globals": "^16.1.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.9.10"
   },
   "main": "./index.mjs",
   "types": "./index.d.ts",
