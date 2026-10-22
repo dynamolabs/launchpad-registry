@@ -15,7 +15,7 @@
 
 Every sniper, radar, dashboard and wallet tracker reverse-engineers the same addresses from raw transactions. This repo makes that work shared, versioned and reviewable, the way [`ethereum-lists/chains`](https://github.com/ethereum-lists/chains) did for chain IDs.
 
-**Browse:** https://dynamolabs.github.io/launchpad-registry · **Data:** [`dist/launchpads.json`](dist/launchpads.json) · **Add one:** [CONTRIBUTING.md](CONTRIBUTING.md)
+**Browse:** https://dynamolabs.github.io/launchpad-registry · **Data:** [`dist/launchpads.json`](dist/launchpads.json) · **Add one:** [CONTRIBUTING.md](CONTRIBUTING.md) · **Launch thread:** [x.com/MatteoTeoETH](https://x.com/MatteoTeoETH/status/2113294248661712983)
 
 ## Coverage
 
