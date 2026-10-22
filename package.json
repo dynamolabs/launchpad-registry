@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
-    "@noble/hashes": "^1.7.1",
+    "@noble/hashes": "^2.4.0",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "eslint": "^9.27.0",
