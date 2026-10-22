@@ -16,7 +16,7 @@ jobs:
           V=$(node -p "require('./package.json').version")
           if npm view "launchpad-registry@$V" version >/dev/null 2>&1; then echo "launchpad-registry@$V is already published, skipping"; else npm publish --provenance --access public; fi
         env: { NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}' }
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/launchpads.json
