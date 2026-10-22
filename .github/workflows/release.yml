@@ -11,7 +11,10 @@ jobs:
       - run: npm ci && npm run validate && npm run build && npm test
       - name: version must match tag
         run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
-      - run: npm publish --provenance --access public
+      - name: publish to npm (skipped when this version is already on the registry)
+        run: |
+          V=$(node -p "require('./package.json').version")
+          if npm view "launchpad-registry@$V" version >/dev/null 2>&1; then echo "launchpad-registry@$V is already published, skipping"; else npm publish --provenance --access public; fi
         env: { NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}' }
       - uses: softprops/action-gh-release@v2
         with:
