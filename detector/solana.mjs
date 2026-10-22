@@ -95,6 +95,14 @@ export function metaplexMetadata(data) {
   return name && symbol ? { name: name.value, symbol: symbol.value } : null;
 }
 
+/** Trims name/symbol and drops the empty ones (launches with blank metadata are common). */
+const clean = ({ name, symbol }) => {
+  const out = {};
+  if (name?.trim()) out.name = name.trim();
+  if (symbol?.trim()) out.symbol = symbol.trim();
+  return out;
+};
+
 /**
  * Name and symbol of the launched token, or {}: from a Token-2022 `initializeTokenMetadata`
  * (pump.fun and clones, jsonParsed by the RPC) or a Metaplex create-metadata instruction
@@ -103,11 +111,11 @@ export function metaplexMetadata(data) {
 export function tokenMetadata(tx) {
   const ixs = allInstructions(tx);
   const parsed = ixs.find((i) => i.parsed?.type === 'initializeTokenMetadata')?.parsed?.info;
-  if (parsed) return { name: parsed.name, symbol: parsed.symbol };
+  if (parsed) return clean({ name: parsed.name, symbol: parsed.symbol });
   for (const ix of ixs) {
     if (ix.programId !== METADATA_PROGRAM || !ix.data) continue;
     const meta = metaplexMetadata(ix.data);
-    if (meta) return meta;
+    if (meta) return clean(meta);
   }
   return {};
 }

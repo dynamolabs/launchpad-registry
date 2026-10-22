@@ -434,6 +434,12 @@ import { tokenMetadata, metaplexMetadata, accountKeys } from '../detector/solana
 
 test('tokenMetadata and accountKeys read the pump.fun launch tx', () => {
   assert.deepEqual(tokenMetadata(pump), { name: 'KIMCHIPCS', symbol: 'KIMCHIPCS' });
+  const blank = structuredClone(pump);
+  for (const i of blank.meta.innerInstructions.flatMap((x) => x.instructions)) {
+    if (i.parsed?.type === 'initializeTokenMetadata')
+      Object.assign(i.parsed.info, { name: ' ', symbol: '' });
+  }
+  assert.deepEqual(tokenMetadata(blank), {}, 'blank metadata is dropped, not shown as a space');
   const lab = tokenMetadata(launchlab);
   assert.ok(lab.name && lab.symbol, 'Metaplex create-metadata data is decoded (LaunchLab)');
   assert.equal(metaplexMetadata('11'), null);
