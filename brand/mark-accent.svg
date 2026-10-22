@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" color="#1F3FFF">
+  <!-- C · radar with a notch: the ring opens toward the new entry -->
+  <path d="M15.9 7.4 A7.6 7.6 0 1 0 17.9 11" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="19.4" cy="4.6" r="2.6" fill="currentColor"/>
+</svg>

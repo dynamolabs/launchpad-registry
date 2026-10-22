@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand/lockup-dark.svg">
+    <img src="brand/lockup-light.svg" alt="launchpad-registry" width="520">
+  </picture>
+</p>
+
 # launchpad-registry
 
 [![validate](https://github.com/OWNER/launchpad-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/launchpad-registry/actions/workflows/ci.yml)

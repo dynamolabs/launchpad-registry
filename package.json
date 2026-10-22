@@ -42,6 +42,7 @@
     "LICENSE-DATA",
     "README.md",
     "abi/",
+    "brand/",
     "detector/",
     "dist/",
     "icons/",
