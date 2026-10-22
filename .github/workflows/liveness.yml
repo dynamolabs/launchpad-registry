@@ -17,7 +17,7 @@ jobs:
           EVM_RPC_4663: ${{ secrets.EVM_RPC_4663 }}
           EVM_RPC_1776: ${{ secrets.EVM_RPC_1776 }}
       - run: npm run validate && npm run build
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
           branch: bot/liveness
           title: 'liveness: weekly lastActivity / status update'
