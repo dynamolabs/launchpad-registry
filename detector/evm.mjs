@@ -10,6 +10,7 @@ const ZERO_WORD = '0x' + '0'.repeat(64);
 const ZERO_ADDRESS = '0x' + '0'.repeat(40);
 const SELECTOR_DECIMALS = '0x313ce567';
 const SELECTOR_SYMBOL = '0x95d89b41';
+const SELECTOR_FACTORY = '0xc45a0155'; // factory(): UniswapV2-style pair (LP) tokens answer, launch tokens do not
 
 /**
  * Addresses that create tokens on every chain but are never a launchpad:
@@ -166,9 +167,16 @@ export async function runEvm({
     return Boolean(code && code !== '0x');
   }
 
+  /** true for DEX pair (LP) tokens: they expose factory() and return an address. */
+  async function isLpToken(address) {
+    const factory = await call(address, SELECTOR_FACTORY);
+    return Boolean(factory && factory.length === 66 && /[1-9a-f]/.test(factory.slice(26)));
+  }
+
   async function describeToken(address) {
     const decimals = await call(address, SELECTOR_DECIMALS);
     if (!decimals || decimals === '0x') return null; // not an ERC-20 (NFT etc.)
+    if (await isLpToken(address)) return null; // Cake-LP / UNI-V2 minted by a liquidity router, not a launch
     const symbol = decodeString(await call(address, SELECTOR_SYMBOL)).slice(0, 24);
     return { address, symbol };
   }

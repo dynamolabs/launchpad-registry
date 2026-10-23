@@ -417,3 +417,19 @@ test('runEvm credits a launch to the registered launcher that emitted a log, not
     'credited to the launcher, not the DEX factory',
   );
 });
+
+test('runEvm skips DEX pair (LP) tokens, which answer factory()', async () => {
+  const base = fakeChain();
+  const rpc = scriptedRpc({
+    eth_blockNumber: () => '0x64',
+    eth_getLogs: (p) => base('eth_getLogs', p),
+    eth_getTransactionByHash: (p) => base('eth_getTransactionByHash', p),
+    eth_getCode: (p) => base('eth_getCode', p),
+    eth_call: ([{ data }]) =>
+      data === '0xc45a0155'
+        ? '0x000000000000000000000000ca143ce32fe78f1f7019d7d551a6402fc5350c73'
+        : base('eth_call', [{ data }]),
+  });
+  const { notify } = await run(rpc);
+  assert.equal(notify.sent.length, 0, 'three Cake-LP mints are not a launchpad');
+});

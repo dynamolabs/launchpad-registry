@@ -7,6 +7,7 @@ Data follows semver (see CONTRIBUTING.md): **major** = an entry or address remov
 - `scripts/fixtures.mjs` reads the token from a log data word when `launch.tokenField` is `data[N]` (events whose token is not indexed).
 - Detector: `TELEGRAM_COMMANDS=0` sends cards without polling `getUpdates`, so a second detector process (another chain) can share one bot token.
 - Detector (EVM): a launch is credited to the registered launchpad contract that emitted a log in the transaction, not to `tx.to`, so bundlers, bots and vault routers that call a listed launchpad no longer surface as new launchpads (the EVM twin of the Solana CPI rule). `--confirmations N` trails the tip for load-balanced public RPCs.
+- Detector (EVM): DEX pair tokens (Cake-LP, UNI-V2…) minted by liquidity routers are skipped (they answer `factory()`), so a zap/router no longer counts as a launchpad.
 
 ## 0.5.1 — 2026-10-22
 - `--scan-on-demand` (with `--watch`): the chain is not polled while nobody is subscribed and resumes at the tip when someone is. Solana block scanning costs ~70 % of a core; a hosted watch bot with an empty list was starving the other processes on the same box.
