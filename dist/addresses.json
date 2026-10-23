@@ -229,6 +229,20 @@
         "label": "DopplerHookInitializer"
       }
     ],
+    "evm-4663:0x26605f322f7ff986f381bb9a6e3f5dab0beaeb09": [
+      {
+        "id": "flap-robinhood",
+        "role": "launcher",
+        "label": "Portal v5.23.1 (create, curve buy/sell; emits TokenCreated)"
+      }
+    ],
+    "evm-4663:0xe9f7ab7de8fb8756acbb6a1cd13316a43308197b": [
+      {
+        "id": "flap-robinhood",
+        "role": "launcher",
+        "label": "VaultPortal (vault launches)"
+      }
+    ],
     "evm-4663:0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b": [
       {
         "id": "hoodpump",

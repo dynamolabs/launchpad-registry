@@ -1,7 +1,7 @@
 {
   "version": "0.6.0",
   "generated": "2026-10-23",
-  "count": 33,
+  "count": 34,
   "chains": [
     {
       "family": "solana",
@@ -15,7 +15,7 @@
       "id": 4663,
       "dir": "evm-4663",
       "name": "Robinhood Chain",
-      "count": 12
+      "count": 13
     },
     {
       "family": "evm",
@@ -1205,6 +1205,72 @@
         }
       ],
       "lastActivity": "2026-10-21"
+    },
+    {
+      "id": "flap-robinhood",
+      "name": "Flap.sh (Robinhood Chain)",
+      "website": "https://flap.sh",
+      "chain": {
+        "family": "evm",
+        "id": 4663
+      },
+      "status": "active",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0x26605f322f7fF986f381bB9A6e3f5DAb0bEaEb09",
+          "role": "launcher",
+          "label": "Portal v5.23.1 (create, curve buy/sell; emits TokenCreated)",
+          "checked": "2026-10-23"
+        },
+        {
+          "address": "0xe9F7AB7DE8FB8756acbB6a1cd13316a43308197B",
+          "role": "launcher",
+          "label": "VaultPortal (vault launches)",
+          "checked": "2026-10-23"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "TokenCreated",
+        "signature": "TokenCreated(uint256 timestamp, address creator, uint256 tokenId, address token, string name, string symbol, string metadata)",
+        "tokenField": "data[3]",
+        "creatorField": "data[1]",
+        "notes": "Same Portal code and event layout as Flap on BNB (see `flap`): no indexed params, token = data word 3, vanity *8888 standard / *7777 tax tokens.",
+        "topic0": "0x504e7f360b2e5fe33cbaaae4c593bc55305328341bf79009e43e0e3b7f699603"
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "uniswap-v2",
+        "threshold": "~16 ETH-equivalent raised (per third-party guides; 0.3 % pool fee after graduation)"
+      },
+      "quotes": [
+        "ETH"
+      ],
+      "tags": [
+        "bonding-curve",
+        "vanity-address"
+      ],
+      "sources": [
+        "https://docs.flap.sh/flap/developers/deployed-contract-addresses",
+        "https://robinhoodchain.blockscout.com/address/0x26605f322f7fF986f381bB9A6e3f5DAb0bEaEb09"
+      ],
+      "notes": "Flap's Robinhood Chain deployment (same address on RH testnet). ~430 TokenCreated events in the 11 hours before listing (≈40 launches/hour), far more than the other RH launchpads.",
+      "updated": "2026-10-23",
+      "fixtures": [
+        {
+          "tx": "0x9d8c42680d70cb94c4948b5a3a668242f1ae518424a72add6eeb06b12b465885",
+          "token": "0x45fe306a7ca64fdbfcbf3aba062e3b5673a07777",
+          "creator": "0x641c1c78c256d4aa6d7e73c5fc0cddef035c6666",
+          "date": "2026-10-23",
+          "note": "TokenCreated in block 95744048; token = data word 3"
+        }
+      ],
+      "lastActivity": "2026-10-23"
     },
     {
       "id": "hoodpump",
