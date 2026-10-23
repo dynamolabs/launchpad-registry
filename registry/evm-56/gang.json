@@ -19,7 +19,7 @@
     {
       "address": "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F",
       "role": "other",
-      "label": "SPACE ID Agent ID (.ai) soulbound NFT \u2014 buyers must hold one",
+      "label": "SPACE ID Agent ID (.ai) soulbound NFT — buyers must hold one",
       "checked": "2026-10-23"
     },
     {
@@ -35,7 +35,7 @@
     "signature": "Created(address indexed token, address indexed creator, string name, string symbol)",
     "tokenField": "token",
     "creatorField": "creator",
-    "notes": "Emitted by the Launchpad contract; tx.to is the Launchpad. Buy/Sell events carry 1% fee; Graduated(token, pair, \u2026) at 20 BNB raised \u2192 PancakeSwap V2.",
+    "notes": "Emitted by the Launchpad contract; tx.to is the Launchpad. Buy/Sell events carry 1% fee; Graduated(token, pair, …) at 20 BNB raised → PancakeSwap V2.",
     "topic0": "0xe57a519fe6a031fac5d360f4b8ce246c86dd280b40dc37b68c0a7cc7394ef9c0"
   },
   "token": {

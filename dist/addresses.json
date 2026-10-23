@@ -411,6 +411,48 @@
         "label": "launchTokenFactory"
       }
     ],
+    "evm-56:0xe2ce6ab80874fa9fa2aae65d277dd6b8e65c9de0": [
+      {
+        "id": "flap",
+        "role": "launcher",
+        "label": "Portal v5.23.1 (create, curve buy/sell; emits TokenCreated)"
+      }
+    ],
+    "evm-56:0x90497450f2a706f1951b5bdda52b4e5d16f34c06": [
+      {
+        "id": "flap",
+        "role": "launcher",
+        "label": "VaultPortal (vault launches; tx.to for those, TokenCreated still comes from the Portal)"
+      }
+    ],
+    "evm-56:0x0000e9f9f5e469f0eec27f192b4ddde04d4c0000": [
+      {
+        "id": "flap",
+        "role": "registry",
+        "label": "FlapTokenRegistry (upgradeable proxy)"
+      }
+    ],
+    "evm-56:0x1de460f363af910f51726def188f9004276bf4bc": [
+      {
+        "id": "flap",
+        "role": "other",
+        "label": "legacy launchpad contract (pre-Portal), still trading"
+      }
+    ],
+    "evm-56:0x4db4fcfebbf3f0cbd20efff444b133b96abda2d6": [
+      {
+        "id": "flap",
+        "role": "other",
+        "label": "UniswapV2-style factory that creates the token's curve pair at launch"
+      }
+    ],
+    "evm-56:0xca143ce32fe78f1f7019d7d551a6402fc5350c73": [
+      {
+        "id": "flap",
+        "role": "other",
+        "label": "PancakeSwap V2 factory (WBNB pair created in the launch tx)"
+      }
+    ],
     "evm-56:0x5c952063c7fc8610ffdb798152d69f0b9550762b": [
       {
         "id": "four-meme",

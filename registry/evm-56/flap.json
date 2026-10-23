@@ -1,0 +1,86 @@
+{
+  "id": "flap",
+  "name": "Flap.sh",
+  "website": "https://flap.sh",
+  "chain": {
+    "family": "evm",
+    "id": 56
+  },
+  "status": "active",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+      "role": "launcher",
+      "label": "Portal v5.23.1 (create, curve buy/sell; emits TokenCreated)",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0x90497450f2a706f1951b5bdda52B4E5d16f34C06",
+      "role": "launcher",
+      "label": "VaultPortal (vault launches; tx.to for those, TokenCreated still comes from the Portal)",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0x0000e9f9F5e469f0EEC27F192B4DdDE04D4c0000",
+      "role": "registry",
+      "label": "FlapTokenRegistry (upgradeable proxy)",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0x1de460f363AF910f51726DEf188F9004276Bf4bc",
+      "role": "other",
+      "label": "legacy launchpad contract (pre-Portal), still trading",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0x4db4fcfebbf3f0cbd20efff444b133b96abda2d6",
+      "role": "other",
+      "label": "UniswapV2-style factory that creates the token's curve pair at launch",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
+      "role": "other",
+      "label": "PancakeSwap V2 factory (WBNB pair created in the launch tx)",
+      "checked": "2026-10-23"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "TokenCreated",
+    "signature": "TokenCreated(uint256 timestamp, address creator, uint256 tokenId, address token, string name, string symbol, string metadata)",
+    "tokenField": "data[3]",
+    "creatorField": "data[1]",
+    "notes": "No indexed params. Parameter names are inferred from the data layout (word 0 = block time, 1 = creator, 2 = sequential id, 3 = token). One tx creates the token (CREATE2 vanity: *8888 standard, *7777 tax), its curve pair and the PancakeSwap V2 WBNB pair, and emits TokenCurveSetV2 / TokenDexSupplyThreshSet / TokenQuoteSet / FlapTokenTaxSet. Buys emit TokenBought(uint256,address,address,uint256,uint256,uint256,uint256) 0xa800a203.",
+    "topic0": "0x504e7f360b2e5fe33cbaaae4c593bc55305328341bf79009e43e0e3b7f699603"
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "unknown",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "pancakeswap-v2",
+    "threshold": "~16 BNB raised (sources differ: standard tokens are reported to migrate to PancakeSwap V3, tax tokens to V2)"
+  },
+  "quotes": ["BNB"],
+  "tags": ["bonding-curve", "vanity-address"],
+  "sources": [
+    "https://docs.flap.sh/flap/developers/deployed-contract-addresses",
+    "https://docs.bitquery.io/docs/blockchain/BSC/flap-sh/",
+    "https://bscscan.com/address/0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0"
+  ],
+  "notes": "Multi-chain launchpad (BNB since 2024; also Robinhood Chain, Base, X Layer, Monad with their own Portals). Found by this repo's detector 20 minutes after it started on BSC: ~66 launches per 11 minutes on 2026-10-23 (more than four.meme). Vault launches go through VaultPortal, so both addresses are entrypoints.",
+  "updated": "2026-10-23",
+  "fixtures": [
+    {
+      "tx": "0x5e70f6d45cf50cb6a0bf8ff1bcbe519deaed52b86149acd68da8061b3355a87a",
+      "token": "0xe97c620e02dd47b37321f6253006d9b7e90c7777",
+      "creator": "0xa2664ceba322b9ca7d7e5d2965595e2504a4b689",
+      "date": "2026-10-23",
+      "note": "TokenCreated in block ~129275040 (SAFU, tax token *7777); token = data word 3"
+    }
+  ],
+  "lastActivity": "2026-10-23"
+}

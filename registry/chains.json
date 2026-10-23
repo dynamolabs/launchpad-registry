@@ -86,7 +86,7 @@
     ],
     "explorer": "https://bscscan.com",
     "dexscreenerId": "bsc",
-    "notes": "~0.45 s blocks (Maxwell). Free RPCs restrict eth_getLogs: rpc.48.club serves address-less queries up to ~150 blocks (what the detector needs); publicnode needs an address filter and ~1 500 blocks of recent history only; drpc/tatum/blxr 50-100 blocks; bsc-dataseed rejects getLogs. four.meme is the dominant launchpad; since 2026-10-20 a wave of launchpads gates buys on the Binance Agent ID (.ai) soulbound NFT.",
+    "notes": "~0.45 s blocks (Maxwell). Free RPCs restrict eth_getLogs: rpc.48.club serves address-less queries up to ~150 blocks (what the detector needs); publicnode needs an address filter and ~1 500 blocks of recent history only; drpc/tatum/blxr 50-100 blocks; bsc-dataseed rejects getLogs. four.meme and Flap.sh (vanity *8888/*7777 tokens) are the big launchpads; since 2026-10-20 a wave of launchpads gates buys on the Binance Agent ID (.ai) soulbound NFT.",
     "ignore": [
       "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
       "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865",
