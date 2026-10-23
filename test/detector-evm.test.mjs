@@ -370,3 +370,50 @@ test('runEvm trails the tip by cfg.confirmations blocks', async () => {
   });
   assert.equal(state.get().cursor, 95, 'head 100 minus 5 confirmations');
 });
+
+test('runEvm credits a launch to the registered launcher that emitted a log, not to the wrapper tx.to', async () => {
+  const LAUNCHER = '0x1111111111111111111111111111111111111111';
+  const WRAPPER = '0x2222222222222222222222222222222222222222';
+  const rpc = fakeChain({ to: WRAPPER });
+  rpc.handlers = undefined;
+  const base = rpc;
+  const withReceipt = scriptedRpc({
+    eth_blockNumber: () => '0x64',
+    eth_getLogs: (p) => base('eth_getLogs', p),
+    eth_getTransactionByHash: (p) => base('eth_getTransactionByHash', p),
+    eth_getCode: (p) => base('eth_getCode', p),
+    eth_call: (p) => base('eth_call', p),
+    eth_getTransactionReceipt: () => ({
+      logs: [{ address: '0xca143ce32fe78f1f7019d7d551a6402fc5350c73' }, { address: LAUNCHER }],
+    }),
+  });
+  const launches = [];
+  const notify = collectNotifier();
+  await runEvm({
+    chain,
+    rpcUrl: '',
+    registry: {
+      known: (_d, a) => [LAUNCHER, '0xca143ce32fe78f1f7019d7d551a6402fc5350c73'].includes(a),
+      lookup: (_d, a) =>
+        a === LAUNCHER
+          ? [{ id: 'flap', role: 'launcher' }]
+          : a === '0xca143ce32fe78f1f7019d7d551a6402fc5350c73'
+            ? [{ id: 'flap', role: 'other' }]
+            : [],
+    },
+    notify,
+    state: createMemoryState(),
+    log: silent,
+    rpc: withReceipt,
+    cfg,
+    maxRounds: 2,
+    onLaunch: async (l) => launches.push(l),
+  });
+  assert.equal(notify.sent.length, 0, 'the wrapper is not reported as a new launchpad');
+  assert.equal(launches.length, 3);
+  assert.deepEqual(
+    launches[0].programs,
+    [LAUNCHER],
+    'credited to the launcher, not the DEX factory',
+  );
+});

@@ -185,6 +185,7 @@ export async function runEvm({
   async function processMints(range) {
     const logs = await rpc('eth_getLogs', [{ ...range, topics: [TRANSFER_TOPIC, ZERO_WORD] }]);
     const minted = new Set();
+    const launcherOf = {}; // txHash → registered launcher in that tx (or null), resolved once per tx
     for (const [txHash, addresses] of mintsByTx(logs)) {
       // a token is marked seen only once fully processed, so an RPC failure mid-range is retried, not lost
       const fresh = [...addresses].filter((a) => !s.seen[a]);
@@ -198,13 +199,32 @@ export async function runEvm({
     }
     return minted;
 
+    /**
+     * A registered launchpad contract (launch role, not `other`) that emitted a log in the tx, or null.
+     * Bundlers, bots and vault routers call the real launchpad, so tx.to is a wrapper; crediting the
+     * contract that emitted the launch log keeps wrappers from showing up as new launchpads
+     * (the EVM twin of the Solana engine's CPI rule).
+     */
+    async function launcherInTx(txHash) {
+      if (!registry.lookup) return null;
+      const receipt = await rpc('eth_getTransactionReceipt', [txHash]).catch(() => null);
+      for (const l of receipt?.logs || []) {
+        const owners = registry.lookup(chain.dir, l.address) || [];
+        if (owners.some((o) => o.role !== 'other')) return l.address.toLowerCase();
+      }
+      return null;
+    }
+
     async function classifyMint(address, tx) {
       if (await existedBefore(address, tx.blockNumber)) return;
       const token = await describeToken(address);
       if (!token) return;
       minted.add(address);
       token.creator = tx.from.toLowerCase();
-      if (tx.to) await report('entrypoint', tx.to, token);
+      if (!(tx.hash in launcherOf)) launcherOf[tx.hash] = await launcherInTx(tx.hash);
+      const launcher = launcherOf[tx.hash];
+      if (launcher) await report('entrypoint', launcher, token);
+      else if (tx.to) await report('entrypoint', tx.to, token);
       else
         log(
           `[evm-${chain.id}] direct deploy ${token.symbol} ${address} by ${tx.from} (no entrypoint)`,
