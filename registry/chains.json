@@ -79,10 +79,14 @@
     "name": "BNB Smart Chain",
     "dir": "evm-56",
     "nativeSymbol": "BNB",
-    "rpc": ["https://bsc-rpc.publicnode.com", "https://bsc-dataseed.binance.org"],
+    "rpc": [
+      "https://rpc.48.club",
+      "https://bsc-rpc.publicnode.com",
+      "https://bsc-dataseed.binance.org"
+    ],
     "explorer": "https://bscscan.com",
     "dexscreenerId": "bsc",
-    "notes": "~0.45 s blocks (Maxwell). Public RPCs cap eth_getLogs: publicnode ~1 500 blocks per call and only recent blocks (archive needs a key); bsc-dataseed.binance.org rejects getLogs outright. four.meme is the dominant launchpad; since 2026-10-20 a wave of launchpads gates buys on the Binance Agent ID (.ai) soulbound NFT.",
+    "notes": "~0.45 s blocks (Maxwell). Free RPCs restrict eth_getLogs: rpc.48.club serves address-less queries up to ~150 blocks (what the detector needs); publicnode needs an address filter and ~1 500 blocks of recent history only; drpc/tatum/blxr 50-100 blocks; bsc-dataseed rejects getLogs. four.meme is the dominant launchpad; since 2026-10-20 a wave of launchpads gates buys on the Binance Agent ID (.ai) soulbound NFT.",
     "ignore": [
       "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
       "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865",
@@ -96,6 +100,6 @@
       "0x55d398326f99059ff775485246999027b3197955",
       "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"
     ],
-    "maxLogRange": 1500
+    "maxLogRange": 150
   }
 ]
