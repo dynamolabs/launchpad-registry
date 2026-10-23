@@ -14,7 +14,7 @@
       "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau",
       "role": "partner-config",
       "label": "DBC PartnerMetadata account",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -32,13 +32,17 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": ["SOL"],
-  "tags": ["frontend"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "frontend"
+  ],
   "sources": [
     "https://farmfun.farm",
     "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/farmfun.png",
   "fixtures": [
     {

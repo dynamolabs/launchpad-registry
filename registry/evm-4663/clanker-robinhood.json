@@ -14,13 +14,13 @@
       "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
       "role": "hook",
       "label": "ClankerHookStaticFeeV2",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
       "role": "other",
       "label": "Uniswap V4 PoolManager",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -37,13 +37,18 @@
   "graduation": {
     "target": "uniswap-v4"
   },
-  "quotes": ["ETH"],
-  "tags": ["uniswap-v4", "hook"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "uniswap-v4",
+    "hook"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
   ],
   "notes": "",
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/clanker-robinhood.png",
   "fixtures": [
     {

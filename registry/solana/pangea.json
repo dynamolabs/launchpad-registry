@@ -17,25 +17,25 @@
       "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
       "role": "program",
       "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
       "role": "program",
       "label": "LayerZero OFT program (token is omnichain)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
       "role": "deployer",
       "label": "platform relayer/payer that signs every Launch",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
       "role": "other",
       "label": "Meteora DAMM v2 (pool created in the same tx)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -51,13 +51,19 @@
     "target": "meteora-damm-v2",
     "notes": "No curve: liquid from block one, LP permanently locked."
   },
-  "quotes": ["SOL"],
-  "tags": ["direct-pool", "omnichain", "layerzero"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "direct-pool",
+    "omnichain",
+    "layerzero"
+  ],
   "sources": [
     "https://pangea.trade",
     "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/pangea.png",
   "fixtures": [
     {

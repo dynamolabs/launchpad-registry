@@ -14,7 +14,7 @@
       "address": "0x62b33a039d289cbda50ebeb72fe4261449e61bcf",
       "role": "launcher",
       "label": "LaunchHoodV3Factory (cluster by tx.to)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -31,11 +31,16 @@
   "graduation": {
     "target": "uniswap-v3"
   },
-  "quotes": ["ETH"],
-  "tags": ["direct-pool", "needs-abi"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool",
+    "needs-abi"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
   ],
   "notes": "Website unknown; identified on-chain only.",
-  "updated": "2026-10-21"
+  "updated": "2026-10-23"
 }

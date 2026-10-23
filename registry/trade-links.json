@@ -12,7 +12,7 @@
     "verified": "production",
     "sources": ["https://t.me/solana_trojanbot"],
     "checked": "2026-10-22",
-    "notes": "Regional instances (paris_trojanbot, achilles_trojanbot, …) accept the same start payload. Referral code is the Telegram handle shown under Referrals in the bot."
+    "notes": "Regional instances (paris_trojanbot, achilles_trojanbot, \u2026) accept the same start payload. Referral code is the Telegram handle shown under Referrals in the bot."
   },
   {
     "id": "bonkbot",
@@ -215,7 +215,7 @@
     "name": "DEX Screener",
     "kind": "chart",
     "website": "https://dexscreener.com",
-    "chains": ["solana", "evm-4663", "evm-1776", "evm-5042"],
+    "chains": ["solana", "evm-4663", "evm-1776", "evm-5042", "evm-56"],
     "links": {
       "token": "https://dexscreener.com/{dexscreenerId}/{token}",
       "referral": null
@@ -223,6 +223,6 @@
     "verified": "production",
     "sources": ["https://dexscreener.com"],
     "checked": "2026-10-22",
-    "notes": "{dexscreenerId} comes from the chain entry in chains.json (solana, robinhood, injective, arc)."
+    "notes": "{dexscreenerId} comes from the chain entry in chains.json (solana, robinhood, injective, arc, bsc)."
   }
 ]

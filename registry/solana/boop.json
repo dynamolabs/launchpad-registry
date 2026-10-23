@@ -3,7 +3,7 @@
     "family": "solana",
     "id": "mainnet-beta"
   },
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "id": "boop",
   "name": "Boop.fun",
   "website": "https://boop.fun",
@@ -19,7 +19,7 @@
       "role": "program",
       "label": "boop program (IDL v0.3.0)",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -36,8 +36,13 @@
   "graduation": {
     "target": "raydium-cpmm"
   },
-  "quotes": ["SOL"],
-  "tags": ["memecoin", "bonding-curve"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve"
+  ],
   "externalIds": {
     "solanatracker": "boop",
     "geckoterminal": "boop-fun"

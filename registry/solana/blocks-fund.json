@@ -14,7 +14,7 @@
       "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
       "role": "partner-config",
       "label": "DBC PartnerMetadata account",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -32,13 +32,17 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": ["SOL"],
-  "tags": ["frontend"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "frontend"
+  ],
   "sources": [
     "https://blocks.fund",
     "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "fixtures": [
     {
       "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",

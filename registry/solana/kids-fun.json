@@ -17,18 +17,18 @@
       "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
       "role": "program",
       "label": "KIDS launchpad program (deployed 2026-10-19)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
       "role": "authority",
       "label": "upgrade authority (shared with fee collector)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
       "role": "fee-collector",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -46,13 +46,18 @@
     "threshold": "funding round closes (~1 h)",
     "notes": "LP locked; dev allocation 75% vesting."
   },
-  "quotes": ["SOL"],
-  "tags": ["funding-round", "vesting"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "funding-round",
+    "vesting"
+  ],
   "sources": [
     "https://kids.fun",
     "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/kids-fun.png",
   "lastActivity": "2026-10-21"
 }

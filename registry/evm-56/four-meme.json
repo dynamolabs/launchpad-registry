@@ -1,0 +1,55 @@
+{
+  "id": "four-meme",
+  "name": "four.meme",
+  "website": "https://four.meme",
+  "chain": {
+    "family": "evm",
+    "id": 56
+  },
+  "status": "active",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "0x5c952063c7fc8610FFDB798152D69F0B9550762b",
+      "role": "launcher",
+      "label": "TokenManager2 (proxy): create, buy, sell, migrate",
+      "checked": "2026-10-23"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "TokenCreate",
+    "signature": "TokenCreate(address creator, address token, uint256 requestId, string name, string symbol, uint256 totalSupply, uint256 launchTime, uint256 launchFee)",
+    "tokenField": "data[1]",
+    "creatorField": "data[0]",
+    "notes": "No indexed params: token is the 2nd word of data. TokenPurchase / TokenSale per trade; LiquidityAdded(base, offers, quote, funds) on graduation to PancakeSwap.",
+    "topic0": "0x396d5e902b675b032348d3d2e9517ee8f0c4a926603fbc075d3d282ff00cad20"
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "unknown",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "pancakeswap-v2"
+  },
+  "quotes": ["BNB"],
+  "tags": ["bonding-curve", "dominant"],
+  "sources": [
+    "https://bscscan.com/address/0x5c952063c7fc8610FFDB798152D69F0B9550762b",
+    "https://docs.rs/four-meme-sdk/latest/four_meme_sdk/IFourMeme/index.html",
+    "https://www.quicknode.com/guides/quicknode-products/streams/copytrading-bot"
+  ],
+  "notes": "Dominant BNB Chain memecoin launchpad (Binance Wallet TGEs run through it). TokenManager V1 (older) is not listed. Agentic Mode (AI agents create and trade) announced 2026-03.",
+  "updated": "2026-10-23",
+  "fixtures": [
+    {
+      "tx": "0xa68bb412d99a31d869971aae44fe937065450af90a96551dbbfa2cc5d19c615b",
+      "token": "0xd8fd30c80d35e13e0561a783cb82de99b20affff",
+      "creator": "0x49b2c2c586ab54521ccc409815ad9994662a16f8",
+      "date": "2026-10-23",
+      "note": "TokenCreate log in block 129268061; token = data word 1 (not indexed)"
+    }
+  ],
+  "lastActivity": "2026-10-23"
+}

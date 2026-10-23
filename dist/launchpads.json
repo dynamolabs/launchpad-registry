@@ -1,7 +1,7 @@
 {
-  "version": "0.5.1",
-  "generated": "2026-10-22",
-  "count": 30,
+  "version": "0.6.0",
+  "generated": "2026-10-23",
+  "count": 32,
   "chains": [
     {
       "family": "solana",
@@ -30,6 +30,13 @@
       "dir": "evm-5042",
       "name": "Arc",
       "count": 0
+    },
+    {
+      "family": "evm",
+      "id": 56,
+      "dir": "evm-56",
+      "name": "BNB Smart Chain",
+      "count": 2
     }
   ],
   "launchpads": [
@@ -53,7 +60,7 @@
           "address": "GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi",
           "role": "partner-config",
           "label": "Meteora DBC Config used by Bags launches (observed 2026-10-21; Bags may rotate configs per fee-share setup)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -99,7 +106,7 @@
         "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
         "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "lastActivity": "2026-10-21"
     },
     {
@@ -118,7 +125,7 @@
           "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
           "role": "partner-config",
           "label": "DBC PartnerMetadata account",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -146,7 +153,7 @@
         "https://blocks.fund",
         "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "fixtures": [
         {
           "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",
@@ -162,7 +169,7 @@
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "id": "boop",
       "name": "Boop.fun",
       "website": "https://boop.fun",
@@ -178,7 +185,7 @@
           "role": "program",
           "label": "boop program (IDL v0.3.0)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -231,7 +238,7 @@
           "address": "8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS",
           "role": "partner-config",
           "label": "DBC PartnerMetadata account",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -259,7 +266,7 @@
         "https://bots.family",
         "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/bots-family.png"
     },
     {
@@ -278,7 +285,7 @@
           "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau",
           "role": "partner-config",
           "label": "DBC PartnerMetadata account",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -306,7 +313,7 @@
         "https://farmfun.farm",
         "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/farmfun.png",
       "fixtures": [
         {
@@ -324,7 +331,7 @@
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "id": "heaven",
       "name": "Heaven",
       "website": "https://heaven.xyz",
@@ -339,7 +346,7 @@
           "address": "HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o",
           "role": "program",
           "label": "Heaven launchpad/DEX program (no published IDL)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -375,7 +382,7 @@
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "id": "jupiter-studio",
       "name": "Jupiter Studio",
       "website": "https://jup.ag/studio",
@@ -391,7 +398,7 @@
           "address": "ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet",
           "role": "partner-config",
           "label": "DBC PartnerMetadata (name 'Meow', website jup.ag/studio)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -441,18 +448,18 @@
           "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
           "role": "program",
           "label": "KIDS launchpad program (deployed 2026-10-19)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
           "role": "authority",
           "label": "upgrade authority (shared with fee collector)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
           "role": "fee-collector",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -481,7 +488,7 @@
         "https://kids.fun",
         "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/kids-fun.png",
       "lastActivity": "2026-10-21"
     },
@@ -505,13 +512,13 @@
           "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1",
           "role": "platform-config",
           "label": "letsbonk platform config (primary)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4",
           "role": "platform-config",
           "label": "letsbonk platform config (secondary)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -542,7 +549,7 @@
         "https://letsbonk.fun",
         "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/letsbonk.png",
       "externalIds": {
         "codex": "LetsBonk",
@@ -582,21 +589,21 @@
           "role": "program",
           "label": "Dynamic Bonding Curve",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
           "role": "other",
           "label": "DAMM v2 (default graduation target)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
           "role": "other",
           "label": "DAMM v1 (alternative graduation target)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -631,7 +638,7 @@
         "https://github.com/MeteoraAg/dynamic-bonding-curve",
         "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/meteora-dbc.png",
       "idl": "idl/meteora-dbc.json",
       "fixtures": [
@@ -653,7 +660,7 @@
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "id": "moonshot",
       "name": "Moonshot / Moonit",
       "website": "https://moonshot.money",
@@ -669,13 +676,13 @@
           "role": "program",
           "label": "Moonit legacy token_launchpad program (still launching, SOL quote)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM",
           "role": "partner-config",
           "label": "Meteora DBC Config used by current Moonshot launches (USDC quote, observed 2026-10-21)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -754,25 +761,25 @@
           "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
           "role": "program",
           "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
           "role": "program",
           "label": "LayerZero OFT program (token is omnichain)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
           "role": "deployer",
           "label": "platform relayer/payer that signs every Launch",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
           "role": "other",
           "label": "Meteora DAMM v2 (pool created in the same tx)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -800,7 +807,7 @@
         "https://pangea.trade",
         "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/pangea.png",
       "fixtures": [
         {
@@ -840,14 +847,14 @@
           "role": "program",
           "label": "pump.fun bonding curve",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
           "role": "other",
           "label": "PumpSwap AMM (graduation target)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -881,7 +888,7 @@
         "https://pump.fun",
         "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
       ],
-      "updated": "2026-10-22",
+      "updated": "2026-10-23",
       "logo": "icons/pump-fun.png",
       "idl": "idl/pump-fun.json",
       "externalIds": {
@@ -935,20 +942,20 @@
           "role": "program",
           "label": "LaunchLab (launchpad program)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
           "role": "platform-config",
           "label": "Raydium's own platform config",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
           "role": "other",
           "label": "Raydium CPMM (graduation target)",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -981,7 +988,7 @@
         "https://docs.raydium.io/raydium/pool-creation/launchlab",
         "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/raydium-launchlab.png",
       "idl": "idl/raydium-launchlab.json",
       "externalIds": {
@@ -1016,17 +1023,17 @@
         {
           "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
           "role": "platform-config",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
           "role": "platform-config",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
           "role": "platform-config",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1055,7 +1062,7 @@
         "https://www.stonkfun.xyz",
         "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/stonkfun.png",
       "lastActivity": "2026-10-21"
     },
@@ -1075,13 +1082,13 @@
           "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
           "role": "hook",
           "label": "ClankerHookStaticFeeV2",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
           "role": "other",
           "label": "Uniswap V4 PoolManager",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1109,7 +1116,7 @@
         "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
       ],
       "notes": "",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/clanker-robinhood.png",
       "fixtures": [
         {
@@ -1138,13 +1145,13 @@
           "address": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
           "role": "hook",
           "label": "DopplerHookInitializer",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
           "role": "other",
           "label": "Uniswap V4 PoolManager",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1172,7 +1179,7 @@
         "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
       ],
       "notes": "",
-      "updated": "2026-10-22",
+      "updated": "2026-10-23",
       "logo": "icons/doppler-robinhood.png",
       "fixtures": [
         {
@@ -1215,7 +1222,7 @@
           "address": "0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b",
           "role": "curve",
           "label": "HoodPump bonding curve + factory",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1246,7 +1253,7 @@
         "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
       ],
       "notes": "",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/hoodpump.png",
       "abi": "abi/hoodpump.json"
     },
@@ -1266,7 +1273,7 @@
           "address": "0x360bd5ab9a20fb9920be1caec2c8abaf097dc876",
           "role": "launcher",
           "label": "HudPadLauncher (cluster by tx.to)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1294,7 +1301,7 @@
         "https://robinhoodchain.blockscout.com/address/0x360bd5ab9a20fb9920be1caec2c8abaf097dc876"
       ],
       "notes": "Website unknown; identified on-chain only.",
-      "updated": "2026-10-21"
+      "updated": "2026-10-23"
     },
     {
       "id": "launchhood",
@@ -1312,7 +1319,7 @@
           "address": "0x62b33a039d289cbda50ebeb72fe4261449e61bcf",
           "role": "launcher",
           "label": "LaunchHoodV3Factory (cluster by tx.to)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1340,7 +1347,7 @@
         "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
       ],
       "notes": "Website unknown; identified on-chain only.",
-      "updated": "2026-10-21"
+      "updated": "2026-10-23"
     },
     {
       "id": "launchproof",
@@ -1358,7 +1365,7 @@
           "address": "0x000000e200088d55c39a11f609e5f667729ad49b",
           "role": "launcher",
           "label": "entrypoint seen 2026-08-04 (rotates)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1383,7 +1390,7 @@
         "https://robinhoodchain.blockscout.com/address/0x000000e200088d55c39a11f609e5f667729ad49b"
       ],
       "notes": "",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/launchproof.png",
       "lastActivity": "2026-10-21"
     },
@@ -1403,7 +1410,7 @@
           "address": "0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe",
           "role": "factory",
           "label": "LaunchFactory",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1430,7 +1437,7 @@
         "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
       ],
       "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/noxa.png",
       "lastActivity": "2026-10-21"
     },
@@ -1450,19 +1457,19 @@
           "address": "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
           "role": "hook",
           "label": "PmavHook",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x54198ff2fce9b0df255051d49748fe53a8e428cc",
           "role": "hook",
           "label": "PmavHook (rotated)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
           "role": "other",
           "label": "Uniswap V4 PoolManager (singleton)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1494,7 +1501,7 @@
         "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
       ],
       "notes": "",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/pmav.png",
       "abi": "abi/pmav.json"
     },
@@ -1515,13 +1522,13 @@
           "role": "factory",
           "label": "PonsLaunchFactory",
           "verified": true,
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
           "role": "other",
           "label": "UniswapV3Factory (pool created at launch)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1555,7 +1562,7 @@
         "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
       ],
       "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "abi": "abi/pons.json"
     },
     {
@@ -1574,13 +1581,13 @@
           "address": "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d",
           "role": "factory",
           "label": "Factory V5 (current)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
           "role": "other",
           "label": "UniswapV2Factory (graduation target)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1615,7 +1622,7 @@
         "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
       ],
       "notes": "",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "abi": "abi/robinfun.json",
       "lastActivity": "2026-10-21"
     },
@@ -1635,7 +1642,7 @@
           "address": "0xe769d832934f0a196a25e5c7b69cdf1920bc7734",
           "role": "launcher",
           "label": "Trencher launcher (cluster by tx.to)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1663,7 +1670,7 @@
         "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
       ],
       "notes": "Website unknown; identified on-chain only.",
-      "updated": "2026-10-21"
+      "updated": "2026-10-23"
     },
     {
       "id": "virtuals-robinhood",
@@ -1681,25 +1688,25 @@
           "address": "0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007",
           "role": "router",
           "label": "launch router (emits PreLaunched)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4",
           "role": "factory",
           "label": "factory/registry (NewApplication, deploys tokens)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31",
           "role": "token",
           "label": "VIRTUAL (quote asset)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xfc2e4da3edb2e18100473339c763705d263d20a9",
           "role": "other",
           "label": "Virtuals-side pair factory (proxy)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1729,7 +1736,7 @@
         "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
       ],
       "notes": "",
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/virtuals-robinhood.png",
       "fixtures": [
         {
@@ -1765,7 +1772,7 @@
           "address": "0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae",
           "role": "factory",
           "label": "IMORTAL factory",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1789,7 +1796,7 @@
         "https://imortal.buzz",
         "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/imortal.png"
     },
     {
@@ -1811,31 +1818,31 @@
           "address": "0xddfeabf7e3fd692ff9a9091b53bdffde8b6c07f0",
           "role": "deployer",
           "label": "address the Injective radar saw as token-minting entrypoint; has no code (EOA)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xef1a648373dc19072d692429b704bb63cf597950",
           "role": "factory",
           "label": "sale factory (seen deploying sale contracts)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x8284476327db79dd37d682a64968c8155a4c770e",
           "role": "deployer",
           "label": "EOA entrypoint observed deploying sale contracts (tx.to); not a contract",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xc4dC11d586608E29bf73F26288d590321a2E0496",
           "role": "curve",
           "label": "$RUNNER sale/curve (example, EIP-1967 proxy)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
           "role": "token",
           "label": "USDC quote (6 decimals)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1864,7 +1871,7 @@
         "https://runup.fun",
         "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/runup.png",
       "lastActivity": "2026-10-21"
     },
@@ -1887,25 +1894,25 @@
           "address": "0x1333692eB905823df110762525c26f7489BB9300",
           "role": "program",
           "label": "launchpadCore (current)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xd948740da926e8908a08414879490d0d8f96d463",
           "role": "program",
           "label": "launchpadCore (older)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0xebf62508f322137ee0986935ee3b4a60a3f0d227",
           "role": "program",
           "label": "launchpadCore (legacy)",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         },
         {
           "address": "0x615EDD898be2F44d18CE875Bbc75A1065E8D9BA2",
           "role": "factory",
           "label": "launchTokenFactory",
-          "checked": "2026-10-21"
+          "checked": "2026-10-23"
         }
       ],
       "launch": {
@@ -1932,7 +1939,7 @@
         "https://trysprout.fun",
         "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
       ],
-      "updated": "2026-10-21",
+      "updated": "2026-10-23",
       "logo": "icons/sprout.png",
       "fixtures": [
         {
@@ -1944,6 +1951,140 @@
         }
       ],
       "lastActivity": "2026-10-21"
+    },
+    {
+      "id": "four-meme",
+      "name": "four.meme",
+      "website": "https://four.meme",
+      "chain": {
+        "family": "evm",
+        "id": 56
+      },
+      "status": "active",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0x5c952063c7fc8610FFDB798152D69F0B9550762b",
+          "role": "launcher",
+          "label": "TokenManager2 (proxy): create, buy, sell, migrate",
+          "checked": "2026-10-23"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "TokenCreate",
+        "signature": "TokenCreate(address creator, address token, uint256 requestId, string name, string symbol, uint256 totalSupply, uint256 launchTime, uint256 launchFee)",
+        "tokenField": "data[1]",
+        "creatorField": "data[0]",
+        "notes": "No indexed params: token is the 2nd word of data. TokenPurchase / TokenSale per trade; LiquidityAdded(base, offers, quote, funds) on graduation to PancakeSwap.",
+        "topic0": "0x396d5e902b675b032348d3d2e9517ee8f0c4a926603fbc075d3d282ff00cad20"
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "pancakeswap-v2"
+      },
+      "quotes": [
+        "BNB"
+      ],
+      "tags": [
+        "bonding-curve",
+        "dominant"
+      ],
+      "sources": [
+        "https://bscscan.com/address/0x5c952063c7fc8610FFDB798152D69F0B9550762b",
+        "https://docs.rs/four-meme-sdk/latest/four_meme_sdk/IFourMeme/index.html",
+        "https://www.quicknode.com/guides/quicknode-products/streams/copytrading-bot"
+      ],
+      "notes": "Dominant BNB Chain memecoin launchpad (Binance Wallet TGEs run through it). TokenManager V1 (older) is not listed. Agentic Mode (AI agents create and trade) announced 2026-03.",
+      "updated": "2026-10-23",
+      "fixtures": [
+        {
+          "tx": "0xa68bb412d99a31d869971aae44fe937065450af90a96551dbbfa2cc5d19c615b",
+          "token": "0xd8fd30c80d35e13e0561a783cb82de99b20affff",
+          "creator": "0x49b2c2c586ab54521ccc409815ad9994662a16f8",
+          "date": "2026-10-23",
+          "note": "TokenCreate log in block 129268061; token = data word 1 (not indexed)"
+        }
+      ],
+      "lastActivity": "2026-10-23"
+    },
+    {
+      "id": "gang",
+      "name": "Gang",
+      "website": "https://gang.fun",
+      "chain": {
+        "family": "evm",
+        "id": 56
+      },
+      "status": "active",
+      "firstSeen": "2026-10-21",
+      "model": "bonding-curve",
+      "contracts": [
+        {
+          "address": "0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+          "role": "launcher",
+          "label": "Launchpad v4.1 (create + bonding curve + graduation)",
+          "checked": "2026-10-23"
+        },
+        {
+          "address": "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F",
+          "role": "other",
+          "label": "SPACE ID Agent ID (.ai) soulbound NFT — buyers must hold one",
+          "checked": "2026-10-23"
+        },
+        {
+          "address": "0x3464aa1097Aa46502Db847E4c6d0A2D52a871Af4",
+          "role": "fee-collector",
+          "label": "feeVault (ops treasury, 20% of curve fees)",
+          "checked": "2026-10-23"
+        }
+      ],
+      "launch": {
+        "kind": "event",
+        "name": "Created",
+        "signature": "Created(address indexed token, address indexed creator, string name, string symbol)",
+        "tokenField": "token",
+        "creatorField": "creator",
+        "notes": "Emitted by the Launchpad contract; tx.to is the Launchpad. Buy/Sell events carry 1% fee; Graduated(token, pair, …) at 20 BNB raised → PancakeSwap V2.",
+        "topic0": "0xe57a519fe6a031fac5d360f4b8ce246c86dd280b40dc37b68c0a7cc7394ef9c0"
+      },
+      "token": {
+        "standard": "erc20",
+        "metadata": "unknown",
+        "decimals": 18
+      },
+      "graduation": {
+        "target": "pancakeswap-v2",
+        "threshold": "20 BNB raised"
+      },
+      "quotes": [
+        "BNB"
+      ],
+      "tags": [
+        "bonding-curve",
+        "ai-agents"
+      ],
+      "sources": [
+        "https://github.com/gangfun/gang-launchpad",
+        "https://bscscan.com/address/0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+        "https://bscscan.com/address/0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F"
+      ],
+      "notes": "Agent-only launchpad: anyone can create (0 fee), only wallets holding a Binance Agentic Wallet Agent ID (SPACE ID .ai, soulbound NFT) can buy on the curve; 1% per-wallet cap (10M tokens). 1% trade fee: 80% buys back and burns the GANG platform token, 20% to feeVault. First token (GANG) 2026-10-21 17:20 UTC; 40 tokens and 1 graduation in the first two days (gang.fun/api/tokens).",
+      "updated": "2026-10-23",
+      "fixtures": [
+        {
+          "tx": "0xfb3bad96acde12672cd6e5518563d3fe774fc54f72767caedcee12c5b8522b46",
+          "token": "0x7802c682774ec3ce331c38b0296b921e220309b6",
+          "creator": "0x4f8fdbd4df216fec5b2bf82d26ef0b76f4a6b1f4",
+          "date": "2026-10-23",
+          "note": "Created log in block 129239835 (KAIROS), listed by https://gang.fun/api/tokens"
+        }
+      ],
+      "lastActivity": "2026-10-23"
     }
   ]
 }

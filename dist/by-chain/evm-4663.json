@@ -15,13 +15,13 @@
         "address": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
         "role": "hook",
         "label": "ClankerHookStaticFeeV2",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
         "role": "other",
         "label": "Uniswap V4 PoolManager",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -49,7 +49,7 @@
       "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
     ],
     "notes": "",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/clanker-robinhood.png",
     "fixtures": [
       {
@@ -78,13 +78,13 @@
         "address": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
         "role": "hook",
         "label": "DopplerHookInitializer",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
         "role": "other",
         "label": "Uniswap V4 PoolManager",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -112,7 +112,7 @@
       "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
     ],
     "notes": "",
-    "updated": "2026-10-22",
+    "updated": "2026-10-23",
     "logo": "icons/doppler-robinhood.png",
     "fixtures": [
       {
@@ -155,7 +155,7 @@
         "address": "0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b",
         "role": "curve",
         "label": "HoodPump bonding curve + factory",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -186,7 +186,7 @@
       "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
     ],
     "notes": "",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/hoodpump.png",
     "abi": "abi/hoodpump.json"
   },
@@ -206,7 +206,7 @@
         "address": "0x360bd5ab9a20fb9920be1caec2c8abaf097dc876",
         "role": "launcher",
         "label": "HudPadLauncher (cluster by tx.to)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -234,7 +234,7 @@
       "https://robinhoodchain.blockscout.com/address/0x360bd5ab9a20fb9920be1caec2c8abaf097dc876"
     ],
     "notes": "Website unknown; identified on-chain only.",
-    "updated": "2026-10-21"
+    "updated": "2026-10-23"
   },
   {
     "id": "launchhood",
@@ -252,7 +252,7 @@
         "address": "0x62b33a039d289cbda50ebeb72fe4261449e61bcf",
         "role": "launcher",
         "label": "LaunchHoodV3Factory (cluster by tx.to)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -280,7 +280,7 @@
       "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
     ],
     "notes": "Website unknown; identified on-chain only.",
-    "updated": "2026-10-21"
+    "updated": "2026-10-23"
   },
   {
     "id": "launchproof",
@@ -298,7 +298,7 @@
         "address": "0x000000e200088d55c39a11f609e5f667729ad49b",
         "role": "launcher",
         "label": "entrypoint seen 2026-08-04 (rotates)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -323,7 +323,7 @@
       "https://robinhoodchain.blockscout.com/address/0x000000e200088d55c39a11f609e5f667729ad49b"
     ],
     "notes": "",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/launchproof.png",
     "lastActivity": "2026-10-21"
   },
@@ -343,7 +343,7 @@
         "address": "0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe",
         "role": "factory",
         "label": "LaunchFactory",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -370,7 +370,7 @@
       "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
     ],
     "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/noxa.png",
     "lastActivity": "2026-10-21"
   },
@@ -390,19 +390,19 @@
         "address": "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
         "role": "hook",
         "label": "PmavHook",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x54198ff2fce9b0df255051d49748fe53a8e428cc",
         "role": "hook",
         "label": "PmavHook (rotated)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
         "role": "other",
         "label": "Uniswap V4 PoolManager (singleton)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -434,7 +434,7 @@
       "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
     ],
     "notes": "",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/pmav.png",
     "abi": "abi/pmav.json"
   },
@@ -455,13 +455,13 @@
         "role": "factory",
         "label": "PonsLaunchFactory",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
         "role": "other",
         "label": "UniswapV3Factory (pool created at launch)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -495,7 +495,7 @@
       "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
     ],
     "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "abi": "abi/pons.json"
   },
   {
@@ -514,13 +514,13 @@
         "address": "0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d",
         "role": "factory",
         "label": "Factory V5 (current)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
         "role": "other",
         "label": "UniswapV2Factory (graduation target)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -555,7 +555,7 @@
       "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
     ],
     "notes": "",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "abi": "abi/robinfun.json",
     "lastActivity": "2026-10-21"
   },
@@ -575,7 +575,7 @@
         "address": "0xe769d832934f0a196a25e5c7b69cdf1920bc7734",
         "role": "launcher",
         "label": "Trencher launcher (cluster by tx.to)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -603,7 +603,7 @@
       "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
     ],
     "notes": "Website unknown; identified on-chain only.",
-    "updated": "2026-10-21"
+    "updated": "2026-10-23"
   },
   {
     "id": "virtuals-robinhood",
@@ -621,25 +621,25 @@
         "address": "0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007",
         "role": "router",
         "label": "launch router (emits PreLaunched)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4",
         "role": "factory",
         "label": "factory/registry (NewApplication, deploys tokens)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31",
         "role": "token",
         "label": "VIRTUAL (quote asset)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "0xfc2e4da3edb2e18100473339c763705d263d20a9",
         "role": "other",
         "label": "Virtuals-side pair factory (proxy)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -669,7 +669,7 @@
       "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
     ],
     "notes": "",
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/virtuals-robinhood.png",
     "fixtures": [
       {

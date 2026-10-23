@@ -19,21 +19,21 @@
       "role": "program",
       "label": "Dynamic Bonding Curve",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
       "role": "other",
       "label": "DAMM v2 (default graduation target)",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
       "role": "other",
       "label": "DAMM v1 (alternative graduation target)",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -53,14 +53,22 @@
     "threshold": "per-config migration quote threshold",
     "notes": "Migration is a separate tx (migrate_meteora_damm / migration_damm_v2) that creates the DAMM pool and locks LP per config."
   },
-  "quotes": ["SOL", "USDC", "custom"],
-  "tags": ["bonding-curve", "multi-tenant", "sdk"],
+  "quotes": [
+    "SOL",
+    "USDC",
+    "custom"
+  ],
+  "tags": [
+    "bonding-curve",
+    "multi-tenant",
+    "sdk"
+  ],
   "sources": [
     "https://docs.meteora.ag/developer-guide/guides/dbc",
     "https://github.com/MeteoraAg/dynamic-bonding-curve",
     "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/meteora-dbc.png",
   "idl": "idl/meteora-dbc.json",
   "fixtures": [

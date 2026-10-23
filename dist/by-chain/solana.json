@@ -19,7 +19,7 @@
         "address": "GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi",
         "role": "partner-config",
         "label": "Meteora DBC Config used by Bags launches (observed 2026-10-21; Bags may rotate configs per fee-share setup)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -65,7 +65,7 @@
       "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
       "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "lastActivity": "2026-10-21"
   },
   {
@@ -84,7 +84,7 @@
         "address": "BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V",
         "role": "partner-config",
         "label": "DBC PartnerMetadata account",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -112,7 +112,7 @@
       "https://blocks.fund",
       "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "fixtures": [
       {
         "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",
@@ -128,7 +128,7 @@
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "id": "boop",
     "name": "Boop.fun",
     "website": "https://boop.fun",
@@ -144,7 +144,7 @@
         "role": "program",
         "label": "boop program (IDL v0.3.0)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -197,7 +197,7 @@
         "address": "8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS",
         "role": "partner-config",
         "label": "DBC PartnerMetadata account",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -225,7 +225,7 @@
       "https://bots.family",
       "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/bots-family.png"
   },
   {
@@ -244,7 +244,7 @@
         "address": "FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau",
         "role": "partner-config",
         "label": "DBC PartnerMetadata account",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -272,7 +272,7 @@
       "https://farmfun.farm",
       "https://solscan.io/account/FodsuBzgdPxoqhxFtQd4MAFXbKvLpHuQHH54ikfKPXau"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/farmfun.png",
     "fixtures": [
       {
@@ -290,7 +290,7 @@
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "id": "heaven",
     "name": "Heaven",
     "website": "https://heaven.xyz",
@@ -305,7 +305,7 @@
         "address": "HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o",
         "role": "program",
         "label": "Heaven launchpad/DEX program (no published IDL)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -341,7 +341,7 @@
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "id": "jupiter-studio",
     "name": "Jupiter Studio",
     "website": "https://jup.ag/studio",
@@ -357,7 +357,7 @@
         "address": "ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet",
         "role": "partner-config",
         "label": "DBC PartnerMetadata (name 'Meow', website jup.ag/studio)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -407,18 +407,18 @@
         "address": "JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC",
         "role": "program",
         "label": "KIDS launchpad program (deployed 2026-10-19)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "EPwoPzJ5wuFgvMxUs7gQyUgb48dfZh4k6TxpZsTpWf2Y",
         "role": "authority",
         "label": "upgrade authority (shared with fee collector)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "BLiaZWNQoPm4mG4cXNm4sXifFqs1Xmxx12qD9T4Y5NeN",
         "role": "fee-collector",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -447,7 +447,7 @@
       "https://kids.fun",
       "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/kids-fun.png",
     "lastActivity": "2026-10-21"
   },
@@ -471,13 +471,13 @@
         "address": "FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1",
         "role": "platform-config",
         "label": "letsbonk platform config (primary)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "BuM6KDpWiTcxvrpXywWFiw45R2RNH8WURdvqoTDV1BW4",
         "role": "platform-config",
         "label": "letsbonk platform config (secondary)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -508,7 +508,7 @@
       "https://letsbonk.fun",
       "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/letsbonk.png",
     "externalIds": {
       "codex": "LetsBonk",
@@ -548,21 +548,21 @@
         "role": "program",
         "label": "Dynamic Bonding Curve",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
         "role": "other",
         "label": "DAMM v2 (default graduation target)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
         "role": "other",
         "label": "DAMM v1 (alternative graduation target)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -597,7 +597,7 @@
       "https://github.com/MeteoraAg/dynamic-bonding-curve",
       "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/meteora-dbc.png",
     "idl": "idl/meteora-dbc.json",
     "fixtures": [
@@ -619,7 +619,7 @@
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "id": "moonshot",
     "name": "Moonshot / Moonit",
     "website": "https://moonshot.money",
@@ -635,13 +635,13 @@
         "role": "program",
         "label": "Moonit legacy token_launchpad program (still launching, SOL quote)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "FbKf76ucsQssF7XZBuzScdJfugtsSKwZFYztKsMEhWZM",
         "role": "partner-config",
         "label": "Meteora DBC Config used by current Moonshot launches (USDC quote, observed 2026-10-21)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -720,25 +720,25 @@
         "address": "Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej",
         "role": "program",
         "label": "Pangea launch program (Launch ix: mint + OFT + DAMM v2 pool + permanent lock)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "SNyKyiZYU4R54SF9sYLmjCaCUsa1sC6QouNAj3x3Zzf",
         "role": "program",
         "label": "LayerZero OFT program (token is omnichain)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "848jBDi9bJWoDwxhLGXsX3aXjSmdxsawSN3Tb32DyNgL",
         "role": "deployer",
         "label": "platform relayer/payer that signs every Launch",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
         "role": "other",
         "label": "Meteora DAMM v2 (pool created in the same tx)",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -766,7 +766,7 @@
       "https://pangea.trade",
       "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/pangea.png",
     "fixtures": [
       {
@@ -806,14 +806,14 @@
         "role": "program",
         "label": "pump.fun bonding curve",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
         "role": "other",
         "label": "PumpSwap AMM (graduation target)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -847,7 +847,7 @@
       "https://pump.fun",
       "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
     ],
-    "updated": "2026-10-22",
+    "updated": "2026-10-23",
     "logo": "icons/pump-fun.png",
     "idl": "idl/pump-fun.json",
     "externalIds": {
@@ -901,20 +901,20 @@
         "role": "program",
         "label": "LaunchLab (launchpad program)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
         "role": "platform-config",
         "label": "Raydium's own platform config",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
         "role": "other",
         "label": "Raydium CPMM (graduation target)",
         "verified": true,
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -947,7 +947,7 @@
       "https://docs.raydium.io/raydium/pool-creation/launchlab",
       "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/raydium-launchlab.png",
     "idl": "idl/raydium-launchlab.json",
     "externalIds": {
@@ -982,17 +982,17 @@
       {
         "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
         "role": "platform-config",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
         "role": "platform-config",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       },
       {
         "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
         "role": "platform-config",
-        "checked": "2026-10-21"
+        "checked": "2026-10-23"
       }
     ],
     "launch": {
@@ -1021,7 +1021,7 @@
       "https://www.stonkfun.xyz",
       "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
     ],
-    "updated": "2026-10-21",
+    "updated": "2026-10-23",
     "logo": "icons/stonkfun.png",
     "lastActivity": "2026-10-21"
   }

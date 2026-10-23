@@ -2,6 +2,11 @@
 
 Data follows semver (see CONTRIBUTING.md): **major** = an entry or address removed / changed, **minor** = entries or addresses added, **patch** = metadata only.
 
+## 0.6.0 — 2026-10-23
+- **Added** BNB Smart Chain (`evm-56`, chain entry with PancakeSwap factories/routers ignored, WBNB/USDT/USDC quotes, 1 500-block log range for public RPCs) with two launchpads: **four.meme** (TokenManager2, `TokenCreate` event verified on-chain, dominant BNB launchpad) and **Gang** (gang.fun, agent-only bonding curve: buys require the Binance Agentic Wallet Agent ID, a soulbound SPACE ID `.ai` NFT, listed as the gate contract). 32 launchpads on 5 chains.
+- `scripts/fixtures.mjs` reads the token from a log data word when `launch.tokenField` is `data[N]` (events whose token is not indexed).
+- Detector: `TELEGRAM_COMMANDS=0` sends cards without polling `getUpdates`, so a second detector process (another chain) can share one bot token.
+
 ## 0.5.1 — 2026-10-22
 - `--scan-on-demand` (with `--watch`): the chain is not polled while nobody is subscribed and resumes at the tip when someone is. Solana block scanning costs ~70 % of a core; a hosted watch bot with an empty list was starving the other processes on the same box.
 - `/watch` also matches a launchpad's website domain (`/watch pangea.trade`), suggestions are looser, and an unknown name answers with a pre-filled "add to registry" issue link and is counted in `state.watch.requests`.

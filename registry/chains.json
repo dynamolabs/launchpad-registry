@@ -58,7 +58,7 @@
     "dexscreenerId": "injective",
     "caip2": "eip155:1776",
     "quoteTokens": ["0xa00C59fF5a080D2b954d0c75e46E22a0c371235a"],
-    "maxLogRange": 10000
+    "maxLogRange": 5000
   },
   {
     "family": "evm",
@@ -72,5 +72,30 @@
     "notes": "Circle Arc L1, mainnet 2026-09-16. USDC is gas and also ERC-20 at 0x3600000000000000000000000000000000000000. Launchpads seen on DexScreener (o1-launchpad, aka.fun) are not registered yet: PRs welcome.",
     "caip2": "eip155:5042",
     "quoteTokens": ["0x3600000000000000000000000000000000000000"]
+  },
+  {
+    "family": "evm",
+    "id": 56,
+    "name": "BNB Smart Chain",
+    "dir": "evm-56",
+    "nativeSymbol": "BNB",
+    "rpc": ["https://bsc-rpc.publicnode.com", "https://bsc-dataseed.binance.org"],
+    "explorer": "https://bscscan.com",
+    "dexscreenerId": "bsc",
+    "notes": "~0.45 s blocks (Maxwell). Public RPCs cap eth_getLogs: publicnode ~1 500 blocks per call and only recent blocks (archive needs a key); bsc-dataseed.binance.org rejects getLogs outright. four.meme is the dominant launchpad; since 2026-10-20 a wave of launchpads gates buys on the Binance Agent ID (.ai) soulbound NFT.",
+    "ignore": [
+      "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
+      "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865",
+      "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+      "0x13f4ea83d0bd40e75c8222255bc855a974568dd4",
+      "0x1b81d678ffb9c0263b24a97847620c99d213eb14"
+    ],
+    "caip2": "eip155:56",
+    "quoteTokens": [
+      "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+      "0x55d398326f99059ff775485246999027b3197955",
+      "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"
+    ],
+    "maxLogRange": 1500
   }
 ]

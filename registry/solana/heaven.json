@@ -3,7 +3,7 @@
     "family": "solana",
     "id": "mainnet-beta"
   },
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "id": "heaven",
   "name": "Heaven",
   "website": "https://heaven.xyz",
@@ -18,7 +18,7 @@
       "address": "HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o",
       "role": "program",
       "label": "Heaven launchpad/DEX program (no published IDL)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -29,8 +29,14 @@
     "standard": "spl",
     "metadata": "metaplex"
   },
-  "quotes": ["SOL"],
-  "tags": ["memecoin", "bonding-curve", "needs-abi"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "needs-abi"
+  ],
   "externalIds": {
     "solanatracker": "heaven",
     "geckoterminal": "heaven"

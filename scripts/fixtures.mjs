@@ -25,6 +25,9 @@ const PACE_MS = Number(env.FIXTURE_PACE_MS || 250);
 const MAX_BLOCKS = Number(env.FIXTURE_MAX_BLOCKS || 400000);
 const ZERO_WORD = '0x' + '0'.repeat(64);
 const TX_OPTS = { encoding: 'jsonParsed', maxSupportedTransactionVersion: 1 };
+/** Nth 32-byte word of ABI-encoded log data, as a 0x-prefixed 64-hex string. */
+const dataWord = (data, n) => '0x' + data.slice(2 + 64 * n, 2 + 64 * (n + 1));
+
 const toHex = (n) => '0x' + n.toString(16);
 const dateOf = (unixSeconds) => new Date(unixSeconds * 1000).toISOString().slice(0, 10);
 
@@ -200,8 +203,11 @@ export async function findEvm(url, entry, chain) {
     const block = await rpc('eth_getBlockByNumber', [log.blockNumber, false]);
     let token;
     const fieldMatch = /topics\[(\d)\]/.exec(launch.tokenField || '');
+    // "data[N]" = Nth 32-byte word of the log data (events whose token param is not indexed, e.g. four.meme)
+    const dataMatch = /data\[(\d+)\]/.exec(launch.tokenField || '');
     if (hooks.length && poolManager) token = await hookPoolToken(rpc, log, chain);
     else if (fieldMatch) token = wordToAddress(log.topics[Number(fieldMatch[1])]);
+    else if (dataMatch) token = wordToAddress(dataWord(log.data, Number(dataMatch[1])));
     else if (launch.topic0 && log.topics[1]) token = wordToAddress(log.topics[1]);
     else token = log.address;
     return {

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22",
+  "generated": "2026-10-23",
   "addresses": {
     "solana:GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi": [
       {
@@ -409,6 +409,34 @@
         "id": "sprout",
         "role": "factory",
         "label": "launchTokenFactory"
+      }
+    ],
+    "evm-56:0x5c952063c7fc8610ffdb798152d69f0b9550762b": [
+      {
+        "id": "four-meme",
+        "role": "launcher",
+        "label": "TokenManager2 (proxy): create, buy, sell, migrate"
+      }
+    ],
+    "evm-56:0x315ba2e8952d06094cc636b2b84229fa32fb23a7": [
+      {
+        "id": "gang",
+        "role": "launcher",
+        "label": "Launchpad v4.1 (create + bonding curve + graduation)"
+      }
+    ],
+    "evm-56:0x60b9262456de011f7d15a54cdd8c48baaa8b022f": [
+      {
+        "id": "gang",
+        "role": "other",
+        "label": "SPACE ID Agent ID (.ai) soulbound NFT — buyers must hold one"
+      }
+    ],
+    "evm-56:0x3464aa1097aa46502db847e4c6d0a2d52a871af4": [
+      {
+        "id": "gang",
+        "role": "fee-collector",
+        "label": "feeVault (ops treasury, 20% of curve fees)"
       }
     ]
   }

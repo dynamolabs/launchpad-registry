@@ -14,25 +14,25 @@
       "address": "0xd4ccbfa37e2f35611b3042e4096ad7a3459bd007",
       "role": "router",
       "label": "launch router (emits PreLaunched)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4",
       "role": "factory",
       "label": "factory/registry (NewApplication, deploys tokens)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0xc6911796042b15d7fa4f6cde69e245ddcd3d9c31",
       "role": "token",
       "label": "VIRTUAL (quote asset)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0xfc2e4da3edb2e18100473339c763705d263d20a9",
       "role": "other",
       "label": "Virtuals-side pair factory (proxy)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -51,13 +51,18 @@
     "target": "uniswap-v2",
     "notes": "Virtuals-style graduation to its own pair factory"
   },
-  "quotes": ["VIRTUAL"],
-  "tags": ["bonding-curve", "ai-agents"],
+  "quotes": [
+    "VIRTUAL"
+  ],
+  "tags": [
+    "bonding-curve",
+    "ai-agents"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
   ],
   "notes": "",
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/virtuals-robinhood.png",
   "fixtures": [
     {

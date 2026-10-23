@@ -17,31 +17,31 @@
       "address": "0xddfeabf7e3fd692ff9a9091b53bdffde8b6c07f0",
       "role": "deployer",
       "label": "address the Injective radar saw as token-minting entrypoint; has no code (EOA)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0xef1a648373dc19072d692429b704bb63cf597950",
       "role": "factory",
       "label": "sale factory (seen deploying sale contracts)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0x8284476327db79dd37d682a64968c8155a4c770e",
       "role": "deployer",
       "label": "EOA entrypoint observed deploying sale contracts (tx.to); not a contract",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0xc4dC11d586608E29bf73F26288d590321a2E0496",
       "role": "curve",
       "label": "$RUNNER sale/curve (example, EIP-1967 proxy)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
       "role": "token",
       "label": "USDC quote (6 decimals)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -58,13 +58,19 @@
   "graduation": {
     "target": "unknown"
   },
-  "quotes": ["USDC"],
-  "tags": ["funding-round", "scheduled-open", "stocks-theme"],
+  "quotes": [
+    "USDC"
+  ],
+  "tags": [
+    "funding-round",
+    "scheduled-open",
+    "stocks-theme"
+  ],
   "sources": [
     "https://runup.fun",
     "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/runup.png",
   "lastActivity": "2026-10-21"
 }

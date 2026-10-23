@@ -15,13 +15,13 @@
       "role": "factory",
       "label": "PonsLaunchFactory",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
       "role": "other",
       "label": "UniswapV3Factory (pool created at launch)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -43,12 +43,18 @@
     "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
     "notes": "no curve; pool exists from launch"
   },
-  "quotes": ["ETH"],
-  "tags": ["direct-pool", "multi-tenant", "dominant"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool",
+    "multi-tenant",
+    "dominant"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
   ],
   "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "abi": "abi/pons.json"
 }

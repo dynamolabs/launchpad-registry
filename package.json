@@ -1,6 +1,6 @@
 {
   "name": "launchpad-registry",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Community-maintained registry of token launchpads (program IDs, factories, launch events) across Solana and EVM chains, plus a generic new-launchpad detector.",
   "type": "module",
   "license": "MIT",

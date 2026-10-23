@@ -14,17 +14,17 @@
     {
       "address": "6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt",
       "role": "platform-config",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7",
       "role": "platform-config",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "CUqSiwPs6C4WyntMgaFazLp7wYQfaLp5URbjUP9V7SNi",
       "role": "platform-config",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -42,13 +42,18 @@
   "graduation": {
     "target": "raydium-cpmm"
   },
-  "quotes": ["SOL"],
-  "tags": ["stocks-theme", "frontend"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "stocks-theme",
+    "frontend"
+  ],
   "sources": [
     "https://www.stonkfun.xyz",
     "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/stonkfun.png",
   "lastActivity": "2026-10-21"
 }

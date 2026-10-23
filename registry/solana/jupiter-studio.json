@@ -3,7 +3,7 @@
     "family": "solana",
     "id": "mainnet-beta"
   },
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "id": "jupiter-studio",
   "name": "Jupiter Studio",
   "website": "https://jup.ag/studio",
@@ -19,7 +19,7 @@
       "address": "ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet",
       "role": "partner-config",
       "label": "DBC PartnerMetadata (name 'Meow', website jup.ag/studio)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -37,8 +37,13 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": ["SOL"],
-  "tags": ["frontend", "bonding-curve"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "frontend",
+    "bonding-curve"
+  ],
   "sources": [
     "https://jup.ag/studio",
     "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"

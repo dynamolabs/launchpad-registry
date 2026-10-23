@@ -101,11 +101,12 @@ async function main() {
     if (cfg.scanOnDemand) {
       standby = { active: () => watch.watchlist.size() > 0 || watch.broadcast.length > 0 };
     }
-    const token = process.env.TELEGRAM_BOT_TOKEN;
+    // TELEGRAM_COMMANDS=0: send cards but never poll getUpdates (a second process sharing the bot token)
+    const token = process.env.TELEGRAM_COMMANDS === '0' ? '' : process.env.TELEGRAM_BOT_TOKEN;
     log(
       `[watch] broadcast ${watch.broadcast.length ? watch.broadcast.join(',') : '-'}, ${watch.watchlist.size()} chats watching, ` +
         `${cfg.scanOnDemand ? 'scan on demand, ' : ''}` +
-        `buy ref ${cfg.tradeRef ? 'set' : '-'}, commands ${token ? 'on' : 'off (no TELEGRAM_BOT_TOKEN)'}`,
+        `buy ref ${cfg.tradeRef ? 'set' : '-'}, commands ${token ? 'on' : 'off'}`,
     );
     if (token) {
       pollCommands({

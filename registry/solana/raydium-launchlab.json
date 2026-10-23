@@ -18,20 +18,20 @@
       "role": "program",
       "label": "LaunchLab (launchpad program)",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "4Bu96XjU84XjPDSpveTVf6LYGCkfW5FK7SNkREWcEfV4",
       "role": "platform-config",
       "label": "Raydium's own platform config",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
       "role": "other",
       "label": "Raydium CPMM (graduation target)",
       "verified": true,
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -52,13 +52,19 @@
     "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
     "threshold": "fundraising target reached (default 85 SOL)"
   },
-  "quotes": ["SOL", "USDC"],
-  "tags": ["bonding-curve", "multi-tenant"],
+  "quotes": [
+    "SOL",
+    "USDC"
+  ],
+  "tags": [
+    "bonding-curve",
+    "multi-tenant"
+  ],
   "sources": [
     "https://docs.raydium.io/raydium/pool-creation/launchlab",
     "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/raydium-launchlab.png",
   "idl": "idl/raydium-launchlab.json",
   "externalIds": {

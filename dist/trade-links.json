@@ -1,6 +1,6 @@
 {
-  "version": "0.5.1",
-  "generated": "2026-10-22",
+  "version": "0.6.0",
+  "generated": "2026-10-23",
   "count": 15,
   "links": [
     {
@@ -280,7 +280,8 @@
         "solana",
         "evm-4663",
         "evm-1776",
-        "evm-5042"
+        "evm-5042",
+        "evm-56"
       ],
       "links": {
         "token": "https://dexscreener.com/{dexscreenerId}/{token}",
@@ -291,7 +292,7 @@
         "https://dexscreener.com"
       ],
       "checked": "2026-10-22",
-      "notes": "{dexscreenerId} comes from the chain entry in chains.json (solana, robinhood, injective, arc)."
+      "notes": "{dexscreenerId} comes from the chain entry in chains.json (solana, robinhood, injective, arc, bsc)."
     }
   ]
 }

@@ -14,19 +14,19 @@
       "address": "0x97472ae141ff13a4d317328bc4f3f95172fba8cc",
       "role": "hook",
       "label": "PmavHook",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0x54198ff2fce9b0df255051d49748fe53a8e428cc",
       "role": "hook",
       "label": "PmavHook (rotated)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     },
     {
       "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
       "role": "other",
       "label": "Uniswap V4 PoolManager (singleton)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -46,13 +46,19 @@
     "target": "uniswap-v4",
     "notes": "liquid from launch"
   },
-  "quotes": ["ETH"],
-  "tags": ["direct-pool", "uniswap-v4", "hook"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool",
+    "uniswap-v4",
+    "hook"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
   ],
   "notes": "",
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "logo": "icons/pmav.png",
   "abi": "abi/pmav.json"
 }

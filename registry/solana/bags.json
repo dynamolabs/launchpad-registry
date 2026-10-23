@@ -18,7 +18,7 @@
       "address": "GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi",
       "role": "partner-config",
       "label": "Meteora DBC Config used by Bags launches (observed 2026-10-21; Bags may rotate configs per fee-share setup)",
-      "checked": "2026-10-21"
+      "checked": "2026-10-23"
     }
   ],
   "launch": {
@@ -37,8 +37,14 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": ["SOL"],
-  "tags": ["memecoin", "bonding-curve", "frontend"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "frontend"
+  ],
   "externalIds": {
     "geckoterminal": "bags-fm",
     "solanatracker": "bags"
@@ -58,6 +64,6 @@
     "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
     "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
   ],
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "lastActivity": "2026-10-21"
 }

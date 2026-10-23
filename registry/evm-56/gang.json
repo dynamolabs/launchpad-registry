@@ -1,0 +1,69 @@
+{
+  "id": "gang",
+  "name": "Gang",
+  "website": "https://gang.fun",
+  "chain": {
+    "family": "evm",
+    "id": 56
+  },
+  "status": "active",
+  "firstSeen": "2026-10-21",
+  "model": "bonding-curve",
+  "contracts": [
+    {
+      "address": "0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+      "role": "launcher",
+      "label": "Launchpad v4.1 (create + bonding curve + graduation)",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F",
+      "role": "other",
+      "label": "SPACE ID Agent ID (.ai) soulbound NFT \u2014 buyers must hold one",
+      "checked": "2026-10-23"
+    },
+    {
+      "address": "0x3464aa1097Aa46502Db847E4c6d0A2D52a871Af4",
+      "role": "fee-collector",
+      "label": "feeVault (ops treasury, 20% of curve fees)",
+      "checked": "2026-10-23"
+    }
+  ],
+  "launch": {
+    "kind": "event",
+    "name": "Created",
+    "signature": "Created(address indexed token, address indexed creator, string name, string symbol)",
+    "tokenField": "token",
+    "creatorField": "creator",
+    "notes": "Emitted by the Launchpad contract; tx.to is the Launchpad. Buy/Sell events carry 1% fee; Graduated(token, pair, \u2026) at 20 BNB raised \u2192 PancakeSwap V2.",
+    "topic0": "0xe57a519fe6a031fac5d360f4b8ce246c86dd280b40dc37b68c0a7cc7394ef9c0"
+  },
+  "token": {
+    "standard": "erc20",
+    "metadata": "unknown",
+    "decimals": 18
+  },
+  "graduation": {
+    "target": "pancakeswap-v2",
+    "threshold": "20 BNB raised"
+  },
+  "quotes": ["BNB"],
+  "tags": ["bonding-curve", "ai-agents"],
+  "sources": [
+    "https://github.com/gangfun/gang-launchpad",
+    "https://bscscan.com/address/0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+    "https://bscscan.com/address/0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F"
+  ],
+  "notes": "Agent-only launchpad: anyone can create (0 fee), only wallets holding a Binance Agentic Wallet Agent ID (SPACE ID .ai, soulbound NFT) can buy on the curve; 1% per-wallet cap (10M tokens). 1% trade fee: 80% buys back and burns the GANG platform token, 20% to feeVault. First token (GANG) 2026-10-21 17:20 UTC; 40 tokens and 1 graduation in the first two days (gang.fun/api/tokens).",
+  "updated": "2026-10-23",
+  "fixtures": [
+    {
+      "tx": "0xfb3bad96acde12672cd6e5518563d3fe774fc54f72767caedcee12c5b8522b46",
+      "token": "0x7802c682774ec3ce331c38b0296b921e220309b6",
+      "creator": "0x4f8fdbd4df216fec5b2bf82d26ef0b76f4a6b1f4",
+      "date": "2026-10-23",
+      "note": "Created log in block 129239835 (KAIROS), listed by https://gang.fun/api/tokens"
+    }
+  ],
+  "lastActivity": "2026-10-23"
+}
