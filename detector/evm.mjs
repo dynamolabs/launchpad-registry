@@ -236,7 +236,10 @@ export async function runEvm({
     }
   }
 
-  let head = Number(await rpc('eth_blockNumber'));
+  // trail the tip by cfg.confirmations blocks: load-balanced public RPCs answer eth_blockNumber from a node
+  // that can be ahead of the one serving eth_getLogs ("invalid block range"), and it dodges shallow reorgs
+  const tip = async () => Number(await rpc('eth_blockNumber')) - (cfg.confirmations || 0);
+  let head = await tip();
   let cursor = s.cursor ?? head - 1;
   log(
     `[evm-${chain.id}] head ${head}, cursor ${cursor}, window ${cfg.windowMin} min, min ${cfg.minTokens} tokens, v4 ${cfg.v4PoolManager || '-'}`,
@@ -253,7 +256,7 @@ export async function runEvm({
         await sleep(standby.pollMs ?? 5000);
         continue;
       }
-      head = Number(await rpc('eth_blockNumber'));
+      head = await tip();
       if (paused) {
         paused = false;
         cursor = head - 1; // resume at the tip, not through the backlog

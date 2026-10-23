@@ -353,3 +353,20 @@ test('runEvm standby skips polling while inactive and resumes at the tip', async
     'scanned only the tip block',
   );
 });
+
+test('runEvm trails the tip by cfg.confirmations blocks', async () => {
+  const rpc = fakeChain();
+  const state = createMemoryState();
+  await runEvm({
+    chain,
+    rpcUrl: '',
+    registry: registry(),
+    notify: collectNotifier(),
+    state,
+    log: silent,
+    rpc,
+    cfg: { ...cfg, confirmations: 5 },
+    maxRounds: 2,
+  });
+  assert.equal(state.get().cursor, 95, 'head 100 minus 5 confirmations');
+});

@@ -41,6 +41,7 @@ export function buildConfig(args, chain, env = process.env) {
     minTokens: Number(args.min || (solana ? 5 : 3)),
     pollMs: Number(args.poll || defaultPoll),
     chunk: Math.min(Number(args.chunk || 200), chain.maxLogRange || 200),
+    confirmations: Number(args.confirmations || 0),
     batch: Number(args.batch || 100),
     v4PoolManager: args.v4?.toLowerCase(),
     quoteTokens: [...(chain.quoteTokens || []), ...splitList(args.quotes)].map((a) =>
