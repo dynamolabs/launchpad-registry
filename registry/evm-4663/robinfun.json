@@ -44,13 +44,8 @@
     "threshold": "~$44k mcap",
     "notes": "LP burned on graduation"
   },
-  "quotes": [
-    "ETH"
-  ],
-  "tags": [
-    "bonding-curve",
-    "vanity-address"
-  ],
+  "quotes": ["ETH"],
+  "tags": ["bonding-curve", "vanity-address"],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
   ],

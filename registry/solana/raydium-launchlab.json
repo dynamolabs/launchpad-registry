@@ -52,14 +52,8 @@
     "address": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
     "threshold": "fundraising target reached (default 85 SOL)"
   },
-  "quotes": [
-    "SOL",
-    "USDC"
-  ],
-  "tags": [
-    "bonding-curve",
-    "multi-tenant"
-  ],
+  "quotes": ["SOL", "USDC"],
+  "tags": ["bonding-curve", "multi-tenant"],
   "sources": [
     "https://docs.raydium.io/raydium/pool-creation/launchlab",
     "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"

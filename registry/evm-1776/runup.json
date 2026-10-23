@@ -58,14 +58,8 @@
   "graduation": {
     "target": "unknown"
   },
-  "quotes": [
-    "USDC"
-  ],
-  "tags": [
-    "funding-round",
-    "scheduled-open",
-    "stocks-theme"
-  ],
+  "quotes": ["USDC"],
+  "tags": ["funding-round", "scheduled-open", "stocks-theme"],
   "sources": [
     "https://runup.fun",
     "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"

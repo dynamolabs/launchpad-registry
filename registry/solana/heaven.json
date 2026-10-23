@@ -29,14 +29,8 @@
     "standard": "spl",
     "metadata": "metaplex"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "memecoin",
-    "bonding-curve",
-    "needs-abi"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["memecoin", "bonding-curve", "needs-abi"],
   "externalIds": {
     "solanatracker": "heaven",
     "geckoterminal": "heaven"

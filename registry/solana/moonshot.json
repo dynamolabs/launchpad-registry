@@ -42,15 +42,8 @@
     "target": "meteora-damm-v2",
     "notes": "DBC generation migrates to DAMM v2; legacy program migrated to Raydium"
   },
-  "quotes": [
-    "SOL",
-    "USDC"
-  ],
-  "tags": [
-    "memecoin",
-    "bonding-curve",
-    "vanity-address"
-  ],
+  "quotes": ["SOL", "USDC"],
+  "tags": ["memecoin", "bonding-curve", "vanity-address"],
   "externalIds": {
     "codex": "Moonshot",
     "solanatracker": "moonshot",

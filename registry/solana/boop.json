@@ -36,13 +36,8 @@
   "graduation": {
     "target": "raydium-cpmm"
   },
-  "quotes": [
-    "SOL"
-  ],
-  "tags": [
-    "memecoin",
-    "bonding-curve"
-  ],
+  "quotes": ["SOL"],
+  "tags": ["memecoin", "bonding-curve"],
   "externalIds": {
     "solanatracker": "boop",
     "geckoterminal": "boop-fun"

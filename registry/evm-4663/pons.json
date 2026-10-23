@@ -43,14 +43,8 @@
     "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
     "notes": "no curve; pool exists from launch"
   },
-  "quotes": [
-    "ETH"
-  ],
-  "tags": [
-    "direct-pool",
-    "multi-tenant",
-    "dominant"
-  ],
+  "quotes": ["ETH"],
+  "tags": ["direct-pool", "multi-tenant", "dominant"],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
   ],

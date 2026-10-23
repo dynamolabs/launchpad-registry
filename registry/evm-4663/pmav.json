@@ -46,14 +46,8 @@
     "target": "uniswap-v4",
     "notes": "liquid from launch"
   },
-  "quotes": [
-    "ETH"
-  ],
-  "tags": [
-    "direct-pool",
-    "uniswap-v4",
-    "hook"
-  ],
+  "quotes": ["ETH"],
+  "tags": ["direct-pool", "uniswap-v4", "hook"],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
   ],
