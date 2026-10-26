@@ -44,13 +44,18 @@
   "graduation": {
     "target": "raydium-cpmm"
   },
-  "quotes": ["SOL"],
-  "tags": ["memecoin", "frontend"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "frontend"
+  ],
   "sources": [
     "https://letsbonk.fun",
     "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
   ],
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "logo": "icons/letsbonk.png",
   "externalIds": {
     "codex": "LetsBonk",
@@ -67,5 +72,5 @@
       "note": "found by scripts/fixtures.mjs via platform-config FfYek5vE"
     }
   ],
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

@@ -51,13 +51,18 @@
     "target": "uniswap-v2",
     "notes": "Virtuals-style graduation to its own pair factory"
   },
-  "quotes": ["VIRTUAL"],
-  "tags": ["bonding-curve", "ai-agents"],
+  "quotes": [
+    "VIRTUAL"
+  ],
+  "tags": [
+    "bonding-curve",
+    "ai-agents"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
   ],
   "notes": "",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "logo": "icons/virtuals-robinhood.png",
   "fixtures": [
     {
@@ -75,5 +80,5 @@
       "note": "found by scripts/fixtures.mjs (topic0 in blocks 94519895-94524894)"
     }
   ],
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

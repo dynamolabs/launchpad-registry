@@ -40,14 +40,19 @@
     "target": "uniswap-v2",
     "threshold": "~16 ETH-equivalent raised (per third-party guides; 0.3 % pool fee after graduation)"
   },
-  "quotes": ["ETH"],
-  "tags": ["bonding-curve", "vanity-address"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "bonding-curve",
+    "vanity-address"
+  ],
   "sources": [
     "https://docs.flap.sh/flap/developers/deployed-contract-addresses",
     "https://robinhoodchain.blockscout.com/address/0x26605f322f7fF986f381bB9A6e3f5DAb0bEaEb09"
   ],
   "notes": "Flap's Robinhood Chain deployment (same address on RH testnet). ~430 TokenCreated events in the 11 hours before listing (≈40 launches/hour), far more than the other RH launchpads.",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "fixtures": [
     {
       "tx": "0x9d8c42680d70cb94c4948b5a3a668242f1ae518424a72add6eeb06b12b465885",
@@ -57,5 +62,5 @@
       "note": "TokenCreated in block 95744048; token = data word 3"
     }
   ],
-  "lastActivity": "2026-10-23"
+  "lastActivity": "2026-10-26"
 }

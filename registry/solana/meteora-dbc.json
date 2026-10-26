@@ -53,14 +53,22 @@
     "threshold": "per-config migration quote threshold",
     "notes": "Migration is a separate tx (migrate_meteora_damm / migration_damm_v2) that creates the DAMM pool and locks LP per config."
   },
-  "quotes": ["SOL", "USDC", "custom"],
-  "tags": ["bonding-curve", "multi-tenant", "sdk"],
+  "quotes": [
+    "SOL",
+    "USDC",
+    "custom"
+  ],
+  "tags": [
+    "bonding-curve",
+    "multi-tenant",
+    "sdk"
+  ],
   "sources": [
     "https://docs.meteora.ag/developer-guide/guides/dbc",
     "https://github.com/MeteoraAg/dynamic-bonding-curve",
     "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
   ],
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "logo": "icons/meteora-dbc.png",
   "idl": "idl/meteora-dbc.json",
   "fixtures": [
@@ -75,5 +83,5 @@
   "externalIds": {
     "geckoterminal": "meteora-dbc"
   },
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

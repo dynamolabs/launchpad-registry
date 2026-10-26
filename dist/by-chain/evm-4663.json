@@ -49,7 +49,7 @@
       "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/clanker-robinhood.png",
     "fixtures": [
       {
@@ -60,7 +60,7 @@
         "note": "found by scripts/fixtures.mjs (topic0 in blocks 94576436-94581435)"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "doppler-robinhood",
@@ -112,7 +112,7 @@
       "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/doppler-robinhood.png",
     "fixtures": [
       {
@@ -137,7 +137,7 @@
         "note": "found by scripts/fixtures.mjs (topic0 in blocks 94572564-94577563); token = currency minted in the tx (the other V4 currency is the numeraire)"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "flap-robinhood",
@@ -193,7 +193,7 @@
       "https://robinhoodchain.blockscout.com/address/0x26605f322f7fF986f381bB9A6e3f5DAb0bEaEb09"
     ],
     "notes": "Flap's Robinhood Chain deployment (same address on RH testnet). ~430 TokenCreated events in the 11 hours before listing (≈40 launches/hour), far more than the other RH launchpads.",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "fixtures": [
       {
         "tx": "0x9d8c42680d70cb94c4948b5a3a668242f1ae518424a72add6eeb06b12b465885",
@@ -203,7 +203,7 @@
         "note": "TokenCreated in block 95744048; token = data word 3"
       }
     ],
-    "lastActivity": "2026-10-23"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "hoodpump",
@@ -252,7 +252,7 @@
       "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/hoodpump.png",
     "abi": "abi/hoodpump.json"
   },
@@ -300,7 +300,7 @@
       "https://robinhoodchain.blockscout.com/address/0x360bd5ab9a20fb9920be1caec2c8abaf097dc876"
     ],
     "notes": "Website unknown; identified on-chain only.",
-    "updated": "2026-10-23"
+    "updated": "2026-10-26"
   },
   {
     "id": "launchhood",
@@ -310,7 +310,7 @@
       "family": "evm",
       "id": 4663
     },
-    "status": "unknown",
+    "status": "active",
     "firstSeen": "2026-07-16",
     "model": "direct-pool",
     "contracts": [
@@ -346,7 +346,8 @@
       "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
     ],
     "notes": "Website unknown; identified on-chain only.",
-    "updated": "2026-10-23"
+    "updated": "2026-10-26",
+    "lastActivity": "2026-10-16"
   },
   {
     "id": "launchproof",
@@ -389,9 +390,9 @@
       "https://robinhoodchain.blockscout.com/address/0x000000e200088d55c39a11f609e5f667729ad49b"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/launchproof.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "noxa",
@@ -436,9 +437,9 @@
       "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
     ],
     "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/noxa.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-23"
   },
   {
     "id": "pmav",
@@ -500,7 +501,7 @@
       "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/pmav.png",
     "abi": "abi/pmav.json"
   },
@@ -561,7 +562,7 @@
       "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
     ],
     "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "abi": "abi/pons.json"
   },
   {
@@ -621,9 +622,9 @@
       "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "abi": "abi/robinfun.json",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-24"
   },
   {
     "id": "trencher",
@@ -669,7 +670,7 @@
       "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
     ],
     "notes": "Website unknown; identified on-chain only.",
-    "updated": "2026-10-23"
+    "updated": "2026-10-26"
   },
   {
     "id": "virtuals-robinhood",
@@ -735,7 +736,7 @@
       "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
     ],
     "notes": "",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/virtuals-robinhood.png",
     "fixtures": [
       {
@@ -753,6 +754,6 @@
         "note": "found by scripts/fixtures.mjs (topic0 in blocks 94519895-94524894)"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   }
 ]

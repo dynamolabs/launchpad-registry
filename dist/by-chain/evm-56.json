@@ -78,7 +78,7 @@
       "https://bscscan.com/address/0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0"
     ],
     "notes": "Multi-chain launchpad (BNB since 2024; also Robinhood Chain, Base, X Layer, Monad with their own Portals). Found by this repo's detector 20 minutes after it started on BSC: ~66 launches per 11 minutes on 2026-10-23 (more than four.meme). Vault launches go through VaultPortal, so both addresses are entrypoints.",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "fixtures": [
       {
         "tx": "0x5e70f6d45cf50cb6a0bf8ff1bcbe519deaed52b86149acd68da8061b3355a87a",
@@ -88,7 +88,7 @@
         "note": "TokenCreated in block ~129275040 (SAFU, tax token *7777); token = data word 3"
       }
     ],
-    "lastActivity": "2026-10-23"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "four-meme",
@@ -138,7 +138,7 @@
       "https://www.quicknode.com/guides/quicknode-products/streams/copytrading-bot"
     ],
     "notes": "Dominant BNB Chain memecoin launchpad (Binance Wallet TGEs run through it). TokenManager V1 (older) is not listed. Agentic Mode (AI agents create and trade) announced 2026-03.",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "fixtures": [
       {
         "tx": "0xa68bb412d99a31d869971aae44fe937065450af90a96551dbbfa2cc5d19c615b",
@@ -148,7 +148,7 @@
         "note": "TokenCreate log in block 129268061; token = data word 1 (not indexed)"
       }
     ],
-    "lastActivity": "2026-10-23"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "gang",
@@ -212,7 +212,7 @@
       "https://bscscan.com/address/0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F"
     ],
     "notes": "Agent-only launchpad: anyone can create (0 fee), only wallets holding a Binance Agentic Wallet Agent ID (SPACE ID .ai, soulbound NFT) can buy on the curve; 1% per-wallet cap (10M tokens). 1% trade fee: 80% buys back and burns the GANG platform token, 20% to feeVault. First token (GANG) 2026-10-21 17:20 UTC; 40 tokens and 1 graduation in the first two days (gang.fun/api/tokens).",
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "fixtures": [
       {
         "tx": "0xfb3bad96acde12672cd6e5518563d3fe774fc54f72767caedcee12c5b8522b46",
@@ -222,6 +222,6 @@
         "note": "Created log in block 129239835 (KAIROS), listed by https://gang.fun/api/tokens"
       }
     ],
-    "lastActivity": "2026-10-23"
+    "lastActivity": "2026-10-26"
   }
 ]

@@ -31,11 +31,16 @@
   "graduation": {
     "target": "uniswap-v3"
   },
-  "quotes": ["ETH"],
-  "tags": ["direct-pool", "needs-abi"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool",
+    "needs-abi"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
   ],
   "notes": "Website unknown; identified on-chain only.",
-  "updated": "2026-10-23"
+  "updated": "2026-10-26"
 }

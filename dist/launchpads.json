@@ -1,6 +1,6 @@
 {
   "version": "0.6.0",
-  "generated": "2026-10-23",
+  "generated": "2026-10-26",
   "count": 34,
   "chains": [
     {
@@ -106,8 +106,8 @@
         "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
         "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
       ],
-      "updated": "2026-10-23",
-      "lastActivity": "2026-10-21"
+      "updated": "2026-10-26",
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "blocks-fund",
@@ -153,7 +153,7 @@
         "https://blocks.fund",
         "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "fixtures": [
         {
           "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",
@@ -162,14 +162,15 @@
           "date": "2026-10-18",
           "note": "found by scripts/fixtures.mjs via partner-config BnuJLtrZ"
         }
-      ]
+      ],
+      "lastActivity": "2026-10-07"
     },
     {
       "chain": {
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "id": "boop",
       "name": "Boop.fun",
       "website": "https://boop.fun",
@@ -220,7 +221,7 @@
       ],
       "idl": "idl/boop.json",
       "logo": "icons/boop.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "bots-family",
@@ -266,8 +267,9 @@
         "https://bots.family",
         "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
       ],
-      "updated": "2026-10-23",
-      "logo": "icons/bots-family.png"
+      "updated": "2026-10-26",
+      "logo": "icons/bots-family.png",
+      "lastActivity": "2026-10-12"
     },
     {
       "id": "farmfun",
@@ -331,7 +333,7 @@
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "id": "heaven",
       "name": "Heaven",
       "website": "https://heaven.xyz",
@@ -375,14 +377,14 @@
         "https://solscan.io/account/HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o"
       ],
       "logo": "icons/heaven.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "chain": {
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "id": "jupiter-studio",
       "name": "Jupiter Studio",
       "website": "https://jup.ag/studio",
@@ -427,7 +429,8 @@
         "https://jup.ag/studio",
         "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"
       ],
-      "logo": "icons/jupiter-studio.png"
+      "logo": "icons/jupiter-studio.png",
+      "lastActivity": "2025-06-30"
     },
     {
       "id": "kids-fun",
@@ -488,9 +491,9 @@
         "https://kids.fun",
         "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/kids-fun.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-22"
     },
     {
       "id": "letsbonk",
@@ -549,7 +552,7 @@
         "https://letsbonk.fun",
         "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/letsbonk.png",
       "externalIds": {
         "codex": "LetsBonk",
@@ -566,7 +569,7 @@
           "note": "found by scripts/fixtures.mjs via platform-config FfYek5vE"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "meteora-dbc",
@@ -638,7 +641,7 @@
         "https://github.com/MeteoraAg/dynamic-bonding-curve",
         "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/meteora-dbc.png",
       "idl": "idl/meteora-dbc.json",
       "fixtures": [
@@ -653,14 +656,14 @@
       "externalIds": {
         "geckoterminal": "meteora-dbc"
       },
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "chain": {
         "family": "solana",
         "id": "mainnet-beta"
       },
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "id": "moonshot",
       "name": "Moonshot / Moonit",
       "website": "https://moonshot.money",
@@ -740,7 +743,7 @@
           "note": "legacy Moonit program tokenMint"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "pangea",
@@ -807,7 +810,7 @@
         "https://pangea.trade",
         "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/pangea.png",
       "fixtures": [
         {
@@ -825,7 +828,7 @@
           "note": "found by scripts/fixtures.mjs via program Hb5uTppR"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "pump-fun",
@@ -888,7 +891,7 @@
         "https://pump.fun",
         "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/pump-fun.png",
       "idl": "idl/pump-fun.json",
       "externalIds": {
@@ -920,7 +923,7 @@
           "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "raydium-launchlab",
@@ -988,7 +991,7 @@
         "https://docs.raydium.io/raydium/pool-creation/launchlab",
         "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/raydium-launchlab.png",
       "idl": "idl/raydium-launchlab.json",
       "externalIds": {
@@ -1005,7 +1008,7 @@
           "note": "found by scripts/fixtures.mjs via platform-config 4Bu96XjU"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "stonkfun",
@@ -1062,9 +1065,9 @@
         "https://www.stonkfun.xyz",
         "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/stonkfun.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "clanker-robinhood",
@@ -1116,7 +1119,7 @@
         "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/clanker-robinhood.png",
       "fixtures": [
         {
@@ -1127,7 +1130,7 @@
           "note": "found by scripts/fixtures.mjs (topic0 in blocks 94576436-94581435)"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "doppler-robinhood",
@@ -1179,7 +1182,7 @@
         "https://robinhoodchain.blockscout.com/address/0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/doppler-robinhood.png",
       "fixtures": [
         {
@@ -1204,7 +1207,7 @@
           "note": "found by scripts/fixtures.mjs (topic0 in blocks 94572564-94577563); token = currency minted in the tx (the other V4 currency is the numeraire)"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "flap-robinhood",
@@ -1260,7 +1263,7 @@
         "https://robinhoodchain.blockscout.com/address/0x26605f322f7fF986f381bB9A6e3f5DAb0bEaEb09"
       ],
       "notes": "Flap's Robinhood Chain deployment (same address on RH testnet). ~430 TokenCreated events in the 11 hours before listing (≈40 launches/hour), far more than the other RH launchpads.",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "fixtures": [
         {
           "tx": "0x9d8c42680d70cb94c4948b5a3a668242f1ae518424a72add6eeb06b12b465885",
@@ -1270,7 +1273,7 @@
           "note": "TokenCreated in block 95744048; token = data word 3"
         }
       ],
-      "lastActivity": "2026-10-23"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "hoodpump",
@@ -1319,7 +1322,7 @@
         "https://robinhoodchain.blockscout.com/address/0x12db5b1faa9f62189cea54e3ef4bbe63bcfc892b"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/hoodpump.png",
       "abi": "abi/hoodpump.json"
     },
@@ -1367,7 +1370,7 @@
         "https://robinhoodchain.blockscout.com/address/0x360bd5ab9a20fb9920be1caec2c8abaf097dc876"
       ],
       "notes": "Website unknown; identified on-chain only.",
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "id": "launchhood",
@@ -1377,7 +1380,7 @@
         "family": "evm",
         "id": 4663
       },
-      "status": "unknown",
+      "status": "active",
       "firstSeen": "2026-07-16",
       "model": "direct-pool",
       "contracts": [
@@ -1413,7 +1416,8 @@
         "https://robinhoodchain.blockscout.com/address/0x62b33a039d289cbda50ebeb72fe4261449e61bcf"
       ],
       "notes": "Website unknown; identified on-chain only.",
-      "updated": "2026-10-23"
+      "updated": "2026-10-26",
+      "lastActivity": "2026-10-16"
     },
     {
       "id": "launchproof",
@@ -1456,9 +1460,9 @@
         "https://robinhoodchain.blockscout.com/address/0x000000e200088d55c39a11f609e5f667729ad49b"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/launchproof.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "noxa",
@@ -1503,9 +1507,9 @@
         "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
       ],
       "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/noxa.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-23"
     },
     {
       "id": "pmav",
@@ -1567,7 +1571,7 @@
         "https://robinhoodchain.blockscout.com/address/0x97472ae141ff13a4d317328bc4f3f95172fba8cc"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/pmav.png",
       "abi": "abi/pmav.json"
     },
@@ -1628,7 +1632,7 @@
         "https://robinhoodchain.blockscout.com/address/0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
       ],
       "notes": "Dominant Robinhood Chain launchpad since mid-July 2026 (~74% of launches at peak).",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "abi": "abi/pons.json"
     },
     {
@@ -1688,9 +1692,9 @@
         "https://robinhoodchain.blockscout.com/address/0xd861cb5DC71A0171E8F0f6586cADb069f3A35E4d"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "abi": "abi/robinfun.json",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-24"
     },
     {
       "id": "trencher",
@@ -1736,7 +1740,7 @@
         "https://robinhoodchain.blockscout.com/address/0xe769d832934f0a196a25e5c7b69cdf1920bc7734"
       ],
       "notes": "Website unknown; identified on-chain only.",
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "id": "virtuals-robinhood",
@@ -1802,7 +1806,7 @@
         "https://robinhoodchain.blockscout.com/address/0x43E4C17b15365596Caae8e7d00E42Bc8E988c2d4"
       ],
       "notes": "",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/virtuals-robinhood.png",
       "fixtures": [
         {
@@ -1820,7 +1824,7 @@
           "note": "found by scripts/fixtures.mjs (topic0 in blocks 94519895-94524894)"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "imortal",
@@ -1862,8 +1866,9 @@
         "https://imortal.buzz",
         "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"
       ],
-      "updated": "2026-10-23",
-      "logo": "icons/imortal.png"
+      "updated": "2026-10-26",
+      "logo": "icons/imortal.png",
+      "lastActivity": "2026-10-03"
     },
     {
       "id": "runup",
@@ -1937,9 +1942,9 @@
         "https://runup.fun",
         "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/runup.png",
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "sprout",
@@ -2005,7 +2010,7 @@
         "https://trysprout.fun",
         "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
       ],
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "logo": "icons/sprout.png",
       "fixtures": [
         {
@@ -2016,7 +2021,7 @@
           "note": "found by scripts/fixtures.mjs (mint-from-zero in blocks 188315569-188320568)"
         }
       ],
-      "lastActivity": "2026-10-21"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "flap",
@@ -2097,7 +2102,7 @@
         "https://bscscan.com/address/0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0"
       ],
       "notes": "Multi-chain launchpad (BNB since 2024; also Robinhood Chain, Base, X Layer, Monad with their own Portals). Found by this repo's detector 20 minutes after it started on BSC: ~66 launches per 11 minutes on 2026-10-23 (more than four.meme). Vault launches go through VaultPortal, so both addresses are entrypoints.",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "fixtures": [
         {
           "tx": "0x5e70f6d45cf50cb6a0bf8ff1bcbe519deaed52b86149acd68da8061b3355a87a",
@@ -2107,7 +2112,7 @@
           "note": "TokenCreated in block ~129275040 (SAFU, tax token *7777); token = data word 3"
         }
       ],
-      "lastActivity": "2026-10-23"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "four-meme",
@@ -2157,7 +2162,7 @@
         "https://www.quicknode.com/guides/quicknode-products/streams/copytrading-bot"
       ],
       "notes": "Dominant BNB Chain memecoin launchpad (Binance Wallet TGEs run through it). TokenManager V1 (older) is not listed. Agentic Mode (AI agents create and trade) announced 2026-03.",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "fixtures": [
         {
           "tx": "0xa68bb412d99a31d869971aae44fe937065450af90a96551dbbfa2cc5d19c615b",
@@ -2167,7 +2172,7 @@
           "note": "TokenCreate log in block 129268061; token = data word 1 (not indexed)"
         }
       ],
-      "lastActivity": "2026-10-23"
+      "lastActivity": "2026-10-26"
     },
     {
       "id": "gang",
@@ -2231,7 +2236,7 @@
         "https://bscscan.com/address/0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F"
       ],
       "notes": "Agent-only launchpad: anyone can create (0 fee), only wallets holding a Binance Agentic Wallet Agent ID (SPACE ID .ai, soulbound NFT) can buy on the curve; 1% per-wallet cap (10M tokens). 1% trade fee: 80% buys back and burns the GANG platform token, 20% to feeVault. First token (GANG) 2026-10-21 17:20 UTC; 40 tokens and 1 graduation in the first two days (gang.fun/api/tokens).",
-      "updated": "2026-10-23",
+      "updated": "2026-10-26",
       "fixtures": [
         {
           "tx": "0xfb3bad96acde12672cd6e5518563d3fe774fc54f72767caedcee12c5b8522b46",
@@ -2241,7 +2246,7 @@
           "note": "Created log in block 129239835 (KAIROS), listed by https://gang.fun/api/tokens"
         }
       ],
-      "lastActivity": "2026-10-23"
+      "lastActivity": "2026-10-26"
     }
   ]
 }

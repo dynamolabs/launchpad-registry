@@ -31,13 +31,17 @@
   "graduation": {
     "target": "uniswap-v3"
   },
-  "quotes": ["ETH"],
-  "tags": ["direct-pool"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "direct-pool"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0xa24d48d50fd7985c6de816eaf77c1a17d3593bbe"
   ],
   "notes": "Token image: https://indexer.noxa.io/uploads/<hash>.png",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "logo": "icons/noxa.png",
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-23"
 }

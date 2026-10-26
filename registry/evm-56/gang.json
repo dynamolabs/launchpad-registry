@@ -47,15 +47,20 @@
     "target": "pancakeswap-v2",
     "threshold": "20 BNB raised"
   },
-  "quotes": ["BNB"],
-  "tags": ["bonding-curve", "ai-agents"],
+  "quotes": [
+    "BNB"
+  ],
+  "tags": [
+    "bonding-curve",
+    "ai-agents"
+  ],
   "sources": [
     "https://github.com/gangfun/gang-launchpad",
     "https://bscscan.com/address/0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
     "https://bscscan.com/address/0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F"
   ],
   "notes": "Agent-only launchpad: anyone can create (0 fee), only wallets holding a Binance Agentic Wallet Agent ID (SPACE ID .ai, soulbound NFT) can buy on the curve; 1% per-wallet cap (10M tokens). 1% trade fee: 80% buys back and burns the GANG platform token, 20% to feeVault. First token (GANG) 2026-10-21 17:20 UTC; 40 tokens and 1 graduation in the first two days (gang.fun/api/tokens).",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "fixtures": [
     {
       "tx": "0xfb3bad96acde12672cd6e5518563d3fe774fc54f72767caedcee12c5b8522b46",
@@ -65,5 +70,5 @@
       "note": "Created log in block 129239835 (KAIROS), listed by https://gang.fun/api/tokens"
     }
   ],
-  "lastActivity": "2026-10-23"
+  "lastActivity": "2026-10-26"
 }

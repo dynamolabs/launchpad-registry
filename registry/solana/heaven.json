@@ -3,7 +3,7 @@
     "family": "solana",
     "id": "mainnet-beta"
   },
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "id": "heaven",
   "name": "Heaven",
   "website": "https://heaven.xyz",
@@ -29,8 +29,14 @@
     "standard": "spl",
     "metadata": "metaplex"
   },
-  "quotes": ["SOL"],
-  "tags": ["memecoin", "bonding-curve", "needs-abi"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "needs-abi"
+  ],
   "externalIds": {
     "solanatracker": "heaven",
     "geckoterminal": "heaven"
@@ -41,5 +47,5 @@
     "https://solscan.io/account/HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o"
   ],
   "logo": "icons/heaven.png",
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

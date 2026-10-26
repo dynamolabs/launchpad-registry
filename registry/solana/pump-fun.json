@@ -48,13 +48,18 @@
     "threshold": "~85 SOL in curve",
     "notes": "Migrated to Raydium AMM v4 before PumpSwap launched (2025-03)."
   },
-  "quotes": ["SOL"],
-  "tags": ["memecoin", "bonding-curve"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve"
+  ],
   "sources": [
     "https://pump.fun",
     "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
   ],
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "logo": "icons/pump-fun.png",
   "idl": "idl/pump-fun.json",
   "externalIds": {
@@ -86,5 +91,5 @@
       "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
     }
   ],
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

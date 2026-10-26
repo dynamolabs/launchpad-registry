@@ -3,7 +3,7 @@
     "family": "solana",
     "id": "mainnet-beta"
   },
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "id": "moonshot",
   "name": "Moonshot / Moonit",
   "website": "https://moonshot.money",
@@ -42,8 +42,15 @@
     "target": "meteora-damm-v2",
     "notes": "DBC generation migrates to DAMM v2; legacy program migrated to Raydium"
   },
-  "quotes": ["SOL", "USDC"],
-  "tags": ["memecoin", "bonding-curve", "vanity-address"],
+  "quotes": [
+    "SOL",
+    "USDC"
+  ],
+  "tags": [
+    "memecoin",
+    "bonding-curve",
+    "vanity-address"
+  ],
   "externalIds": {
     "codex": "Moonshot",
     "solanatracker": "moonshot",
@@ -76,5 +83,5 @@
       "note": "legacy Moonit program tokenMint"
     }
   ],
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

@@ -65,8 +65,8 @@
       "https://solscan.io/tx/67QUnyw6rpv4mB6fweJJxq84hwHBjLGhXvmzawFcWQ329ntG9M9MY3GrwWUJxbKRmSgxozZzcmPEi2xT3JBVvHAs",
       "https://solscan.io/account/GKDMxu34q8MWqqj2mVVV3pEw2zkFC7LxYjvPXNjBQLMi"
     ],
-    "updated": "2026-10-23",
-    "lastActivity": "2026-10-21"
+    "updated": "2026-10-26",
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "blocks-fund",
@@ -112,7 +112,7 @@
       "https://blocks.fund",
       "https://solscan.io/account/BnuJLtrZ14Lka7k937kewwcaWVaK3sFW2NEoik8yKw1V"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "fixtures": [
       {
         "tx": "5PdT4CkrNrehFweivGcvi65RgmgSjkkXaX7s9BpD1nVuhNYaXSh9qr86q1NWz1xRBzo7kw64PouQ35ryf7yLrdp2",
@@ -121,14 +121,15 @@
         "date": "2026-10-18",
         "note": "found by scripts/fixtures.mjs via partner-config BnuJLtrZ"
       }
-    ]
+    ],
+    "lastActivity": "2026-10-07"
   },
   {
     "chain": {
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "id": "boop",
     "name": "Boop.fun",
     "website": "https://boop.fun",
@@ -179,7 +180,7 @@
     ],
     "idl": "idl/boop.json",
     "logo": "icons/boop.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "bots-family",
@@ -225,8 +226,9 @@
       "https://bots.family",
       "https://solscan.io/account/8z8WtunBEhAZ3VJBpAMtJL1QPv2sYuPRHxRb1s3LHWtS"
     ],
-    "updated": "2026-10-23",
-    "logo": "icons/bots-family.png"
+    "updated": "2026-10-26",
+    "logo": "icons/bots-family.png",
+    "lastActivity": "2026-10-12"
   },
   {
     "id": "farmfun",
@@ -290,7 +292,7 @@
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "id": "heaven",
     "name": "Heaven",
     "website": "https://heaven.xyz",
@@ -334,14 +336,14 @@
       "https://solscan.io/account/HEAVENoP2qxoeuF8Dj2oT1GHEnu49U5mJYkdeC8BAX2o"
     ],
     "logo": "icons/heaven.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "chain": {
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "id": "jupiter-studio",
     "name": "Jupiter Studio",
     "website": "https://jup.ag/studio",
@@ -386,7 +388,8 @@
       "https://jup.ag/studio",
       "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"
     ],
-    "logo": "icons/jupiter-studio.png"
+    "logo": "icons/jupiter-studio.png",
+    "lastActivity": "2025-06-30"
   },
   {
     "id": "kids-fun",
@@ -447,9 +450,9 @@
       "https://kids.fun",
       "https://solscan.io/account/JQyaBpqyXnc2mkvHXt7QZT6L6TAXWvTzfJfwBWuHsyC"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/kids-fun.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-22"
   },
   {
     "id": "letsbonk",
@@ -508,7 +511,7 @@
       "https://letsbonk.fun",
       "https://solscan.io/account/FfYek5vEz23cMkWsdJwG2oa6EphsvXSHrGpdALN4g6W1"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/letsbonk.png",
     "externalIds": {
       "codex": "LetsBonk",
@@ -525,7 +528,7 @@
         "note": "found by scripts/fixtures.mjs via platform-config FfYek5vE"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "meteora-dbc",
@@ -597,7 +600,7 @@
       "https://github.com/MeteoraAg/dynamic-bonding-curve",
       "https://solscan.io/account/dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/meteora-dbc.png",
     "idl": "idl/meteora-dbc.json",
     "fixtures": [
@@ -612,14 +615,14 @@
     "externalIds": {
       "geckoterminal": "meteora-dbc"
     },
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "chain": {
       "family": "solana",
       "id": "mainnet-beta"
     },
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "id": "moonshot",
     "name": "Moonshot / Moonit",
     "website": "https://moonshot.money",
@@ -699,7 +702,7 @@
         "note": "legacy Moonit program tokenMint"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "pangea",
@@ -766,7 +769,7 @@
       "https://pangea.trade",
       "https://solscan.io/account/Hb5uTppRbNxc3RjVRqTWqfdU3E3GiZyGYKccxYf9tUej"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/pangea.png",
     "fixtures": [
       {
@@ -784,7 +787,7 @@
         "note": "found by scripts/fixtures.mjs via program Hb5uTppR"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "pump-fun",
@@ -847,7 +850,7 @@
       "https://pump.fun",
       "https://solscan.io/account/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/pump-fun.png",
     "idl": "idl/pump-fun.json",
     "externalIds": {
@@ -879,7 +882,7 @@
         "note": "found by scripts/fixtures.mjs via program 6EF8rrec"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "raydium-launchlab",
@@ -947,7 +950,7 @@
       "https://docs.raydium.io/raydium/pool-creation/launchlab",
       "https://solscan.io/account/LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/raydium-launchlab.png",
     "idl": "idl/raydium-launchlab.json",
     "externalIds": {
@@ -964,7 +967,7 @@
         "note": "found by scripts/fixtures.mjs via platform-config 4Bu96XjU"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "stonkfun",
@@ -1021,8 +1024,8 @@
       "https://www.stonkfun.xyz",
       "https://solscan.io/account/6BwHHDg3u1854jC8PDLXvR4spTcLNaoBxLJNGC4nTESt"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/stonkfun.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   }
 ]

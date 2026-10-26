@@ -3,7 +3,7 @@
     "family": "solana",
     "id": "mainnet-beta"
   },
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "id": "jupiter-studio",
   "name": "Jupiter Studio",
   "website": "https://jup.ag/studio",
@@ -37,11 +37,17 @@
   "graduation": {
     "target": "meteora-damm-v2"
   },
-  "quotes": ["SOL"],
-  "tags": ["frontend", "bonding-curve"],
+  "quotes": [
+    "SOL"
+  ],
+  "tags": [
+    "frontend",
+    "bonding-curve"
+  ],
   "sources": [
     "https://jup.ag/studio",
     "https://solscan.io/account/ALqi65kBeCYDsVNJY24nXj7GCUUkmU8EN3rDXMUdePet"
   ],
-  "logo": "icons/jupiter-studio.png"
+  "logo": "icons/jupiter-studio.png",
+  "lastActivity": "2025-06-30"
 }

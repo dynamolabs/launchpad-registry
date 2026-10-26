@@ -37,13 +37,18 @@
   "graduation": {
     "target": "uniswap-v4"
   },
-  "quotes": ["ETH"],
-  "tags": ["uniswap-v4", "hook"],
+  "quotes": [
+    "ETH"
+  ],
+  "tags": [
+    "uniswap-v4",
+    "hook"
+  ],
   "sources": [
     "https://robinhoodchain.blockscout.com/address/0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc"
   ],
   "notes": "",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "logo": "icons/clanker-robinhood.png",
   "fixtures": [
     {
@@ -54,5 +59,5 @@
       "note": "found by scripts/fixtures.mjs (topic0 in blocks 94576436-94581435)"
     }
   ],
-  "lastActivity": "2026-10-21"
+  "lastActivity": "2026-10-26"
 }

@@ -39,8 +39,9 @@
       "https://imortal.buzz",
       "https://blockscout.injective.network/address/0x6549b24cc81710e7b570bed2755ab3a8dd0e2cae"
     ],
-    "updated": "2026-10-23",
-    "logo": "icons/imortal.png"
+    "updated": "2026-10-26",
+    "logo": "icons/imortal.png",
+    "lastActivity": "2026-10-03"
   },
   {
     "id": "runup",
@@ -114,9 +115,9 @@
       "https://runup.fun",
       "https://blockscout.injective.network/address/0xc4dC11d586608E29bf73F26288d590321a2E0496"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/runup.png",
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   },
   {
     "id": "sprout",
@@ -182,7 +183,7 @@
       "https://trysprout.fun",
       "https://blockscout.injective.network/address/0x1333692eB905823df110762525c26f7489BB9300"
     ],
-    "updated": "2026-10-23",
+    "updated": "2026-10-26",
     "logo": "icons/sprout.png",
     "fixtures": [
       {
@@ -193,6 +194,6 @@
         "note": "found by scripts/fixtures.mjs (mint-from-zero in blocks 188315569-188320568)"
       }
     ],
-    "lastActivity": "2026-10-21"
+    "lastActivity": "2026-10-26"
   }
 ]
